@@ -20,7 +20,7 @@
 
 ## Artefact Catalogue
 
-### Promoted Artefacts (persistent — moved to `results/` after approval)
+### Artefacts (persistent — generated directly under `results/`)
 
 | # | Artefact | File Name | Produced by | Description |
 |:---:|:---|:---|:---|:---|
@@ -33,9 +33,9 @@
 | 6 | WU metadata | `wu-{wu_key}__pre__meta.json` | Step 3.2 | WU composition, constituent docs, token counts |
 | 7 | **PRE manifest** | `corpus__pre__manifest.json` | Step 3.3 | Master index of all PRE outputs — single entry point for downstream |
 | 7a | Document manifest | `corpus__pre__document_manifest.jsonl` | Step 1.2 | Per-document registry: source path, split path, normalised path, hash, status |
-| 7b | Chunk plan | `doc-{doc_instance_key}__heading__chunk_plan.json` | Step 3.1 | Chunk boundaries, token sizes; separate from heading structure TSV. Always promoted. |
-| 7c | Final discrepancy log | `doc-{doc_instance_key}__heading__discrepancy_final.tsv` | Step 2 | Retained Warning/Info entries for post-approval audit trail |
-| 8 | Coverage report | `doc-{doc_instance_key}__heading__coverage.json` | Step 2 Pass 4 | Line-level classification audit (heading vs non-heading). Conditionally promoted (on user request). |
+| 7b | Chunk plan | `doc-{doc_instance_key}__heading__chunk_plan.json` | Step 3.1 | Chunk boundaries, token sizes; separate from heading structure TSV. |
+| 7c | Final discrepancy log | `doc-{doc_instance_key}__heading__discrepancy_final.tsv` | Step 2 | Retained Warning/Info entries for audit trail |
+| 8 | Coverage report | `doc-{doc_instance_key}__heading__coverage.json` | Step 2 Pass 4 | Line-level classification audit (heading vs non-heading). Always generated. |
 | 9 | Regex runner script | `scripts/step2_regex_runner.py` | Step 2 | Fixed runner that executes regex spec against canonical input; produces full match set for Pass 2–4. Reusable across all documents. |
 
 ---
@@ -52,7 +52,7 @@
 | **2** | Step 2.2 | Token measurement | [step2_heading_extraction.md](step2_heading_extraction.md) §2.5 | Heading structure TSV | Per-heading Est_Tokens (inclusive/exclusive) |
 | **3** | Step 3.1 | Context-window chunking | [step3_workunit_packing.md](step3_workunit_packing.md) §3.1 | Heading structure TSV + token measurements | Chunk plan |
 | **3** | Step 3.2 | Work Unit packing | [step3_workunit_packing.md](step3_workunit_packing.md) §3.2 | Chunk plan + Document metadata | WU list + `wu-{wu_key}__pre__meta.json` |
-| **3** | Step 3.3 | Approval and artefact promotion | [step3_workunit_packing.md](step3_workunit_packing.md) §3.3 | Chunking plan + WU packing plan + Document list | Approval → artefact promotion → `corpus__pre__manifest.json` |
+| **3** | Step 3.3 | Issue gate and manifest finalisation | [step3_workunit_packing.md](step3_workunit_packing.md) §3.3 | Chunking plan + WU packing plan + Document list | Issue trigger check → `corpus__pre__manifest.json` (on `abort`, artefacts isolated to `results/aborted/{doc_instance_key}/`) |
 
 ---
 
@@ -66,11 +66,11 @@ PRE is complete when **all** of the following conditions are met.
 | 2 | Heading extraction convergence criteria met: Error = 0, Warning ≤ max({{warn_min:3}}, ⌈total headings × {{warn_ratio:0.02}}⌉) | Step 2 §Convergence Criteria |
 | 3 | Token measurement (Inclusive/Exclusive) completed for all documents | Step 2 §2.5 |
 | 4 | Chunk plan and WU packing plan generated | Step 3.1–3.2 |
-| 5 | User approved via `approve_all` or `approve_partial` | Step 3.3 |
-| 6 | Approved artefacts promoted to `results/` | Step 3.3 §Artefact Promotion |
+| 5 | No §3.3 issue trigger fired, or any user response (`proceed`/`revise`/`abort`) has been processed | Step 3.3 |
+| 6 | All artefacts written directly under `results/` (aborted items isolated to `results/aborted/{doc_instance_key}/`) | Step 3.3 §Artefact Storage |
 | 7 | `corpus__pre__manifest.json` generated and consumable by downstream | Step 3.3 |
 
-> When `approve_partial` is used, only approved WUs are promoted and the rest remain `held`. Downstream processing may proceed for approved WUs even if `held` WUs remain.
+> Documents that received an `abort` response are excluded from the manifest and preserved in the quarantine folder. Downstream processing may proceed for the remaining Documents.
 
 ---
 
@@ -78,7 +78,7 @@ PRE is complete when **all** of the following conditions are met.
 
 | Shared file | Contents |
 |:---|:---|
-| [`project_definitions.md`](../shared/project_definitions.md) | Terminology (HD/TD/APP/CT), identifier chain (DocumentKey → Heading_ID), token measurement standards (Inclusive/Exclusive, thresholds), approval states |
+| [`project_definitions.md`](../shared/project_definitions.md) | Terminology (HD/TD/APP/CT), identifier chain (DocumentKey → Heading_ID), token measurement standards (Inclusive/Exclusive, thresholds), lifecycle states |
 | [`naming_convention.md`](../shared/naming_convention.md) | Filename 3-part pattern, scope/phase/artifact classification, storage paths, DocumentKey slug rules |
 | [`document_classification.md`](../shared/document_classification.md) | Domain classification hierarchy — Authority, DocType, Source Family, Heading Level |
 | [`thresholds.yaml`](../shared/thresholds.yaml) | All numeric thresholds and limits in one file. Md files reference values via `{{key:value}}` placeholders; run `scripts/update_thresholds.py` to propagate changes. |
@@ -104,11 +104,11 @@ The Coordinator is the **single orchestration process** that manages agent lifec
 |:---|:---|
 | Batch scheduling | Divide pending items into batches sized to available agent count |
 | State management | Track each processing item through its lifecycle states |
-| Grammar version lock | Serialise concurrent grammar candidate updates (single-writer). Grammar candidates go to `staging/`; only the Coordinator promotes to `results/grammars/`. |
+| Grammar version lock | Serialise concurrent grammar candidate updates (single-writer). Grammar candidates go to `staging/`; only the Coordinator finalises them into `results/grammars/`. |
 | documentSplit merge | Merge documentSplit heading results, resolve boundary conflicts, reassign Heading_IDs |
 | Ancestor context | For each documentSplit, provide the active ancestor stack (parent heading chain at documentSplit start) to maintain hierarchy continuity |
 | Retry | Re-queue failed items with backoff; escalate after max {{retry_max:3}} retries |
-| Approval | Present consolidated results for user approval; promote artefacts on approval |
+| Issue gate | §3.3 issue trigger check. Engage user only when a trigger fires; process `proceed`/`revise`/`abort` response (isolate to `results/aborted/` on abort) |
 | WU packing | Apply WU Token Range rules, assign WU_Keys, generate WU metadata |
 
 ## Failure Handling
@@ -122,13 +122,15 @@ The Coordinator is the **single orchestration process** that manages agent lifec
 ## Work Unit Lifecycle States
 
 ```
-planned → running → completed → validated → approved → promoted
-                                           ↘ held (partial approval) → approved (re-approval)
+planned → running → completed → validated → processed (normal auto-completion)
+                                           ↘ proceeded (issue gate `proceed` response)
+                                           ↘ revised   (issue gate `revise` response → rerun)
+                                           ↘ aborted   (issue gate `abort` response → isolated to results/aborted/)
                   ↘ failed → retryable → running (retry)
                              ↘ escalated (max retries exceeded)
 ```
 
-> `merged` is not a WU lifecycle state — it is a WU_Type (`standalone`, `split`, `merged`). `promoted` means artefacts have been moved from `results/temp/pre/` to `results/`.
+> `merged` is not a WU lifecycle state — it is a WU_Type (`standalone`, `split`, `merged`).
 
 ## PRE Manifest — Downstream Interface Contract
 
@@ -152,27 +154,27 @@ planned → running → completed → validated → approved → promoted
 | `documents[].heading_count` | Number of headings extracted |
 | `documents[].est_tokens` | Total document token count |
 | `documents[].grammar_version` | DocType grammar version used |
-| `documents[].status` | `approved`, `held`, `escalated` |
+| `documents[].status` | `processed`, `proceeded`, `revised`, `aborted` (issue gate response result) |
 | `work_units[]` | Array of WU entries |
 | `work_units[].wu_key` | WU_Key |
 | `work_units[].wu_type` | `standalone`, `split`, `merged` |
 | `work_units[].constituent_doc_instance_keys[]` | List of DocumentInstanceKeys |
 | `work_units[].est_tokens_total` | Total WU token count |
-| `work_units[].status` | `approved`, `held`, `escalated` |
-| `work_units[].promoted_files[]` | List of promoted file paths |
+| `work_units[].status` | `processed`, `proceeded`, `revised`, `aborted` |
+| `work_units[].output_files[]` | List of artefact file paths generated under `results/` |
 | `open_warnings` | Count of unresolved Warning-severity items |
 | `oversize_exceptions` | Count of oversize leaf exceptions |
 | `token_method` | `tiktoken` or `char_approx` |
 | `tokenizer_version` | Tokenizer identifier |
 
-> **Note:** `documents[].status` transitions from `confirmed` (in `corpus__pre__document_manifest.jsonl`) to `approved`/`held`/`escalated` (in `corpus__pre__manifest.json`) after the approval step.
+> **Note:** `documents[].status` transitions from `confirmed` (in `corpus__pre__document_manifest.jsonl`) after §3.3 issue gate handling to `processed` (normal auto-completion) or `proceeded`/`revised`/`aborted` (issue response result) in `corpus__pre__manifest.json`.
 
 ---
 
 *Related documents:*
 - *[step1_document_split.md](step1_document_split.md) — Document identification, splitting, normalisation*
 - *[step2_heading_extraction.md](step2_heading_extraction.md) — Heading extraction Pass 1–3 per agent, Pass 4 at document level, TSV schema*
-- *[step3_workunit_packing.md](step3_workunit_packing.md) — Chunking, WU packing, approval*
+- *[step3_workunit_packing.md](step3_workunit_packing.md) — Chunking, WU packing, issue gate*
 - *Heading instruction: `pre_skos/phase1_heading_instruction.md`*
 - *Task Brief Generator: `pre_skos/task_brief/task_brief_generator.md`*
 - *Extraction agent operations: `commands/agents.md`*

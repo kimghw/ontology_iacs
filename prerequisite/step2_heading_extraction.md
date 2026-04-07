@@ -73,10 +73,10 @@ These results serve as the input for Step 3 chunking and Work Unit assignment.
 
 > Agents from Step 1.2 have been terminated after the Document list was finalised. This step assigns **new agents** at the Document or documentSplit level.
 
-| Document Size | Processing Mode |
-|:---|:---|
-| **≤ {{split_threshold:64K}} tokens** | 1 Document = 1 agent. A single agent runs Pass 1–4 and token measurement. |
-| **> {{split_threshold:64K}} tokens** | Pre-split into temporary documentSplits. documentSplit agents run **Pass 1–3 only**. Coordinator merges results and grammar candidates, then spawns a **document-level Pass 4 agent**. |
+See the Key Branching table in §2.0 for the processing-mode split. Agent assignment rules:
+
+- **≤ {{split_threshold:64K}} tokens**: 1 Document = 1 agent runs Pass 1–4 and token measurement end-to-end.
+- **> {{split_threshold:64K}} tokens**: Per-documentSplit agents run **Pass 1–3 only**. Coordinator merges results and grammar candidates, then spawns a separate **document-level Pass 4 agent**.
 
 Assign as many agents as available in parallel. If items exceed agent count, execute in batches.
 
@@ -136,29 +136,7 @@ Output: `doc-{doc_instance_key}__heading__extraction_llm.tsv` (or `documentSplit
 
 > The "script" here is not a pre-existing external program. The LLM analyses the Pass 1 results and draft grammar to produce a **regex specification** (JSON format). A **fixed runner script** (`scripts/step2_regex_runner.py`) executes the regex patterns against the canonical input document. The script produces a **full match set**, not just omission candidates. Discrepancies are computed by alignment.
 
-4. **Regex spec generation and full match scan** — The LLM derives regex patterns (numbering schemes, keyword prefixes like `Part`, `Chapter`, `Reg.`, `Art.`) from the Pass 1 results and draft grammar, outputting them as a **JSON array**. The Coordinator (or runner script) compiles each pattern (log `Warning` on `re.error`, do not silently skip), executes them against the canonical input, and produces the **full script match set**.
-
-   **Regex spec JSON schema:**
-
-   ```json
-   [
-     {
-       "pattern": "<regex with named groups>",
-       "expected_level": "<HeadingLevel>",
-       "number_group": "<named group for heading number, or null>",
-       "text_group": "<named group for heading text, or null>",
-       "flags": ["IGNORECASE"],
-       "priority": 1,
-       "notes": "optional description"
-     }
-   ]
-   ```
-
-   > `number_group` and `text_group` refer to named capture groups in the regex pattern. These enable `Number_mismatch` detection. If `number_group` is null, `Number_mismatch` cannot be determined and is not flagged.
-   >
-   > Allowed `flags` values: `IGNORECASE`, `MULTILINE`. Other Python `re` flags are not permitted to ensure runner portability.
-
-   **Multi-match resolution:** When multiple patterns match the same line, the runner selects the match with the highest `priority` value (1 = highest priority). On tie, the longest match wins. On further tie, the pattern appearing first in the spec array wins. Only the selected match is included in the full match set for that line.
+4. **Regex spec generation and full match scan** — The LLM derives regex patterns (numbering schemes, keyword prefixes like `Part`, `Chapter`, `Reg.`, `Art.`) from the Pass 1 results and draft grammar, outputting them as a **JSON array** that is handed to the runner. The runner script (`scripts/step2_regex_runner.py`) compiles each pattern (log `Warning` on `re.error`, do not silently skip), executes them against the canonical input, and produces the **full script match set**. See §2.6 Output Schema for the regex spec JSON schema and multi-match resolution rules.
 
 5. **LLM cross-check** — The LLM aligns the Pass 1 heading list against the script's full match set and classifies each entry:
    - `Agreed`: both LLM and script identify a heading at the same line
@@ -209,9 +187,13 @@ Output: `doc-{doc_instance_key}__heading__structure.tsv` (final), `doc-{doc_inst
 
 ### Escalation Procedure
 
-- **Target:** User (project operator).
-- **Format:** Report with the final discrepancy TSV (`discrepancy_final.tsv`) and a list of remaining Errors attached.
-- **Post-escalation:** Processing of the affected Document is **suspended**. Resume after the user provides manual correction or further instructions.
+- **Target:** User
+- **Trigger:** Error > 0 after 2 Pass 3 iterations
+- **Report:** Final discrepancy TSV (`discrepancy_final.tsv`) + remaining Error list
+- **User responses** (same scheme as Step 3.3):
+  - `proceed`: acknowledge remaining Errors and continue (flagged items require manual review downstream)
+  - `revise`: manually correct regex spec or grammar, then rerun from Pass 2
+  - `abort`: halt processing of the affected Document. Quarantine debug copies to `results/aborted/{doc_instance_key}/`
 
 ### Severity Classification
 
@@ -235,9 +217,7 @@ Output: `doc-{doc_instance_key}__heading__structure.tsv` (final), `doc-{doc_inst
 
 Measure the token count of the content under each heading. See §2.6 Output Schema for column definitions.
 
-- **Method**: `tiktoken` (`cl100k_base` encoding). The same encoding must be used project-wide to ensure consistency with Step 3 chunking thresholds.
-- **Fallback**: If `tiktoken` is unavailable, use `char_approx` (`ceil(char_count / {{approx_divisor:4}} × {{approx_multiplier:1.1}})`). Record `char_approx` in the `Measure_Method` column.
-- **Timing**: Performed after Pass 4 completion, when generating the final `heading__structure.tsv`.
+- **Recommended tool**: `tiktoken` (`cl100k_base` encoding).
 
 ---
 
@@ -249,7 +229,7 @@ Measure the token count of the content under each heading. See §2.6 Output Sche
 |:---|:---|:---:|:---|
 | `Heading_ID` | string | Yes | `{DocumentKey}_HD_{NNN}` — min-width {{hdid_digits:3}} digits, zero-padded. If heading count exceeds {{hdid_expand:999}}, expand to 4+ digits. Starting from 000 (DocumentRoot row). Since DocumentKey itself contains underscores, use `_HD_` as the parsing delimiter. |
 | `Parent_Heading_ID` | string\|null | Yes | `Heading_ID` of the parent node; empty string for the DocumentRoot row (Depth=0). **TSV null convention:** empty field (no characters between column delimiters). In TSV, this means two adjacent tabs for mid-row fields, or a tab followed by newline for the last column. |
-| `Depth` | int | Yes | Tree depth: DocumentRoot = 0 (synthetic row), first heading level = 1, etc. Depth is determined by the heading's position in the document tree hierarchy, **not** by the raw markdown heading level. Step 1.1 Markdown Lint (HL001) guarantees that heading levels increment by exactly one, so Depth = markdown `#` count − 1 after lint. If lint was not applied and levels are skipped, compress depth to sequential values (e.g., `#` → `###` with no `##` maps to Depth 1 → 2, not 1 → 3). |
+| `Depth` | int | Yes | Tree depth: DocumentRoot = 0 (synthetic row), first heading level = 1, incrementing by 1 thereafter. |
 | `Heading_Level` | string | Yes | Hierarchy level name from the document (e.g., `DocumentRoot`, `Chapter`, `Part`, `Regulation`, `Paragraph`). The Depth=0 row uses `DocumentRoot`. |
 | `Heading_Number` | string\|null | Yes | Original numbering as it appears in the document (e.g., `II-1`, `A`, `1.1.3`). Empty string for the DocumentRoot row and for unnumbered headings. |
 | `Heading_Text` | string | Yes | Full heading title text |
@@ -259,8 +239,6 @@ Measure the token count of the content under each heading. See §2.6 Output Sche
 | `Est_Tokens_Exclusive` | int | Yes | Token count for own content only (excluding descendants). **Additive** within subtrees. Invariant: `parent.exclusive + Σ(children.inclusive) = parent.inclusive`. |
 | `Measure_Method` | string | Yes | `tiktoken` or `char_approx` |
 
-> **TSV null convention:** Use an empty field (no characters between column delimiters). In TSV, this means two adjacent tabs for mid-row fields, or a tab followed by newline for the last column. Do not write the literal string `null` or `\N`.
->
 > The **first row** (Depth=0) is a **synthetic DocumentRoot row** representing the document itself. It is not a heading extracted from the text. All actual headings have Depth ≥ 1. The DocumentRoot's `Est_Tokens_Inclusive` equals the total document token count; its `Est_Tokens_Exclusive` covers only content before the first Depth=1 heading (preamble text).
 
 ```tsv

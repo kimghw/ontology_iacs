@@ -1,19 +1,18 @@
-# Step 3 — 청킹, Work Unit 패킹, 승인
+# Step 3 — 청킹, Work Unit 패킹, 이슈 게이트
 
-> **목적.** 제목 구조 TSV와 토큰 측정값을 기반으로 컨텍스트 윈도우 Chunk를 결정하고, Work Unit으로 패킹하며, 모든 산출물을 확정(프로모션)하기 위한 사용자 승인을 받는다. 이것이 PRE의 최종 스테이지이다.
+> **목적.** 제목 구조 TSV와 토큰 측정값을 기반으로 컨텍스트 윈도우 Chunk를 결정하고, Work Unit으로 패킹하며, 모든 산출물을 `results/`에 직접 저장한다. 사용자는 이슈 트리거가 발생한 경우에만 개입한다(§Step 3.3). 이것이 PRE의 최종 스테이지이다.
 
 ---
 
 ## 출력물
 
-> 파일 명명 규칙과 전체 산출물 카탈로그는 [pre_specification_ko.md](pre_specification_ko.md) §파일 명명 규칙 및 §산출물 카탈로그를 참조한다.
+Step 3가 새로 생성하는 산출물:
 
-이 단계에서는 카탈로그의 산출물 #6, #7, #7b를 생성한다:
 - #6 `wu-{wu_key}__pre__meta.json` — WU 메타데이터 (구성, 구성 문서, 토큰 수)
-- #7 `corpus__pre__manifest.json` — PRE 마스터 인덱스 (승인 후 생성)
-- #7b `doc-{doc_instance_key}__heading__chunk_plan.json` — Chunk 경계와 토큰 크기 (항상 생성 및 프로모션)
+- #7 `corpus__pre__manifest.json` — PRE 마스터 인덱스 (최종 단계로 생성)
+- #7b `doc-{doc_instance_key}__heading__chunk_plan.json` — Chunk 경계와 토큰 크기
 
-이 단계에서는 **산출물 프로모션**도 수행한다 — 모든 프로모션 산출물(#1–#7c)을 `results/temp/pre/`에서 `results/`로 이동.
+> 파일 명명 규칙과 전체 산출물 카탈로그는 [pre_specification_ko.md](pre_specification_ko.md) §파일 명명 규칙 및 §산출물 카탈로그를 참조한다.
 
 ---
 
@@ -47,10 +46,7 @@
 | 변경 | 재실행 범위 |
 |:---|:---|
 | **하한만 변경** | Step 3.2만 재실행 (WU 패킹) |
-| **상한 변경** | Step 3.1 (청킹) **및** Step 3.2 (패킹) 재실행 — 청크 경계가 상한에 의존하므로 |
-| **슬라이딩 윈도우 매개변수 (window_size, overlap) 변경** | Step 3.1 및 3.2 재실행 |
-
-> 슬라이딩 윈도우 매개변수는 상한에서 파생된다. 상한을 변경하면 이 매개변수가 자동으로 변경된다.
+| **상한 변경** | Step 3.1 (청킹) **및** Step 3.2 (패킹) 재실행 — 청크 경계와 슬라이딩 윈도우 매개변수(window_size, overlap)가 상한에서 파생되므로 자동 재계산된다 |
 
 > 이 임계값은 조정 가능하다. 값을 조정하고 위 표에 따라 적절한 단계를 재실행한다.
 
@@ -72,7 +68,7 @@
 
 | 필드 | 타입 | 설명 | 예시 |
 |:---|:---|:---|:---|
-| `wu_key` | string | 고유 WU 식별자 | `merge_a3f7c2b1` |
+| `wu_key` | string | §WU_Key 명명 규칙 참조 | `merge_a3f7c2b1` |
 | `wu_type` | string | `standalone`, `split`, `merged` | `merged` |
 | `authority` | string | 발행 기관 (모든 구성 문서 동일) | `IACS` |
 | `doc_type` | string | 문서 카테고리 (모든 구성 문서 동일) | `UR` |
@@ -101,10 +97,8 @@
 
 제목 수준 토큰 측정값을 사용하여 **재귀적 하향 분할**을 통해 청킹 전략을 결정한다. 이 단계에서는 **제목 정렬 Chunk**를 생성한다 — 각 Chunk ≤ 상한 토큰. WU 할당은 Step 3.2로 보류한다.
 
-| 총 문서 크기 | 청킹 전략 |
-|:---|:---|
-| **≤ 상한 (≤ {{chunk_max:32K}} 토큰)** | 청킹 불필요 — 단일 Chunk (= 1 Document). **WU 결정은 Step 3.2로 보류** (standalone 또는 merge 후보가 될 수 있음). |
-| **> 상한 (> {{chunk_max:32K}} 토큰)** | 제목 경계에서 필수 재귀적 분할; 각 Chunk는 ≤ 상한 토큰 목표 |
+- **≤ 상한** → 청킹 불필요(단일 Chunk = 1 Document, WU 결정은 §3.2로 위임)
+- **> 상한** → 제목 경계에서 재귀적 분할 필수, 각 Chunk ≤ 상한 토큰 목표
 
 ### 재귀적 분할 알고리즘
 
@@ -129,9 +123,9 @@
 | **슬라이딩 추출 윈도우** | 단락/목록항목 분할 실패 (구조적 경계 < 3개, 또는 분할 후 세그먼트 > 상한) | `window_size = floor(Upper_Bound × 0.875)`, `overlap = floor(window_size × 0.21)`, `unique = window_size - overlap`. 상한 변경 시 자동 조정. Coordinator가 병합 및 중복 제거. 합성 서브청크 ID(`{ChunkKey}_w{NNN}`) 할당. |
 | **사용자 에스컬레이션** | 슬라이딩 윈도우가 목표 대비 > 20% 토큰 분산을 가진 세그먼트를 생성하거나, 콘텐츠 구조가 모호한 경우 | 권장 사항과 함께 초과 크기 리프를 사용자에게 제시 |
 
-> 초과 크기 리프 분할은 승인 시 사용자 검토를 위해 청크 계획에 `split_method = "oversize_paragraph"` 또는 `"oversize_window"`로 기록된다.
+> 초과 크기 리프 분할은 청크 계획에 `split_method = "oversize_paragraph"` 또는 `"oversize_window"`로 기록되며, 사용자 에스컬레이션이 발생한 경우 §3.3 이슈 게이트 보고에 포함된다.
 
-> **청크 계획 산출물**: `doc-{doc_instance_key}__heading__chunk_plan.json`은 **항상 프로모션**된다. 제목 구조 TSV가 구조적 계층을 제공하지만, 청크 계획은 모든 청크 경계를 확정적으로 기록하며, 이는 초과 크기 리프 분할을 재구성하는 데 특히 중요하다.
+> **청크 계획 산출물**: `doc-{doc_instance_key}__heading__chunk_plan.json`은 모든 청크 경계를 확정적으로 기록하며, 이는 초과 크기 리프 분할을 재구성하는 데 특히 중요하다. 제목 구조 TSV가 구조적 계층을 제공하는 한편, 청크 계획은 이를 보완한다. (저장 정책은 §산출물 저장 참조.)
 
 ### 초과 크기 배타 세그먼트
 
@@ -150,70 +144,22 @@
 - **분할 경계는 제목 경계에 정렬되어야 한다** (초과 크기 리프 예외와 제목 없는 폴백 제외)
 - Chunk 키 규칙: `{doc_instance_key}_ch{NNN}` — 0 패딩, 문서별 순번
 - Task Brief는 **Work Unit별**로 생성; Chunk 경계와 토큰 크기가 내부에 기록
-- 제목 구조 TSV가 모든 후속 처리의 주요 **청크 맵** 역할. 항상 프로모션되는 `chunk_plan.json`이 모든 청크 경계를 기록하고 제목 구조 TSV를 보완한다.
+- 제목 구조 TSV가 모든 후속 처리의 주요 **청크 맵** 역할. `chunk_plan.json`이 모든 청크 경계를 기록하고 제목 구조 TSV를 보완한다.
 
 ### 청크 계획 스키마
 
-`doc-{doc_instance_key}__heading__chunk_plan.json`:
+`doc-{doc_instance_key}__heading__chunk_plan.json`은 문서별로 `doc_instance_key`와 `chunks[]` 배열을 포함한다. 각 청크 항목의 필드:
 
-**예시 A — 제목 기반 문서:**
+- `chunk_key`: ChunkKey (`{doc_instance_key}_ch{NNN}`)
+- `heading_range`: `{"first": "<Heading_ID>", "last": "<Heading_ID>"}` 또는 `null` (제목 없는 문서)
+- `heading_level`: 청크 경계가 끊긴 제목 수준명 또는 `null`
+- `start_line`, `end_line`: 정규 입력 파일 기준 줄 범위 (포함)
+- `est_tokens`: 청크 토큰 수
+- `split_method`: `recursive` / `oversize_paragraph` / `oversize_window` / `oversize_preamble` / `headingless`
+- `measure_method`: `tiktoken` 또는 `char_approx`
+- `sub_chunks`: 초과 크기 리프 예외나 제목 없는 폴백으로 추가 분할된 경우의 서브청크 배열, 그 외 `null`. 각 서브청크는 `sub_chunk_key`(`{ChunkKey}_p{NNN}` 또는 `{ChunkKey}_w{NNN}`), `start_line`, `end_line`, `est_tokens`를 포함.
 
-```json
-{
-  "doc_instance_key": "ur_a2_rev5_en",
-  "chunks": [
-    {
-      "chunk_key": "ur_a2_rev5_en_ch001",
-      "heading_range": {"first": "ur_a2_HD_001", "last": "ur_a2_HD_045"},
-      "heading_level": "Part",
-      "start_line": 1,
-      "end_line": 890,
-      "est_tokens": 28000,
-      "split_method": "recursive",
-      "measure_method": "tiktoken",
-      "sub_chunks": null
-    },
-    {
-      "chunk_key": "ur_a2_rev5_en_ch002",
-      "heading_range": {"first": "ur_a2_HD_046", "last": "ur_a2_HD_046"},
-      "heading_level": "Regulation",
-      "start_line": 891,
-      "end_line": 1720,
-      "est_tokens": 35000,
-      "split_method": "oversize_paragraph",
-      "measure_method": "tiktoken",
-      "sub_chunks": [
-        {"sub_chunk_key": "ur_a2_rev5_en_ch002_p001", "start_line": 891, "end_line": 1300, "est_tokens": 17000},
-        {"sub_chunk_key": "ur_a2_rev5_en_ch002_p002", "start_line": 1301, "end_line": 1720, "est_tokens": 18000}
-      ]
-    }
-  ]
-}
-```
-
-**예시 B — 제목 없는 문서:**
-
-```json
-{
-  "doc_instance_key": "ur_x1_rev1_en",
-  "chunks": [
-    {
-      "chunk_key": "ur_x1_rev1_en_ch001",
-      "heading_range": null,
-      "heading_level": null,
-      "start_line": 1,
-      "end_line": 1200,
-      "est_tokens": 42000,
-      "split_method": "headingless",
-      "measure_method": "tiktoken",
-      "sub_chunks": [
-        {"sub_chunk_key": "ur_x1_rev1_en_ch001_p001", "start_line": 1, "end_line": 600, "est_tokens": 21000},
-        {"sub_chunk_key": "ur_x1_rev1_en_ch001_p002", "start_line": 601, "end_line": 1200, "est_tokens": 21000}
-      ]
-    }
-  ]
-}
-```
+토큰 임계값(상한/하한) 및 분할 규칙은 §Work Unit 토큰 범위와 §Step 3.1을 따른다. 실제 JSON 구조는 위 필드 정의를 기반으로 Coordinator가 생성한다.
 
 ---
 
@@ -223,12 +169,13 @@
 
 ### 패킹 로직
 
-| 문서 청킹 결과 | WU 패킹 조치 |
+분기 기준은 §Work Unit 토큰 범위 참조.
+
+| 청킹 결과 | WU 패킹 조치 |
 |:---|:---|
-| **단일 청크, > 상한 (A 이후 불가능)** | 오류 — 발생해서는 안 됨. 에스컬레이션. |
-| **동일 문서의 다중 청크** | 각 청크(또는 인접 청크의 병합 그룹)가 **split WU**가 됨, 각각 {{wu_range:16K–32K}} 목표. 동일 문서의 인접 청크는 결합 시 ≤ 상한이면 하나의 WU로 병합 가능. |
-| **단일 청크, {{wu_range:16K–32K}} 범위 내** | **Standalone** — 1 Document = 1 WU. |
-| **단일 청크, < 하한** | **Merge 후보** — §병합 제약 조건에 따라 문서 간 병합 가능. |
+| **단일 청크** | 해당 문서에 §Work Unit 토큰 범위의 분기(Standalone / Merge 후보) 적용. |
+| **다중 청크** | 각 청크(또는 인접 청크의 병합 그룹)가 **split WU**가 됨. 동일 문서의 인접 청크는 결합 가능 범위 내에서 하나의 WU로 병합 가능. |
+| **오류** | 발생해서는 안 됨 — 에스컬레이션. |
 
 > **Split WU 나머지**: 분할 문서의 마지막 WU가 하한 미만이면 그대로 수용. 분할 문서 조각을 다른 문서와 병합하지 않는다.
 
@@ -236,102 +183,43 @@
 
 Coordinator는 모든 제목 구조 TSV, 토큰 측정, 청크 계획이 완료된 후(Step 2 에이전트 종료 후) 즉시 WU 패킹을 수행한다:
 
-1. 모든 문서 메타데이터, 제목 구조 TSV, 청크 계획 읽기
-2. 병합 적격성 확인과 함께 WU 토큰 범위 규칙(split/standalone/merge) 적용
-3. 명명 규칙에 따라 WU_Key 할당
-4. 각 WU에 대해 `wu-{wu_key}__pre__meta.json` 생성
-5. 사용자 승인(Step 3.3)을 위한 WU 패킹 계획 준비
+1. 모든 입력 파일(문서 메타데이터, 제목 구조 TSV, 청크 계획) 읽기
+2. 병합 적격성 확인과 함께 WU 토큰 범위 규칙(split/standalone/merge) 적용 및 명명 규칙에 따라 WU_Key 할당
+3. WU 메타데이터 생성 및 §3.3에 패킹 계획 제시
 
 ---
 
-## Step 3.3 — 청킹 계획 및 Document 목록 승인
+## Step 3.3 — 이슈 게이트 및 자동 완료
 
-통합 청킹 계획과 대상 문서 목록을 단일 사용자 승인으로 함께 제시한다.
+기본 동작은 자동 완료. 이슈 발생 여부는 Coordinator가 자동으로 판정한다 (각 트리거 정의는 §2.4, §초과 크기 리프 예외, §병합 제약 조건, §Work Unit 토큰 범위 등 해당 출처에 정의됨). 이슈가 발생한 경우에만 아래 형식으로 사용자에게 보고하고 결정을 요청한다.
 
-### 청킹 계획 (예시)
+### 이슈 발생 시 보고
 
-| Chunk Key | 문서 | 제목 범위 | Heading_Level | Split_Method | 추정 토큰 | Measure_Method |
-|:---|:---|:---|:---|:---|:---|:---|
-| `ur_a2_rev5_en_ch001` | UR A2 | Part A–C | Part | `recursive` | 30K | tiktoken |
-| `solas_ii_1_rev2024_en_ch001` (분할 없음) | SOLAS II-1 | 전체 문서 | — | `no_split` | 28K | tiktoken |
-| `marpol_annex_i_rev2024_en_ch001` | MARPOL Annex I | Regulations 1–8 | Part | `recursive` | 30K | tiktoken |
-| `marpol_annex_i_rev2024_en_ch002` | MARPOL Annex I | Regulations 9–16 | Part | `recursive` | 27K | tiktoken |
-| `marpol_annex_i_rev2024_en_ch003` | MARPOL Annex I | Regulations 17–28 | Part | `recursive` | 31K | tiktoken |
+이슈 발생 시 Coordinator는 사용자가 원인을 진단할 수 있도록 청킹 계획, WU 패킹 계획, 대상 Document 목록, 실행 요약(총 Document/Chunk/WU 수, 미결 Warning 수, 문법 버전, 초과 크기 예외, 병합 적격성 위반 등)을 제공한다. 보고 형식과 포함 항목은 이슈 종류와 컨텍스트에 따라 Coordinator가 결정한다.
 
-### WU 패킹 계획 (예시)
-
-| WU_Key | WU_Type | 구성 문서 | 추정 토큰 | 제목 수 |
-|:---|:---|:---|:---|:---|
-| `ur_e26_rev1_en` | standalone | UR E26 | 30K | 205 |
-| `ur_z10_2_rev3_en_wu001` | split | UR Z10.2 (ch001–ch002) | 24K | 147 |
-| `ur_z10_2_rev3_en_wu002` | split | UR Z10.2 (ch003–ch004) | 24K | 147 |
-| `merge_a3f7c2b1` | merged | UR F1 (5K) + UR F2 (7K) + UR F3 (4K) | 16K | 12 |
-
-### 대상 Document 목록 (예시)
-
-| # | 파일 경로 | 문서 | Authority | DocType | DocumentKey | InstanceKey | 총 토큰 | Chunk 수 | WU 수 | 제목 수 |
-|:---|:---|:---|:---|:---|:---|:---|:---|:---|:---|:---|
-| 1 | `{경로}` | `{문서명}` | `{IACS/IMO/KR/EU}` | `{UR/SOLAS/...}` | `{doc_key}` | `{doc_instance_key}` | `{n}K` | `{n 또는 1}` | `{n}` | `{n}` |
-
-### 실행 요약 (예시)
-
-| 지표 | 값 |
-|:---|:---|
-| 총 Document 수 | `{n}` |
-| 총 Chunk 수 | `{n}` |
-| 총 Work Unit 수 | `{n}` |
-| 미결 Warning | `{n}` (최종 불일치 TSV에서) |
-| 문법 버전 | `{DocType 문법 버전 목록}` |
-| 초과 크기 예외 | `{n 또는 "없음"}` |
-| 병합 적격성 위반 | `{n 또는 "없음"}` |
-
-### 승인 상태
+### 사용자 응답
 
 | 사용자 응답 | 조치 |
 |:---|:---|
-| **`approve_all`** | 모든 산출물 프로모션. PRE 완료. |
-| **`approve_partial`** | 지정된 WU만 프로모션. 나머지 WU는 추후 수정을 위해 `held` 상태로 보류. |
-| **`revise_and_rerun`** | 사용자가 임계값 변경 또는 재처리 범위를 지정. Coordinator가 §임계값 변경 재실행 규칙에 따라 영향받는 단계를 재실행. |
-| **`reject`** | PRE 중단. 프로모션 없음. 디버깅을 위해 모든 임시 산출물 보존. |
-
-### 부분 승인 후 작업 흐름
-
-`approve_partial` 선택 시:
-1. 승인된 WU는 즉시 프로모션. 승인된 WU만 포함하는 **부분** `corpus__pre__manifest.json` 생성.
-2. 보류된 WU는 `held` 상태로 `results/temp/pre/`에 유지.
-3. 재개: 사용자가 Step 3.3을 다시 호출. Coordinator가 보류된 WU만 재승인을 위해 제시.
-4. 재승인 시, Coordinator가 새로 승인된 WU로 기존 `corpus__pre__manifest.json`을 **업데이트**(upsert).
-5. 보류된 WU 산출물은 승인 라운드 간 불변 — 사용자가 `revise_and_rerun`을 선택하지 않는 한 재처리되지 않음.
-
-→ **사용자 승인을 받는다.** 승인되면 Coordinator가 산출물을 프로모션한다.
+| **`proceed`** | 이슈를 인지하고 그대로 진행 (예: Warning 초과 수용). Coordinator가 산출물을 자동 프로모션. |
+| **`revise`** | 임계값 조정 또는 재처리 범위 지정 후 재실행. §임계값 변경 재실행 규칙 참조. |
+| **`abort`** | 해당 Document/문서군 처리 중단. 임시 사본을 `results/aborted/{doc_instance_key}/`로 격리 보존. |
 
 ---
 
-## 산출물 프로모션
+## 산출물 저장
 
-승인 후, Coordinator가 `results/temp/pre/` → `results/`로 산출물을 프로모션한다:
+Step 1–3에서 생성된 모든 결과물은 처음부터 `results/`에 직접 저장된다. 임시 폴더 개념은 사용하지 않는다.
 
-**항상 프로모션:**
-- #1 `doc-{doc_instance_key}__heading__structure.tsv`
-- #2 `doc-{doc_instance_key}__heading__regex_spec.json`
-- #3 `file-{source_file_key}__pre__meta.json`
-- #4 `file-{source_file_key}__pre__normalised.md` (해당 시)
-- #4a `doc-{doc_instance_key}__pre__split.md` (다중 문서 소스 파일에만 해당)
-- #5 `doctype-{DocType}__heading__grammar_v{NN}.md`
-- #6 `wu-{wu_key}__pre__meta.json`
-- #7 `corpus__pre__manifest.json`
-- #7a `corpus__pre__document_manifest.jsonl`
-- #7b `doc-{doc_instance_key}__heading__chunk_plan.json`
-- #7c `doc-{doc_instance_key}__heading__discrepancy_final.tsv` (감사를 위해 보존)
+단계 종료 시, 다음 중간 산출물은 자동 삭제된다: Step 2의 `extraction_llm.tsv`, `extraction_script.tsv`, discrepancy 작업 사본, `validated.tsv`, `grammar_candidate.md`.
 
-**프로모션 후 폐기:**
-- Step 2 중간 산출물 (extraction_llm.tsv, extraction_script.tsv, discrepancy 작업 사본, validated.tsv, grammar_candidate.md — 카탈로그에 번호 미부여)
-- #8 `doc-{doc_instance_key}__heading__coverage.json` — 조건부 프로모션 (사용자 요청 시)
+이슈로 `abort`된 경우에 한해 디버깅용 임시 사본을 `results/aborted/{doc_instance_key}/`로 격리 보존한다.
 
-전체 목록은 [pre_specification_ko.md](pre_specification_ko.md) §산출물 카탈로그를 참조한다.
+`coverage.json`(#8)은 항상 생성된다.
 
-**PRE 매니페스트** (`results/corpus__pre__manifest.json`)는 최종 단계로 생성된다 — 모든 문서 항목, WU_Key, 프로모션된 파일 경로, 문법 버전, 미결 warning 수, 초과 크기 예외 수를 기록한다. 다운스트림 소비자(`commands/agents.md`, `task_brief_generator.md`)를 위한 단일 진입점 역할을 한다.
+전체 결과물 카탈로그와 파일 명명 규칙은 [pre_specification_ko.md](pre_specification_ko.md) §산출물 카탈로그를 정본으로 한다.
+
+**PRE 매니페스트** (`results/corpus__pre__manifest.json`)는 최종 단계로 생성된다 — 모든 문서 항목, WU_Key, 저장된 파일 경로, 문법 버전, 미결 warning 수, 초과 크기 예외 수를 기록한다. 다운스트림 소비자(`commands/agents.md`, `task_brief_generator.md`)를 위한 단일 진입점 역할을 한다.
 
 > **인터페이스 contract**: PRE 매니페스트는 [pre_specification_ko.md](pre_specification_ko.md) §PRE 매니페스트 — 다운스트림 인터페이스 contract에 정의된 필수 필드를 채워야 한다. 다운스트림 단계(TD/APP/CT)는 이 필드들이 존재한다고 가정한다.
 
-> 파일 명명 규칙과 저장 경로는 [pre_specification_ko.md](pre_specification_ko.md) §파일 명명 규칙을 참조한다.

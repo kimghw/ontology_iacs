@@ -1,19 +1,18 @@
-# Step 3 — Chunking, Work Unit Packing, and Approval
+# Step 3 — Chunking, Work Unit Packing, and Issue Gate
 
-> **Purpose.** Determine context-window Chunks based on the heading structure TSV and token measurements, pack them into Work Units, and obtain user approval to finalise (promote) all artefacts. This is the final stage of PRE.
+> **Purpose.** Determine context-window Chunks based on the heading structure TSV and token measurements, pack them into Work Units, and write all artefacts directly to `results/`. The user is engaged only when an issue trigger fires (§Step 3.3). This is the final stage of PRE.
 
 ---
 
 ## Outputs
 
-> For file naming rules and the full artefact catalogue, see [pre_specification.md](pre_specification.md) §File Naming Convention and §Artefact Catalogue.
+Step 3 newly produces:
 
-This step produces artefacts #6, #7, #7b from the catalogue:
-- #6 `wu-{wu_key}__pre__meta.json` — WU metadata (composition, constituent docs, token counts)
-- #7 `corpus__pre__manifest.json` — PRE master index (generated after approval)
-- #7b `doc-{doc_instance_key}__heading__chunk_plan.json` — Chunk boundaries and token sizes (always generated and promoted)
+- #6 `wu-{wu_key}__pre__meta.json` — WU metadata (composition, constituent documents, token counts)
+- #7 `corpus__pre__manifest.json` — PRE master index (generated as the final step)
+- #7b `doc-{doc_instance_key}__heading__chunk_plan.json` — Chunk boundaries and token sizes
 
-This step also performs **artefact promotion** — moving all promoted artefacts (#1–#7c) from `results/temp/pre/` to `results/`.
+> File naming rules and the full artefact catalogue are defined in [pre_specification.md](pre_specification.md) §File Naming Convention and §Artefact Catalogue.
 
 ---
 
@@ -47,10 +46,7 @@ This step also performs **artefact promotion** — moving all promoted artefacts
 | Change | Rerun Scope |
 |:---|:---|
 | **Lower Bound only changed** | Rerun Step 3.2 only (WU packing) |
-| **Upper Bound changed** | Rerun Step 3.1 (chunking) **and** Step 3.2 (packing) — because chunk boundaries depend on the Upper Bound |
-| **Sliding window parameters (window_size, overlap) changed** | Rerun Step 3.1 and 3.2 |
-
-> Sliding window parameters are derived from the Upper Bound. Changing the Upper Bound automatically changes these parameters.
+| **Upper Bound changed** | Rerun Step 3.1 (chunking) **and** Step 3.2 (packing) — chunk boundaries and the derived sliding-window parameters (`window_size`, `overlap`) both depend on the Upper Bound |
 
 > These thresholds are tuneable. Adjust the values and re-run the appropriate steps per the table above.
 
@@ -72,7 +68,7 @@ Recorded in `wu-{wu_key}__pre__meta.json`:
 
 | Field | Type | Description | Example |
 |:---|:---|:---|:---|
-| `wu_key` | string | Unique WU identifier | `merge_a3f7c2b1` |
+| `wu_key` | string | See §WU_Key Naming Convention | `merge_a3f7c2b1` |
 | `wu_type` | string | `standalone`, `split`, `merged` | `merged` |
 | `authority` | string | Issuing body (same for all constituents) | `IACS` |
 | `doc_type` | string | Document category (same for all constituents) | `UR` |
@@ -103,8 +99,8 @@ Use heading-level token measurements to determine chunking strategy via **recurs
 
 | Total Document Size | Chunking Strategy |
 |:---|:---|
-| **≤ Upper Bound (≤ {{chunk_max:32K}} tokens)** | No chunking needed — single Chunk (= 1 Document). **WU determination deferred to Step 3.2** (may become standalone or merge candidate). |
-| **> Upper Bound (> {{chunk_max:32K}} tokens)** | Mandatory recursive split at heading boundaries; each Chunk targets ≤ Upper Bound tokens |
+| **≤ Upper Bound** | No chunking needed — single Chunk = 1 Document; WU decision deferred to §3.2 |
+| **> Upper Bound** | Mandatory recursive split at heading boundaries; each Chunk targets ≤ Upper Bound tokens |
 
 ### Recursive Splitting Algorithm
 
@@ -129,9 +125,9 @@ When a leaf heading exceeds the Upper Bound tokens and cannot be split at headin
 | **Sliding extraction window** | Paragraph/list-item split fails (< 3 structural boundaries, or any segment > Upper Bound after split) | `window_size = floor(Upper_Bound × 0.875)`, `overlap = floor(window_size × 0.21)`, `unique = window_size - overlap`. Adjusts automatically when Upper Bound changes. Coordinator merges and deduplicates. Assign synthetic sub-chunk IDs (`{ChunkKey}_w{NNN}`). |
 | **User escalation** | Sliding window produces segments with > 20% token variance from target, or content structure is ambiguous | Present the oversize leaf to user with a recommendation |
 
-> Oversize leaf splits are recorded in the chunk plan with `split_method = "oversize_paragraph"` or `"oversize_window"` for user review during approval.
+> Oversize leaf splits are recorded in the chunk plan with `split_method = "oversize_paragraph"` or `"oversize_window"`. They are surfaced in the §3.3 Issue Gate report when user escalation is triggered.
 
-> **Chunk plan artefact**: `doc-{doc_instance_key}__heading__chunk_plan.json` is **always promoted**. While the heading structure TSV provides the structural hierarchy, the chunk plan definitively records all chunk boundaries, which is especially critical for reconstructing oversize leaf splits.
+> **Chunk plan artefact**: `doc-{doc_instance_key}__heading__chunk_plan.json`. While the heading structure TSV provides the structural hierarchy, the chunk plan definitively records all chunk boundaries, which is especially critical for reconstructing oversize leaf splits.
 
 ### Oversize Exclusive Segment
 
@@ -150,70 +146,22 @@ If a document has no headings at all (or only a DocumentRoot with no child headi
 - **Split boundaries must align with heading boundaries** (except for the oversize leaf exception and headingless fallback)
 - Chunk key convention: `{doc_instance_key}_ch{NNN}` — zero-padded, sequential per document
 - Task Brief is generated **per Work Unit**; Chunk boundaries and token sizes are recorded inside
-- The heading structure TSV serves as the primary **chunk map** for all subsequent processing. The always-promoted `chunk_plan.json` records all chunk boundaries and supplements the heading structure TSV.
+- The heading structure TSV serves as the primary **chunk map** for all subsequent processing. The `chunk_plan.json` records all chunk boundaries and supplements the heading structure TSV.
 
 ### Chunk Plan Schema
 
-`doc-{doc_instance_key}__heading__chunk_plan.json`:
+`doc-{doc_instance_key}__heading__chunk_plan.json` contains `doc_instance_key` and a `chunks[]` array per document. Each chunk entry has the following fields:
 
-**Example A — heading-based document:**
+- `chunk_key`: ChunkKey (`{doc_instance_key}_ch{NNN}`)
+- `heading_range`: `{"first": "<Heading_ID>", "last": "<Heading_ID>"}` or `null` (headingless documents)
+- `heading_level`: name of the heading level at which the chunk boundary was cut, or `null`
+- `start_line`, `end_line`: line range in the canonical input file (inclusive)
+- `est_tokens`: chunk token count
+- `split_method`: `recursive` / `oversize_paragraph` / `oversize_window` / `oversize_preamble` / `headingless`
+- `measure_method`: `tiktoken` or `char_approx`
+- `sub_chunks`: array of sub-chunks when further split via the oversize-leaf exception or the headingless fallback; otherwise `null`. Each sub-chunk contains `sub_chunk_key` (`{ChunkKey}_p{NNN}` or `{ChunkKey}_w{NNN}`), `start_line`, `end_line`, and `est_tokens`.
 
-```json
-{
-  "doc_instance_key": "ur_a2_rev5_en",
-  "chunks": [
-    {
-      "chunk_key": "ur_a2_rev5_en_ch001",
-      "heading_range": {"first": "ur_a2_HD_001", "last": "ur_a2_HD_045"},
-      "heading_level": "Part",
-      "start_line": 1,
-      "end_line": 890,
-      "est_tokens": 28000,
-      "split_method": "recursive",
-      "measure_method": "tiktoken",
-      "sub_chunks": null
-    },
-    {
-      "chunk_key": "ur_a2_rev5_en_ch002",
-      "heading_range": {"first": "ur_a2_HD_046", "last": "ur_a2_HD_046"},
-      "heading_level": "Regulation",
-      "start_line": 891,
-      "end_line": 1720,
-      "est_tokens": 35000,
-      "split_method": "oversize_paragraph",
-      "measure_method": "tiktoken",
-      "sub_chunks": [
-        {"sub_chunk_key": "ur_a2_rev5_en_ch002_p001", "start_line": 891, "end_line": 1300, "est_tokens": 17000},
-        {"sub_chunk_key": "ur_a2_rev5_en_ch002_p002", "start_line": 1301, "end_line": 1720, "est_tokens": 18000}
-      ]
-    }
-  ]
-}
-```
-
-**Example B — headingless document:**
-
-```json
-{
-  "doc_instance_key": "ur_x1_rev1_en",
-  "chunks": [
-    {
-      "chunk_key": "ur_x1_rev1_en_ch001",
-      "heading_range": null,
-      "heading_level": null,
-      "start_line": 1,
-      "end_line": 1200,
-      "est_tokens": 42000,
-      "split_method": "headingless",
-      "measure_method": "tiktoken",
-      "sub_chunks": [
-        {"sub_chunk_key": "ur_x1_rev1_en_ch001_p001", "start_line": 1, "end_line": 600, "est_tokens": 21000},
-        {"sub_chunk_key": "ur_x1_rev1_en_ch001_p002", "start_line": 601, "end_line": 1200, "est_tokens": 21000}
-      ]
-    }
-  ]
-}
-```
+Token thresholds (Upper/Lower Bounds) and split rules follow §Work Unit Token Range and §Step 3.1. The Coordinator generates the actual JSON structure based on the field definitions above.
 
 ---
 
@@ -223,12 +171,14 @@ After context-window Chunks are determined, pack Chunks (or whole Documents wher
 
 ### Packing Logic
 
-| Document Chunking Result | WU Packing Action |
+> Branching criteria: see §Work Unit Token Range. The table below maps chunking outcomes to WU packing actions only.
+
+| Chunking Outcome | WU Packing Action |
 |:---|:---|
-| **Single chunk, > Upper Bound (impossible after A)** | Error — should not occur. Escalate. |
-| **Multiple chunks from same document** | Each chunk (or coalesced group of adjacent chunks) becomes a **split WU**, targeting {{wu_range:16K–32K}} each. Adjacent chunks from the same document may be coalesced into one WU if combined ≤ Upper Bound. |
-| **Single chunk, within {{wu_range:16K–32K}}** | **Standalone** — 1 Document = 1 WU. |
-| **Single chunk, < Lower Bound** | **Merge candidate** — eligible for cross-document merge per §Merge constraints. |
+| **Single chunk, > Upper Bound** | Error — should not occur after Step 3.1. Escalate. |
+| **Multiple chunks from same document** | Each chunk (or coalesced group of adjacent chunks) becomes a **split WU**. Adjacent chunks from the same document may be coalesced into one WU if combined ≤ Upper Bound. |
+| **Single chunk, within WU target range** | **Standalone** — 1 Document = 1 WU. |
+| **Single chunk, below WU target range** | **Merge candidate** — eligible for cross-document merge per §Merge Constraints. |
 
 > **Split WU remainder**: If a split document's last WU falls below the Lower Bound, it is accepted as-is. Do not merge split document pieces with other documents.
 
@@ -237,100 +187,42 @@ After context-window Chunks are determined, pack Chunks (or whole Documents wher
 The Coordinator performs WU packing immediately after all heading structure TSVs, token measurements, and chunk plans are complete (after Step 2 agents are terminated):
 
 1. Read all document metadata, heading structure TSVs, and chunk plans
-2. Apply WU Token Range rules (split/standalone/merge) with merge eligibility checks
-3. Assign WU_Keys per the naming convention
-4. Generate `wu-{wu_key}__pre__meta.json` for each WU
-5. Prepare the WU Packing Plan for user approval (Step 3.3)
+2. Apply WU Token Range rules (split/standalone/merge) with merge eligibility checks, and assign WU_Keys per the naming convention
+3. Emit WU metadata and present the WU Packing Plan (see §Outputs and §3.3)
 
 ---
 
-## Step 3.3 — Chunking Plan and Document List Approval
+## Step 3.3 — Issue Gate and Auto-Completion
 
-Present the consolidated chunking plan and target document list together for a single user approval.
+Default behaviour is auto-completion. The Coordinator automatically detects issues based on triggers defined in their respective sections (§2.4, §Oversize-Leaf Exception, §Merge Constraints, §Work Unit Token Range, etc.). When no trigger fires, the Coordinator writes artefacts directly to `results/` (see §Artefact Storage) without presenting the tables below. When a trigger fires, the Coordinator surfaces the following report and requests a decision.
 
-### Chunking Plan (example)
+### Issue Report
 
-| Chunk Key | Document | Heading Range | Heading_Level | Split_Method | Est. Tokens | Measure_Method |
-|:---|:---|:---|:---|:---|:---|:---|
-| `ur_a2_rev5_en_ch001` | UR A2 | Part A–C | Part | `recursive` | 30K | tiktoken |
-| `solas_ii_1_rev2024_en_ch001` (no split) | SOLAS II-1 | Full document | — | `no_split` | 28K | tiktoken |
-| `marpol_annex_i_rev2024_en_ch001` | MARPOL Annex I | Regulations 1–8 | Part | `recursive` | 30K | tiktoken |
-| `marpol_annex_i_rev2024_en_ch002` | MARPOL Annex I | Regulations 9–16 | Part | `recursive` | 27K | tiktoken |
-| `marpol_annex_i_rev2024_en_ch003` | MARPOL Annex I | Regulations 17–28 | Part | `recursive` | 31K | tiktoken |
+When a trigger fires, the Coordinator provides the chunking plan, WU packing plan, target Document list, and execution summary (total Document/Chunk/WU counts, open Warning count, grammar versions, oversize exceptions, merge eligibility violations, etc.) so the user can diagnose the cause. The exact report format and included items are determined by the Coordinator based on the issue type and context.
 
-### WU Packing Plan (example)
-
-| WU_Key | WU_Type | Constituent Docs | Est. Tokens | Heading Count |
-|:---|:---|:---|:---|:---|
-| `ur_e26_rev1_en` | standalone | UR E26 | 30K | 205 |
-| `ur_z10_2_rev3_en_wu001` | split | UR Z10.2 (ch001–ch002) | 24K | 147 |
-| `ur_z10_2_rev3_en_wu002` | split | UR Z10.2 (ch003–ch004) | 24K | 147 |
-| `merge_a3f7c2b1` | merged | UR F1 (5K) + UR F2 (7K) + UR F3 (4K) | 16K | 12 |
-
-### Target Document List (example)
-
-| # | File Path | Document | Authority | DocType | DocumentKey | InstanceKey | Total Tokens | Chunks | WU Count | Heading Count |
-|:---|:---|:---|:---|:---|:---|:---|:---|:---|:---|:---|
-| 1 | `{path}` | `{doc name}` | `{IACS/IMO/KR/EU}` | `{UR/SOLAS/...}` | `{doc_key}` | `{doc_instance_key}` | `{n}K` | `{n or 1}` | `{n}` | `{n}` |
-
-### Execution Summary (example)
-
-| Metric | Value |
-|:---|:---|
-| Total Documents | `{n}` |
-| Total Chunks | `{n}` |
-| Total Work Units | `{n}` |
-| Open Warnings | `{n}` (from final discrepancy TSVs) |
-| Grammar Versions | `{list of doctype grammar versions}` |
-| Oversize Exceptions | `{n or "none"}` |
-| Merge Eligibility Violations | `{n or "none"}` |
-
-### Approval States
+### User Response
 
 | User Response | Action |
 |:---|:---|
-| **`approve_all`** | Promote all artefacts. PRE complete. |
-| **`approve_partial`** | Promote specified WUs only. Remaining WUs are held with status `held` for later revision. |
-| **`revise_and_rerun`** | User specifies threshold changes or reprocessing scope. Coordinator re-runs affected steps per §Threshold Change Rerun Rules. |
-| **`reject`** | Abort PRE. No promotion. All temp artefacts retained for debugging. |
-
-### Post-Partial-Approval Workflow
-
-When `approve_partial` is selected:
-1. Approved WUs are promoted immediately. A **partial** `corpus__pre__manifest.json` is generated containing only the approved WUs.
-2. Held WUs remain in `results/temp/pre/` with status `held`.
-3. To resume: the user invokes Step 3.3 again. The Coordinator presents only held WUs for re-approval.
-4. On re-approval, the Coordinator **updates** (upserts) the existing `corpus__pre__manifest.json` with the newly approved WUs.
-5. Held WU artefacts are immutable between approval rounds — they are not re-processed unless the user selects `revise_and_rerun`.
-
-→ **Obtain user approval.** Once approved, the Coordinator promotes artefacts.
+| **`proceed`** | Acknowledge the issue and continue (e.g., accept Warning overflow). Coordinator resumes auto-completion. |
+| **`revise`** | Adjust thresholds or rerun scope. Coordinator re-runs affected steps per §Threshold Change Rerun Rules. |
+| **`abort`** | Halt processing for affected Document(s). Quarantine temp copies to `results/aborted/{doc_instance_key}/`. |
 
 ---
 
-## Artefact Promotion
+## Artefact Storage
 
-After approval, the Coordinator promotes artefacts from `results/temp/pre/` → `results/`:
+All artefacts produced in Steps 1–3 are written directly to `results/`. There is no temp/promotion staging.
 
-**Always promoted:**
-- #1 `doc-{doc_instance_key}__heading__structure.tsv`
-- #2 `doc-{doc_instance_key}__heading__regex_spec.json`
-- #3 `file-{source_file_key}__pre__meta.json`
-- #4 `file-{source_file_key}__pre__normalised.md` (if applicable)
-- #4a `doc-{doc_instance_key}__pre__split.md` (multi-document source files only)
-- #5 `doctype-{DocType}__heading__grammar_v{NN}.md`
-- #6 `wu-{wu_key}__pre__meta.json`
-- #7 `corpus__pre__manifest.json`
-- #7a `corpus__pre__document_manifest.jsonl`
-- #7b `doc-{doc_instance_key}__heading__chunk_plan.json`
-- #7c `doc-{doc_instance_key}__heading__discrepancy_final.tsv` (retained for audit)
+At step completion, the following intermediate artefacts are auto-deleted: Step 2's `extraction_llm.tsv`, `extraction_script.tsv`, discrepancy working copies, `validated.tsv`, and `grammar_candidate.md`.
 
-**Discarded after promotion:**
-- Step 2 intermediate artefacts (extraction_llm.tsv, extraction_script.tsv, discrepancy working copies, validated.tsv, grammar_candidate.md — not numbered in the catalogue)
-- #8 `doc-{doc_instance_key}__heading__coverage.json` — conditionally promoted (on user request)
+When a Document is aborted due to an issue, a debug copy is quarantined to `results/aborted/{doc_instance_key}/`.
 
-See [pre_specification.md](pre_specification.md) §Artefact Catalogue for the complete list.
+`coverage.json` (#8) is always generated.
 
-The **PRE manifest** (`results/corpus__pre__manifest.json`) is generated as the final step — it records all document entries, WU_Keys, promoted file paths, grammar versions, open warning count, and oversize exception count. It serves as the single entry point for downstream consumers (`commands/agents.md`, `task_brief_generator.md`).
+The authoritative artefact catalogue and file naming rules live in [pre_specification.md](pre_specification.md) §Artefact Catalogue.
+
+The **PRE manifest** (`results/corpus__pre__manifest.json`) is generated as the final step — it records all document entries, WU_Keys, written file paths, grammar versions, open warning count, and oversize exception count. It serves as the single entry point for downstream consumers (`commands/agents.md`, `task_brief_generator.md`).
 
 > **Interface contract**: The PRE manifest must populate the required fields defined in [pre_specification.md](pre_specification.md) §PRE Manifest — Downstream Interface Contract. Downstream phases (TD/APP/CT) assume these fields exist.
 
