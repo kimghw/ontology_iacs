@@ -1,0 +1,3 @@
+Heading_ID	Parent_Heading_ID	Depth	Heading_Level	Heading_Number	Heading_Text	Start_Line	End_Line	Est_Tokens_Inclusive	Est_Tokens_Exclusive	Measure_Method
+ur_e9_HD_000		0	DocumentRoot		UR E9	1	40	448	1	tiktoken
+ur_e9_HD_001	ur_e9_HD_000	1	Section	E9	E9 Earthing and bonding of cargo tanks/ process plant/piping systems for the control of static electricity	2	40	447	447	tiktoken

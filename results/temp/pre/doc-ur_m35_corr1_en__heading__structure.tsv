@@ -1,0 +1,16 @@
+Heading_ID	Parent_Heading_ID	Depth	Heading_Level	Heading_Number	Heading_Text	Start_Line	End_Line	Est_Tokens_Inclusive	Est_Tokens_Exclusive	Measure_Method
+ur_m35_HD_000		0	DocumentRoot		UR M35	1	223	3308	1	tiktoken
+ur_m35_HD_001	ur_m35_HD_000	1	Section	M35	M35 Alarms, remote indications and safeguards for main reciprocating I.C. engines installed in unattended machinery spaces	2	223	3307	476	tiktoken
+ur_m35_HD_002	ur_m35_HD_001	2	Subsection		35.1 General	37	40	40	40	tiktoken
+ur_m35_HD_003	ur_m35_HD_001	2	Subsection		35.2 Alarms	41	46	110	110	tiktoken
+ur_m35_HD_004	ur_m35_HD_001	2	Subsection		35.3 Remote indications	47	50	52	52	tiktoken
+ur_m35_HD_005	ur_m35_HD_001	2	Subsection		35.4 Safeguards	51	68	203	9	tiktoken
+ur_m35_HD_006	ur_m35_HD_005	3	Paragraph		35.4.1 Automatic start of standby pumps – slow down	53	56	37	37	tiktoken
+ur_m35_HD_007	ur_m35_HD_005	3	Paragraph		35.4.2 Automatic reduction of power	57	60	52	52	tiktoken
+ur_m35_HD_008	ur_m35_HD_005	3	Paragraph		35.4.3 Automatic stop – shut down	61	68	105	105	tiktoken
+ur_m35_HD_009	ur_m35_HD_001	2	Subsection		Table 1: Cross-head diesel engines	69	107	622	622	tiktoken
+ur_m35_HD_010	ur_m35_HD_001	2	Subsection		Table 1 (continued)	108	156	772	505	tiktoken
+ur_m35_HD_011	ur_m35_HD_010	3	Paragraph		Footnotes for Table 1:	141	156	267	267	tiktoken
+ur_m35_HD_012	ur_m35_HD_001	2	Subsection		Table 2: Trunk-piston diesel engines	157	193	580	580	tiktoken
+ur_m35_HD_013	ur_m35_HD_001	2	Subsection		Table 2 (continued)	194	223	452	222	tiktoken
+ur_m35_HD_014	ur_m35_HD_013	3	Paragraph		Footnotes for Table 2:	209	223	230	230	tiktoken

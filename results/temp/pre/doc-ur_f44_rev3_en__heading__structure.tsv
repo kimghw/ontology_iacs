@@ -1,0 +1,6 @@
+Heading_ID	Parent_Heading_ID	Depth	Heading_Level	Heading_Number	Heading_Text	Start_Line	End_Line	Est_Tokens_Inclusive	Est_Tokens_Exclusive	Measure_Method
+ur_f44_HD_000		0	DocumentRoot		UR F44	1	82	1425	1	tiktoken
+ur_f44_HD_001	ur_f44_HD_000	1	Section	F44	F44 Fore peak ballast tanks and space arrangements on oil & chemical tankers	2	82	1424	64	tiktoken
+ur_f44_HD_002	ur_f44_HD_001	2	Subsection		Definitions	11	25	163	163	tiktoken
+ur_f44_HD_003	ur_f44_HD_001	2	Subsection		1 Fore peak ballast tanks and space arrangements on tankers for oil and/or chemicals	26	53	666	666	tiktoken
+ur_f44_HD_004	ur_f44_HD_001	2	Subsection		2 Additional requirements for forward spaces not being defined as a ballast tank	54	82	531	531	tiktoken

@@ -1,0 +1,3 @@
+Heading_ID	Parent_Heading_ID	Depth	Heading_Level	Heading_Number	Heading_Text	Start_Line	End_Line	Est_Tokens_Inclusive	Est_Tokens_Exclusive	Measure_Method
+ur_l3_HD_000		0	DocumentRoot		UR L3	1	6	30	1	tiktoken
+ur_l3_HD_001	ur_l3_HD_000	1	Section	L3	L3 Intact stability of tankers during liquid transfer operations	2	6	29	29	tiktoken

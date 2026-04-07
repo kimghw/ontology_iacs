@@ -1,0 +1,25 @@
+Heading_ID	Parent_Heading_ID	Depth	Heading_Level	Heading_Number	Heading_Text	Start_Line	End_Line	Est_Tokens_Inclusive	Est_Tokens_Exclusive	Measure_Method
+ur_m78_HD_000		0	DocumentRoot		UR M78	1	293	4551	1	tiktoken
+ur_m78_HD_001	ur_m78_HD_000	1	Section	M78	M78 Reciprocating Internal Combustion Engines Fuelled by Natural Gas	2	293	4550	42	tiktoken
+ur_m78_HD_002	ur_m78_HD_001	2	Subsection		1 General	8	178	2736	5	tiktoken
+ur_m78_HD_003	ur_m78_HD_002	3	Paragraph		1.1 Scope	10	37	570	7	tiktoken
+ur_m78_HD_004	ur_m78_HD_003	4	Sub-paragraph		1.1.1 Type of engines	12	37	563	563	tiktoken
+ur_m78_HD_005	ur_m78_HD_002	3	Paragraph		1.2 Definitions	38	86	899	899	tiktoken
+ur_m78_HD_006	ur_m78_HD_002	3	Paragraph		1.3 Documents and drawings to be submitted	87	124	423	12	tiktoken
+ur_m78_HD_007	ur_m78_HD_006	4	Sub-paragraph		1.3.1 Documents and drawings to be submitted for the approval of DF and GF engines	89	103	205	205	tiktoken
+ur_m78_HD_008	ur_m78_HD_006	4	Sub-paragraph		1.3.2 Documents and drawings to be submitted for the approval of DF engine	104	111	84	84	tiktoken
+ur_m78_HD_009	ur_m78_HD_006	4	Sub-paragraph		1.3.3 Documents and drawings to be submitted for the approval of GF engine	112	117	49	49	tiktoken
+ur_m78_HD_010	ur_m78_HD_006	4	Sub-paragraph		1.3.4 Where considered necessary, the Society may request further documents to be submitted.	118	124	73	73	tiktoken
+ur_m78_HD_011	ur_m78_HD_002	3	Paragraph		1.4 Risk analysis	125	178	839	8	tiktoken
+ur_m78_HD_012	ur_m78_HD_011	4	Sub-paragraph		1.4.1 Scope of the risk analysis	127	136	170	170	tiktoken
+ur_m78_HD_013	ur_m78_HD_011	4	Sub-paragraph		1.4.2 Form of the risk analysis	137	142	116	116	tiktoken
+ur_m78_HD_014	ur_m78_HD_011	4	Sub-paragraph		1.4.3 Procedure for the risk analysis	143	160	171	171	tiktoken
+ur_m78_HD_015	ur_m78_HD_011	4	Sub-paragraph		1.4.4 Equipment and systems to be analysed	161	178	374	374	tiktoken
+ur_m78_HD_016	ur_m78_HD_001	2	Subsection		2 Design Requirements	179	293	1772	6	tiktoken
+ur_m78_HD_017	ur_m78_HD_016	3	Paragraph		2.1 General Principles	181	196	251	251	tiktoken
+ur_m78_HD_018	ur_m78_HD_016	3	Paragraph		2.2 Design Requirements	197	293	1515	8	tiktoken
+ur_m78_HD_019	ur_m78_HD_018	4	Sub-paragraph		2.2.1 Gas piping	199	233	595	595	tiktoken
+ur_m78_HD_020	ur_m78_HD_018	4	Sub-paragraph		2.2.2 Arrangement of the gas piping system on the engine	234	263	465	465	tiktoken
+ur_m78_HD_021	ur_m78_HD_018	4	Sub-paragraph		2.2.3 Charge air system and exhaust gas system on the engine	264	271	132	132	tiktoken
+ur_m78_HD_022	ur_m78_HD_018	4	Sub-paragraph		2.2.4 Continuous relief of exhaust gas (through open rupture disc) into the engine room or other enclosed spaces is not acceptable.	272	284	212	212	tiktoken
+ur_m78_HD_023	ur_m78_HD_018	4	Sub-paragraph		2.2.5 Engine crankcase	285	293	103	103	tiktoken

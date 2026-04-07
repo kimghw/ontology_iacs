@@ -1,0 +1,6 @@
+Heading_ID	Parent_Heading_ID	Depth	Heading_Level	Heading_Number	Heading_Text	Start_Line	End_Line	Est_Tokens_Inclusive	Est_Tokens_Exclusive	Measure_Method
+ur_e5_HD_000		0	DocumentRoot		UR E5	1	45	475	1	tiktoken
+ur_e5_HD_001	ur_e5_HD_000	1	Section	E5	E5 Voltage and frequency variations	2	45	474	233	tiktoken
+ur_e5_HD_002	ur_e5_HD_001	2	Subsection		Table 1: Voltage and frequency variations for a.c. distribution systems	20	26	77	77	tiktoken
+ur_e5_HD_003	ur_e5_HD_001	2	Subsection		Table 2: Voltage variations for d.c distribution systems	27	34	70	70	tiktoken
+ur_e5_HD_004	ur_e5_HD_001	2	Subsection		Table 3: Voltage variations for battery systems	35	45	94	94	tiktoken

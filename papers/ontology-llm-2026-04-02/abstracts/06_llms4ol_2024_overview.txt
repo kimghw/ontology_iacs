@@ -1,0 +1,105 @@
+LLMs4OL 2024: The 1st Large Language Models for Ontology Learning Challenge at the 23rd ISWC
+LLMs4OL 2024 Task Overview
+https://doi.org/10.52825/ocp.v4i.2473
+© Authors. This work is licensed under a Creative Commons Attribution 4.0 International License
+Published: 02 Oct. 2024
+
+LLMs4OL 2024 Overview: The 1st Large Language
+Models for Ontology Learning Challenge
+Hamed Babaei Giglou , Jennifer D’Souza , and Sören Auer
+TIB Leibniz Information Centre for Science and Technology, Hannover, Germany
+{hamed.babaei, jennifer.dsouza, auer}@tib.eu
+*Correspondence: Hamed Babaei Giglou, hamed.babaei@tib.eu
+
+Abstract: This paper outlines the LLMs4OL 2024, the first e dition o f t he L arge Language Models for Ontology Learning Challenge. LLMs4OL is a community development initiative collocated with the 23rd International Semantic Web Conference (ISWC)
+to explore the potential of Large Language Models (LLMs) in Ontology Learning (OL), a
+vital process for enhancing the web with structured knowledge to improve interoperability. By leveraging LLMs, the challenge aims to advance understanding and innovation
+in OL, aligning with the goals of the Semantic Web to create a more intelligent and userfriendly web. In this paper, we give an overview of the 2024 edition of the LLMs4OL
+challenge1 and summarize the contributions.
+Keywords: LLMs4OL Challenge, Ontology Learning, Large Language Models
+
+1 Introduction
+The Semantic Web aims to enrich the current web with structured knowledge and metadata, enabling enhanced interoperability and understanding across diverse systems.
+At the core of this endeavor is Ontology Learning (OL), a process that automates the
+extraction of structured knowledge from unstructured data [1], essential for constructing dynamic ontologies that underpin the Semantic Web. The emergence of Large
+Language Models (LLMs) like GPT-3 [2] and GPT-4 [3] has revolutionized natural language processing (NLP), demonstrating remarkable performance across tasks such as
+language translation, question answering, and text generation. These models are particularly adept at crystallizing existing textual knowledge from a vast array of sources,
+making them potentially valuable for OL, where the goal is to extract a shared conceptualization of concepts and relationships from diverse inputs [4]. The introduction of
+LLMs has thus opened up new avenues of research, including the exploration of their
+potential in automating the OL process.
+In our prior work published in the ISWC 2023 research track proceedings titled
+“LLMs4OL: Large Language Models for Ontology Learning” [5], marked a notable direction towards employing LLMs in OL, demonstrating their potential in automating
+knowledge acquisition and representation for the Semantic Web. Based on this research, the The 1st Large Language Models for Ontology Learning Challenge at
+1
+
+https://sites.google.com/view/llms4ol
+3
+
+Babaei Giglou et al. |
+
+Open Conf Proc 4 (2024) ”LLMs4OL 2024: The 1st Large Language Models for Ontology Learning
+Challenge at the 23rd ISWC”
+
+Ontology Learning
+Corpus
+Preparation
+
+Terminology
+Extraction
+
+(1) Term Typing
+
+Conceptualization
+
+(2) Types Taxonomy
+
+(3) Relationships Extraction
+
+Axiom
+Discovery
+
+LLMs4OL
+Task A: Term Typing
+
+Task B: Types Taxonomy
+
+Task C: Relation Extraction
+
+Figure 1. The LLMs4OL task paradigm is an end-to-end framework for ontology learning. The three
+OL tasks that empirically validated in the LLMs4OL 2024 challenge, based on our prior research [5], are depicted within the blue arrow, aligned with the greater LLMs4OL paradigm.
+
+the 23rd ISWC 2024 (1st LLMs4OL Challenge @ ISWC 2024) was introduced as a
+call for community development. With the LLMs4OL challenge, we aimed to catalyze
+community-wide engagement in validating and expanding the use of LLMs in OL. This
+initiative is poised to advance our comprehension of LLMs’ roles within the Semantic
+Web, encouraging innovation and collaboration in developing scalable and accurate
+ontology learning methods.
+LLMs4OL consists of three OL tasks, Task A – Term Typing, Task B – Taxonomy
+Discovery, and Task C – Non-Taxonomic Relation Extraction. While participation in all
+three tasks in the LLMs4OL 2024 challenge is stipulated as desirable, but not mandatory. Thus participants choose to enroll only in Task A or B or C, or Task A and B, or
+Task A and C, or Task B and C. Furthermore, participants are required to implement
+LLM-based solutions, we did not impose any restrictions on the LLM prompting methods. For instance, they can choose to bring in additional context information from the
+World Wide Web to enrich the training and test instances. To thoroughly explore the
+potential of LLMs for OL, we structured the challenge around two distinct evaluation
+phases: (1) Few-shot testing phase and (2) Zero-shot testing phase. Through this
+work, we aim to contribute to the ongoing discourse on the capabilities of LLMs, particularly in the context of OL, and to provide insights into their potential for enhancing
+the Semantic Web. Thus, in the remainder of this paper, we detail the challenge tasks,
+what LLMs are being used, participant contributions, and findings.
+
+2 LLMs4OL 2024 Tasks
+In the LLMs4OL 2024 challenge, we have organized three main tasks which are centered around the ontology primitives [6] that comprise the following: 1. a set of strings
+that describe terminological lexical entries L for conceptual types; 2. a set of conceptual types T ; 3. a taxonomy of types in a hierarchy HT ; 4. a set of non-taxonomic
+relations R described by their domain and range restrictions arranged in a heterarchy
+of relations HR ; and 5. a set of axioms A that describe additional constraints on the
+ontology and make implicit facts explicit.
+To address these primitives, the tasks for OL [7] are: 1) Corpus preparation – collecting source texts for building ontology. 2) Terminology extraction – extracting relevant
+terms from the texts. 3) Term typing – grouping similar terms into conceptual types.
+4) Taxonomy construction – establishing “is-a” hierarchies between types. 5) Relationship extraction – extracting semantic relationships beyond “is-a” between types. 6)
+Axiom discovery – finding constraints rules for the ontology. These tasks constitute the
+LLMs4OL task paradigm as depicted in Figure 1. Assuming the corpus preparation
+step is done by reusing ontologies publicly released in the community, we introduced
+the following three main tasks for the first edition of the LLMs4OL challenge.
+
+4
+
+

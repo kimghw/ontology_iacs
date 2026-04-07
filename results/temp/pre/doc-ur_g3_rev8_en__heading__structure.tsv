@@ -1,0 +1,25 @@
+Heading_ID	Parent_Heading_ID	Depth	Heading_Level	Heading_Number	Heading_Text	Start_Line	End_Line	Est_Tokens_Inclusive	Est_Tokens_Exclusive	Measure_Method
+ur_g3_HD_000		0	DocumentRoot		UR G3	1	131	1299	1	tiktoken
+ur_g3_HD_001	ur_g3_HD_000	1	Section	G3	G3 Liquefied gas cargo and process piping	2	131	1298	93	tiktoken
+ur_g3_HD_002	ur_g3_HD_001	2	Subsection	G3.1	G3.1 General	17	24	100	100	tiktoken
+ur_g3_HD_003	ur_g3_HD_001	2	Subsection	G3.2	G3.2 Scope	25	30	30	30	tiktoken
+ur_g3_HD_004	ur_g3_HD_001	2	Subsection	G3.3	G3.3 Scantlings for internal pressure	31	57	259	12	tiktoken
+ur_g3_HD_005	ur_g3_HD_004	3	Paragraph	G3.3.2	G3.3.2 Design pressure	33	35	47	47	tiktoken
+ur_g3_HD_006	ur_g3_HD_004	3	Paragraph	G3.3.3	G3.3.3 Allowable stress	36	38	37	37	tiktoken
+ur_g3_HD_007	ur_g3_HD_004	3	Paragraph	G3.3.4	G3.3.4 Minimum wall thickness	39	52	131	131	tiktoken
+ur_g3_HD_008	ur_g3_HD_004	3	Paragraph	G3.3.5	G3.3.5 Flanges, valves, fittings	53	57	32	32	tiktoken
+ur_g3_HD_009	ur_g3_HD_001	2	Subsection	G3.4	G3.4 Stress analysis	58	63	41	41	tiktoken
+ur_g3_HD_010	ur_g3_HD_001	2	Subsection	G3.5	G3.5 Materials	64	69	41	41	tiktoken
+ur_g3_HD_011	ur_g3_HD_001	2	Subsection	G3.6	G3.6 Tests of piping components and pumps prior to installation on board	70	97	382	17	tiktoken
+ur_g3_HD_012	ur_g3_HD_011	3	Paragraph	G3.6.1	G3.6.1 Valves	72	77	120	120	tiktoken
+ur_g3_HD_013	ur_g3_HD_011	3	Paragraph	G3.6.2	G3.6.2 Bellows	78	80	37	37	tiktoken
+ur_g3_HD_014	ur_g3_HD_011	3	Paragraph	G3.6.3	G3.6.3 Cargo Pumps and Gas/Reliquefication/Refrigeration Compressors	81	97	208	208	tiktoken
+ur_g3_HD_015	ur_g3_HD_001	2	Subsection	G3.7	G3.7 Piping fabrication and joining details	98	112	167	12	tiktoken
+ur_g3_HD_016	ur_g3_HD_015	3	Paragraph	G3.7.2	G3.7.2 Direct connection	100	102	31	31	tiktoken
+ur_g3_HD_017	ur_g3_HD_015	3	Paragraph	G3.7.3	G3.7.3 Flange connections	103	105	23	23	tiktoken
+ur_g3_HD_018	ur_g3_HD_015	3	Paragraph	G3.7.6	G3.7.6 Welding, post-weld heat treatments and NDT	106	112	101	101	tiktoken
+ur_g3_HD_019	ur_g3_HD_001	2	Subsection	G3.8	G3.8 Tests onboard	113	122	83	8	tiktoken
+ur_g3_HD_020	ur_g3_HD_019	3	Paragraph	G3.8.2	G3.8.2 Pressure tests	115	117	52	52	tiktoken
+ur_g3_HD_021	ur_g3_HD_019	3	Paragraph	G3.8.3	G3.8.3 Functional tests	118	122	23	23	tiktoken
+ur_g3_HD_022	ur_g3_HD_001	2	Subsection	G3.9	G3.9 Cargo piping insulation system	123	131	102	32	tiktoken
+ur_g3_HD_023	ur_g3_HD_022	3	Paragraph		Guidance Standards	127	131	70	70	tiktoken

@@ -1,0 +1,112 @@
+LLMs4OL 2025: The 2nd Large Language Models for Ontology Learning Challenge at the 24th ISWC
+LLMs4OL 2025 Task Overview
+https://doi.org/10.52825/ocp.v6i.2913
+© Authors. This work is licensed under a Creative Commons Attribution 4.0 International License
+Published: 01 Oct. 2025
+
+LLMs4OL 2025 Overview: The 2nd Large Language
+Models for Ontology Learning Challenge
+Hamed Babaei Giglou1,*
+
+1
+
+, Jennifer D’Souza1,* , Nandana Mihindukulasooriya3
+Sören Auer1,2
+
+, and
+
+TIB Leibniz Information Centre for Science and Technology, Hannover, Germany
+2
+
+L3S Research Center, Leibniz University of Hannover, Germany
+3
+
+IBM Research, New York, USA
+
+*Correspondence: {hamed.babaei, jennifer.dsouza}@tib.eu
+
+Abstract. We present the results of the 2nd LLMs4OL 2025 Challenge, a shared task
+designed to evaluate the effectiveness of large language models (LLMs) for ontology
+learning. The challenge attracted a diverse set of participants who leveraged a broad
+spectrum of models, including general-purpose LLMs, domain-specific models, and
+embedding-based systems. Submissions covered multiple subtasks such as Text2Onto,
+term typing, taxonomy discovery, and non-taxonomic relationship extractions. The
+results highlight that hybrid pipelines integrating commercial LLMs with domain-tuned
+embeddings and fine-tuning approaches achieved the strongest overall performance,
+while specialized domain models improved results in biomedical and technical datasets.
+Key insights include the importance of prompt engineering, retrieval-augmented
+generation (RAG), and ensemble learning. This paper presents the second benchmark
+of LLM-driven ontology learning, serving as an overview of the participants’ contributions
+to the challenge. Building on this, this overview presents findings, highlights emerging
+strategies, and offers practical insights for researchers and practitioners seeking to align
+unstructured language with structured knowledge.
+Keywords: Ontology Learning, LLMs4OL Approach, Text2Onto, Generative AI,
+Large Language Models
+
+1. Introduction
+For decades, researchers have studied the complexities of human language—across
+voice, video, and text—driving advances in natural language processing (NLP) and
+beyond. These efforts have increasingly expanded into semantic web technologies,
+where structuring knowledge into formal, machine-readable representations is essential.
+Beneath unstructured language lies a wealth of latent, meaningful knowledge—often
+inaccessible without formal structure. Ontologies emerged as a framework to capture
+this knowledge, providing digital anchors for organizing information. Yet, manual creation
+and curation proved slow, costly, and ill-suited to the vastness, variability, and subtlety of
+human language. This bottleneck in traditional ontology engineering persisted despite
+1
+
+Babaei Giglou et al. | Open Conf Proc 6 (2025) ”LLMs4OL 2025: The 2nd Large Language Models for Ontology Learning Challenge
+at the 24th ISWC”
+
+the semantic web community’s foundational contributions, which—through rigorous
+methods and reuse—produced a rich ecosystem of resources. Recent advances in
+large language models (LLMs) bring new momentum to the vision of machine-readable
+knowledge, leveraging their unprecedented ability to process and generate language.
+Language, once static in machines, is now dynamic—capable of understanding,
+generating, summarizing, and reasoning. The long-standing vision of machines that
+could truly comprehend and organize knowledge has become a reality. Yet, this
+new found power raises a critical challenge: how do we harness the generative
+capabilities of LLMs without sacrificing the precision, consistency, and logical rigor that
+ontologies demand? This question drives the LLMs4OL (Large Language Models for
+Ontology Learning) challenge series [1], [2], [3], which asks whether LLMs can produce
+accurate, structured, and reusable knowledge, contribute meaningfully to ontology
+engineering without compromising semantic integrity, and ultimately reshape how we
+bridge unstructured text with structured meaning in the era of foundation models.
+The LLMs4OL challenge series is based on the following five ontology primitives:
+1) Lexical entries L, 2) Conceptual types T , 3) A hierarchical taxonomy HT , 4)
+Non-taxonomic relations R within a heterarchy HR , 5) Axioms A for constraints and
+rules. This leads to key ontology learning (OL) activities, including corpus preparations,
+terminology extraction, term typing, taxonomy construction, relationship extraction, and
+axiom discovery. Together, these six tasks constitute the LLMs4OL task framework,
+aligning with the previously outlined LLMs4OL conceptual model [2].
+The 1st LLMs4OL challenge [2] advanced the use of LLMs in OL, showcasing their
+potential for automated knowledge acquisition. It featured two evaluation phases: a
+few-shot phase, training on subsets of ontologies before testing on related unseen data,
+and a zero-shot phase, introducing entirely new ontologies to assess generalizability.
+Three tasks were addressed: Term Typing, Taxonomy Discovery, and Non-Taxonomic
+Relation Extraction. Eight teams participated, applying strategies such as prompt
+engineering, fine-tuning, and hybrid LLM–rule-based or retrieval-augmented models.
+LLMs performed strongly in Term Typing and Taxonomy Discovery, leveraging their
+ability to infer hierarchies and generalize across domains, but hybrid approaches
+often surpassed pure LLMs in simpler tasks by integrating external knowledge and
+structured reasoning. Results were sensitive to dataset diversity, highlighting the need
+for robust, well-curated benchmarks. Non-Taxonomic Relation Extraction remained the
+most challenging, as LLMs struggled with complex, domain-specific relations requiring
+deep semantic understanding beyond surface cues. This indicates that while LLMs
+are powerful generalizers, achieving full relational comprehension in OL may demand
+structured learning, specialized fine-tuning, or enhanced knowledge retrieval.
+To further advance strategies in OL, the 2nd LLMs4OL Challenge @ ISWC 2025
+takes a deliberate step back—refocusing attention also on a foundational phase of
+the OL pipeline, while maintaining its core paradigm: the Text2Onto task. Text2Onto
+serves as a critical building block in the OL process. It involves the extraction of key
+terms and candidate types from unstructured text, forming the basis upon which more
+structured, formal ontologies can later be constructed in subsequent LLMs4OL tasks.
+By emphasizing this early stage, the challenge aims to strengthen the pipeline from
+raw language to reusable knowledge. As described in Figure 1, the 2nd LLMs4OL
+Challenge at ISWC 2025 comprises four core tasks: Text2Onto, Term Typing, Taxonomy
+Discovery, and Non-Taxonomic Relation Extraction. Collectively, these tasks cover
+key stages in the OL pipeline—from identifying relevant terms in text to constructing
+structured, semantically rich knowledge representations. This year’s challenge attracted
+2
+
+

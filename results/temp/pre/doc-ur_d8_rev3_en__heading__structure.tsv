@@ -1,0 +1,12 @@
+Heading_ID	Parent_Heading_ID	Depth	Heading_Level	Heading_Number	Heading_Text	Start_Line	End_Line	Est_Tokens_Inclusive	Est_Tokens_Exclusive	Measure_Method
+ur_d8_HD_000		0	DocumentRoot		UR D8	1	116	2078	1	tiktoken
+ur_d8_HD_001	ur_d8_HD_000	1	Section	D8	D8 Hazardous areas	2	116	2077	36	tiktoken
+ur_d8_HD_002	ur_d8_HD_001	2	Subsection	D8.1	D8.1 General	9	35	589	589	tiktoken
+ur_d8_HD_003	ur_d8_HD_001	2	Subsection	D8.2	D8.2 Classification of areas	36	100	1093	9	tiktoken
+ur_d8_HD_004	ur_d8_HD_003	3	Paragraph	D8.2.1	D8.2.1 Hazardous areas Zone 0 include:	38	41	81	81	tiktoken
+ur_d8_HD_005	ur_d8_HD_003	3	Paragraph	D8.2.2	D8.2.2 Hazardous areas Zone 1 include:	42	55	246	246	tiktoken
+ur_d8_HD_006	ur_d8_HD_003	3	Paragraph	D8.2.3	D8.2.3 Hazardous areas Zone 2 include:	56	73	301	301	tiktoken
+ur_d8_HD_007	ur_d8_HD_003	3	Paragraph	D8.2.4	D8.2.4 Openings, access and ventilation conditions affecting the extent of hazardous zones	74	100	456	456	tiktoken
+ur_d8_HD_008	ur_d8_HD_001	2	Subsection	D8.3	D8.3 Ventilation	101	116	359	8	tiktoken
+ur_d8_HD_009	ur_d8_HD_008	3	Paragraph	D8.3.1	D8.3.1 General	103	106	162	162	tiktoken
+ur_d8_HD_010	ur_d8_HD_008	3	Paragraph	D8.3.2	D8.3.2 Ventilation of hazardous areas	107	116	189	189	tiktoken

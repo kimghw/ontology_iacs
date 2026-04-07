@@ -1,0 +1,89 @@
+LLMs4OL 2024: The 1st Large Language Models for Ontology Learning Challenge at the 23rd ISWC
+LLMs4OL 2024 Task Participant Papers
+https://doi.org/10.52825/ocp.v4i.2485
+© Authors. This work is licensed under a Creative Commons Attribution 4.0 International License
+Published: 02 Oct. 2024
+
+silp nlp at LLMs4OL 2024 Tasks A, B, and C: Ontology
+Learning through Prompts with LLMs
+Pankaj Kumar Goyal1 , Sumit Singh1 , and
+Uma Shanker Tiwary1
+1
+
+Indian Institute of Information Technology, Allahabad
+
+*Correspondence: Sumit Singh, sumitrsch@gmail.com
+
+Abstract: Our team, silp nlp, participated in the LLMs4OL Challenge at ISWC 2024,
+engaging in all three tasks focused on ontology generation. The tasks include predicting the type of a given term, extracting a hierarchical taxonomy between two terms,
+and extracting non-taxonomy relations between two terms. To accomplish these tasks,
+we used machine learning models such as random forest, logistic regression and generative models for the first t ask a nd g enerative m odels s uch a s llama-3-8b-instruct,
+mistral 8*7b and GPT-4o-mini for the second and third tasks. Our results showed that
+generative models performed better for certain domains, such as subtasks A6 and B2.
+However, for other domains, the prompt-based technique failed to generate promising
+results. Our team achieved first p lace i n s ix s ubtasks a nd s econd p lace i n fi ve subtasks, demonstrating our expertise in ontology generation.
+Keywords: Large Language Models, LLMs, Ontology Learning, Prompt-based Learning, GPT, Llama
+
+1 Introduction
+Ontology Learning (OL) is essential in artificial intelligence as it enables the automatic
+extraction and organization of knowledge from text data. Traditional methods of creating ontologies often require manual input from domain experts, resulting in a timeconsuming and costly process. Recent progress in natural language processing, especially through Large Language Models (LLMs), offers a compelling alternative for
+automating this procedure.
+The LLMs4OL paradigm, as explained in the [1], aims to use large language models
+(LLMs) to improve tasks in ontology learning (OL), such as term typing, discovering
+taxonomies, and extracting non-taxonomic relations. These models, trained on a large
+amount of text data, can understand complex language patterns, which can be useful
+for building ontologies. This study expands on this idea by using similar methods in
+new areas to further prove that LLMs can help automate ontology learning and reduce
+the need for manual input. The work in this paper extends the mentioned task to
+cover fifteen subtasks, as listed in table 3 and details of all tasks described in [ 2]. We
+utilized machine learning models, such as random forest and logistic regression, as
+31
+
+Kumar Goyal et al.
+
+|
+
+Open Conf Proc 4 (2024) ”LLMs4OL 2024: The 1st Large Language Models for Ontology Learning
+Challenge at the 23rd ISWC”
+
+well as generative models for Task A, which involves predicting the type of a given term
+across multiple domains. In Task B, our objective was to find taxonomies for a given
+pair of terms, also across multiple domains. Task C is similar to Task B, where the
+goal was to find non-taxonomic relations. For Tasks B and C, we employed a promptbased technique with generative models such as mistral 8*7b [3], llama-3-8b-instruct
+[4] and gpt-4o [5] for taxonomy prediction. Our results showed that generative models
+performed better for certain domains, such as subtasks A6 and B2. However, for other
+domains, the prompt-based technique failed to generate promising results. The code
+of our work is available here1 .
+
+2 Related Work
+The OL has been a major focus of research in the fields of artificial intelligence and
+knowledge engineering. It aims to automate the process of acquiring and structuring
+knowledge from text to create ontologies [6]. Traditionally, this process has relied on
+manual efforts by domain experts, which can be time-consuming, costly, and errorprone. To overcome these challenges, various approaches have been proposed to
+automate OL, primarily using lexico-syntactic pattern mining and clustering techniques
+[6]–[9].
+One of the earliest significant works in the field of ontology learning, as highlighted by
+[10], involved using lexico-syntactic patterns to improve lexical ontologies like WordNet by extracting new lexicosemantic concepts and relations from large unstructured
+text collections. Following approaches, such as those by Hwang (2002), used iterative methods to discover types and taxonomies from text using seed terms, while [11]
+focused on expanding existing ontologies by reusing domain-specific ones and integrating verb patterns from text.
+In recent years, developments in Ontology Learning have involved the use of machine
+learning techniques. Methods such as the self-organizing tree algorithm have been
+utilized to create hierarchical structures within ontologies. [12] introduced a TF-IDFbased term classifier and pattern finder to automatically identify domain-specific terms
+and relations from text. This demonstrates the evolving nature of OL methodologies.
+The field of online learning has undergone significant changes with the development
+of Large Language Models (LLMs). These models, which are trained on extensive and
+diverse text collections, have shown potential in understanding complex language patterns and have been used to explore new approaches in online learning. The LLMs4OL
+method, introduced by [1], examines the idea that LLMs can effectively use their language modelling abilities for online learning tasks such as identifying terms, discovering
+taxonomies, and extracting relationships. This method demonstrates the potential of
+LLMs in overcoming the limitations of traditional online learning approaches, especially
+when customized for specific areas.
+Despite the progress made, the research suggests that basic LLMs may not be skilled
+enough at complex ontology construction that requires deep reasoning and domain expertise. However, ongoing improvements and adjustments to LLMs for ontology learning tasks continue to demonstrate potential, providing a scalable and efficient alternative to traditional techniques.
+
+1
+
+https://drive.google.com/drive/folders/1vRynlNH6LouIvcI1ymHsm6DwYKSOUoAa?usp=sharing
+
+32
+
+

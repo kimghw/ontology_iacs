@@ -1,0 +1,92 @@
+LLMs4OL 2024: The 1st Large Language Models for Ontology Learning Challenge at the 23rd ISWC
+LLMs4OL 2024 Task Participant Papers
+https://doi.org/10.52825/ocp.v4i.2489
+© Authors. This work is licensed under a Creative Commons Attribution 4.0 International License
+Published: 02 Oct. 2024
+
+DaSeLab at LLMs4OL 2024 Task A: Towards Term
+Typing in Ontology Learning
+Adrita Barua* , Sanaz Saki Norouzi* , and Pascal Hitzler
+Kansas State University, USA
+*Correspondence: Adrita Barua, adrita@ksu.edu
+
+Abstract: The report presents the evaluation results of our approach in the LLM4OL
+Challenge, where we fine-tuned GPT-3.5 for Task A (Term Typing) across three different
+datasets. Our approach demonstrated consistent and robust performance during fewshot testing, achieving top rankings in several datasets and sub-datasets, proving the
+potential of fine-tuning LLMs for ontology creation tasks.
+Keywords: LLM, Term Typing, Ontology Learning
+
+1 Introduction
+Large language models (LLMs) have made notable advancements in various natural
+language processing (NLP) tasks. In a recent study [1], the performance of LLMs was
+evaluated specifically for O ntology L earning ( OL) u sing z ero-shot p rompting method.
+OL refers to the process of creating an ontology—a structured representation of knowledge in a particular domain, consisting of concepts, relationships, and categories. Researchers tackling the challenge of creating ontologies from text are essentially leveraging a broad range of methodologies developed in computational linguistics. By carefully selecting different NLP techniques, they address the three key issues in ontology
+construction: term association, the creation of term and concept hierarchies, and the
+identification and labeling of ontological relationships [2].
+In [1], they provided an evaluation of three key OL tasks, one of which is term typing. Term typing aims to identify relevant terms from the text that will form the basic
+vocabulary of the ontology. This task is crucial because it determines the basic building
+blocks that will be used to construct the ontology. In many respects, ontology learning
+is a specialized extension of fundamental computational linguistics goals like automatic
+lexicon construction and semantic text labeling.
+As part of the LLM4OL challenge1 at the International Semantic Web Conference
+(ISWC) 2024 [3], we focused on fine-tuning G PT-3.5 f or t erm t yping a cross different
+datasets. The goal was to evaluate the performance of these models during the fewshot testing phase, where the testing dataset includes data from the same ontology
+domain that the model was trained on. This approach aims to enhance the model’s
+* These authors contributed equally to this work.
+1
+
+https://sites.google.com/view/llms4ol/home?authuser=0
+
+77
+
+Barua et al. |
+
+Open Conf Proc 4 (2024) ”LLMs4OL 2024: The 1st Large Language Models for Ontology Learning Challenge at
+the 23rd ISWC”
+
+ability to accurately identify and categorize relevant terms, thereby improving the overall
+quality and utility of the created ontology. In the following, first, we talk about the
+approach and the datasets we use for this task, and then we go through the results
+and challenge leaderboard, and the conclusion.
+
+2 Approach
+Our approach involved using three different datasets to individually fine-tune the gpt3.5-turbo-0125 model2 , training it to identify term types specific to each dataset. The
+three fine-tuned models were then evaluated during the few-shot testing phase using
+their respective test datasets.
+2.1 Datasets
+As part of the LLM4OL challenge [4], we used three datasets to fine-tune the GPT
+model: WordNet, GeoNames, and UMLS.
+WordNet: The WordNet dataset is a lexicosemantic dataset derived from the original
+WordNet. The training set contains 40,559 terms, and the test set has 9,470 terms,
+covering 18 relation types and four term types: nouns, verbs, adverbs, and adjectives
+[5].
+GeoNames: GeoNames consists of geographical locations that comprise 680 categories of geographical locations (e.g., streams, lakes, seas, roads, railroads, etc.).
+The training set contains 8,078,865 terms, and the test set has 702,510 terms. We
+used only the first 10 percent (approximately 878,137 terms) of the training dataset to
+fine-tune our model due to OpenAI’s fine-tuning restrictions on the size of the training
+dataset [6].
+UMLS: The UMLS (Unified Medical Language System) dataset integrates various
+biomedical terminologies and standards to support interoperability between different
+health information systems [7]. Three subcategories of this dataset have been used:
+NCI: NCI is a UMLS subontology from NCI Enterprise Vocabulary Services (EVS),
+standardizing terminology for clinical care, research, and public information. It provides
+reference terminology for NCI and other systems. The training set contains 96,177
+terms, and the test set has 24,045 terms, containing 125 term types.
+MEDCIN: MEDCIN is a UMLS subontology that includes medical components like
+symptoms and treatments. It uses clinical hierarchies to link data elements, emphasizing relationships within diagnostic contexts. The training set contains 277,028 terms,
+and the test set has 69,258 terms, containing 87 term types.
+SNOMEDCT US: SNOMEDCT US is a UMLS subontology foundational for electronic health records (EHRs), providing concepts with distinct meanings and formal
+definitions structured hierarchically. The training set contains 278,374 terms, and the
+test set has 69,594 terms, containing 125 term types.
+A detailed discussion of the datasets can be found on the challenge website3 and
+and the dataset statistics are presented in Table 1.
+
+2
+3
+
+https://platform.openai.com/docs/models/gpt-3-5-turbo
+https://sites.google.com/view/llms4ol/task-a-term-typing?authuser=0
+
+78
+
+

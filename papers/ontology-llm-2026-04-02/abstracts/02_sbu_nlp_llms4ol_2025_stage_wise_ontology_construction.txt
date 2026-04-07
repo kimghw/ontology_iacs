@@ -1,0 +1,102 @@
+LLMs4OL 2025: The 2nd Large Language Models for Ontology Learning Challenge at the 24th ISWC
+LLMs4OL 2025 Task Participant Long Papers
+https://doi.org/10.52825/ocp.v6i.2887
+© Authors. This work is licensed under a Creative Commons Attribution 4.0 International License
+Published: 01 Oct. 2025
+
+SBU-NLP at LLMs4OL 2025 Tasks A, B, and C:
+Stage-Wise Ontology Construction Through LLMs
+Without any Training Procedure
+Rashin Rahnamoun1,*
+1
+
+and Mehrnoush Shamsfard1
+
+Shahid Beheshti University, Tehran, Iran
+
+*Correspondence: Rashin Rahnamoun, rahnamounrashin@gmail.com
+
+Abstract. Automated ontology construction is a challenging task that traditionally
+requires extensive domain expertise, data preprocessing, and resource-intensive model
+training. While learning-based methods with fine-tuning are common, they often suffer
+from high computational costs and limited generalizability across domains. This paper
+explores a fully automated approach that leverages powerful large language models
+(LLMs) through prompt engineering, eliminating the need for training or fine-tuning.
+We participated in the LLMs4OL 2025 shared task, which includes four subtasks:
+extracting ontological terms and types (Text2Onto), assigning generalized types to
+terms (Term Typing), discovering taxonomic relations (Taxonomy Discovery), and
+extracting non-taxonomic semantic relations (Non-Taxonomic Relation Extraction). Our
+team focused on the first three tasks by using stratified random sampling, simple
+random sampling, and chunking-based strategies to include training sets in the
+prompts without limitations imposed by context window sizes. This simple yet general
+approach has proven effective across these tasks, enabling high-quality ontology
+construction without additional annotations or training. Additionally, we show that
+pretrained sentence embedding models ranging from 0.1B to 1.5B parameters perform
+comparably to a simple F1 token overlap baseline in taxonomy discovery, suggesting that
+embedding-based methods may not always offer significant advantages. Our findings
+highlight that prompt-based strategies with modern LLMs enable efficient, scalable,
+and domain-independent ontology construction, providing a promising alternative to
+traditional, resource-heavy methods.
+Keywords: Automated Ontology Construction, Large Language Models,
+Prompt Engineering
+
+1. Introduction
+Automated ontology construction is a complex and multifaceted task that traditionally
+involves extensive domain knowledge, data preprocessing, and model training. While
+learning-based methods—particularly those involving model fine-tuning—have become
+common, they often require significant computational resources and are not easily
+generalizable across domains. Ideally, a high-quality, fully automated approach that
+1
+
+Rahnamoun and Shamsfard | Open Conf Proc 6 (2025) ”LLMs4OL 2025: The 2nd Large Language Models for Ontology Learning
+Challenge at the 24th ISWC”
+
+bypasses model training and fine-tuning would offer a more efficient and accessible
+alternative.
+The emergence of powerful large language models (LLMs) presents a promising
+opportunity to replace or supplement human experts in ontology creation. These models,
+with their ability to understand and generate structured knowledge from text, enable a
+new generation of ontology engineering tools that are fast, cost-effective, and domainindependent.
+To explore the viability of LLM-based ontology construction, we participated in the
+LLMs4OL 2025 shared task, the second iteration of this competition following its debut
+in 2024 [1], [2], [3], [4]. The 2025 edition includes four distinct tasks: Task A – Text2Onto,
+which involves extracting ontological terms and their types from raw text; Task B –
+Term Typing, which focuses on assigning generalized types to lexical terms; Task C
+– Taxonomy Discovery, which requires identifying taxonomic (is-a) relations between
+types; and Task D – Non-Taxonomic Relation Extraction, which involves extracting other
+semantic relations between types.
+Our team focused on Tasks A, B, and C, applying a unified prompting-based
+methodology that avoids any form of supervised training or fine-tuning. Instead, we
+leveraged prompt engineering strategies informed by sampling techniques from the
+provided training data. This approach allowed us to generate high-quality ontological
+structures using zero-shot or few-shot prompting, without incorporating any external
+knowledge or additional annotations.
+Furthermore, in the Taxonomy Discovery subtask, we show that pretrained sentence
+embedding models (ranging from 0.1B to 1.5B parameters) perform comparably to
+a simple F1 token overlap baseline. This suggests that, in certain ontology tasks,
+embedding-based approaches may not provide a significant performance advantage
+over more lightweight lexical methods.
+These findings highlight the practical benefits of prompt-based strategies in ontology
+learning tasks, especially when aiming to reduce reliance on computationally expensive
+training pipelines. Our results demonstrate that, with careful prompt engineering, modern
+LLMs can effectively perform complex ontology construction tasks in a scalable and
+resource-efficient manner. Achieved the best overall performance across all teams
+in the challenge and ranked 1st on the final leaderboard. This opens the door
+to more accessible ontology generation workflows, particularly in low-resource or
+time-constrained settings. Overall, our work contributes to the growing evidence that
+LLMs, when coupled with generalizable prompting strategies, can serve as a viable and
+efficient alternative to traditional learning-based ontology engineering approaches.
+
+2. Datasets
+The datasets presented in Table 1 correspond to those we actually used to produce the
+results reported in this paper. Note that these may not cover all datasets available within
+the respective tasks, but only those included in our experiments for Tasks A (Text2Onto),
+B (Term Typing), and C (Taxonomy Discovery).
+Task A involves ontology extraction from domain-specific corpora in ecology,
+engineering, and scholarly domains.
+Task B focuses on semantic term typing with datasets from OBI and SWEET
+taxonomies, along with two blind test sets (B5 and B6) evaluated without training data.
+
+2
+
+

@@ -1,0 +1,4 @@
+Heading_ID	Parent_Heading_ID	Depth	Heading_Level	Heading_Number	Heading_Text	Start_Line	End_Line	Est_Tokens_Inclusive	Est_Tokens_Exclusive	Measure_Method
+ur_e20_HD_000		0	DocumentRoot		UR E20	1	44	416	1	tiktoken
+ur_e20_HD_001	ur_e20_HD_000	1	Section	E20	E20 Installation of electrical and electronic equipment in engine rooms protected by fixed water-based local application fire-fighting systems (FWBLAFFS)	2	36	304	304	tiktoken
+ur_e20_HD_002	ur_e20_HD_000	1	Section	E20	E20 (cont)	37	44	111	111	tiktoken

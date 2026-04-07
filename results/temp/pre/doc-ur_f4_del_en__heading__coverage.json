@@ -1,0 +1,14 @@
+{
+  "doc_instance_key": "ur_f4_del_en",
+  "total_lines": 21,
+  "heading_lines": [
+    2,
+    6,
+    12,
+    15
+  ],
+  "heading_line_count": 4,
+  "non_heading_line_count": 17,
+  "coverage_ratio": 0.1905,
+  "created_at": "2026-04-07T08:59:37.688450+00:00"
+}

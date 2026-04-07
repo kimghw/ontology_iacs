@@ -1,0 +1,93 @@
+LLMs4OL 2024: The 1st Large Language Models for Ontology Learning Challenge at the 23rd ISWC
+LLMs4OL 2024 Task Participant Papers
+https://doi.org/10.52825/ocp.v4i.2482
+© Authors. This work is licensed under a Creative Commons Attribution 4.0 International License
+Published: 02 Oct. 2024
+
+Phoenixes at LLMs4OL 2024 Tasks A, B, and C:
+Retrieval Augmented Generation for Ontology Learning
+Mahsa Sanaei1
+
+, Fatemeh Azizi1
+1
+
+, and Hamed Babaei Giglou2
+
+University of Tabriz, Tabriz, Iran
+
+mahsa.san75@gmail.com, fatemeazizii896@gmail.com
+2
+
+TIB Leibniz Information Centre for Science and Technology, Hannover, Germany
+hamed.babaei@tib.eu
+*Correspondence: Mahsa Sanaei, mahsa.san75@gmail.com
+
+Abstract: Large language models (LLMs) showed great capabilities in ontology learning (OL) where they automatically extract knowledge from text. In this paper, we proposed a Retrieval Augmented Generation (RAG) formulation for three different tasks of
+ontology learning defined in the LLMs4OL Challenge at ISWC 2 024. For task A - term
+typing - we considered terms as a query and encoded the query through the Query Encoder model for searching through knowledge base embedding of types embeddings
+obtained through Context Encoder. Next, using Zero-Shot Prompt template we asked
+LLM to determine what types are appropriate for a given term within the term typing
+task. Similarly, for Task B, we calculated the similarity matrix using an encoder-based
+transformer model, and by applying the similarity threshold we considered only similar
+pairs to query LLM to identify whatever pairs have the ”is-a” relation between a given
+type and in a case of having the relationships which one is ”parent” and which one is
+”child”. In final, for Task C – non-taxonomic relationship extraction – we combined both
+approaches for Task A and B, where first u sing Task B f ormulation, c hild-parents are
+identified t hen u sing Task A , w e a ssigned t hem a n a ppropriate r elationship. F or the
+LLMs4OL challenge, we experimented with the proposed framework over 5 subtasks
+of Task A, all subtasks of Task B, and one subtask of Task C using Mistral-7B LLM.
+Keywords: Large Language Models, Ontology Learning, Retrieval Augmented Generation, Term Typing, Taxonomy Discovery, Non-Taxonomic Relationship Extraction
+
+1 Introduction
+Ontology Learning (OL) is a critical area in knowledge representation and management, addressing the challenges of acquiring and structuring knowledge from diverse
+textual sources. With the rapid advancements in Natural Language Processing (NLP),
+particularly through the emergence of Large Language Models (LLMs), there is a compelling opportunity to enhance OL processes. LLMs have demonstrated remarkable
+capabilities in understanding and generating human language, making them potential
+candidates for automating the extraction and organization of knowledge from natural language texts. In the work of Babaei Giglou et al. [1] LLMs4OL paradigm was
+39
+
+Sanaei et al.
+
+|
+
+Open Conf Proc 4 (2024) ”LLMs4OL 2024: The 1st Large Language Models for Ontology Learning Challenge
+at the 23rd ISWC”
+
+introduced which investigates the hypothesis: Can LLMs effectively leverage their language pattern recognition abilities to facilitate ontology learning? Our approach encompasses a comprehensive evaluation of different LLM families across three primary
+tasks: term typing, taxonomy discovery, and extraction of non-taxonomic relationships.
+These tasks are evaluated using diverse ontological knowledge sources, including lexicosemantic knowledge from WordNet, geographical knowledge from GeoNames, and
+medical knowledge from UMLS. The empirical results from our study reveal that while
+foundational LLMs may struggle with the reasoning and domain expertise required for
+effective ontology construction, they can serve as valuable assistants when fine-tuned
+appropriately. This fine-tuning can alleviate the knowledge acquisition bottleneck often
+encountered in ontology development.
+To systematically explore the capabilities of LLMs in OL, we have structured our
+research into three distinct tasks as described in LLMs4OL 2024 Challenge [2]:
+1. Task A – Term Typing: This task involves classifying terms into predefined categories across various domains, such as geographical locations in GeoNames and
+medical terminologies in UMLS.
+2. Task B – Taxonomy Discovery: Here, we aim to identify hierarchical relationships between term types, utilizing datasets from GeoNames and Schema.org to
+establish taxonomic structures.
+3. Task C – Non-Taxonomic Relationship Extraction: This task focuses on identifying semantic relationships between terms that do not conform to hierarchical
+structures, with a particular emphasis on medical concepts in UMLS.
+The rest of the paper is constructed as follows: In section 2 we refer to some previously conducted works. Then in section 3, we describe our methodology and after
+reporting the results of the study in section 4, we provide information about datasets
+we used in our implementations.
+
+2 Related works
+The construction of ontologies and knowledge graphs (KGs) has traditionally relied
+on human domain experts to define entities, establish relationships, and ensure data
+quality. However, the advent of Large Language Models (LLMs) has introduced promising avenues for automating aspects of this labor-intensive process. In the work of
+Kommineni et al. [3] proposed a semi-automated pipeline for constructing KGs using
+open-source LLMs. Their approach involves formulating competency questions (CQs),
+developing an ontology based on these CQs, and constructing KGs with minimal human involvement. The authors demonstrate the feasibility of their pipeline by creating
+a KG focused on deep learning methodologies, utilizing scholarly publications. Their
+findings suggest that while LLMs can significantly reduce the human effort required for
+KG construction, a human-in-the-loop approach remains essential for evaluating the
+quality of automatically generated content.
+Another study [4] introduces ANGEL, a framework that integrates ontology structures
+and instructive prompting within LLMs for Named Entity Recognition (NER) data augmentation. This framework addresses the challenge of generating scalable training
+data while maintaining contextual diversity and label consistency. The experimental results indicate that ANGEL outperforms state-of-the-art methods, showcasing the potential of LLMs to enhance NER model performance, especially in low-resource scenarios.
+OntoChat is presented as a framework designed to facilitate conversational ontology
+engineering [5]. By leveraging LLMs, OntoChat supports requirement elicitation, anal40
+
+

@@ -1,0 +1,6 @@
+Heading_ID	Parent_Heading_ID	Depth	Heading_Level	Heading_Number	Heading_Text	Start_Line	End_Line	Est_Tokens_Inclusive	Est_Tokens_Exclusive	Measure_Method
+ur_f29_HD_000		0	DocumentRoot		UR F29	1	45	583	1	tiktoken
+ur_f29_HD_001	ur_f29_HD_000	1	Section	F29	F29 Non-sparking fans	2	45	582	71	tiktoken
+ur_f29_HD_002	ur_f29_HD_001	2	Subsection	F29.1	F29.1 Introduction	13	16	29	29	tiktoken
+ur_f29_HD_003	ur_f29_HD_001	2	Subsection	F29.2	F29.2 Design criteria	17	22	109	109	tiktoken
+ur_f29_HD_004	ur_f29_HD_001	2	Subsection	F29.3	F29.3 Materials	23	45	373	373	tiktoken

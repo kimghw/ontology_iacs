@@ -1,0 +1,287 @@
+{
+  "ur-z101rev25": {
+    "20": [
+      "images/ur-z101rev25_p20_full.png",
+      "images/ur-z101rev25_p20_img1.png"
+    ],
+    "50": [
+      "images/ur-z101rev25_p50_full.png",
+      "images/ur-z101rev25_p50_img2.png"
+    ],
+    "69": [
+      "images/ur-z101rev25_p69_full.png",
+      "images/ur-z101rev25_p69_img3.png"
+    ],
+    "70": [
+      "images/ur-z101rev25_p70_full.png",
+      "images/ur-z101rev25_p70_img4.png"
+    ],
+    "71": [
+      "images/ur-z101rev25_p71_full.png",
+      "images/ur-z101rev25_p71_img5.png"
+    ],
+    "72": [
+      "images/ur-z101rev25_p72_full.png",
+      "images/ur-z101rev25_p72_img6.png"
+    ],
+    "73": [
+      "images/ur-z101rev25_p73_full.png",
+      "images/ur-z101rev25_p73_img7.png",
+      "images/ur-z101rev25_p73_rendered.png"
+    ]
+  },
+  "ur-z102rev37": {
+    "9": [
+      "images/ur-z102rev37_p9_full.png",
+      "images/ur-z102rev37_p9_img1.png",
+      "images/ur-z102rev37_p9_img2.png"
+    ],
+    "10": [
+      "images/ur-z102rev37_p10_full.png",
+      "images/ur-z102rev37_p10_img3.png"
+    ],
+    "36": [
+      "images/ur-z102rev37_p36_full.png",
+      "images/ur-z102rev37_p36_img4.png"
+    ],
+    "37": [
+      "images/ur-z102rev37_p37_full.png",
+      "images/ur-z102rev37_p37_img5.png"
+    ],
+    "38": [
+      "images/ur-z102rev37_p38_full.png",
+      "images/ur-z102rev37_p38_img6.png"
+    ],
+    "39": [
+      "images/ur-z102rev37_p39_full.png",
+      "images/ur-z102rev37_p39_img7.png"
+    ],
+    "40": [
+      "images/ur-z102rev37_p40_full.png",
+      "images/ur-z102rev37_p40_img8.jpeg"
+    ],
+    "41": [
+      "images/ur-z102rev37_p41_full.png",
+      "images/ur-z102rev37_p41_img9.png"
+    ],
+    "70": [
+      "images/ur-z102rev37_p70_full.png",
+      "images/ur-z102rev37_p70_img10.png"
+    ],
+    "71": [
+      "images/ur-z102rev37_p71_full.png",
+      "images/ur-z102rev37_p71_img11.png"
+    ],
+    "91": [
+      "images/ur-z102rev37_p91_full.png",
+      "images/ur-z102rev37_p91_img12.png"
+    ],
+    "94": [
+      "images/ur-z102rev37_p94_full.png",
+      "images/ur-z102rev37_p94_img13.png",
+      "images/ur-z102rev37_p94_img14.png"
+    ],
+    "95": [
+      "images/ur-z102rev37_p95_full.png",
+      "images/ur-z102rev37_p95_img15.png",
+      "images/ur-z102rev37_p95_img16.png"
+    ],
+    "96": [
+      "images/ur-z102rev37_p96_full.png",
+      "images/ur-z102rev37_p96_img17.png",
+      "images/ur-z102rev37_p96_img18.png"
+    ],
+    "117": [
+      "images/ur-z102rev37_p117_full.png",
+      "images/ur-z102rev37_p117_img19.png"
+    ],
+    "118": [
+      "images/ur-z102rev37_p118_full.png",
+      "images/ur-z102rev37_p118_img20.png"
+    ],
+    "119": [
+      "images/ur-z102rev37_p119_full.png",
+      "images/ur-z102rev37_p119_img21.png",
+      "images/ur-z102rev37_p119_img22.png",
+      "images/ur-z102rev37_p119_img23.png"
+    ],
+    "121": [
+      "images/ur-z102rev37_p121_full.png",
+      "images/ur-z102rev37_p121_img24.png"
+    ],
+    "124": [
+      "images/ur-z102rev37_p124_full.png",
+      "images/ur-z102rev37_p124_img25.png",
+      "images/ur-z102rev37_p124_img26.png",
+      "images/ur-z102rev37_p124_img27.png",
+      "images/ur-z102rev37_p124_img28.png",
+      "images/ur-z102rev37_p124_img29.png",
+      "images/ur-z102rev37_p124_img30.png",
+      "images/ur-z102rev37_p124_img31.png",
+      "images/ur-z102rev37_p124_img32.png",
+      "images/ur-z102rev37_p124_img33.png"
+    ],
+    "125": [
+      "images/ur-z102rev37_p125_full.png",
+      "images/ur-z102rev37_p125_img34.png"
+    ],
+    "126": [
+      "images/ur-z102rev37_p126_full.png",
+      "images/ur-z102rev37_p126_img35.png"
+    ],
+    "127": [
+      "images/ur-z102rev37_p127_full.png",
+      "images/ur-z102rev37_p127_img36.png"
+    ],
+    "81": [
+      "images/ur-z102rev37_p81_rendered.png"
+    ]
+  },
+  "ur_z104rev18-1": {
+    "8": [
+      "images/ur_z104rev18-1_p8_img1.jpeg",
+      "images/ur_z104rev18-1_p8_img2.jpeg"
+    ],
+    "9": [
+      "images/ur_z104rev18-1_p9_img3.jpeg"
+    ],
+    "24": [
+      "images/ur_z104rev18-1_p24_img4.jpeg"
+    ],
+    "31": [
+      "images/ur_z104rev18-1_p31_img5.jpeg",
+      "images/ur_z104rev18-1_p31_img6.jpeg"
+    ],
+    "32": [
+      "images/ur_z104rev18-1_p32_img7.jpeg",
+      "images/ur_z104rev18-1_p32_img8.jpeg"
+    ],
+    "46": [
+      "images/ur_z104rev18-1_p46_img9.jpeg"
+    ],
+    "47": [
+      "images/ur_z104rev18-1_p47_img10.jpeg"
+    ],
+    "66": [
+      "images/ur_z104rev18-1_p66_img11.jpeg"
+    ],
+    "85": [
+      "images/ur_z104rev18-1_p85_img12.png"
+    ],
+    "86": [
+      "images/ur_z104rev18-1_p86_img13.jpeg"
+    ],
+    "87": [
+      "images/ur_z104rev18-1_p87_img14.png"
+    ],
+    "88": [
+      "images/ur_z104rev18-1_p88_img15.jpeg"
+    ],
+    "89": [
+      "images/ur_z104rev18-1_p89_img16.jpeg"
+    ],
+    "108": [
+      "images/ur_z104rev18-1_p108_img17.jpeg"
+    ],
+    "109": [
+      "images/ur_z104rev18-1_p109_img18.jpeg"
+    ],
+    "110": [
+      "images/ur_z104rev18-1_p110_img19.jpeg"
+    ],
+    "111": [
+      "images/ur_z104rev18-1_p111_img20.jpeg"
+    ],
+    "112": [
+      "images/ur_z104rev18-1_p112_img21.jpeg"
+    ]
+  },
+  "ur_z105rev20": {
+    "9": [
+      "images/ur_z105rev20_p9_full.png",
+      "images/ur_z105rev20_p9_img1.png",
+      "images/ur_z105rev20_p9_img2.png"
+    ],
+    "10": [
+      "images/ur_z105rev20_p10_full.png",
+      "images/ur_z105rev20_p10_img3.png"
+    ],
+    "35": [
+      "images/ur_z105rev20_p35_full.png",
+      "images/ur_z105rev20_p35_img4.png"
+    ],
+    "36": [
+      "images/ur_z105rev20_p36_full.png",
+      "images/ur_z105rev20_p36_img5.png"
+    ],
+    "37": [
+      "images/ur_z105rev20_p37_full.png",
+      "images/ur_z105rev20_p37_img6.png",
+      "images/ur_z105rev20_p37_img7.png"
+    ],
+    "38": [
+      "images/ur_z105rev20_p38_full.png",
+      "images/ur_z105rev20_p38_img8.png"
+    ],
+    "39": [
+      "images/ur_z105rev20_p39_full.png",
+      "images/ur_z105rev20_p39_img9.png"
+    ],
+    "40": [
+      "images/ur_z105rev20_p40_full.png",
+      "images/ur_z105rev20_p40_img10.png"
+    ],
+    "65": [
+      "images/ur_z105rev20_p65_full.png",
+      "images/ur_z105rev20_p65_img11.png"
+    ],
+    "66": [
+      "images/ur_z105rev20_p66_full.png",
+      "images/ur_z105rev20_p66_img12.png"
+    ],
+    "90": [
+      "images/ur_z105rev20_p90_full.png",
+      "images/ur_z105rev20_p90_img13.png"
+    ],
+    "91": [
+      "images/ur_z105rev20_p91_full.png",
+      "images/ur_z105rev20_p91_img14.png"
+    ],
+    "92": [
+      "images/ur_z105rev20_p92_full.png",
+      "images/ur_z105rev20_p92_img15.png"
+    ],
+    "93": [
+      "images/ur_z105rev20_p93_full.png",
+      "images/ur_z105rev20_p93_img16.png"
+    ],
+    "112": [
+      "images/ur_z105rev20_p112_full.png",
+      "images/ur_z105rev20_p112_img17.png"
+    ],
+    "113": [
+      "images/ur_z105rev20_p113_full.png",
+      "images/ur_z105rev20_p113_img18.png"
+    ],
+    "114": [
+      "images/ur_z105rev20_p114_full.png",
+      "images/ur_z105rev20_p114_img19.png",
+      "images/ur_z105rev20_p114_img20.png",
+      "images/ur_z105rev20_p114_img21.png",
+      "images/ur_z105rev20_p114_img22.png"
+    ],
+    "115": [
+      "images/ur_z105rev20_p115_full.png",
+      "images/ur_z105rev20_p115_img23.png",
+      "images/ur_z105rev20_p115_img24.png"
+    ],
+    "69": [
+      "images/ur_z105rev20_p69_full.png",
+      "images/ur_z105rev20_p69_rendered.png"
+    ],
+    "72": [
+      "images/ur_z105rev20_p72_full.png",
+      "images/ur_z105rev20_p72_rendered.png"
+    ]
+  }
+}

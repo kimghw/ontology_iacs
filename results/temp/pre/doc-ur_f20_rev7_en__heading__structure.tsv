@@ -1,0 +1,7 @@
+Heading_ID	Parent_Heading_ID	Depth	Heading_Level	Heading_Number	Heading_Text	Start_Line	End_Line	Est_Tokens_Inclusive	Est_Tokens_Exclusive	Measure_Method
+ur_f20_HD_000		0	DocumentRoot		UR F20	1	89	1818	1	tiktoken
+ur_f20_HD_001	ur_f20_HD_000	1	Section	F20	F20 Inert Gas Systems	2	89	1817	85	tiktoken
+ur_f20_HD_002	ur_f20_HD_001	2	Subsection	F20.1	F20.1 General Requirements	15	26	116	116	tiktoken
+ur_f20_HD_003	ur_f20_HD_001	2	Subsection	F20.2	F20.2 Requirements for All Systems on Tankers, including Chemical Tankers, to which SOLAS regulation II-2/4.5.5.1 applies	27	40	332	332	tiktoken
+ur_f20_HD_004	ur_f20_HD_001	2	Subsection	F20.3	F20.3 Additional Requirements for Nitrogen Generator Systems on Tankers, including Chemical Tankers, to which SOLAS regulation II-2/4.5.5.1 applies	41	73	745	745	tiktoken
+ur_f20_HD_005	ur_f20_HD_001	2	Subsection	F20.4	F20.4 Nitrogen /Inert Gas Systems Fitted for Purposes other than Inerting Required by SOLAS Reg. II-2/4.5.5.1 and 4.5.5.2	74	89	539	539	tiktoken

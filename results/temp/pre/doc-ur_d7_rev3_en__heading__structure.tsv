@@ -1,0 +1,10 @@
+Heading_ID	Parent_Heading_ID	Depth	Heading_Level	Heading_Number	Heading_Text	Start_Line	End_Line	Est_Tokens_Inclusive	Est_Tokens_Exclusive	Measure_Method
+ur_d7_HD_000		0	DocumentRoot		UR D7	1	37	281	1	tiktoken
+ur_d7_HD_001	ur_d7_HD_000	1	Section	D7	D7 Watertight integrity	2	37	280	37	tiktoken
+ur_d7_HD_002	ur_d7_HD_001	2	Subsection	D7.1	D7.1 Watertight boundaries	9	12	36	36	tiktoken
+ur_d7_HD_003	ur_d7_HD_001	2	Subsection	D7.2	D7.2 Tank boundaries	13	16	34	34	tiktoken
+ur_d7_HD_004	ur_d7_HD_001	2	Subsection	D7.3	D7.3 Boundary penetrations	17	20	36	36	tiktoken
+ur_d7_HD_005	ur_d7_HD_001	2	Subsection	D7.4	D7.4 Closures	21	37	137	8	tiktoken
+ur_d7_HD_006	ur_d7_HD_005	3	Paragraph	D7.4.1	D7.4.1 General	23	26	23	23	tiktoken
+ur_d7_HD_007	ur_d7_HD_005	3	Paragraph	D7.4.2	D7.4.2 General requirements related to watertight integrity	27	30	56	56	tiktoken
+ur_d7_HD_008	ur_d7_HD_005	3	Paragraph	D7.4.3	D7.4.3 General requirements related to weathertight integrity	31	37	50	50	tiktoken

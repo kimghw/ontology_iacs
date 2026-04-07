@@ -1,0 +1,147 @@
+Fine-tuning NMT Models and LLMs for Specialised EN-ES Translation
+Using Aligned Corpora, Glossaries, and Synthetic Data: MULTITAN at
+WMT25 Terminology Shared Task
+Lichao Zhu
+
+Maria Zimina-Poirot
+
+Cristian Valdez
+
+Stéphane Patin
+
+ALTAE, Université Paris Cité
+{lichao.zhu, maria.zimina-poirot, cristian.valdez, stephane.patin}@u-paris.fr
+Abstract
+This paper presents a hybrid evaluation
+of terminology-aware English-to-Spanish machine translation systems developed for the
+WMT25 Terminology Shared Task, speciﬁcally targeting the Information Technology
+(IT) domain. Our objective was to improve
+terminology accuracy and overall translation
+quality and highlight the potential of specialised terminology-aware translation models for technical domains. We used different enhancement strategies for both neural machine translation (NMT) systems and large language models (LLMs). These strategies include ﬁne-tuning with synthetic data, the use
+of in-domain parallel corpora, and hard constraint methods such as placeholder substitution and in-context glossary integration. The
+results demonstrate distinct lexical and stylistic proﬁles in the outputs of ﬁne-tuned NMT
+systems and LLMs, as well as the complementary advantages of different terminology
+injection methods. Systems behave differently
+with and without a glossary, as demonstrated
+by experimental results. The NMT systems
+seem to be rather limited in adapting to special lexicons and resizing embeddings, which
+is the opposite of LLMs, which prefer structured instructions. Although our translation
+systems achieved their highest scores on the
+NoTerm, Consistency metrics, exceeding 81%,
+demonstrating their ability to produce stable
+and coherent translations of recurring terms
+and phrases in unconstrained settings, the precision of the terminology and overall quality
+of the translation could have been improved by
+additional training.
+
+1
+
+Introduction
+
+two approaches are particularly relevant to the objective of this shared task: i) Data approach that
+involves selecting and ﬁltering existing in-domain
+parallel segments (Moore and Lewis, 2010; Axelrod et al., 2011), or generating synthetic data.
+The latter is widely used in back-translation and
+in enhancing domain-speciﬁc data by reformulating or paraphrasing (Sennrich et al., 2016; Edunov
+et al., 2018); ii) System approach which aims
+to assign weights to segments close to the target
+domain (Wang et al., 2017). In recent years, research has increasingly focused on frugal domain
+adaptation strategies, emphasising the efﬁcient use
+of limited resources and optimising training settings to address low-resource scenarios (Adams
+et al., 2022; Marashian et al., 2025). With the
+rapid development of LLMs for translation purposes in recent years, several methods for LLM domain adaptation have emerged, such as prompt engineering and context leaning (Zhang et al., 2023;
+Pourkamali and Shariﬁ, 2024; Yamada, 2023),
+constrained decoding to enforce terminology or
+special data format (Luca Beurer-Kellner, 2024;
+Bogoychev and Chen, 2023), Supervised FineTuning (SFT) using reinforcement learning from
+human feedback (Ouyang et al., 2022), etc. Meanwhile, domain adaptation sheds light on the functioning, strengths, and weaknesses of LLM (Lu
+et al., 2025a), making these ’black boxes’ more
+interpretable – an important objective of our participation in the shared task. In our contribution,
+we have chosen to use three strategies to ﬁne-tune
+both NMT and LLM systems to ensure accurate
+translation of terms tagged as ’proper_terms’ in
+the dev set:
+
+• An open source NMT system was ﬁne-tuned
+Adaptation of the NMT model to a speciﬁc domain
+by employing placeholders for lexical(Chu et al., 2017; Chu and Wang, 2018; Saunders,
+constrained decoding using additional
+2021) is a major concern in bilingual neural maaligned segments within the domain.
+chine translation. Among the various methods that
+have been proposed to tackle domain adaptation,
+• An artiﬁcially augmented training data set
+1284
+Proceedings of the Tenth Conference on Machine Translation (WMT), Volume 2: Shared Task Papers, pages 1284–1291
+November 8–9, 2025. ©2025 Association for Computational Linguistics
+
+was created using a prompt system and used
+to ﬁne-tune a baseline on a commercial
+model training server.
+• Using aligned segments and a glossary, LowRank Adaptation was used to make minor
+changes to an LLM (Hu et al., 2021).
+
+2
+
+Data processing and augmentation
+
+2.1
+
+Data sources for domain-speciﬁc model
+specialisation
+
+Figure 1: Parallel co-occurrences in the augmented
+data, measuring the frequency and speciﬁcity of lexical attractions.2
+
+To achieve precise terminology and consistency in
+ﬁelds like ﬁnance, IT and legal texts, it is essential
+to use high-quality aligned corpora and domainspeciﬁc glossaries to ﬁne-tune NMT models and
+LLMs for specialised machine translation. The
+use of synthetic data generation methods can also
+help to augment domain-speciﬁc corpora, enhancing models’ abilities to manage specialised terminology and contexts effectively. Prompt-based
+generation, retrieval-augmented generation, selfinstruction, and reinforcement learning with feedback are some of the approaches available for synthetic data generation (Lu et al., 2025b; Nad et al.,
+2025). These methods can improve model performance, data diversity, and adaptability to domainspeciﬁc requirements by supplementing real training data with synthetic examples generated by
+LLMs.
+2.2
+
+High-quality parallel corpus
+
+To increase the size of the training data and
+achieve a broader terminological coverage, we
+used a high-quality parallel corpus in IT and
+closely related ﬁelds: the European Union Intellectual Property Ofﬁce (EUIPO) Trademark and Design Guidelines in the production, technology and
+research domains, translated by professional translators from English into Spanish.1 This resource,
+created by the European Language Resource Coordination (ELRC), contains 16,439 translation
+units; 386,472 tokens in English and 424,702 tokens in Spanish. After ﬁltering based on length
+control and the basic alignment quality of the segments, we obtained 6,359 parallel segments containing 62,481 English tokens and 67,791 Spanish
+tokens, representing an average of 910 words (6066 characters) per segment.
+
+Figure 2: Parallel co-occurrences in the development
+set of the shared task, measuring the frequency and
+speciﬁcity of lexical attractions.
+
+2.3 In-domain synthetic data
+In our experiments, we used the dev data set (enesdev: 500 aligned segments) augmented via a system of prompts on ChatGPT-4 (ﬁrst to generate
+an initial data set in English using task-speciﬁc
+terminology) and on DeepSeek (to translate the
+generated dataset into Spanish using the WMT
+2025 dev set term correspondences). We used free
+public versions of both platforms. Our objective
+was not only to consider speciﬁc term correspondences, but also to capture linguistic features of
+the test set to create synthetic data reproducing
+the dev set patterns. We created a synthetic data
+set enes-AUG (1,746 aligned English-Spanish sentence pairs, 10,021 tokens in English, 10,822 tokens in Spanish). The generated synthetic data set
+has some recognisable characteristics in terms of
+regularly repeated characteristic patterns (for example, in Spanish: Usa las acciones en tu documento. Utilice los Servicios profesionales en su
+documento. Utilice el Soporte SAP en su documento).
+2
+
+1
+
+https://is.gd/LlPIYr
+
+Calculated by iTrameur (textometrics tool): https://
+itrameur.clillac-arp.univ-paris-diderot.fr
+
+1285
+
+

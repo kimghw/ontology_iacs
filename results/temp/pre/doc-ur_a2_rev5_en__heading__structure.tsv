@@ -1,0 +1,22 @@
+Heading_ID	Parent_Heading_ID	Depth	Heading_Level	Heading_Number	Heading_Text	Start_Line	End_Line	Est_Tokens_Inclusive	Est_Tokens_Exclusive	Measure_Method
+ur_a2_HD_000		0	DocumentRoot		UR A2	1	253	5703	1	tiktoken
+ur_a2_HD_001	ur_a2_HD_000	1	Section	A2	A2 Shipboard fittings and supporting hull structures associated with towing and mooring on conventional ships	2	253	5702	111	tiktoken
+ur_a2_HD_002	ur_a2_HD_001	2	Subsection	A2.0	A2.0 Application and definitions	16	45	1056	1056	tiktoken
+ur_a2_HD_003	ur_a2_HD_001	2	Subsection	A2.1	A2.1 Towing	46	128	1821	8	tiktoken
+ur_a2_HD_004	ur_a2_HD_003	3	Paragraph	A2.1.1	A2.1.1 Strength	48	55	105	105	tiktoken
+ur_a2_HD_005	ur_a2_HD_003	3	Paragraph	A2.1.2	A2.1.2 Arrangement	56	59	73	73	tiktoken
+ur_a2_HD_006	ur_a2_HD_003	3	Paragraph	A2.1.3	A2.1.3 Load considerations	60	77	419	419	tiktoken
+ur_a2_HD_007	ur_a2_HD_003	3	Paragraph	A2.1.4	A2.1.4 Shipboard fittings	78	89	343	343	tiktoken
+ur_a2_HD_008	ur_a2_HD_003	3	Paragraph	A2.1.5	A2.1.5 Supporting hull structures	90	116	590	590	tiktoken
+ur_a2_HD_009	ur_a2_HD_003	3	Paragraph	A2.1.6	A2.1.6 Safe Towing Load (TOW)	117	128	283	283	tiktoken
+ur_a2_HD_010	ur_a2_HD_001	2	Subsection	A2.2	A2.2 Mooring	129	197	1816	8	tiktoken
+ur_a2_HD_011	ur_a2_HD_010	3	Paragraph	A2.2.1	A2.2.1 Strength	131	136	76	76	tiktoken
+ur_a2_HD_012	ur_a2_HD_010	3	Paragraph	A2.2.2	A2.2.2 Arrangement	137	140	81	81	tiktoken
+ur_a2_HD_013	ur_a2_HD_010	3	Paragraph	A2.2.3	A2.2.3 Load considerations	141	151	445	445	tiktoken
+ur_a2_HD_014	ur_a2_HD_010	3	Paragraph	A2.2.4	A2.2.4 Shipboard fittings	152	162	344	344	tiktoken
+ur_a2_HD_015	ur_a2_HD_010	3	Paragraph	A2.2.5	A2.2.5 Supporting hull structures	163	187	634	634	tiktoken
+ur_a2_HD_016	ur_a2_HD_010	3	Paragraph	A2.2.6	A2.2.6 Safe Working Load (SWL)	188	197	228	228	tiktoken
+ur_a2_HD_017	ur_a2_HD_001	2	Subsection	A2.3	A2.3 Towing and mooring arrangements plan	198	220	406	406	tiktoken
+ur_a2_HD_018	ur_a2_HD_001	2	Subsection	A2.4	A2.4 Corrosion addition	221	232	149	149	tiktoken
+ur_a2_HD_019	ur_a2_HD_001	2	Subsection	A2.5	A2.5 Wear allowance	233	238	64	64	tiktoken
+ur_a2_HD_020	ur_a2_HD_001	2	Subsection	A2.6	A2.6 Survey after construction	239	253	279	279	tiktoken

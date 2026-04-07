@@ -1,0 +1,13 @@
+Heading_ID	Parent_Heading_ID	Depth	Heading_Level	Heading_Number	Heading_Text	Start_Line	End_Line	Est_Tokens_Inclusive	Est_Tokens_Exclusive	Measure_Method
+ur_d2_HD_000		0	DocumentRoot		UR D2	1	79	1403	1	tiktoken
+ur_d2_HD_001	ur_d2_HD_000	1	Section	D2	D2 Definitions	2	79	1402	27	tiktoken
+ur_d2_HD_002	ur_d2_HD_001	2	Subsection	D2.1	D2.1 General	8	17	234	234	tiktoken
+ur_d2_HD_003	ur_d2_HD_001	2	Subsection	D2.2	D2.2 Types of drilling units	18	36	501	501	tiktoken
+ur_d2_HD_004	ur_d2_HD_001	2	Subsection	D2.3	D2.3 Dimensions	37	46	107	107	tiktoken
+ur_d2_HD_005	ur_d2_HD_001	2	Subsection	D2.4	D2.4 Water depth	47	50	46	46	tiktoken
+ur_d2_HD_006	ur_d2_HD_001	2	Subsection	D2.5	D2.5 Moulded base line	51	54	39	39	tiktoken
+ur_d2_HD_007	ur_d2_HD_001	2	Subsection	D2.6	D2.6 Lightweight	55	58	86	86	tiktoken
+ur_d2_HD_008	ur_d2_HD_001	2	Subsection	D2.7	D2.7 Weathertight	59	62	36	36	tiktoken
+ur_d2_HD_009	ur_d2_HD_001	2	Subsection	D2.8	D2.8 Watertight	63	66	47	47	tiktoken
+ur_d2_HD_010	ur_d2_HD_001	2	Subsection	D2.9	D2.9 Downflooding	67	70	77	77	tiktoken
+ur_d2_HD_011	ur_d2_HD_001	2	Subsection	D2.10	D2.10 Modes of Operation	71	79	202	202	tiktoken

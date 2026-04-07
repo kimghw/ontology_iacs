@@ -1,0 +1,7 @@
+Heading_ID	Parent_Heading_ID	Depth	Heading_Level	Heading_Number	Heading_Text	Start_Line	End_Line	Est_Tokens_Inclusive	Est_Tokens_Exclusive	Measure_Method
+ur_k3_HD_000		0	DocumentRoot		UR K3	1	120	2033	1	tiktoken
+ur_k3_HD_001	ur_k3_HD_000	1	Section	K3	K3 Keyless Fitting of Propellers without Ice Strengthening	2	120	2032	44	tiktoken
+ur_k3_HD_002	ur_k3_HD_001	2	Subsection	K3.1	K3.1 Requirements to be satisfied	9	24	302	302	tiktoken
+ur_k3_HD_003	ur_k3_HD_001	2	Subsection	K3.2	K3.2 Material constants	25	46	270	270	tiktoken
+ur_k3_HD_004	ur_k3_HD_001	2	Subsection	K3.3	K3.3 Formulae used	47	82	497	497	tiktoken
+ur_k3_HD_005	ur_k3_HD_001	2	Subsection	K3.4	K3.4 Nomenclature	83	120	919	919	tiktoken

@@ -1,0 +1,46 @@
+# PRE Pipeline Threshold Configuration
+# 값 변경 후 `python scripts/update_thresholds.py` 실행하면 모든 md 파일에 반영.
+# md 문법: {{key:value}} — key는 아래 키, value는 현재 값.
+
+# ── Document Split (Step 2: documentSplit 임시 분할) ──
+split_threshold: "64K"          # documentSplit 트리거 기준 (이상이면 분할)
+split_budget: "60K"             # documentSplit당 최대 토큰 (overlap 포함)
+split_content: "56K"            # documentSplit당 고유 콘텐츠 목표
+split_reserve: "4K"             # 시스템 프롬프트/출력 버퍼 예약분
+split_overlap: "100"            # 인접 documentSplit 간 중복 라인 수
+split_overlaptkn: "200–400"     # 중복 라인의 대략적 토큰 수
+split_context: "50"             # 경계 충돌 해결 시 추가 컨텍스트 라인 (±)
+
+# ── Chunk & WU (Step 3: 청킹, Work Unit 패킹) ──
+chunk_max: "32K"                # Chunk 최대 토큰 (heading 경계 기준)
+merge_threshold: "32K"          # 소형 문서 병합 기준 (이하이면 인접 문서와 병합)
+wu_range: "16K–32K"             # Work Unit 목표 토큰 범위
+
+# ── PDF Normalisation (Step 1.1) ──
+pdf_pages: "50"                 # PDF 에이전트당 페이지 수
+pdf_agents: "20"                # PDF당 최대 에이전트 수
+pdf_pagelimit: "1,000"          # 페이지/에이전트 수 재조정 기준 (이상이면 균등 분배)
+
+# ── Convergence (Pass 2–4 수렴 기준) ──
+warn_min: "3"                   # Warning 허용 최솟값 (max(warn_min, ⌈headings × warn_ratio⌉))
+warn_ratio: "0.02"              # Warning 허용 비율 (총 heading 수 대비)
+iter_max: "2"                   # Pass 2–3 최대 반복 횟수
+
+# ── Failure Handling (재시도, 복구) ──
+retry_max: "3"                  # Transient 오류 최대 재시도 횟수
+retry_backoff: "30s, 60s, 120s" # 지수 백오프 대기 시간
+reshard_max: "2"                # Context window 초과 시 최대 reshard 횟수
+
+# ── Heading ID (Step 2 식별자 형식) ──
+hdid_digits: "3"                # Heading_ID 최소 자릿수 (zero-padded)
+hdid_expand: "999"              # 이 수를 초과하면 자릿수 확장
+
+# ── Token Approximation (tiktoken 미사용 시 대체 계산) ──
+approx_divisor: "4"             # char_approx = ceil(char_count / divisor × multiplier)
+approx_multiplier: "1.1"        # char_approx 보정 승수
+
+# ── Agent (에이전트 할당) ──
+agent_extrafile: "128K"         # 이 크기 초과 파일에 추가 에이전트 할당
+
+# ── Pass 4 ──
+p4_context: "50"                # Pass 4 LLM 리뷰 시 후보 주변 컨텍스트 라인 (±)

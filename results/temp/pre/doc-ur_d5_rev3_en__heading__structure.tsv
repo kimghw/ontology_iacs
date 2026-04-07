@@ -1,0 +1,9 @@
+Heading_ID	Parent_Heading_ID	Depth	Heading_Level	Heading_Number	Heading_Text	Start_Line	End_Line	Est_Tokens_Inclusive	Est_Tokens_Exclusive	Measure_Method
+ur_d5_HD_000		0	DocumentRoot		UR D5	1	35	257	1	tiktoken
+ur_d5_HD_001	ur_d5_HD_000	1	Section	D5	D5 Column stabilized drilling units	2	35	256	39	tiktoken
+ur_d5_HD_002	ur_d5_HD_001	2	Subsection	D5.1	D5.1 General	9	12	30	30	tiktoken
+ur_d5_HD_003	ur_d5_HD_001	2	Subsection	D5.2	D5.2 Upper structure	13	16	33	33	tiktoken
+ur_d5_HD_004	ur_d5_HD_001	2	Subsection	D5.3	D5.3 Columns, lower hulls and footings	17	20	42	42	tiktoken
+ur_d5_HD_005	ur_d5_HD_001	2	Subsection	D5.4	D5.4 Wave clearance	21	24	39	39	tiktoken
+ur_d5_HD_006	ur_d5_HD_001	2	Subsection	D5.5	D5.5 Structural Redundancy	25	28	38	38	tiktoken
+ur_d5_HD_007	ur_d5_HD_001	2	Subsection	D5.6	D5.6 Damage Stability	29	35	35	35	tiktoken

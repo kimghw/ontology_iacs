@@ -1,0 +1,180 @@
+Findings of the WMT25 Terminology Translation Task:
+Terminology is Useful Especially for Good MTs
+Kirill Semenov
+University of Zurich
+Dawei Zhu
+Amazon AGI
+
+Xu Huang
+Nanjing University
+Arturo Oncevay
+Independent
+
+Vilém Zouhar
+ETH Zurich
+
+Nathaniel Berger
+Amazon AGI
+
+Pinzhen Chen
+University of Edinburgh & Aveni
+
+Abstract
+
+Nonetheless, it remains an open question whether
+these powerful models or techniques can successThe WMT25 Terminology Translation Task refully address terminology translation, where the
+leases new resources in high-stakes domains
+need for accurate and consistent conversion of terand investigates the capabilities of translation
+minologies poses extra difficulty in addition to gensystems to accurately and consistently transeral translation quality.
+late specialized terms. This year, we feature
+new domain and language coverage over preIn professional fields like finance, medicine, and
+vious editions, introducing two distinct tracks:
+law, the correct use of specialized, agreed terms
+(1) sentence-level translation in the informais critical for accuracy and clarity in communication technology domain for English→German,
+tions, making terminology translation a research
+English→Russian, and English→Spanish, and
+problem of high commercial value (Oncevay et al.,
+(2) document-level translation in the finance
+2025b). The field has seen various efforts in moddomain for English↔Traditional Chinese with
+a document-level one-to-many dictionary. Pareling (Hasler et al., 2018; Dinu et al., 2019), evalticipants are challenged to translate texts under
+uation (Zouhar et al., 2020; Semenov and Bojar,
+three modes: no terminology, proper terminol2022), and translator tool development (Vargasogy, and random terminology, allowing for a
+Sierra, 2011; Arcan et al., 2017; Lagzdin, š et al.,
+causal analysis of terminology utility. Eval2022), but recent progress seems to slow down
+uation combines overall quality, terminology
+even for high-resourced languages. For example, at
+accuracy, and terminology consistency. This
+the 2024 Conference on Machine Translation, only
+shared task attracted broad participation, with
+13 teams submitting 20 systems in Track 1 and
+two papers were dedicated to terminology transla4 teams participating in Track 2. The results
+tion (Kim et al., 2024; Myung et al., 2024).
+show that providing proper terminology conIt is in this context of exciting general domain
+sistently boosts both overall translation quality
+progress
+versus modest attention to terminology
+and term accuracy, whereas reliance on random
+translation that we organize the WMT25 Terminolterminology yields smaller gains. Despite the
+ogy Translation Task. The task comes with two prinear-saturation of sentence-level benchmarks,
+document-level finance translation still falls
+mary objectives: (1) to provide an understanding of
+short, indicating an urgent need for long-form
+the current landscape of terminology-aware translaevaluation and more robust metrics tailored to
+tion, and (2) to announce and release new, humanprofessional domains.
+annotated datasets to facilitate future research. We
+organize two tracks covering five translation direc1 Introduction
+tions and both sentence- and document-level transTime flies. Since the 2023 edition of the WMT
+lation. Particularly, the document track features
+Terminology Translation Task (Semenov et al., large document-level one-to-many dictionaries that
+2023), rapid advances in machine translation (MT) are more realistic in production. In terms of evaluand large language models (LLMs) have achieved
+ation, we run multiple metrics that target different
+near-human quality for general-domain translation
+facets of terminology conversion, all while taking
+in several languages (Kocmi et al., 2024, 2025b). into account the general quality. Moreover, to estimate the added value (causal effect) of a provided
+All authors contributed considerably to the design, execution, and presentation of this work. Dawei Zhu’s and
+terminology dictionary, systems are evaluated in
+Nathaniel Berger’s work was done outside Amazon. Corthree translation conditions: without a dictionary,
+respondence to kirill.semenov@uzh.ch. All resources are
+available at github.com/wmt-conference/wmt25-terminology.
+with a proper terminology dictionary, and with a
+554
+Proceedings of the Tenth Conference on Machine Translation (WMT), Volume 2: Shared Task Papers, pages 554–576
+November 8–9, 2025. ©2025 Association for Computational Linguistics
+
+dictionary of random words.
+The main findings from the WMT 2025 Terminology Translation Task across submissions are:
+⋆ Most systems involve an LLM in some way.
+Top systems achieve close to perfect terminology accuracy in the sentence-level track, indicating LLM’s suitability for the task, and a saturation in the sentence benchmark. We need to
+move to document-level benchmarking, which
+is also more aligned with the practical use.
+⋆ Contrary to the expectations based on previous research, there is little trade-off between
+general translation ability and terminology accuracy for most participating systems.
+⋆ Incorporating some terminologies always benefits overall translation quality; using proper
+terms is more useful than random terms for topperforming systems.
+
+2
+
+Task Description
+
+to correspond to the English output of up to 2K
+words.
+Terminology constraints differ by direction:
+for English→Chinese, terms are one-to-one
+mapped, same as in Track 1; for Chinese→ English, terms may be one-to-many mapped, for instance, the target can have both full entity names
+and acronyms. This track tests terminology accuracy and consistency in long-form translation,
+reflecting real-world professional needs.
+2.2
+
+Terminology Modes
+
+To enable a causal analysis of terminology utility
+and translation quality, each system is requested to
+translate our tests under three modes separately:
+• No Terminology (No Term): The system translates the input text without a terminology dictionary.
+• Proper Terminology (Proper Term): The system is provided with a dictionary of domainspecific terms; relevant to the input.
+• Random Terminology (Random Term): The
+system receives a dictionary of randomly selected
+source words and their aligned translations from
+the references (the random pool excludes the
+proper terms).
+
+Our task is organized into two tracks, each focused
+on different domains and input sizes (of both texts
+and dictionaries), with a unified evaluation protocol.
+This allows this edition of the terminology shared
+task to cover wider scope of fields and input types
+(contrary to (Alam et al., 2021), where only medical domain and sentence-level data were provided),
+as well as tackling the domains in a more controlled
+manner (contrary to (Semenov et al., 2023), where
+every translation direction had its own domain of
+texts, from NLP abstracts to web novels).
+
+The use of Random Term mode allows for measuring if improvements in translation quality stem
+from incorporating terminologies or from simply
+seeing part of the correct translation (Zouhar, 2023;
+Semenov et al., 2023).
+
+2.1
+
+3
+
+Tracks and Domains
+
+Track 1: Sentence-level translation
+• Domain: Information Technology (IT), SAP
+• Translation direction: English→German, English →Russian, and English→Spanish
+• Setup: Participants are provided with sentence
+segments, each with a small terminology dictionary containing only the terms present in the
+segment, usually 1-2 entries.
+Track 2: Document-Level Translation
+• Domain: Hong Kong finance
+• Translation direction: English↔Chinese1
+• Setup: Participants are given documents, each
+accompanied by a large (up to 1K entries)
+document-level terminology dictionary. English
+input documents are capped at 2K words; for
+Chinese→English, the Chinese input is truncated
+1
+
+Traditional; henceforth only “Chinese” for brevity.
+
+Data
+
+The data for both tracks2 is provided in the jsonl
+format, where each instance has the following entries. See Table 1 for an example.
+• Text in language 1
+• Text in language 2
+• Real terminology mapping dictionary (Proper)
+• Random word mapping dictionary (Random)
+• Dummy empty dictionary (NoTerm)
+3.1 Track 1: Sentence-level IT Documentation
+Data source. Our sentence-level data was produced by SAP to investigate ambiguous terminology in the IT business domain (Berger et al.,
+2025).3 The data originates from their online help
+2
+github.com/wmt-conference/wmt25terminology/tree/main/ranking/references
+3
+github.com/SAP/software-documentation-data-set-formachine-translation
+
+555
+
+

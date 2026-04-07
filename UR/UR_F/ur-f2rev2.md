@@ -1,0 +1,1 @@
+I cannot directly convert PDF files to Markdown while preserving all formatting (tables, headings, lists) with the available tools. My `read_file` tool can only extract raw text from PDFs, which would not meet your requirements for well-formatted Markdown.

@@ -1,0 +1,153 @@
+The LegISTyr Test Set: Investigating Off-the-Shelf Instruction-Tuned
+LLMs for Terminology-Constrained Translation in a Low-Resource
+Language Variety
+Paolo Di Natale1 Egon W. Stemle1,2 Elena Chiocchetti1 Marlies Alber1
+Natascia Ralli1 Isabella Stanizzi1 Elena Benini1,3
+1
+
+Eurac Research, Bolzano/Bozen, Italy 2 Masaryk University, Brno, Czech Republic
+3
+University of Bologna, Bologna, Italy
+
+{paolo.dinatale, egon.stemle, elena.chiocchetti, marlies.alber,
+natascia.ralli, isabella.stanizzi}@eurac.edu
+elena.benini99@gmail.com
+Abstract
+
+has yet to ensure consistent and unambiguous terminology enforcement. The delicate trade-off between the continuous expansion of parallel training corpora and the enforcement of lexical choices
+without hampering fluency further complicates
+cross-lingual alignment of terminologically relevant tokens (Alkhouli et al. 2018; Ferrando et al.
+2022; Štefánik et al. 2023). This failure has even
+raised questions on the cost-effectiveness of maintaining termbases for MT purposes (Knowles et al.
+2023). Terminology compliance has attracted notable interest and lead to the organization of shared
+MT tasks (Bawden et al. 2019; Alam et al. 2021b;
+Semenov et al. 2023).
+
+We investigate the effect of terminology injection for terminology-constrained translation in a low-resource language variety, with
+a particular focus on off-the-shelf instructiontuned Large Language Models (LLMs). We
+compare a total of 9 models: 4 instructiontuned LLMs from the Tower and EuroLLM
+suites, which have been specifically trained
+for translation-related tasks; 2 generic openweight LLMs (LLaMA-8B and Mistral-7B); 3
+Neural Machine Translation (NMT) systems
+(an adapted version of MarianMT and ModernMT with and without the glossary function). To this end, we release LegISTyr, a
+manually curated test set of 2,000 Italian sentences from the legal domain, paired with
+source Italian terms and target terms in the
+South Tyrolean standard variety of German.
+We select only real-world sources and design
+constraints on length, syntactic clarity, and
+referential coherence to ensure high quality.
+LegISTyr includes a homonym subset, which
+challenges systems on the selection of the correct homonym where sense disambiguation is
+deducible from the context. Results show
+that while generic LLMs achieve the highest
+raw term insertion rates (approximately 64%),
+translation-specialized LLMs deliver superior
+fluency (∆ COMET up to 0.04), reduce incorrect homonym selection by half, and generate
+more controllable output. We posit that models trained on translation-related data are better
+able to focus on source-side information, producing more coherent translations.
+
+1
+
+Terminology compliance is a crucial quality aspect in high-stakes domains, such as the legal domain. Terminology mistakes in legal translation
+can have serious consequences (Mattila 2018), including legal disputes and infringement of basic
+linguistic and human rights (e.g., through incorrect use of critical terminology during interpretation in criminal trials). Furthermore, every legal
+system has its own specific set of rules and conceptual structures. Legal terminology expresses
+such specificities and is therefore always bound to
+a specific legal system (Gambaro and Sacco 2024).
+This system-boundness of legal terminology often
+results in conceptual incongruency between legal
+systems, even between legal systems sharing the
+same language. Consequently, correct terminology usage in languages with more than one recognized legal variety like Arabic, English, Spanish
+etc., pose notable translation challenges. In addition, the quality of MT in the legal domain hinges
+not so much on the language combination as on the
+legal subdomain (Quinci and Pontrandolfo 2023).
+Our experiments focus on South Tyrolean Ger-
+
+Introduction
+
+While Neural Machine Translation (NMT) adaptation has demonstrated benefits from incorporating domain-specific terms (Farajian et al. 2018), it
+1
+
+is that the stronger signal from numerically dominant varieties will tend to override terms from minority ones.
+The situation of a minor variety used in the legal domain can be exemplified by South Tyrolean
+German. This is a standard variety of German
+(Ammon et al. 2016) used by about 300,000 members of the German language minority in Italy. In
+South Tyrol, German is a co-official language next
+to Italian. South Tyrolean German differs from
+other German varieties in various minor grammatical and lexical aspects, but most notably concerning food and legal vocabulary. Some of these differences are unlikely to affect terminology (e.g.
+the use of sein vs haben as an auxiliary for some
+verbs of position), others might (e.g. differences in
+grammatical gender like Kataster, cadastre, generally being masculine in South Tyrol and other
+Southern German areas but neuter in Germany).
+In South Tyrol, there is a process of terminology
+standardization in place whereby the mandatory
+terminology for the local legal and administrative
+texts is being validated by a Terminology Commission (Chiocchetti 2021). The infringement of
+local terminology requirements may result in hindered clarity of government-citizen communications and in the denial of linguistic minority rights
+related to clear and consistent communication in
+the minority language (South Tyrolean German).
+An analysis of machine-translated normative
+texts from Italian into South Tyrolean German
+has highlighted that terminology is the second
+most common type of mistake after mistranslations (De Camillis and Chiocchetti 2024). This
+can happen by effect of interference from most
+represented legal systems.
+We also observe that Italian multiword terms
+(e.g., decreto legislativo, legislative decree; decreto ingiuntivo, payment order; decreto di condanna, penalty order, etc.) tend to be shortened
+to their headword within texts (i.e., to decreto)
+creating homonymous short forms. Context is
+needed for correct disambiguation when translating into German (i.e., choosing between gesetzesvertretendes Dekret, legislative decree; Mahndekret, payment order and Strafbefehl, penalty order), especially since there is a less pronounced
+tendency to reduce multiword terms or compounds
+to their headword in German. The notable presence of homonyms deriving from ellipsis of part
+of the term in Italian legal texts poses an issue
+of (domain) disambiguation in the correct selec-
+
+man, a minor standard variety of German spoken
+in Northern Italy that is used by the local public
+administration bodies and on legal terms from a
+range of different legal subdomains.
+Researchers have addressed terminology enforcement using both NMT systems and Large
+Language Models (LLMs). In 2024, two new
+LLM suites specifically trained on translationrelated tasks (TT LLMs) were released to the
+public (Tower and EuroLLM suites); yet to our
+knowledge their capabilities have not been adequately investigated thus far. To bridge the gap, we
+evaluate the instruction-following performances
+of these open models in terminology injection,
+comparing their term accuracy rate and overall
+translation quality against general-purpose LLMs
+as well as to adapted NMT models and their baseline. We also assess which models produce the
+most structured and clean outputs for easier downstream processing.
+To this end, we curate LegISTyr1 , a test set
+comprising over 2,000 sentences from the legal
+domain in Italian. Each instance is annotated
+with both Italian source and South Tyrolean target terms, plus variants used in other Germanspeaking legal systems whenever available. We
+select the sentences from termbase contexts and
+other real-world sources while enforcing constraints on length, syntactic clarity, and referential
+coherence. The test set covers the usage of each
+term in multiple contexts. It also features a subset on the challenge of disambiguation between
+homonyms where the correct sense is deducible
+from the domain or context of use.
+
+2
+
+Background
+
+2.1 Challenges of legal translation in South
+Tyrol
+While the task of terminology injection presents
+an already serious challenge for highly resourced
+languages, difficulties grow when considering minor varieties of pluricentric languages (Clyne
+1991). Such varieties often lack labeled datasets
+and resources in internationally standardized format (Lakew et al. 2020), and are under-represented
+in generic training corpora due to the sheer
+size of text produced by the respective speakers
+(Zampieri et al. 2020). This leads to dominant
+forms obfuscating diatopic variants (Koehn and
+Knowles 2017). The implication in statistical MT
+1
+
+http://hdl.handle.net/20.500.12124/104
+
+2
+
+

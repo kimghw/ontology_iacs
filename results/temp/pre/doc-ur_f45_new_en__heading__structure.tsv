@@ -1,0 +1,30 @@
+Heading_ID	Parent_Heading_ID	Depth	Heading_Level	Heading_Number	Heading_Text	Start_Line	End_Line	Est_Tokens_Inclusive	Est_Tokens_Exclusive	Measure_Method
+ur_f45_HD_000		0	DocumentRoot		UR F45	1	181	2316	1	tiktoken
+ur_f45_HD_001	ur_f45_HD_000	1	Section	F45	F45 Installation of BWMS on-board ships	2	181	2315	18	tiktoken
+ur_f45_HD_002	ur_f45_HD_001	2	Subsection		1 General	6	68	858	5	tiktoken
+ur_f45_HD_003	ur_f45_HD_002	3	Paragraph		1.1 Application	8	15	107	107	tiktoken
+ur_f45_HD_004	ur_f45_HD_002	3	Paragraph		1.2 Definitions	16	33	222	7	tiktoken
+ur_f45_HD_005	ur_f45_HD_004	4	Sub-paragraph		1.2.1 Airlock	18	20	67	67	tiktoken
+ur_f45_HD_006	ur_f45_HD_004	4	Sub-paragraph		1.2.2 Ballast Water Management System (BWMS)	21	33	148	148	tiktoken
+ur_f45_HD_007	ur_f45_HD_002	3	Paragraph		Table 1 - Categorization of BWMS technologies	34	58	367	259	tiktoken
+ur_f45_HD_008	ur_f45_HD_007	4	Sub-paragraph		1.2.3 Ballast Water Management Room (BWMR)	50	52	37	37	tiktoken
+ur_f45_HD_009	ur_f45_HD_007	4	Sub-paragraph		1.2.4 BWMS storing, introducing or generating chemicals	53	58	71	71	tiktoken
+ur_f45_HD_010	ur_f45_HD_002	3	Paragraph		Table 2: Requirements that may be reduced for BWMS depending on the chemicals	59	68	157	157	tiktoken
+ur_f45_HD_011	ur_f45_HD_001	2	Subsection		2 Fire categorization	69	88	309	7	tiktoken
+ur_f45_HD_012	ur_f45_HD_011	3	Paragraph		2.1 General	71	75	73	73	tiktoken
+ur_f45_HD_013	ur_f45_HD_011	3	Paragraph		2.2 BWMS located in the cargo area of tankers	76	78	43	43	tiktoken
+ur_f45_HD_014	ur_f45_HD_011	3	Paragraph		2.3 Storage of chemicals	79	88	186	186	tiktoken
+ur_f45_HD_015	ur_f45_HD_001	2	Subsection		3 BWMR location and boundaries	89	105	256	10	tiktoken
+ur_f45_HD_016	ur_f45_HD_015	3	Paragraph		3.1 BWMS using chemical substances	91	93	75	75	tiktoken
+ur_f45_HD_017	ur_f45_HD_015	3	Paragraph		3.2 Ozone-based BWMS	94	98	102	102	tiktoken
+ur_f45_HD_018	ur_f45_HD_015	3	Paragraph		3.3 General	99	105	69	69	tiktoken
+ur_f45_HD_019	ur_f45_HD_001	2	Subsection		4 Fire fighting	106	123	259	6	tiktoken
+ur_f45_HD_020	ur_f45_HD_019	3	Paragraph		4.1 Fixed fire-extinguishing system	108	120	213	213	tiktoken
+ur_f45_HD_021	ur_f45_HD_019	3	Paragraph		4.2 Portable fire-fighting equipment	121	123	40	40	tiktoken
+ur_f45_HD_022	ur_f45_HD_001	2	Subsection		5 Fire prevention	124	135	131	6	tiktoken
+ur_f45_HD_023	ur_f45_HD_022	3	Paragraph		5.1 Equipment protection	126	130	54	54	tiktoken
+ur_f45_HD_024	ur_f45_HD_022	3	Paragraph		5.2 Fire detection	131	135	71	71	tiktoken
+ur_f45_HD_025	ur_f45_HD_001	2	Subsection		6 Ventilation	136	165	318	6	tiktoken
+ur_f45_HD_026	ur_f45_HD_025	3	Paragraph		6.1 Ventilation arrangement	138	152	163	163	tiktoken
+ur_f45_HD_027	ur_f45_HD_025	3	Paragraph		6.2 Ventilation rate	153	165	149	149	tiktoken
+ur_f45_HD_028	ur_f45_HD_001	2	Subsection		7 Personal equipment	166	181	166	166	tiktoken

@@ -1,0 +1,13 @@
+{
+  "source_path": "UR_MD/UR_MD_chunks_5/UR_chunk_01.md",
+  "source_hash": "5c53ff87dce25f84b0ce88a6d9e9a19d54a14dd19af1899be03fc97901c810ec",
+  "source_format": "md",
+  "parser": null,
+  "parser_version": null,
+  "line_ending": "LF",
+  "char_count": 697095,
+  "est_tokens": 166777,
+  "token_method": "tiktoken",
+  "grammar_version": "v01",
+  "created_at": "2026-04-07T08:47:17.514083+00:00"
+}

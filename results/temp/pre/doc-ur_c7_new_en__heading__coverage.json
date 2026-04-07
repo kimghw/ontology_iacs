@@ -1,0 +1,23 @@
+{
+  "doc_instance_key": "ur_c7_new_en",
+  "total_lines": 113,
+  "heading_lines": [
+    2,
+    6,
+    19,
+    29,
+    40,
+    46,
+    54,
+    61,
+    76,
+    80,
+    84,
+    94,
+    107
+  ],
+  "heading_line_count": 13,
+  "non_heading_line_count": 100,
+  "coverage_ratio": 0.115,
+  "created_at": "2026-04-07T08:59:36.706886+00:00"
+}

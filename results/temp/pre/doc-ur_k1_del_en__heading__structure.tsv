@@ -1,0 +1,3 @@
+Heading_ID	Parent_Heading_ID	Depth	Heading_Level	Heading_Number	Heading_Text	Start_Line	End_Line	Est_Tokens_Inclusive	Est_Tokens_Exclusive	Measure_Method
+ur_k1_HD_000		0	DocumentRoot		UR K1	1	11	47	1	tiktoken
+ur_k1_HD_001	ur_k1_HD_000	1	Section	K1	K1 Deleted	2	11	46	46	tiktoken

@@ -1,0 +1,199 @@
+Large Language Models for Lexical Resource Enhancement:
+Multiple Hypernymy Resolution in WordNet
+Dimitar Hristov
+Institute for Bulgarian Language
+Bulgarian Academy of Sciences
+dimitar@dcl.bas.bg
+
+Abstract
+
+resources. Such structured language data
+resources include the various forms of
+dictionaries - entry-based data with predefined
+parts such as word, inflection, definitions,
+examples - as well as ontology-based resources
+like WordNet (Miller et al., 1990; Fellbaum,
+1998), BalkaNet (Tufis et al., 2004) and
+EuroWordNet (Vossen, 1998), incorporating
+vast amounts of knowledge with high accuracy.
+First and key in many spheres such as medicine
+and biology, structured data resources are
+deterministic, precise and validated. This
+ensures decisions are made on a consistent
+and provably correct data. This contrasts to
+the results from LLMs, where hallucinations factually or logically unsound responses - occur
+to often for the extracted information to be
+readily usable without additional validation in
+high-stakes environments.
+Additionally, this same power of LLMs is
+based on a very large preexisting knowledge
+base, which is incorporated in the model
+through training and fine-tuning. Existing
+structured language data resources are a
+significant knowledge-baring part of the
+training corpus for LLMs, meaning their
+continued development is essential for the
+progression of large language models. Even
+then, not all ontologies and knowledge bases
+have been used for model training.
+The aim of this paper is to explore
+the viability of LLMs as tool for aiding
+and evaluation of structured language data
+enhancement with a focus on WordNet.
+
+Large language models (LLMs) have
+materially changed natural language
+processing (NLP). While LLMs have shifted
+focus from traditional semantic-based
+resources, structured linguistic databases
+such as WordNet remain essential for
+precise knowledge retrieval, decision
+making and aiding LLM development.
+WordNet organizes concepts through
+synonym sets (synsets) and semantic links
+but suffers from inconsistencies, including
+redundant or erroneous relations. This
+paper investigates an approach using
+LLMs to aid the refinement of structured
+language resources, specifically WordNet,
+by an automation for multiple hypernymy
+resolution, leveraging the LLMs semantic
+knowledge to produce tools for aiding and
+evaluating manual resource improvement.
+
+1 Introduction
+In recent years, an acceleration in the
+development of AI, machine learning and
+specifically generative models have greatly
+expanded the capabilities for solving tasks in
+the field of natural language processing (NLP).
+Large language models have proven to be a
+powerful tool for word sense disambiguation,
+sentiment analysis, abstractive summarization,
+paraphrasing with sentiment change, and other
+tasks.
+The focus in natural language processing has
+in large part been shifted from development of
+structured language resources to the now more
+popular large language models. LLMs, which
+are themselves not just language resources but
+powerful often general-purpose tools, allow easy
+adaptability and specialization through fine
+tuning and prompt engineering.
+There are, however, two reasons for the
+continued development of structured data
+
+1.1 WordNet and multiple hypernymy
+WordNet is an ontology-based structured
+language resource aiming to represent the
+interconnectedness of language concepts by
+constructing a network of concepts represented
+20
+
+Proceedings of the Student Research Workshop associated with RANLP-2025,
+pages 20–26, Varna, Bulgaria, Sep 8-10, 2025.
+https://doi.org/10.26615/issn.2603-2821.2025_003
+
+2 Related work
+
+by synonym sets or synsets – sets of
+words or multi-word expressions with a
+common meaning – and the various semantic
+relationships between them. The resource
+has a graph-based structure well suited for
+deterministic approaches in NLP task solving.
+
+This paper looks into an approach to
+automate an otherwise manual task related
+to the creation and maintenance of structured
+language resources. In the particular task
+chosen for the experiment, the automated
+task is connected to the nature of hypernymy
+relations between synsets and their validity.
+A manual execution of multiple hypernymy
+resolution has been performed by Koeva and
+Hristov (2023) with promising results, invoking
+a question on whether such phenomena can
+be evaluated and modified in an automated or
+semi-automated way.
+Lippolis et al. (2025) explore the automatic
+construction of an ontology draft using subtaskdecomposed prompting, as well as prompting
+technique based on Chain Of Thought (CoT),
+where LLM inference is done separately on
+atomic data point - in this case competence
+questions, later merge together in a full
+ontology. A similar approach of dividing the
+problem into per-unit tasks is taken within the
+current work.
+
+One of the key ideas of WordNet is the
+codification of inheritance as hypernymy and
+hyponyny relations, linking a more general
+to a more specific concept - concept A
+(hyponym) is a type of concept B (hypernym),
+e.g., {bee:1} is a type of {hymenopterous
+insect:1; hymenopteran:1; hymenopteron:1;
+hymenopter:1}, which is itself a type of
+{insect:1}.
+As any manually created database of
+knowledge, differences of language perception,
+ambiguity and other factors may occasionally
+cause errors in both the lexical data and
+the structure within WordNet (Richens, 2008;
+Verdezoto and Vieu, 2011). These can include:
+missing or erroneous words in the synset,
+errors in definition, synset ambiguity (one
+synset representing multiple concepts), multiple
+synsets for the same concept, wrong relation
+types, missing relations. Koeva and Hristov
+(2023) define one such potential issue erroneous or extra hypernyms where no
+or other relations should be. They give a
+manually crafted dataset with resolved multiple
+hypernymy, resulting in a tree hypernymy
+structure, which requires further evaluation.
+
+3 Methodology
+The aim of the paper is to evaluate the
+effectiveness and efficacy of LLMs as a tool
+to aid with WordNet structural enhancement.
+This was achieved through emulating a
+standard workflow - solving hypernymy
+resolution tasks separately in a series.
+
+This paper will test whether the process
+of resolving multiple hypernymy can be
+automated through the use of LLMs and
+prompt engineering, evaluate the results and
+propose uses for LLMs in the WordNet
+improvement process.
+
+3.1 Structure
+The experiment is structured as a series of
+instruction-based multiple-choice tasks. The
+experiment is performed with generic out-ofthe-box LLMs without any additional taskspecific training or fine tuning. An inference
+is run for each separate synset with multiple
+hypernymy, using a prompt as described in A
+which provides:
+
+1.2 Paper outline
+Section 1 introduced the context and aim of the
+paper, while Section 2 links to the base research
+on which the task is defined. The methodology
+of the experiment, data and implementation
+are described in Section 3. Section 4 analyses
+the outputs and measurements of the results
+with a proposal for uses of the setup. Section 5
+explores a list of potential improvements and
+extentions of the current work.
+
+1. General instructions - LLM’s role
+(WordNet expert), task context (synsets
+and hypernymy relations), input format
+(how synset data is provided) and output
+format (a single synset ID);
+2. Examples - this part is optional and is
+either missing (A.1 0-shot), or provides 1
+or 5 examples (A.2 1-shot or few-shot);
+21
+
+

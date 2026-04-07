@@ -1,0 +1,29 @@
+{
+  "doc_instance_key": "ur_m42_rev6_en",
+  "total_lines": 208,
+  "heading_lines": [
+    2,
+    13,
+    17,
+    21,
+    25,
+    48,
+    52,
+    58,
+    91,
+    105,
+    111,
+    119,
+    130,
+    134,
+    138,
+    149,
+    159,
+    169,
+    185
+  ],
+  "heading_line_count": 19,
+  "non_heading_line_count": 189,
+  "coverage_ratio": 0.0913,
+  "created_at": "2026-04-07T08:59:38.067466+00:00"
+}

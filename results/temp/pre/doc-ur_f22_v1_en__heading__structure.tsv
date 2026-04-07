@@ -1,0 +1,4 @@
+Heading_ID	Parent_Heading_ID	Depth	Heading_Level	Heading_Number	Heading_Text	Start_Line	End_Line	Est_Tokens_Inclusive	Est_Tokens_Exclusive	Measure_Method
+ur_f22_HD_000		0	DocumentRoot		UR F22	1	24	301	1	tiktoken
+ur_f22_HD_001	ur_f22_HD_000	1	Section	F21	F21 Pump room ventilation	2	14	242	242	tiktoken
+ur_f22_HD_002	ur_f22_HD_000	1	Section	F22	F22 Direct loading pipes to oil tanker cargo tanks	15	24	58	58	tiktoken

@@ -1,0 +1,6 @@
+Heading_ID	Parent_Heading_ID	Depth	Heading_Level	Heading_Number	Heading_Text	Start_Line	End_Line	Est_Tokens_Inclusive	Est_Tokens_Exclusive	Measure_Method
+ur_e1_HD_000		0	DocumentRoot		UR E1	1	21	70	1	tiktoken
+ur_e1_HD_001	ur_e1_HD_000	1	Section		E1–E3	2	21	69	8	tiktoken
+ur_e1_HD_002	ur_e1_HD_001	2	Subsection		**E1** (1975) Governing characteristics of generator prime movers	6	11	27	27	tiktoken
+ur_e1_HD_003	ur_e1_HD_001	2	Subsection		**E2** Deleted (December 1996)	12	15	13	13	tiktoken
+ur_e1_HD_004	ur_e1_HD_001	2	Subsection		**E3** Deleted (December 1996)	16	21	21	21	tiktoken

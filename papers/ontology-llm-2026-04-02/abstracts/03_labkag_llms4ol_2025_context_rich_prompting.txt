@@ -1,0 +1,106 @@
+LLMs4OL 2025: The 2nd Large Language Models for Ontology Learning Challenge at the 24th ISWC
+LLMs4OL 2025 Task Participant Long Papers
+https://doi.org/10.52825/ocp.v6i.2891
+© Authors. This work is licensed under a Creative Commons Attribution 4.0 International License
+Published: 01 Oct. 2025
+
+LABKAG at LLMs4OL 2025 Tasks A and C: Context-Rich
+Prompting for Ontology Construction
+Xinyi Zhao1,*
+
+, Kevin Drake2 , Caroline Watanabe2
+Hidetaka Hando2
+1
+
+, Yuya Sasaki1
+
+, and
+
+Laboro.AI Inc., Tokyo, Japan
+2
+
+CAGLA Inc., Aichi, Japan
+
+*Correspondence: Xinyi Zhao, zhao@laboro.ai
+
+Abstract. This paper presents LABKAG’s submission to the LLMs4OL 2025 Challenge,
+focusing on ontology construction from domain-specific text using large language
+models (LLMs). Our core methodology prioritizes prompt design over fine-tuning or
+external knowledge, demonstrating its effectiveness in generating structured knowledge.
+For Task A (Text2Onto: extracting ontological terms and types), we utilized a locally
+deployed Qwen3-8B model, while for Task C (Taxonomy Discovery: identifying taxonomic
+hierarchies), we evaluated the performance of GPT-4o-mini and Gemini 2.5 Pro. Our
+experiments consistently show that incorporating in-domain examples and providing
+richer context within prompts significantly enhances performance. These results confirm
+that well-engineered prompts enable LLMs to effectively extract entities and their
+hierarchical relationships, offering a lightweight, adaptable, and generalizable approach
+to structured knowledge extraction.
+Keywords: Ontology Learning, Large Language Model, Prompt Engineering, In-Context
+Learning, Entity Extraction, Hierarchical Text Classification
+
+1. Introduction
+Ontology learning plays a crucial role in knowledge representation, particularly as a
+precursor to knowledge graph construction. It involves automatically extracting domainspecific entities, relations, and hierarchies from unstructured text to build a structured
+schema that serves as the conceptual backbone of a knowledge graph. In recent years,
+Large Language Models (LLMs) have shown great potential in supporting this process,
+thanks to their ability to extract and generalize knowledge from text without requiring
+additional training.
+Our team, LABKAG, is particularly interested in exploring best practices for applying
+LLMs to knowledge graph construction and related tasks. While the LLMs4OL 2025
+Challenge [1] is framed around ontology learning, its tasks align closely with essential
+steps in the knowledge graph construction pipeline. We participated in Tasks A and C,
+both of which simulate key components of extracting structured knowledge from arbitrary
+text, regardless of domain.
+1
+
+Zhao et al. | Open Conf Proc 6 (2025) ”LLMs4OL 2025: The 2nd Large Language Models for Ontology Learning Challenge at the
+24th ISWC”
+
+Task A focuses on identifying ontological terms and types from unstructured
+documents. The objective is to extract domain-specific entities and categorize them
+appropriately as terms or types. This process is critical in real-world scenarios where
+structured schemas are needed but do not exist yet, for example, in internal enterprise
+knowledge bases, or industry-specific documentation. Automatically identifying the
+foundational vocabulary of a domain helps bootstrap ontologies that can later support
+the search and query systems.
+Task C, in contrast, centers on discovering the taxonomic structure between entities.
+The goal is to identify is-a relationships among entities, enabling the construction
+of hierarchies of domain knowledge. These hierarchies are essential for supporting
+reasoning and inference in graph-driven applications, such as semantic search, product
+recommendation, and compliance checking. In practice, having a taxonomic structure
+helps transform flat lists of entities into rich, navigable structures that reflect how concepts
+are related, improving the utility and interpretability of downstream knowledge systems.
+Our goal is to evaluate how effectively LLMs can perform ontology learning tasks
+under restricted but commonly encountered conditions. We focused on compact models
+that require minimal computational resources and no additional training. We designed
+our systems based on two core hypotheses: (1) LLMs are capable of extracting relevant
+information from limited context, and (2) LLMs can generalize well from a small number
+of carefully selected examples.
+
+2. Related Work
+2.1 In-Context Learning and Example Selection
+The in-context learning capability of LLMs, notably exemplified by GPT-3 [2], allows the
+language models to adapt to new domains and adhere to specific output formats by
+learning from examples provided within the prompt, without requiring parameter updates.
+This feature is particularly valuable for ontology construction, a domain-specific task
+that frequently requires both nuanced knowledge understanding and strictly structured
+output.
+Consequently, prompt engineering has emerged as the key to optimal few-shot
+performance. As highlighted by Zhao et al. [3], LLM behavior is highly sensitive to
+various factors related to prompts, including the overall format, the quality and selection
+of examples, the distribution of labels within those examples, and even their presentation
+order. A comprehensive survey by Dong et al. [4] reviews key advancements in prompt
+design and example selection strategies. Notable approaches include leveraging LLMs
+to verbalize underlying task instructions for enhanced clarity [5], and selecting examples
+based on their semantic similarity to target test samples [6].
+These insights from prior research on in-context learning and prompt engineering
+directly informed the design principles of our prompts for the ontology construction tasks
+addressed in this paper, particularly regarding the use of in-domain examples and richer
+contextual information.
+2.2 LLM-Assisted Ontology Construction
+The automation of ontology construction has been a long-standing interest. Recent
+works by Giglou et al. [7] and Funk et al. [8] underscore the significant potential of
+LLMs in this domain, proposing paradigms for their application in ontology construction.
+2
+
+

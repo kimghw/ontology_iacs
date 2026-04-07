@@ -1,0 +1,131 @@
+End-to-End Ontology Learning with
+Large Language Models
+
+arXiv:2410.23584v1 [cs.LG] 31 Oct 2024
+
+Andy Lo
+University of Cambridge
+cyal4@cam.ac.uk
+Wenda Li
+University of Edinburgh
+wenda.li@ed.ac.uk
+
+Albert Q. Jiang
+University of Cambridge
+qj213@cam.ac.uk
+Mateja Jamnik
+University of Cambridge
+mateja.jamnik@cl.cam.ac.uk
+
+Abstract
+Ontologies are useful for automatic machine processing of domain knowledge
+as they represent it in a structured format. Yet, constructing ontologies requires
+substantial manual effort. To automate part of this process, large language models
+(LLMs) have been applied to solve various subtasks of ontology learning. However,
+this partial ontology learning does not capture the interactions between subtasks.
+We address this gap by introducing OLLM, a general and scalable method for
+building the taxonomic backbone of an ontology from scratch. Rather than focusing on subtasks, like individual relations between entities, we model entire
+subcomponents of the target ontology by finetuning an LLM with a custom regulariser that reduces overfitting on high-frequency concepts. We introduce a novel
+suite of metrics for evaluating the quality of the generated ontology by measuring
+its semantic and structural similarity to the ground truth. In contrast to standard
+syntax-based metrics, our metrics use deep learning techniques to define more
+robust distance measures between graphs. Both our quantitative and qualitative
+results on Wikipedia show that OLLM outperforms subtask composition methods,
+producing more semantically accurate ontologies while maintaining structural
+integrity. We further demonstrate that our model can be effectively adapted to new
+domains, like arXiv, needing only a small number of training examples. Our source
+code and datasets are available at https://github.com/andylolu2/ollm.
+
+1
+
+Introduction
+
+An ontology is a formal and structural way of representing domain-specific concepts and their
+relations [16]. They can be simple (e.g., Wikipedia categories) consisting of concepts and only a
+small number of types of taxonomic relations (e.g., is-a relationships), or they can be complex (e.g.,
+Schema.org) consisting of axioms or many types of relations. For example, a simple ontology for
+programming languages might contain two concepts “Dynamically-typed language” and “Python”,
+and one relation “Dynamically-typed language → Python”, representing the knowledge that Python
+is a dynamically-typed language. A more complex ontology might contain axioms too, for example,
+“all programming languages are either dynamically or statically typed”. In this paper, we focus on
+ontologies with only concepts and taxonomic relations. Compared to typical deep learning models,
+which represent knowledge implicitly in its weights, ontologies capture knowledge in a structured
+and explicit manner, making them reliable, easy to edit and human-interpretable. Such benefits of
+ontologies have led to their wide adoption in practice. For example, Wikipedia categories have been
+38th Conference on Neural Information Processing Systems (NeurIPS 2024).
+
+Target
+
+...
+
+Backpropagate
+
+LLM
+
+Mask-regularised loss
+
+Sum and prune
+
+LLM
+
+Document
+
+...
+
+...
+
+Output
+
+Inference
+
+Evaluation /
+
+Training
+
+Dataset
+
+Concept
+Is-a relation
+
+Gold standard evaluation
+
+Figure 1: OLLM: Using annotations of documents with their relevant concepts, we train an LLM
+to model relevant subgraphs of the target ontology with a custom regulariser. During inference, the
+generated subgraphs for each document are summed and pruned to give the final output ontology.
+For evaluation, we measure the similarity between the generated ontology and the ground truth.
+
+used for entity ranking [46] and information retrieval [42], or Schema.org [40] is a core component
+of the Semantic Web [1] initiative.
+While ontologies are useful, building ontologies often requires substantial manual effort. Ontology
+learning (OL) is the study of automating the construction of high-quality ontologies at scale. For a
+simple ontology, this amounts to discovering the concepts and taxonomic relations, usually based
+on a source corpus. In this paper we aim to develop domain-independent methods for OL that are
+scalable and produce better ontologies.
+Traditionally, OL is viewed as a composition of subtasks [3], such as concept discovery and relation
+extraction. In particular, prior works have demonstrated that state-of-the-art large language models
+(LLMs) can solve such subtasks effectively [4]. While studying subtasks permits fine-grained analysis
+and evaluation, it does not directly indicate the subsequent impact on the quality of the final ontology.
+Moreover, there is potential room for improvement by combining several subtasks into one, such as
+by modelling concepts and relations in conjunction. In this paper, we instead develop and evaluate
+methods that construct ontologies in an end-to-end fashion to answer the following research questions:
+1. How can we leverage LLMs’ knowledge base to build ontologies from scratch?
+2. Does our method scale efficiently to practical problem sizes?
+3. How well does our method generalise to new domains?
+We introduce OLLM, an end-to-end method for using LLMs to construct ontologies at scale. Rather
+than focusing on individual relations between concepts, we finetune an LLM to model entire subcomponents of the target ontology. The output ontology is generated by taking the sum of generated
+sub-components and applying simple post-processing. An overview of the pipeline is shown in
+Figure 1. To train OLLM, we collect the categorisation metadata for a subset of Wikipedia articles.
+We attempt to adapt an LLM to model the relevant categorisation subgraph for a particular Wikipedia
+article, but discover that direct finetuning leads to poor generalisation due to overfitting to high-level,
+frequently occurring concepts. Instead, we propose a custom regulariser that reweights each concept
+based on its frequency of occurrence, which substantially improves generalisation.
+We evaluate OLLM by measuring the similarity of the generated ontology with the ground truth.
+Current approaches for comparing ontologies rely on mapping components of the two ontologies
+onto each other, most commonly by literal text matching [30, 45]. This is unreliable when the two
+ontologies are not already sufficiently similar. Instead, we propose a suite of evaluation metrics
+suitable for comparing arbitrary labelled graphs. These metrics compare edges and subgraphs of
+the two ontologies using pretrained text embedders to test for semantic and structural similarity.
+Both our quantitative and qualitative results reveal that an LLM can already outperform existing
+2
+
+

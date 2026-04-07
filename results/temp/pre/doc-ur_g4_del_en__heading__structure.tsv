@@ -1,0 +1,3 @@
+Heading_ID	Parent_Heading_ID	Depth	Heading_Level	Heading_Number	Heading_Text	Start_Line	End_Line	Est_Tokens_Inclusive	Est_Tokens_Exclusive	Measure_Method
+ur_g4_HD_000		0	DocumentRoot		UR G4	1	5	25	1	tiktoken
+ur_g4_HD_001	ur_g4_HD_000	1	Section	G4	G4 Re-categorised as Z16 - June 1999	2	5	24	24	tiktoken

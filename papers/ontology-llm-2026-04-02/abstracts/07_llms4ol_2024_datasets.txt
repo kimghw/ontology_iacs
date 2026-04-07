@@ -1,0 +1,103 @@
+L L M s 4 O L 2 0 2 4: T h e 1 st L ar g e L a n g u a g e M o d el s f or O nt ol o g y L e ar ni n g C h all e n g e at t h e 2 3r d I S W C
+L L M s 4 O L 2 0 2 4 T a s k O v er vi e w
+htt p s:// d oi. or g/ 1 0. 5 2 8 2 5/ o c p. v 4i. 2 4 8 0
+© A ut h or s. T hi s w or k i s li c e n s e d u n d er a Cr e ati v e C o m m o n s Attri b uti o n 4. 0 I nt er n ati o n al Li c e n s e
+P u bli s h e d: 0 2 O ct. 2 0 2 4
+
+L L M s 4 O L 2 0 2 4 D at a s et s: T o w ar d O nt ol o g y L e ar ni n g
+wit h L ar g e L a n g u a g e M o d el s
+H a m e d B a b a ei Gi gl o u
+
+, J e n nif er D’ S o u z a
+
+, S a m e er S a dr u d di n
+
+¨ e n A u er
+, a n d S or
+
+TI B L ei b ni z I nf or m ati o n C e ntr e f or S ci e n c e a n d T e c h n ol o g y, H a n n o v er, G er m a n y
+{ h a m e d. b a b a ei, j e n nif er. d s o u z a, s a m e er. s a dr u d di n, a u er } @ti b. e u
+* C orr e s p o n d e n c e: H a m e d B a b a ei Gi gl o u, h a m e d. b a b a ei @ti b. e u
+
+A b str a ct: O nt ol o g y l e ar ni n g ( O L) fr o m u n str u ct ur e d d at a h a s e v ol v e d si g ni ﬁ c a ntl y, wit h
+r e c e nt a d v a n c e m e nt s i nt e gr ati n g l ar g e l a n g u a g e m o d el s ( L L M s) t o e n h a n c e v ari o u s
+a s p e ct s of t h e pr o c e s s. T h e p a p er i ntr o d u c e s t h e L L M s 4 O L 2 0 2 4 d at a s et s, d e v el o p e d
+t o b e n c h m ar k a n d a d v a n c e r e s e ar c h i n O L u si n g L L M s. T h e L L M s 4 O L 2 0 2 4 d at a s et
+a s a k e y c o m p o n e nt of t h e L L M s 4 O L C h all e n g e, t ar g et s t hr e e pri m ar y O L t a s k s: T er m
+T y pi n g, T a x o n o m y Di s c o v er y , a n d N o n- T a x o n o mi c R el ati o n E xtr a cti o n. It e n c o m p a s s e s
+s e v e n d o m ai n s, i. e. l e x o s e m a nti c s a n d bi ol o gi c al f u n cti o n s, off eri n g a c o m pr e h e n si v e
+r e s o ur c e f or e v al u ati n g L L M- b a s e d O L a p pr o a c h e s E a c h t a s k wit hi n t h e d at a s et i s
+c ar ef ull y cr aft e d t o f a cilit at e b ot h F e w- S h ot ( F S) a n d Z er o- S h ot ( Z S) e v al u ati o n s c e n ari o s, all o wi n g f or r o b u st a s s e s s m e nt of m o d el p erf or m a n c e a cr o s s diff er e nt k n o wl e d g e
+d o m ai n s t o a d dr e s s a criti c al g a p i n t h e ﬁ el d b y off eri n g st a n d ar di z e d b e n c h m ar k s f or
+f air c o m p ar i s o n f or e v al u ati n g L L M a p pli c ati o n s i n O L.
+K e y w or d s: O nt ol o g y L e ar ni n g, L ar g e L a n g u a g e M o d el s,
+lenge
+
+D at a s et, L L M s 4 O L C h al-
+
+1 I ntr o d u cti o n
+O nt ol o gi e s h a v e g ai n e d a l ot of p o p ul arit y a n d r e c o g niti o n i n t h e s e m a nti c w e b b e c a u s e
+of t h eir ﬁ n e s o ur c e o f s e m a nti c s a n d i nt er o p er a bility . T h e i n cr e a s e i n u n str u ct ur e d
+d at a o n t h e w e b h a s m a d e t h e a ut o m at e d a c q ui siti o n of o nt ol o g y fr o m u n str u ct ur e d
+t e xt a m o st pr o mi n e nt r e s e ar c h ar e a. R e c e ntl y, i n st e a d of h a n d cr afti n g o nt ol o gi e s,
+t h e r e s e ar c h tr e n d i s n o w s hifti n g t o w ar d a ut o m ati c o nt ol o g y l e ar ni n g ( O L) [ 1]. O L
+i n v ol v e s a ut o m ati c all y i d e ntif yi n g t er m s, t y p e s, r el ati o n s, a n d p ot e nti al a xi o m s fr o m
+t ext u al i nf or m ati o n t o c o n str u ct a n o nt ol o g y [ 2].
+L o o ki n g b a c k t o t h e hi st or y of O L r e s e ar c h, u ntil e arl y 2 0 0 2 [ 3], m o st O L a p pr o a c h e s
+r eli e d o n s e e d w or d s or e xi sti n g b a s e o nt ol o gi e s r at h er t h a n b uil di n g n e w o n e s fr o m
+s cr at c h. L at er i n 2 0 0 3 [ 4] t h e n at ur al l a n g u a g e pr o c e s si n g ( N L P) t e c h ni q u e s h o w e d
+pr o mi s e f or t h e e xtr a cti o n of n e w c o n c e pt s. H o w e v er, r el ati o n e xtr a cti o n f or O L r em ai n e d still c h all e n gi n g. Al s o, t h e pri or d o m ai n k n o wl e d g e of t h e b a s e o nt ol o gi e s still
+w a s i n t h e mi d dl e of t h e f o c u s f or O L. Wit h pr o g r e s s i n t h e ﬁ el d, i n 2 0 0 6 t h e c o n c e pt of
+” o nt ol o g y l e ar ni n g l a y er c a k e” [ 5] w a s i ntr o d u c e d t o or g a ni z e a n d d e s cri b e t h e diff er e nt
+st e p s i n v ol v e d i n t h e pr o c e s s of o nt ol o g y l e ar ni n g fr o m t h e t ext f or r e al-lif e a p pli c ati o n
+17
+
+B a b a ei Gi gl o u et al.
+
+| O p e n C o nf Pr o c 4 ( 2 0 2 4) ” L L M s 4 O L 2 0 2 4: T h e 1 st L ar g e L a n g u a g e M o d el s f or O nt ol o g y L e ar ni n g
+C h all e n g e at t h e 2 3r d I S W C”
+
+s c e n ari o s. T h e O L l a y er c a k e i n cl u d e s (fr o m t h e b ott o m of t h e c a k e t o t h e t o p), T er m s,
+S y n o n y m s, C o n c e pt s, T a x o n o mi e s, R el ati o n s, R ul e s, a n d A xi o m s. T hi s r e ﬂ e ct s a pr ogr e s si o n fr o m si m pl er t o m or e c o m pl e x a n d a b str a ct f or m s, e a c h st e p b uil di n g o n t h e
+r e s ult s of t h e pr e vi o u s o n e. It pr o vi d e s a str u ct ur e d a p pr o a c h t o u n d er st a n di n g a n d a ut o m ati n g t h e O L pr o c e s s. L at er i n 2 0 1 1, H a z m a n et al.[ 6] st u di e d v ari o u s O L s y st e m s
+a n d c at e g ori z e d t h e m i nt o t w o c at e g ori e s, ( 1) l e ar ni n g fr o m u n str u ct ur e d d at a a n d ( 2)
+l e ar ni n g fr o m s e mi- str u ct ur e d d at a. T h e y al s o p oi nt e d o ut t h at w h e n h u m a n- b a s e d
+e v al u ati o n i s n ot p o s si bl e, c arr yi n g o ut ﬁ v e-l e v el e v al u ati o n s f or O L i s i m p ort a nt, l e v el s
+s u c h a s l e xi c al, hi er ar c hi c al, c o nt e xt u al, s y nt a cti c, a n d str u ct ur al l e v el s. Si n c e 2 0 1 1
+a n d i n 2 0 1 8 s ur v e y of [ 7] s h o w e d t h at a h y bri d a p pr o a c h c o m pri si n g b ot h li n g ui sti c
+a n d st ati sti c al t e c h ni q u e s pr o d u c e s b ett er o nt ol o gi e s. H o w e v er, it i s dif ﬁ c ult t o ﬁ n d t h e
+b e st t e c h ni q u e a m o u nt a p pr o a c h e s d u e t o t h e d o m ai n of t h e st u di e s. T h e tr e n d w a s
+s hift e d t o w ar d st ati sti c al t e c h ni q u e s f or t er m e xtr a cti o n s, h o w e v er f or r el ati o n e xtr a cti o n
+cl u st eri n g m et h o d s w er e t h e m o st u s e d o n e s. M or e o v er, t h e v ari o u s e v al u ati o n s of O L
+s h o w e d t h at h u m a n- b a s e d e v al u ati o n i s t h e m o st r eli a bl e a p pr o a c h f or e v al u ati o n.
+C o n si d eri n g t h at m o st of t h e a p pr o a c h e s i n t h e ﬁ el d w er e b a s e d o n st ati sti c al a ppr o a c h e s or cl u st eri n g m o d el s, t h e e m er g e n c e of l ar g e l a n g u a g e m o d el s ( L L M s), off er e d a p ar a di g m s hift i n O L si n c e t h eir c h ar a ct eri sti c s j u stif y O L a s a st u di e d f or t h e
+ﬁr st ti m e wit hi n L L M s 4 O L p ar a di g m [ 8]. O n e r e a s o n f or t hi s s hift i s t h e L L M’ s g e n er ati o n c a p a biliti e s b e c a u s e t h e y ar e b ei n g tr ai n e d o n e xt e n si v e a n d di v er s e t e xt, si mil ar
+t o d o m ai n- s p e ci ﬁ c k n o wl e d g e b a s e s [ 9]. F or t h e ﬁr st ti m e, i n 2 0 2 3 t h e L L M s 4 O L [ 8]
+p ar a di g m w a s i ntr o d u c e d t h at i n c or p or at e s L L M s f or t hr e e i m p ort a nt t a s k s of O L a s
+T er m Ty pi n g, T a x o n o m y Di s c o v er y, a n d N o n- T a x o n o mi c R el ati o n E xtr a cti o n. L at er,
+m or e r e s e ar c h er s w er e i n v ol v e d i n t h e O L t a s k s fr o m diff er e nt p er s p e cti v e s [ 1 0] –[ 1 3].
+T h e c urr e nt tr e n d i n t h e s e m a nti c w e b r e v e al s a gr o wi n g i nt er e st a m o n g r e s e ar c h er s
+i n utili zi n g L L M s [ 1 4]. A b e n c h m ar k d at a s et i s e s s e nti al t o a s s e s s t h e p erf or m a n c e
+of O L a p pr o a c h e s, p arti c ul arl y t h o s e i n v ol vi n g L L M s, i n a c o n si st e nt a n d c o m p ar abl e m a n n er. Wit h o ut s u c h b e n c h m ar k s, it b e c o m e s dif ﬁ c ult t o e v al u at e pr o gr e s s a n d
+c o m p ar e v ari o u s m et h o d ol o gi e s eff e cti v el y [ 1 3]. T o a d dr e s s t hi s g a p, i n t hi s w or k, w e
+i ntr o d u c e a n L L M s 4 O L p ar a di g m t a s k s d at a s et t o bri d g e t h e g a p i n b e n c h m ar k e v alu ati o n d at a s et s s p e ci ﬁ c all y wit hi n t h e c o nt e xt of O L u si n g L L M s. O ur k e y c o ntri b uti o n
+i s t h e cr e ati o n of t h e L L M s 4 O L d at a s et, ai m e d at f a cilit ati n g c o n si st e nt e v al u ati o n i n
+t hi s e m er gi n g ﬁ el d. F or t h e ﬁr st ti m e, t hi s d at a s et i s i ntr o d u c e d i n t h e ” 1 st L L M s 4 O L
+C h all e n g e @ I S W C 2 0 2 4” [ 1 5], a c h all e n g e or g a ni z e d at t h e pr e sti gi o u s I nt er n ati o n al
+S e m a nti c W e b C o nf er e n c e (I S W C). T h e pri m ar y g o al of t h e c h all e n g e i s t o pr o vi d e a
+s h ar e d pl atf or m f or r e s e ar c h er s t o b e n c h m ar k t h eir L L M- b a s e d O L a p pr o a c h e s. B y e st a bli s hi n g t hi s d at a s et a n d l a u n c hi n g t h e L L M s 4 O L C h all e n g e, w e h o p e t o e n c o ur a g e
+f urt h er r e s e ar c h a n d i n n o v ati o n i n O L wit h L L M s, ulti m at el y e n a bli n g a m or e str u ct ur e d
+a n d f air c o m p ari s o n of diff er e nt m et h o d s i n t hi s r a pi dl y e v ol vi n g ar e a.
+T h e L L M s 4 O L 2 0 2 4 d at a s et a d dr e s s e s t hr e e O L t a s k s, w hi c h ar e k n o w n a s pri miti v e
+o nt ol o g y c o n str u cti o n t a s k s [ 1 6]. C o n si d eri n g, L a s a l e xi c al e ntri e s f or c o n c e pt u al
+t y p e T , a n d H T a s a r e pr e s e nt ati o n of t a x o n o m y of t y p e s, a n d R a s a n o n-t a x o n o mi c
+r el ati o n s, t h e L L M s 4 O L t a s k s ar e d e ﬁ n e d a s f oll o w s:
+• T a s k A – T er m T y pi n g: F or a gi v e n l e xi c al t er m L , di s c o v er t h e g e n er ali z e d t y p e
+T .
+• T a s k B – T a x o n o m y Di s c o v er y: F or a gi v e n s et of g e n er ali z e d t y p e s T , di s c o v er
+t h e t a x o n o mi c hi er ar c hi c al p air s (T a , Tb ) p air s, r e pr e s e nti n g ”i s- a” r el ati o n s.
+• T a s k C – N o n- T a x o n o mi c R el ati o n E xtr a cti o n: F or a gi v e n s et of g e n er ali z e d
+t y p e s T a n d r el ati o n s R , d d e ntif y n o n-t a x o n o mi c, s e m a nti c r el ati o n s b et w e e n
+18
+
+

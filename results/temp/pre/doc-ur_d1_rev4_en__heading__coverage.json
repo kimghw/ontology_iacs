@@ -1,0 +1,32 @@
+{
+  "doc_instance_key": "ur_d1_rev4_en",
+  "total_lines": 184,
+  "heading_lines": [
+    2,
+    15,
+    17,
+    27,
+    31,
+    52,
+    56,
+    60,
+    66,
+    68,
+    73,
+    75,
+    112,
+    116,
+    132,
+    134,
+    139,
+    141,
+    146,
+    148,
+    153,
+    174
+  ],
+  "heading_line_count": 22,
+  "non_heading_line_count": 162,
+  "coverage_ratio": 0.1196,
+  "created_at": "2026-04-07T08:59:36.780107+00:00"
+}

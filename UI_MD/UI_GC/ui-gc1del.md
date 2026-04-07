@@ -1,0 +1,7 @@
+GC1
+GC1 Deleted
+(1977)
+(Rev 1
+1996)
+
+IACS Int. 1980/Rev 1 1996

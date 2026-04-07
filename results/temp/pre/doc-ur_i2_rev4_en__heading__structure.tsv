@@ -1,0 +1,44 @@
+Heading_ID	Parent_Heading_ID	Depth	Heading_Level	Heading_Number	Heading_Text	Start_Line	End_Line	Est_Tokens_Inclusive	Est_Tokens_Exclusive	Measure_Method
+ur_i2_HD_000		0	DocumentRoot		UR I2	1	695	15514	1	tiktoken
+ur_i2_HD_001	ur_i2_HD_000	1	Section	I2	I2 Structural Requirements for Polar Class Ships	2	695	15513	68	tiktoken
+ur_i2_HD_002	ur_i2_HD_001	2	Subsection	I2.1	I2.1 General	11	22	244	7	tiktoken
+ur_i2_HD_003	ur_i2_HD_002	3	Paragraph	I2.1.1	I2.1.1 Application*	13	16	22	22	tiktoken
+ur_i2_HD_004	ur_i2_HD_002	3	Paragraph	I2.1.2	I2.1.2 Definitions	17	22	215	215	tiktoken
+ur_i2_HD_005	ur_i2_HD_001	2	Subsection	I2.2	I2.2 Hull areas	23	52	647	647	tiktoken
+ur_i2_HD_006	ur_i2_HD_001	2	Subsection	I2.3	I2.3 Design ice loads	53	277	4694	9	tiktoken
+ur_i2_HD_007	ur_i2_HD_006	3	Paragraph	I2.3.1	I2.3.1 General	55	74	594	594	tiktoken
+ur_i2_HD_008	ur_i2_HD_006	3	Paragraph	I2.3.2	I2.3.2 Glancing impact load characteristics	75	97	445	38	tiktoken
+ur_i2_HD_009	ur_i2_HD_008	4	Sub-paragraph		Table 1 - Class factors to be used in I2.3.2.1 (iii)	79	90	294	294	tiktoken
+ur_i2_HD_010	ur_i2_HD_008	4	Sub-paragraph		Table 2 - Class factors to be used in I2.3.2.1 (iv)	91	97	113	113	tiktoken
+ur_i2_HD_011	ur_i2_HD_006	3	Paragraph	I2.3.2.1	I2.3.2.1 Bow area	98	166	1169	1169	tiktoken
+ur_i2_HD_012	ur_i2_HD_006	3	Paragraph	I2.3.2.2	I2.3.2.2 Hull areas other than the bow	167	185	336	336	tiktoken
+ur_i2_HD_013	ur_i2_HD_006	3	Paragraph	I2.3.3	I2.3.3 Design load patch	186	204	358	358	tiktoken
+ur_i2_HD_014	ur_i2_HD_006	3	Paragraph	I2.3.4	I2.3.4 Pressure within the design load patch	205	233	513	204	tiktoken
+ur_i2_HD_015	ur_i2_HD_014	4	Sub-paragraph		Table 3 - Peak Pressure Factors	217	233	309	309	tiktoken
+ur_i2_HD_016	ur_i2_HD_006	3	Paragraph	I2.3.5	I2.3.5 Hull area factors	234	277	1270	171	tiktoken
+ur_i2_HD_017	ur_i2_HD_016	4	Sub-paragraph		Table 4 - Hull Area Factors (AF)	244	262	552	552	tiktoken
+ur_i2_HD_018	ur_i2_HD_016	4	Sub-paragraph		Table 5 - Hull Area Factors (AF) for ships with additional notation “Icebreaker”	263	277	547	547	tiktoken
+ur_i2_HD_019	ur_i2_HD_001	2	Subsection	I2.4	I2.4 Shell plate requirements	278	310	795	795	tiktoken
+ur_i2_HD_020	ur_i2_HD_001	2	Subsection	I2.5	I2.5 Framing - General	311	353	1350	1350	tiktoken
+ur_i2_HD_021	ur_i2_HD_001	2	Subsection	I2.6	I2.6 Framing - Local frames in bottom structures and transverse local frames in side structures	354	396	1245	1245	tiktoken
+ur_i2_HD_022	ur_i2_HD_001	2	Subsection	I2.7	I2.7 Framing - Longitudinal local frames in side structures	397	427	771	771	tiktoken
+ur_i2_HD_023	ur_i2_HD_001	2	Subsection	I2.8	I2.8 Framing - Web frames and load carrying stringers	428	437	276	276	tiktoken
+ur_i2_HD_024	ur_i2_HD_001	2	Subsection	I2.9	I2.9 Framing - Structural stability	438	475	738	738	tiktoken
+ur_i2_HD_025	ur_i2_HD_001	2	Subsection	I2.10	I2.10 Plated structures	476	485	153	153	tiktoken
+ur_i2_HD_026	ur_i2_HD_001	2	Subsection	I2.11	I2.11 Corrosion/abrasion additions and steel renewal	486	505	432	151	tiktoken
+ur_i2_HD_027	ur_i2_HD_026	3	Paragraph		Table 6 - Corrosion/abrasion additions for shell plating	494	505	281	281	tiktoken
+ur_i2_HD_028	ur_i2_HD_001	2	Subsection	I2.12	I2.12 Materials	506	551	1251	61	tiktoken
+ur_i2_HD_029	ur_i2_HD_028	3	Paragraph		Table 7 - Material classes for structural members	510	528	521	521	tiktoken
+ur_i2_HD_030	ur_i2_HD_028	3	Paragraph		Table 8 - Steel grades for weather exposed plating¹⁾	529	551	669	669	tiktoken
+ur_i2_HD_031	ur_i2_HD_001	2	Subsection	I2.13	I2.13 Longitudinal strength	552	650	2088	10	tiktoken
+ur_i2_HD_032	ur_i2_HD_031	3	Paragraph	I2.13.1	I2.13.1 Application	554	561	176	176	tiktoken
+ur_i2_HD_033	ur_i2_HD_031	3	Paragraph	I2.13.2	I2.13.2 Design vertical ice force at the bow	562	593	793	793	tiktoken
+ur_i2_HD_034	ur_i2_HD_031	3	Paragraph	I2.13.3	I2.13.3 Design vertical shear force	594	609	311	311	tiktoken
+ur_i2_HD_035	ur_i2_HD_031	3	Paragraph	I2.13.4	I2.13.4 Design vertical ice bending moment	610	626	371	371	tiktoken
+ur_i2_HD_036	ur_i2_HD_031	3	Paragraph	I2.13.5	I2.13.5 Longitudinal strength criteria	627	650	427	47	tiktoken
+ur_i2_HD_037	ur_i2_HD_036	4	Sub-paragraph		Table 9 - Longitudinal strength criteria	631	650	380	380	tiktoken
+ur_i2_HD_038	ur_i2_HD_001	2	Subsection	I2.14	I2.14 Stem and stern frames	651	654	72	72	tiktoken
+ur_i2_HD_039	ur_i2_HD_001	2	Subsection	I2.15	I2.15 Appendages	655	660	67	67	tiktoken
+ur_i2_HD_040	ur_i2_HD_001	2	Subsection	I2.16	I2.16 Local details	661	666	85	85	tiktoken
+ur_i2_HD_041	ur_i2_HD_001	2	Subsection	I2.17	I2.17 Direct calculations	667	687	477	477	tiktoken
+ur_i2_HD_042	ur_i2_HD_001	2	Subsection	I2.18	I2.18 Welding	688	695	60	60	tiktoken

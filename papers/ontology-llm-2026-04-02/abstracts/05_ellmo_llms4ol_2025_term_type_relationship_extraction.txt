@@ -1,0 +1,107 @@
+LLMs4OL 2025: The 2nd Large Language Models for Ontology Learning Challenge at the 24th ISWC
+LLMs4OL 2025 Task Participant Long Papers
+https://doi.org/10.52825/ocp.v6i.2897
+© Authors. This work is licensed under a Creative Commons Attribution 4.0 International License
+Published: 01 Oct. 2025
+
+ELLMO at LLMs4OL 2025 Tasks A and D: LLM-Based
+Term, Type, and Relationship Extraction
+Ryan Roche1
+
+, Ryn Gray1,*
+1
+
+, Jaimie Murdock 1
+
+, and Douglas C. Crowder1
+
+Sandia National Laboratories, Albuquerque NM
+*Correspondence: kgray1@sandia.gov
+
+Abstract. This paper presents an approach to building ontologies using Large Language
+Models (LLMs), addressing the need in many domains for quality knowledge data
+extraction from vast stores of text data. In particular, we focus on extracting terms and
+types from text and discovering relationships between types. This work was completed
+as part of the 2025 LLMs4OL Challenge, where quality training and testing data, as
+well as several defined tasks were provided. Many teams competed to produce the
+best output data across many domains. Our methodology involved prompt engineering,
+classification, clustering, and vector databases. For the first task, discovering terms and
+types, we used two methods, (1) directly tailoring prompts to find the terms and types
+separately and (2) an approach that discovered terms and types simultaneously and
+then classified them afterwards. For discovering relationships, we used clustering and
+vector databases to attempt to reduce the number of potential edges; then, we queried
+the LLM for probabilities for each of the potential edges. While our findings indicate
+promising results, further work is necessary to address challenges related to processing
+large datasets, particularly in optimizing efficiency and accuracy.
+Keywords: Term Extraction, Type Extraction, Relationship Discovery,
+LLMs4OL Challenge, Ontology Construction
+
+1. Introduction
+As the amount of scientific knowledge continues to grow, it is becoming increasingly
+important to organize information into formats that allow scientists to understand
+connections between concepts. Large language models (LLMs) such as ChatGPT
+[1], [2], Llama [3], and Gemma [4], have recently gained substantial attention for their
+abilities to analyze large quantities of information and help scientists efficiently find
+relevant information. In fact, more recent developments have allowed LLMs to perform
+logical reasoning [5], which opens up new opportunities for using LLMs as research
+assistants and co-pilots [6].
+Unfortunately, LLMs are also known for creating false information - a phenomenon
+known as “hallucination.” These hallucinations make it difficult to use LLMs, alone, for
+making complex and expensive decisions, such as designing new experiments. At
+present, these hallucinations force researchers to use highly-manual processes where
+1
+
+Roche et al. | Open Conf Proc 6 (2025) ”LLMs4OL 2025: The 2nd Large Language Models for Ontology Learning Challenge at the
+24th ISWC”
+
+pieces of critical information must be individually verified. To enable more automatic
+LLM workflows, hallucinations must be mitigated automatically. Several approaches to
+hallucination mitigation have been proposed, including LLM finetuning [7] and retrieval
+augmented generation (RAG) [8], [9] workflows.
+Additionally, symbolic knowledge representations, such as knowledge graphs and
+ontologies, can be used to not only mitigate hallucinations but also help LLMs efficiently
+retrieve information that is relevant to a given query [10], [11]. While there are many
+different types of symbolic knowledge representations, we believe that ontologies are
+particularly well suited for scientific knowledge synthesis, given that they can serve as
+templates and enable logical reasoning. By serving as templates, ontologies can help us
+automatically detect missing information. And, by enabling logical reasoning, ontologies
+can enable automatic fact checking.
+Despite the promise of ontologies, the process of creating ontologies has relied on
+manual or semi-automated [12] workflows that will not be appropriate for internet-scale
+data. Consequently, while ontologies are widely used within specific communities, their
+adoption by the wider scientific community has remained relatively small. To enable
+efficient generation of internet-scale ontologies, or collections of ontologies, we need
+to develop fully-automated workflows. Because of their broad knowledge and their
+natural language processing (NLP) abilities, LLMs are prime candidates for ontology
+learning. Unfortunately, naive prompting of LLMS for ontology learning (OL) results
+in mediocre performance [13]. This work uses the LLM4OL challenge datasets [14]
+to explore methods for enabling LLM-powered OL. Specifically, we explore how LLMs
+can be used to extract terms and types (LLM4OL Task A) and define non-taxonomic
+relationships (LLM4OL Task D).
+
+2. Related Work
+There is a large body of literature exploring how to combine LLMs with symbolic
+knowledge representations. Much of the literature focuses on combining LLMs with
+knowledge graphs, either by using LLMs to build knowledge graphs, using knowledge
+graphs to inform LLMs, or some combination thereof. See [15], [16], [17], [18], [19] for
+reviews on this topic.
+Many recent works have also explored how LLMs can be combined with ontologies
+[20], [21]. [22] demonstrated that LLMS could be used to verify ontologies. [23]
+considered how competency questions could be used to engineer ontologies. [24]
+demonstrated that LLMs and ontological reasoning could be combined to elucidate
+deep relationships in data. [25] demonstrated LLMs to align existing ontologies. [26]
+used LLMs to augment ontologies. [27] demonstreated that LLMs could be used to
+automatically build ontologies, but noted challenges in creating ontological properties.
+[28] employed ontology reuse and prompt engineering for ontology learning. [13]
+provided strategies for evaluating LLM-generated ontologies.
+The most pertinent body of related work comes from previous instantiations of
+the LLM4OL challenge. [29] notes that zero-shot learning does not work for ontology
+learning. [30] provides results from the most recent competition. Compared to previous
+competitions, this year’s competition contained different datasets, including adding Task
+A (extracting terms and types). Because Task A was added this year, there are no results
+from previous year to compare to.
+Task D from this year’s competition is equivalent to Task C from last year’s
+competition. Two teams worked on Task C last year, silp nlp and the Phoenixes. The first
+2
+
+

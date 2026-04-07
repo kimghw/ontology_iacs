@@ -1,0 +1,9 @@
+Heading_ID	Parent_Heading_ID	Depth	Heading_Level	Heading_Number	Heading_Text	Start_Line	End_Line	Est_Tokens_Inclusive	Est_Tokens_Exclusive	Measure_Method
+ur_f35_HD_000		0	DocumentRoot		UR F35	1	53	658	1	tiktoken
+ur_f35_HD_001	ur_f35_HD_000	1	Section	F35	F35 Fire Protection of Machinery Spaces	2	53	657	108	tiktoken
+ur_f35_HD_002	ur_f35_HD_001	2	Subsection		1. Reg.II-2/4.2.2.4	16	25	174	174	tiktoken
+ur_f35_HD_003	ur_f35_HD_001	2	Subsection		2. Reg.II-2/4.2.2.3.5.1	26	29	48	48	tiktoken
+ur_f35_HD_004	ur_f35_HD_001	2	Subsection		3. Reg.II-2/4.2.2.3	30	33	47	47	tiktoken
+ur_f35_HD_005	ur_f35_HD_001	2	Subsection		4. Reg.II-2/5.2.2.3	34	37	32	32	tiktoken
+ur_f35_HD_006	ur_f35_HD_001	2	Subsection		5. Reg.II-2/4.2.2.5.1	38	41	37	37	tiktoken
+ur_f35_HD_007	ur_f35_HD_001	2	Subsection		6. Reg.II-2/4.2.2 and 4.2.5.2	42	53	211	211	tiktoken

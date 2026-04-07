@@ -1,0 +1,3 @@
+Heading_ID	Parent_Heading_ID	Depth	Heading_Level	Heading_Number	Heading_Text	Start_Line	End_Line	Est_Tokens_Inclusive	Est_Tokens_Exclusive	Measure_Method
+ur_m46_HD_000		0	DocumentRoot		UR M46	1	59	1065	1	tiktoken
+ur_m46_HD_001	ur_m46_HD_000	1	Section	M46	M46 Ambient conditions – Inclinations and Ship Accelerations and Motions	2	59	1064	1064	tiktoken

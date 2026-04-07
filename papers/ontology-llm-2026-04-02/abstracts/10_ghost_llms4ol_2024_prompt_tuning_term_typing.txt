@@ -1,0 +1,85 @@
+LLMs4OL 2024: The 1st Large Language Models for Ontology Learning Challenge at the 23rd ISWC
+LLMs4OL 2024 Task Participant Papers
+https://doi.org/10.52825/ocp.v4i.2486
+© Authors. This work is licensed under a Creative Commons Attribution 4.0 International License
+Published: 02 Oct. 2024
+
+The Ghost at LLMs4OL 2024 Task A:
+Prompt-Tuning-Based Large Language Models for Term
+Typing
+Thiti Phuttaamart1 , Natthawut Kertkeidkachorn2 , and
+Areerat Trongratsameethong1
+1
+2
+
+Chiang Mai University, Chiang Mai, Thailand
+
+Japan Advanced Institute of Science and Technology, Japan
+*Correspondence: Thiti Phuttaamart, thiti ph@cmu.ac.th
+
+Abstract: The LLMs4OL Challenge @ ISWC 2024 aims to explore the intersection of
+Large Language Models (LLMs) and Ontology Learning (OL) through three main tasks:
+1) Term Typing, 2) Taxonomy Discovery and 3) Non-Taxonomic Relation Extraction. In
+this paper, we present our system’s design for the term typing task. Our approach utilizes automatic prompt generation using soft prompts to enhance term typing accuracy
+and efficiency. W e c onducted e xperiments o n s everal d atasets, i ncluding WordNet,
+UMLS, GeoNames, NCI, MEDCIN, and SNOMEDCT US. Our approach outperformed
+the baselines on most datasets, except for GeoNames, where it faced challenges due
+to the complexity and specificity of this domain, resulting in substantially lower scores.
+Additionally, we report the overall results of our approach in this challenge, which highlight its promise while also indicating areas for further improvement.
+Keywords: Large Language Models, Ontology Learning, Prompt Tuning
+
+1 Introduction
+Currently, most information on the World Wide Web is in a format that is readable and
+understandable by humans, but computers require significant p rocessing t o comprehend this data. To address this, the Semantic Web has been introduced, extending the
+capabilities of the World Wide Web to make information on the internet interpretable
+and interconnected more efficiently. T his i s a chieved u sing O ntology, w hich models
+the concepts of information within a specific d omain. Typically, creating an ontology is
+complex, time-consuming, and requires domain expertise. Therefore, Ontology Learning, which automates the extraction and creation of structured data from unstructured
+information, has been employed. Given the rapid development of Large Language
+Models (LLMs) with their deep understanding of language, the LLMs4OL Challenge [1]
+aims to explore and utilize these models to facilitate automatic ontology creation. The
+LLMs4OL Challenge comprises three tasks.
+1. Term Typing: Discover the generalized type for a lexical term
+2. Taxonomy Discovery: Discover the taxonomic hierarchy between type pairs
+85
+
+Phuttaamart et al. |
+
+Open Conf Proc 4 (2024) ”LLMs4OL 2024: The 1st Large Language Models for Ontology Learning
+Challenge at the 23rd ISWC”
+
+3. Non-Taxonomic Relation Extraction: Identify non-taxonomic and semantic relations between types
+In this study, we are participating in term typing task. The goal of Term Typing task
+is to assign types to lexical terms. For instance, given the term T UXIS P OND from
+the GeoNames dataset, the correct type would be ”lake”. For the term typing task,
+previous methods have primarily focused on using prompts with specific templates to
+identify term types. However, the key challenge lies in finding an effective prompt that
+produces accurate results. To address this issue, we propose a prompt-tuning-based
+LLM for term typing, utilizing automatic prompt generation with soft prompts to enhance
+both the accuracy and efficiency of the task. The repository of our approach is publicly
+available (https://github.com/themes12/Prompt-Tuning-for-LLMs4OL).
+
+2 Related Work
+Ontology learning is a technique used to extract knowledge from unstructured text
+and create structured data known as an ontology. Popular ontology learning methods include using lexico-syntactic patterns [2] and clustering methods [3], or employing
+lexico-syntactic patterns for term and relation extraction and clustering methods for
+type discovery [4]. Additionally, seed-term-based bootstrapping methods are also employed [5]. Recently, LLMs have been utilized in ontology learning and have produced
+promising results [6]. Nevertheless, this method relies on using specific hard prompts,
+which are difficult to craft and may not yield optimal results. To address these challenges, soft prompting techniques, such as prompt tuning [7], have been developed.
+Soft prompts involve creating learnable vectors, often referred to as virtual tokens, that
+are prepended to the input embeddings and further refined through training. Unlike
+hard prompts, soft prompts do not require manual crafting, making them more flexible
+and easier to adapt to different tasks.
+
+3 Approach
+We designed the system, which consists of two phases as shown in Figure 1: 1) Training and 2) Testing. In the training phase, we begin with a dataset containing terms and
+
+Figure 1. The design of the system
+
+their types. The data are preprocessed to remove any characters that might cause issues, and then combined with an initial prompt. This input is fed into the LLM to create
+a fine-tuned prompt. During the testing phase, the fine-tuned prompt is used on new,
+unseen data, where the terms have no specified types. The LLM predicts the most
+appropriate type for each term, and the results are formatted for evaluation, ensuring
+86
+
+

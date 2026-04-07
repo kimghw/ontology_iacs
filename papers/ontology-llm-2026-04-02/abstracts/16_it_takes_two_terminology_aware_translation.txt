@@ -1,0 +1,154 @@
+It Takes Two: A Dual Stage Approach for Terminology-Aware Translation
+Akshat Singh Jaswal
+PES University
+sja.akshat@gmail.com
+
+Abstract
+This paper introduces DuTerm, a novel twostage architecture for terminology-constrained
+machine translation. Our system combines a
+terminology-aware NMT model, adapted via
+fine-tuning on large-scale synthetic data, with a
+prompt-based LLM for post-editing. The LLM
+stage refines NMT output and enforces terminology adherence. We evaluate DuTerm on
+English-to-German, English-to-Spanish, and
+English-to-Russian for the WMT 2025 Terminology Shared Task. We demonstrate that flexible, context-driven terminology handling by the
+LLM consistently yields higher quality translations than strict constraint enforcement. Our results highlight a critical trade-off, revealing that
+an LLM’s intrinsic knowledge often provides a
+stronger basis for high-quality translation than
+rigid, externally imposed constraints.
+
+1
+
+Previous research into terminology-constrained
+MT can be broadly categorized into two main approaches: inference-time methods and trainingtime methods. Inference-time approaches incorporate terminology constraints directly into the decoding process, often through techniques like constrained beam search or by re-ranking n-best lists of
+candidate translations (Zhang et al., 2023). While
+these methods are highly effective at enforcing constraints, they can be computationally expensive and
+may compromise the overall fluency and grammatical correctness of the output by forcing the model
+to generate awkward or unnatural phrases. Recent
+work has explored ways to make these methods
+more efficient, but the trade-off between enforcing
+terminology constraints and fluency remains a key
+consideration (Moslem et al., 2023).
+
+Introduction
+
+Alternatively, training-time methods aim to
+The accurate and consistent translation of domain- teach models how to handle terminology conspecific terminology is a challenge in the field
+straints by integrating the terminology information
+of Machine Translation and is of importance in
+into the training data itself. This is commonly done
+domains such as law, medicine, and engineering, through the use of special tags that surround the
+where precision is critical (Naveen and Trojovský, terms to be translated (Dinu et al., 2019). This ap2024). While modern Neural Machine Translation
+proach allows the model to learn how to produce
+systems based on architectures like the Transformer
+more natural and grammatically correct output, but
+have achieved remarkable fluency and quality on
+it provides no guarantee that all constraints will be
+general text, their performance in terminology- respected during inference (Susanto et al., 2020).
+constrained texts remains a critical area for improvement (Vaswani et al., 2023; Bahdanau et al.,
+2016; Johnson et al., 2017). This issue is particuWe present DuTerm, a two-stage architecture
+larly relevant given findings of recent WMT shared
+that addresses these limitations by combining the
+tasks, which have consistently highlighted the need
+strengths of both training-time and inference-time
+for systems that can effectively handle domain- methodologies. We recognize that terminologyspecific vocabulary (Post, 2018). The WMT 2025
+constrained translation is not merely a lexical subTerminology Shared Task (Semenov et al., 2025) stitution problem but requires a deeper understandprovides a focused platform to evaluate MT sys- ing of linguistic context, especially when dealing
+tems ability to handle domain-specific terminology with the complex morphology of languages like
+under controlled conditions across multiple lan- German and Russian. Our system is specifically deguage pairs: English to German, English to Span- signed to tackle the multifaceted evaluation frameish, and English to Russian.
+work of the WMT 2025 shared task.
+1344
+Proceedings of the Tenth Conference on Machine Translation (WMT), Volume 2: Shared Task Papers, pages 1344–1350
+November 8–9, 2025. ©2025 Association for Computational Linguistics
+
+2
+
+Method
+
+2.1
+
+Terminology-Aware Neural Machine
+Translation
+
+Overview We develop a terminology aware MT
+model via large-scale, tagged synthetic data and
+targeted fine-tuning. The pipeline: extract and analyze terminology, generate tagged, context-rich
+parallel data (single-term and multi-term) and standardize tags and ensure annotation consistency. We
+also quality-filter with COMETQE (Rei et al., 2022)
+and deduplicate , this finally adapts a multilingual
+NMT model with parameter efficient fine-tuning .
+Terminology
+Extraction
+and
+Analysis
+We parse the WMT 2025 dev files for
+English→German/Spanish/Russian to build
+bilingual terminology dictionaries. The dictionaries typically exceed 1,000 unique pairs
+per direction. We track terms and occurrences
+using repetition_ids. We also use the LLM to
+generate more terms similar to the terms provided
+in the dictionaries.
+Synthetic Data Generation We use GPT-4o
+(OpenAI, 2024) to create parallel sentences that
+naturally embed required terms and explicitly insert
+boundary tags ([TERM]...[/TERM]) on both source
+and target. There are two modes we use to generate
+these parallel sentences
+Single-term mode: generates sentence pairs containing exactly one term instance per sentence.
+Multi-term mode: randomly selects 2–3 term
+pairs to appear together, teaching co-occurrence
+handling and disambiguation.
+We employ temperature sampling (0.3–0.7), concurrent generation, and strict parsing to yield wellformed bilingual pairs.
+Tag Standardization and Quality Filtering A
+re-tagging pass enforces consistent annotation,
+longest-first matching prevents partial shadowing, case-insensitive detection with original case
+preservation, and inverse mapping ensures symmetric target-side tagging. Each pair is scored by
+COMETQE . We deduplicate on the source side
+and keep only high-confidence items using a conservative threshold (0.85-0.9) depending on the
+language, typically retaining 60–70% of outputs,
+yielding ∼10k–15k pairs per language direction.
+
+state-of-the-art multilingual neural machine translation model with demonstrated strong performance
+across our target languages (Team et al., 2022).
+This model provides robust baseline capabilities
+while supporting the specialized terminology handling adaptations we require.
+We extend the model’s vocabulary with terminology markup tokens to ensure atomic treatment
+of terminology annotations. This prevents subword
+tokenization from fragmenting our special markup,
+ensuring that terminology boundaries are consistently preserved during training and inference.
+The training process employs several optimization strategies designed for stable, effective adaptation. The process also combines filtered datasets
+from all three target languages, creating unified
+multilingual adaptation that benefits from crosslingual transfer.
+2.2
+
+LLM-Based Post-Editing
+
+Overview An LLM refines the NMT output
+given the source sentence and required term pairs,
+enforcing strict terminology adherence while improving fluency and morphology.(Raunak et al.,
+2023)
+Post-Editing Procedure We use prompts that
+present the source, translation, and provide explicit
+source to target term mappings. The LLM is instructed to preserve meaning, apply the exact target
+terms, maintain tags where required, and improve
+readability without paraphrasing away constraints.
+The LLM we choose to use is GPT-4o (OpenAI,
+2024) due to its combination of high translation
+quality and relatively lower price.
+Terminology-Aware Processing Dynamic resolution: per-input selection of proper/random/noterm constraints from reference terminology
+databases with whitespace-normalized matching.
+Mode-adaptive behavior: when constraints exist,
+the LLM must enforce them; otherwise it performs
+quality-only edits while being sensitive to technical
+terms. Constraint satisfaction: explicit mappings
+and formatting rules are included in the prompt;
+outputs must preserve required terminology and
+markup.
+
+Quality Assurance and Robustness We run the
+LLM at low temperatures (0.3) for deterministic
+edits. Each hypothesis is validated for format, tag
+Multilingual Model Adaptation For the founda- integrity, and constraint satisfaction before acception translation model, we select NLLB-200 3.3B, a
+tance with a pre-existing parser. We verify filename
+1345
+
+

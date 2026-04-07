@@ -1,0 +1,109 @@
+LLMs4Life: Large Language Models for Ontology Learning
+in Life Sciences
+Nadeen Fathallah1 , Steffen Staab1,2 and Alsayed Algergawy3,4
+1
+
+Analytic Computing, Institute for Artificial Intelligence, University of Stuttgart, Stuttgart, Germany
+University of Southampton, Southhampton, UK
+3
+Data and Knowledge Engineering, University of Passau, Passau, Germany
+4
+Institute for Informatics, Friedrich-Schiller-University Jena, Jena, Germany
+2
+
+arXiv:2412.02035v1 [cs.AI] 2 Dec 2024
+
+Abstract
+
+Ontology learning in complex domains, such as life sciences, poses significant challenges for current Large
+Language Models (LLMs). Existing LLMs struggle to generate ontologies with multiple hierarchical levels, rich
+interconnections, and comprehensive class coverage due to constraints on the number of tokens they can generate
+and inadequate domain adaptation. To address these issues, we extend the NeOn-GPT pipeline for ontology
+learning using LLMs with advanced prompt engineering techniques and ontology reuse to enhance the generated
+ontologies’ domain-specific reasoning and structural depth. Our work evaluates the capabilities of LLMs in
+ontology learning in the context of highly specialized and complex domains such as life science domains. To
+assess the logical consistency, completeness, and scalability of the generated ontologies, we use the AquaDiva
+ontology developed and used in the collaborative research center AquaDiva 1 as a case study. Our evaluation
+shows the viability of LLMs for ontology learning in specialized domains, providing solutions to longstanding
+limitations in model performance and scalability.
+
+Keywords
+
+Ontology Learning, Large Language Models, NeOn-GPT, Life Science Domain.
+
+1. Introduction
+Ontology learning encompasses tasks such as ontology extraction, ontology generation, or ontology
+acquisition. It is the automatic or semi-automatic creation of ontologies, including extracting the
+corresponding domain’s terms and the relationships between the concepts that these terms represent
+from a corpus of natural language text and encoding them with an ontology language for easy retrieval
+[1]. Ontology learning in complex domains like life sciences presents a significant challenge. Although
+Large Language Models (LLMs) have shown promise in automating the generation and enrichment of
+ontologies [2, 3, 4, 5, 6], their application in highly specialized domains remains difficult and understudied.
+The inherent complexity of specialized domains such as life sciences, coupled with domain-specific
+terminologies and data, limits the ability of LLMs to generate ontologies that meet the structural and
+logical depth required for advanced reasoning. To explore these limitations, we consider the knowledge
+representation and ontology developed within the collaborative research center AquaDiva. AquaDiva
+is a large collaborative project encompassing fields such as biology, geology, chemistry, and computer
+science, all working towards a shared objective of enhancing our understanding of the Earth’s critical
+zone [7]. As the complexity and amount of data collected within AquaDiva increases, there is an
+increasing necessity to adopt semantic web approaches to standardize data and facilitate its integration
+and interoperability [8, 9]. To this end, the AquaDiva ontology (ADOn) has been developed with
+78.840 axioms, 8.892 concepts, and 245 object properties. We leverage the AquaDiva ontology ADOn as
+a use case for evaluating the performance of our method and assessing the structural depth, logical
+1
+
+https://www.aquadiva.uni-jena.de/
+EKAW 2024 Workshops, Tutorials, Posters and Demos, 24th International Conference on Knowledge Engineering and Knowledge
+Management (EKAW 2024), November 26-28, 2024, Amsterdam, The Netherlands
+$ nadeen.fathallah@ki.uni-stuttgart.de (N. Fathallah); steffen.staab@ki.uni-stuttgart.de (S. Staab);
+alsayed.algergawy@uni-passau.de (A. Algergawy)
+ 0000-0001-7921-034X (N. Fathallah); 0000-0002-0780-4154 (S. Staab); 0000-0002-8550-4720 (A. Algergawy)
+© 2024 Copyright © 2024 for this paper by its authors. Use permitted under Creative Commons License Attribution 4.0 International (CC BY 4.0).
+
+consistency, and completeness of the generated ontologies against this established domain-specific
+resource.
+Ontologies are critical for organizing domain knowledge in a structured, reusable way, facilitating
+scientific research, and supporting advanced data analysis and decision-making. In domains like
+AquaDiva, an accurate and logically consistent ontology can enable a better understanding of complex
+ecological processes, enhance data interoperability, and improve scientific communication. Current
+approaches to ontology learning rely heavily on manual processes, which are labor-intensive and
+prone to human error. Incorporating LLMs offers the potential to enhance efficiency [3]; however,
+automating or semi-automating this process with LLMs requires rigorous evaluation to ensure the
+logical soundness, domain coverage, and adaptability of generated ontologies in complex domains
+[10]. Evaluating LLMs for their ability to capture deep, complex relationships between concepts is
+critical, as they often produce simplified structures that lack the depth and coverage necessary for
+representing domain-specific intricacies. Models like Neon-GPT struggle in ontology learning for
+domains like life sciences due to insufficient domain adaptation; as a result, they generate ontologies
+with shallow hierarchies. Inadequate domain adaptation means that LLMs lack sufficient exposure
+to specialized training data needed to model complex domains like life sciences, leading to generic
+ontologies. By "shallow hierarchy," we mean that the model struggles to generate deep hierarchical
+structures because it has difficulty establishing "is a part of" or "is a subset of" relationships, resulting in
+overly simplistic ontologies with limited subclass depth. Additionally, the vast amount of information
+required to fully model a domain like AquaDiva often exceeds the constraints on the number of tokens
+LLMs can generate, leading to incomplete outputs.
+In this work, we propose an evaluation-driven approach to improving ontology learning for complex
+domains such as life science; our approach is evaluated on the AquaDiva ontology. Our methodology
+evolves through an experimental evaluation pipeline, where we iteratively address the limitations
+identified when evaluating the generated ontologies. The contributions of this paper are as follows:
+• Extension of the NeOn-GPT Pipeline with Advanced, Domain-Driven Prompt Engineering: We extend the NeOn-GPT pipeline by introducing advanced prompt engineering techniques
+driven by domain-specific requirements. This includes re-prompting strategies that iteratively
+refine the LLM’s output, enhancing the depth and hierarchy of the generated ontology. To further
+improve accuracy and adaptation, we increase the use of few-shot examples and employ advanced role-play prompting using domain-specific personas. Additionally, we develop a domain
+categorization strategy to handle token limitations, allowing the LLM to manage large, complex
+domains by breaking them into manageable subsets.
+• Introduction of Ontology Reuse in the NeOn-GPT Pipeline: We enhance the NeOn-GPT
+pipeline by introducing ontology reuse, incorporating relevant existing ontological resources to
+evaluate reuse enhances the quality, depth, and consistency of the generated ontologies.
+• AquaDiva Ontology Case Study: We evaluate our approach by assessing the structural complexity, depth, and logical consistency of the generated ontologies.
+The paper is organized as follows: Section 2 reviews related work on ontology learning with LLMs.
+Section 3 details our proposed methodology. Section 4 presents the experiments that were conducted and
+their corresponding results, using the AquaDiva ontology as a case study. Finally, Section 5 concludes
+the paper and outlines future work.
+
+2. Related Work
+In recent years, LLMs have gained significant attention for their ability to enhance various ontologyrelated tasks, including ontology learning. Studies have demonstrated that LLMs can support the
+creation, enrichment, and refinement of ontologies, helping to automate traditionally labor-intensive
+tasks. For instance, Mateiu et al. [2] leverage a fine-tuned GPT-3 to translate natural language into
+OWL Functional Syntax for ontology enrichment. While the approach reduces the need for manual
+
+

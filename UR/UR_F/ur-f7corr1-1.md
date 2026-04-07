@@ -1,0 +1,1 @@
+I cannot directly convert PDF files to Markdown. My capabilities are limited to interacting with the file system and running shell commands. I can read text files, but I cannot parse the content of a PDF and convert it to a structured Markdown format.

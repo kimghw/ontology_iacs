@@ -1,0 +1,4 @@
+Heading_ID	Parent_Heading_ID	Depth	Heading_Level	Heading_Number	Heading_Text	Start_Line	End_Line	Est_Tokens_Inclusive	Est_Tokens_Exclusive	Measure_Method
+ur_f32_HD_000		0	DocumentRoot		UR F32	1	38	582	1	tiktoken
+ur_f32_HD_001	ur_f32_HD_000	1	Section	F32	F32 Fire detecting system for unattended machinery spaces	2	38	581	552	tiktoken
+ur_f32_HD_002	ur_f32_HD_001	2	Subsection		NOTE	34	38	29	29	tiktoken
