@@ -6,8 +6,8 @@
 
 문서별 토큰 측정값을 기준으로 다음 두 가지 조정을 수행하여, 다운스트림 단계가 LLM 컨텍스트 윈도우 안에서 안정적으로 처리할 수 있는 **Work Unit(WU) 집합**을 생성한다.
 
-- **상한 초과 문서 → 분할** (청킹 담당): 단일 문서가 상한(`chunk_max`, 기본 32K)을 넘는 경우 헤딩 경계에서 다수의 청크로 나누고 같은 문서끼리 묶어 **split WU**로 확정한다.
-- **하한 미만 문서 → 병합** (WU 패킹 담당): 단일 문서가 하한(`wu_min`, 기본 16K)에 못 미치는 경우 동질 문서끼리 묶어 하나의 **merge WU**로 만든다.
+- **상한 초과 문서 → 분할** (청킹 담당): 단일 문서가 상한 {{chunk_max:32K}}을 넘는 경우 헤딩 경계에서 다수의 청크로 나누고 같은 문서끼리 묶어 **split WU**로 확정한다.
+- **하한 미만 문서 → 병합** (WU 패킹 담당): 단일 문서가 하한 {{wu_min:16K}}에 못 미치는 경우 동질 문서끼리 묶어 하나의 **merge WU**로 만든다.
 - **그 외 단일 문서 (하한 ≤ 크기 ≤ 상한)**: 청킹 단계에서 즉시 **standalone WU**로 확정한다.
 
 본 단계는 **기능적으로 두 개의 독립 절차**로 분리된다. **청킹**은 상한을 강제하며 split/standalone WU를 직접 확정하고, **WU 패킹**은 하한을 강제하며 merge WU만 생성한다. 본 단계는 PRE 파이프라인의 최종 스테이지이다.
@@ -22,57 +22,118 @@
 
 ### 1.2 입력
 
-- #1 `doc-{doc_instance_key}__heading__structure.tsv` — 청킹 경계 산정 (헤딩 트리 + 토큰 측정값)
-- #4 `file-{source_file_key}__pre__normalised.md` — 오버사이즈 리프 폴백 시 본문 접근 (조건부)
-- #3 `file-{source_file_key}__pre__meta.json` — 문서 메타 (`Authority`, `DocType`, `language` 등)
-- #5 `doctype-{DocType}__heading__grammar_v{NN}.md` — `grammar_version` 추출
-- `shared/thresholds.yaml` — 토큰 임계값 (`chunk_max`, `wu_range`)
+- **[A05]** `doc-{doc_instance_key}__heading__structure.tsv` — 청킹 경계 산정 (헤딩 트리 + 토큰 측정값)
+- **[A02]** `file-{source_file_key}__pre__normalised.md` — 오버사이즈 리프 폴백 시 본문 접근 (조건부)
+- **[A01]** `file-{source_file_key}__pre__meta.json` — 문서 메타 (`Authority`, `DocType`, `language` 등)
+- **[A15]** `doctype-{DocType}__heading__grammar_v{NN}.md` — `grammar_version` 추출
+- **[D17]** `shared/thresholds.yaml` — 토큰 임계값 (`chunk_max`, `wu_range`)
 
 ### 1.3 산출물
 
-| # | 파일 | 단위 | 설명 |
+| ID | 파일 | 단위 | 설명 |
 |:---|:---|:---|:---|
-| 7b | `doc-{doc_instance_key}__heading__chunk_plan.json` | 문서당 1개 | 청크 경계, 토큰 크기, 분할 방법 |
-| 6  | `wu-{wu_key}__pre__meta.json` | WU당 1개 | WU 메타데이터 (구성 문서, 청크, 토큰 합) |
-| 7  | `corpus__pre__manifest.json` | 코퍼스당 1개 | PRE 마스터 인덱스 (최종 단계로 생성) |
+| **[A07]** | `doc-{doc_instance_key}__heading__chunk_plan.json` | 문서당 1개 | 청크 경계, 토큰 크기, 분할 방법 |
+| **[A22]** | `wu-{wu_key}__pre__meta.json` | WU당 1개 | WU 메타데이터 (구성 문서, 청크, 토큰 합) |
+| **[A24]** | `corpus__pre__manifest.json` | 코퍼스당 1개 | PRE 마스터 인덱스 (최종 단계로 생성) |
 
-> 모든 산출물은 `results/` 디렉터리에 직접 기록한다 (임시 폴더 없음). 파일 명명 규칙과 전체 카탈로그는 [pre_specification_ko.md](pre_specification_ko.md) §산출물 카탈로그를 정본으로 한다.
+> 모든 산출물은 `results/` 디렉터리에 직접 기록한다. 파일 명명 규칙과 전체 카탈로그는 **[D02]** [pre_specification_ko.md](pre_specification_ko.md) §산출물 카탈로그를 정본으로 한다.
 
 ### 1.4 수행 절차
 
 1. **청킹** (문서당 독립 수행) — 헤딩 구조 TSV를 읽어 청크 경계를 결정하고 `chunk_plan.json`을 생성한다. 토큰 ≤ 상한이면 단일 청크, 초과면 헤딩 경계에서 재귀 분할. 청킹 결과에 따라 즉시 WU를 확정한다:
-   - 청크 N개 (상한 초과 문서) → **split WU** 1개로 그룹화
-   - 단일 청크 ≥ 하한 → **standalone WU** 1개로 확정
-   - 단일 청크 < 하한 → WU 미확정, 머지 후보로 다음 단계에 인계
-   - (상세 규칙은 §2)
+
 2. **WU 패킹** (코퍼스 전역 수행) — 청킹에서 인계된 머지 후보들만 처리한다. 동질 문서끼리 묶어 하한 위로 끌어올린 **merge WU**를 생성한다. (상세 규칙은 §3)
-3. **이슈 게이트** — 청킹·패킹 단계의 자동 트리거가 발동된 경우에만 이슈 보고서를 표면화하고 에이전트 또는 사용자 결정(`proceed`/`revise`/`abort`)을 받는다. 트리거가 없으면 자동 완료. (상세 규칙은 §4)
+3. **이슈 게이트** — 청킹·패킹 단계의 자동 트리거가 발동된 경우에만 이슈 보고서를 표면화하고 에이전트 또는 사용자 결정을 받는다. 트리거가 없으면 자동 완료. (상세 규칙은 §4)
 4. **매니페스트 최종화** — 모든 WU 상태가 종료(`processed`/`proceeded`/`revised`/`aborted`)된 후 `corpus__pre__manifest.json`을 생성한다. (상세 규칙은 §5)
 
 ### 1.5 에스컬레이션 조건
 
-본 단계의 에스컬레이션은 **2단계 게이트** 구조를 따른다.
+3단계 게이트:
 
-1. **서브에이전트 자체 판단** — 청킹/패킹 트리거가 발동되면 서브에이전트가 먼저 이슈의 심각도를 **상/중/하** 로 판정한다.
-2. **오케스트레이터 집계 및 공통 지침** — 오케스트레이터는 서브에이전트가 보고한 **중/하** 이슈들을 코퍼스 전역에서 모아 **공통 지침**(예: 임계값 조정, 동일 패턴에 대한 일괄 처리 규칙)을 도출하여 서브에이전트에 재배포한다.
-3. **사용자 결정** — 위의 공통 지침으로도 해결되지 않거나, 심각도 **상** 이슈는 §4 이슈 게이트를 통해 사용자에게 보고하고 결정(`proceed`/`revise`/`abort`)을 받는다.
-
-> 심각도 판정 기준, 트리거 목록, 오케스트레이터 공통 지침 형식, 사용자 응답 처리는 §4 이슈 게이트에서 정의한다.
+1. **서브에이전트** — 트리거 발동 시 심각도 **상/중/하** 판정.
+2. **오케스트레이터** — **상/중** 이슈를 코퍼스 전역에서 집계하여 공통 지침(임계값 조정, 일괄 처리 규칙 등)을 서브에이전트에 재배포.
+3. **사용자** — 공통 지침으로 해결 불가 또는 심각도 **상** → §4 이슈 게이트로 보고, 결정(`proceed`/`revise`/`abort`) 수신.
 
 ### 1.6 완료 조건
 
-- **정상 종료**: 다운스트림(TD/APP/CT)에 제공할 WU 집합이 산출되면 본 단계를 종료한다.
+- **정상 종료**: 다운스트림에 제공할 WU 집합이 산출되면 본 단계를 종료한다.
 - **예외 종료**: 자동 처리 경로로 해결되지 않은 문서는 서브에이전트가 직접 본문을 읽어 상황을 판단하고 보고서를 작성한 뒤 종료한다. 미처리 문서와 사유는 보고에 명시한다.
 
 ---
 
 ## 2. 청킹 — 상한 분할 및 split/standalone WU 확정
 
-> *(상세 지침은 후속 작성 — 재귀 분할, 오버사이즈 리프 예외, 헤딩 없는 폴백, 청크 계획 스키마, split/standalone WU 확정 규칙)*
+### 2.1 절차 (문서당 독립 수행)
+
+1. **재귀 헤딩 분할** — 문서 토큰이 `chunk_max` 초과면 최상위 헤딩 경계부터 청크를 만들고, 청크가 여전히 상한을 넘으면 하위 헤딩에서 재귀 분할. 헤딩 없는 구간은 문단/문장 단위 폴백.
+2. **오버사이즈 리프 처리** — 단일 헤딩 리프가 상한을 넘는 경우 본문 파일(§1.2 **[A02]**)을 직접 읽어 폴백 분할하고, 트리거 이벤트를 기록.
+3. **WU 라벨링** — 결과를 §1.1 「WU 종류」 표 기준으로 split / standalone / merge_candidate 로 분기.
+
+### 2.2 산출 파일
+
+- **[A07]** `doc-{doc_instance_key}__heading__chunk_plan.json` — 문서당 1개, `results/`에 직접 기록.
+
+```json
+{
+  "doc_instance_key": "...",
+  "source_file_key": "...",
+  "doctype": "...",
+  "grammar_version": "v01",
+  "total_tokens": 48210,
+  "chunk_max": 32000,
+  "wu_min": 16000,
+  "split_method": "heading_recursive",   // heading_recursive | fallback_paragraph | none
+  "chunks": [
+    {
+      "chunk_id": "c01",
+      "heading_path": ["1", "1.2"],
+      "token_count": 24800,
+      "span": {"start_line": 12, "end_line": 410}
+    }
+  ],
+  "wu_decision": "split",                // split | standalone | merge_candidate
+  "wu_key": "wu-...",                    // 확정된 경우만
+  "triggers": []                         // 오버사이즈 리프, 폴백 사용 등
+}
+```
+
+---
 
 ## 3. WU 패킹 — 하한 머지 (merge WU 생성)
 
-> *(상세 지침은 후속 작성 — 머지 로직, 머지 제약 조건, WU_Key 명명 규칙, merge WU 메타데이터 스키마)*
+### 3.1 절차 (코퍼스 전역 1회 수행)
+
+1. **동질 그룹화** — `Authority`, `DocType`, `language`, `grammar_version`이 모두 일치하는 문서끼리 그룹화 (이종 머지 금지). 그룹 내 정렬은 `doc_instance_key` 사전순(재현성 확보).
+2. **머지 빌드** — 그룹 내에서 토큰 합이 `wu_min` 이상 `chunk_max` 이하가 되도록 First-Fit Decreasing으로 묶는다.
+   - 합이 `wu_min` 미만으로 남은 잔여는 단독 merge WU로 확정하고 **하한 미달 트리거**를 기록 (§4에서 처리).
+   - 문서 추가 시 `chunk_max`를 넘으면 새 묶음을 시작.
+3. **WU_Key 부여** — `wu-merge-{Authority}-{DocType}-{language}-{seq:03d}` 형식.
+
+### 3.2 산출 파일
+
+- **[A22]** `wu-{wu_key}__pre__meta.json` — WU당 1개 (split / standalone / merge 공통 스키마).
+
+```json
+{
+  "wu_key": "wu-merge-IACS-UR-en-001",
+  "wu_type": "merge",                    // split | standalone | merge
+  "authority": "IACS",
+  "doctype": "UR",
+  "language": "en",
+  "grammar_version": "v01",
+  "members": [
+    {
+      "doc_instance_key": "...",
+      "source_file_key": "...",
+      "chunk_ids": ["c01"],              // split WU는 다수, merge/standalone은 보통 1개
+      "token_count": 8200
+    }
+  ],
+  "total_tokens": 24600,
+  "status": "processed",                 // processed | proceeded | revised | aborted
+  "triggers": []                         // 하한 미달, 머지 실패 등
+}
+```
 
 ## 4. 이슈 게이트
 
