@@ -1,5 +1,0 @@
-Heading_ID	Parent_Heading_ID	Depth	Heading_Level	Heading_Number	Heading_Text	Start_Line	End_Line	Est_Tokens_Inclusive	Est_Tokens_Exclusive	Measure_Method
-ur_m61_HD_000		0	DocumentRoot		UR M61	1	42	857	1	tiktoken
-ur_m61_HD_001	ur_m61_HD_000	1	Section	M61	M61 Starting Arrangements of Internal Combustion Engines	2	42	856	47	tiktoken
-ur_m61_HD_002	ur_m61_HD_001	2	Subsection	M61.1	M61.1 Mechanical starting arrangements	9	33	588	588	tiktoken
-ur_m61_HD_003	ur_m61_HD_001	2	Subsection	M61.2	M61.2 Electrical starting	34	42	221	221	tiktoken

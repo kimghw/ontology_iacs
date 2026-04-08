@@ -1,3 +1,0 @@
-Heading_ID	Parent_Heading_ID	Depth	Heading_Level	Heading_Number	Heading_Text	Start_Line	End_Line	Est_Tokens_Inclusive	Est_Tokens_Exclusive	Measure_Method
-ur_f1_HD_000		0	DocumentRoot		UR F1	1	24	433	1	tiktoken
-ur_f1_HD_001	ur_f1_HD_000	1	Section	F1	F1 Cathodic protection on oil tankers	2	24	432	432	tiktoken

@@ -1,3 +1,0 @@
-Heading_ID	Parent_Heading_ID	Depth	Heading_Level	Heading_Number	Heading_Text	Start_Line	End_Line	Est_Tokens_Inclusive	Est_Tokens_Exclusive	Measure_Method
-ur_f3_HD_000		0	DocumentRoot		UR F3	1	9	37	1	tiktoken
-ur_f3_HD_001	ur_f3_HD_000	1	Section	F3	F3 Tank cleaning openings	2	9	36	36	tiktoken

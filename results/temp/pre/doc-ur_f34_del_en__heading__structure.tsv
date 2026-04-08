@@ -1,3 +1,0 @@
-Heading_ID	Parent_Heading_ID	Depth	Heading_Level	Heading_Number	Heading_Text	Start_Line	End_Line	Est_Tokens_Inclusive	Est_Tokens_Exclusive	Measure_Method
-ur_f34_HD_000		0	DocumentRoot		UR F34	1	11	58	1	tiktoken
-ur_f34_HD_001	ur_f34_HD_000	1	Section	F34	F34 Low-pressure carbon dioxide smothering systems	2	11	57	57	tiktoken

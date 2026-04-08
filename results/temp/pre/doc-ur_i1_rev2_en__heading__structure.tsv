@@ -1,7 +1,0 @@
-Heading_ID	Parent_Heading_ID	Depth	Heading_Level	Heading_Number	Heading_Text	Start_Line	End_Line	Est_Tokens_Inclusive	Est_Tokens_Exclusive	Measure_Method
-ur_i1_HD_000		0	DocumentRoot		UR I1	1	59	1109	1	tiktoken
-ur_i1_HD_001	ur_i1_HD_000	1	Section	I1	I1 Polar Class Descriptions and Application	2	59	1108	48	tiktoken
-ur_i1_HD_002	ur_i1_HD_001	2	Subsection	I1.1	I1.1 Application	9	34	608	608	tiktoken
-ur_i1_HD_003	ur_i1_HD_001	2	Subsection	I1.2	I1.2 Polar Classes	35	52	304	118	tiktoken
-ur_i1_HD_004	ur_i1_HD_003	3	Paragraph		Table 1 - Polar Class descriptions	41	52	186	186	tiktoken
-ur_i1_HD_005	ur_i1_HD_001	2	Subsection	I1.3	I1.3 Upper and Lower Ice Waterlines	53	59	148	148	tiktoken

@@ -1,9 +1,0 @@
-Heading_ID	Parent_Heading_ID	Depth	Heading_Level	Heading_Number	Heading_Text	Start_Line	End_Line	Est_Tokens_Inclusive	Est_Tokens_Exclusive	Measure_Method
-ur_e21_HD_000		0	DocumentRoot		UR E21	1	64	629	1	tiktoken
-ur_e21_HD_001	ur_e21_HD_000	1	Section	E21	E21 Requirements for uninterruptible power system (UPS) units	2	64	628	52	tiktoken
-ur_e21_HD_002	ur_e21_HD_001	2	Subsection		1. Application	10	21	181	181	tiktoken
-ur_e21_HD_003	ur_e21_HD_001	2	Subsection		2. Definitions	22	41	155	155	tiktoken
-ur_e21_HD_004	ur_e21_HD_001	2	Subsection		3. Design and construction	42	49	134	134	tiktoken
-ur_e21_HD_005	ur_e21_HD_001	2	Subsection		4. Location	50	53	27	27	tiktoken
-ur_e21_HD_006	ur_e21_HD_001	2	Subsection		5. Performance	54	57	43	43	tiktoken
-ur_e21_HD_007	ur_e21_HD_001	2	Subsection		6. Testing and survey	58	64	36	36	tiktoken

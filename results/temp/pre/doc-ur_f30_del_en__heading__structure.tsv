@@ -1,3 +1,0 @@
-Heading_ID	Parent_Heading_ID	Depth	Heading_Level	Heading_Number	Heading_Text	Start_Line	End_Line	Est_Tokens_Inclusive	Est_Tokens_Exclusive	Measure_Method
-ur_f30_HD_000		0	DocumentRoot		UR F30	1	16	91	1	tiktoken
-ur_f30_HD_001	ur_f30_HD_000	1	Section	F30	F30 Emergency fire pumps in cargo ships	2	16	90	90	tiktoken

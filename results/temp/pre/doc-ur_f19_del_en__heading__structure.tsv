@@ -1,3 +1,0 @@
-Heading_ID	Parent_Heading_ID	Depth	Heading_Level	Heading_Number	Heading_Text	Start_Line	End_Line	Est_Tokens_Inclusive	Est_Tokens_Exclusive	Measure_Method
-ur_f19_HD_000		0	DocumentRoot		UR F19	1	5	14	1	tiktoken
-ur_f19_HD_001	ur_f19_HD_000	1	Section	F19	F19 Deleted	2	5	13	13	tiktoken

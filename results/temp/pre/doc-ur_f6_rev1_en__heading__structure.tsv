@@ -1,3 +1,0 @@
-Heading_ID	Parent_Heading_ID	Depth	Heading_Level	Heading_Number	Heading_Text	Start_Line	End_Line	Est_Tokens_Inclusive	Est_Tokens_Exclusive	Measure_Method
-ur_f6_HD_000		0	DocumentRoot		UR F6	1	11	64	1	tiktoken
-ur_f6_HD_001	ur_f6_HD_000	1	Section	F6	F6 Standardization of flash points	2	11	63	63	tiktoken

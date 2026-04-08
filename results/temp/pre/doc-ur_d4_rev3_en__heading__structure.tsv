@@ -1,9 +1,0 @@
-Heading_ID	Parent_Heading_ID	Depth	Heading_Level	Heading_Number	Heading_Text	Start_Line	End_Line	Est_Tokens_Inclusive	Est_Tokens_Exclusive	Measure_Method
-ur_d4_HD_000		0	DocumentRoot		UR D4	1	42	397	1	tiktoken
-ur_d4_HD_001	ur_d4_HD_000	1	Section	D4	D4 Self-elevating drilling units	2	42	396	43	tiktoken
-ur_d4_HD_002	ur_d4_HD_001	2	Subsection	D4.1	D4.1 General	10	13	30	30	tiktoken
-ur_d4_HD_003	ur_d4_HD_001	2	Subsection	D4.2	D4.2 Hull scantlings	14	17	34	34	tiktoken
-ur_d4_HD_004	ur_d4_HD_001	2	Subsection	D4.3	D4.3 Design considerations	18	32	240	8	tiktoken
-ur_d4_HD_005	ur_d4_HD_004	3	Paragraph	D4.3.1	D4.3.1 Legs	20	28	171	171	tiktoken
-ur_d4_HD_006	ur_d4_HD_004	3	Paragraph	D4.3.4	D4.3.4 Wave clearance	29	32	61	61	tiktoken
-ur_d4_HD_007	ur_d4_HD_001	2	Subsection	D4.4	D4.4 Damage stability	33	42	49	49	tiktoken
