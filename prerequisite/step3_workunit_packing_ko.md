@@ -1,6 +1,8 @@
 # Step 3 — 청킹, Work Unit 패킹, 이슈 게이트
 
-> **목적.** 제목 구조 TSV와 토큰 측정값을 기반으로 컨텍스트 윈도우 Chunk를 결정하고, Work Unit으로 패킹하며, 모든 산출물을 `results/`에 직접 저장한다. 사용자는 이슈 트리거가 발생한 경우에만 개입한다(§Step 3.3). 이것이 PRE의 최종 스테이지이다.
+> **목적.** 헤딩 구조 TSV와 토큰 측정값을 기반으로 컨텍스트 윈도우 청크를 결정하고, 이를 워크 유닛으로 패킹하며, 모든 산출물을 `results/`에 직접 기록한다. 사용자는 이슈가 발동된 경우에만 개입한다(§Step 3.3). 이것이 PRE의 최종 스테이지이다.
+
+> **에이전트.** 종합적인 계획은 코디네이터가 담당하고, 실제 실행 (예로: 쓰기)은 에이전트 최대 사용 수 및 업무 분할 계획을 수립한 후 새로운 서브에이전트에 할당한다. 
 
 ---
 
@@ -8,47 +10,32 @@
 
 Step 3가 새로 생성하는 산출물:
 
-- #6 `wu-{wu_key}__pre__meta.json` — WU 메타데이터 (구성, 구성 문서, 토큰 수)
-- #7 `corpus__pre__manifest.json` — PRE 마스터 인덱스 (최종 단계로 생성)
-- #7b `doc-{doc_instance_key}__heading__chunk_plan.json` — Chunk 경계와 토큰 크기
+- #6 `wu-{wu_key}__pre__meta.json` — WU 메타데이터(구성, 구성 문서, 토큰 수)
+- #7 `corpus__pre__manifest.json` — PRE 마스터 인덱스(최종 단계로 생성)
+- #7b `doc-{doc_instance_key}__heading__chunk_plan.json` — 청크 경계와 토큰 크기
 
-> 파일 명명 규칙과 전체 산출물 카탈로그는 [pre_specification_ko.md](pre_specification_ko.md) §파일 명명 규칙 및 §산출물 카탈로그를 참조한다.
+> 파일 명명 규칙과 전체 산출물 카탈로그는 [pre_specification.md](pre_specification.md) §File Naming Convention 및 §Artefact Catalogue에 정의되어 있다.
 
 ---
 
-## Work Unit 토큰 범위
+## 워크 유닛 토큰 범위
 
-| 매개변수 | 값 |
-|:---|:---|
-| **WU 목표 범위** | **{{wu_range:16K–32K}}** 토큰 |
-
-| 문서 크기 | 조치 |
-|:---|:---|
-| **> 상한 (> {{chunk_max:32K}} 토큰)** | **Split** — 제목 경계에서 여러 WU로 분할, 각각 {{wu_range:16K–32K}} 범위 내 |
-| **하한 ≤ 크기 ≤ 상한** | **Standalone** — 1 Document = 1 WU |
-| **< 하한** | **Merge 후보** — {{wu_range:16K–32K}}에 도달할 때까지 다른 전체 문서와 병합 가능 |
+| 구간 | 토큰 범위 | 조치 |
+|:---|:---|:---|
+| **> 상한** | > **{{chunk_max:32K}}** | **Split** — 헤딩 경계에서 여러 WU로 분할하며, 각 WU는 `wu_range` 범위 내에 있어야 함 |
+| **`wu_range`** (하한 ≤ 크기 ≤ 상한) | **{{wu_range:16K–32K}}** | **Standalone** — 1 Document = 1 WU |
+| **< 하한** | < **16K** | **Merge 후보** — `wu_range`에 도달할 때까지 다른 전체 문서와 병합 가능 |
 
 ### 병합 제약 조건
 
-- **전체 문서만** — 문서는 전체가 포함되거나 포함되지 않음
-- **병합 적격성**: 다음의 **모든** 조건을 충족하는 문서만 동일 WU에 병합 가능:
-  - 동일 `Authority`
-  - 동일 `DocType`
-  - 동일 언어
-  - 동일 `grammar_version` (추출 시 사용된 제목 문법 버전)
-  - 동일 `Measure_Method` (tiktoken 또는 char_approx) — 병합된 WU 내에서 측정 방법을 혼합하지 않음
-- 상한을 초과하는 문서는 분할되며; 각 조각은 standalone WU이고 다른 문서와 **병합되어서는 안 됨**
-- 병합 시, DocumentKey 순서(ASCII 사전식 순서 — slug 규칙에 의해 `[a-z0-9_]` 문자만 생성됨이 보장)로 적격 문서를 추가하여 다음 추가가 상한을 초과할 때까지 진행; 그런 다음 현재 WU를 닫고 새 WU를 시작
-- 마지막 WU가 하한 아래이면 그대로 수용 (분할 경계를 넘어 강제 병합하지 않음)
+> 전제: Step 3.1에서 상한(`chunk_max`)을 초과하는 문서는 이미 분할되었으므로, 이 절은 **`< 하한`(< 16K) 문서**를 합쳐 상한을 넘지 않도록 묶는 규칙만 다룬다.
 
-### 임계값 변경 재실행 규칙
-
-| 변경 | 재실행 범위 |
-|:---|:---|
-| **하한만 변경** | Step 3.2만 재실행 (WU 패킹) |
-| **상한 변경** | Step 3.1 (청킹) **및** Step 3.2 (패킹) 재실행 — 청크 경계와 슬라이딩 윈도우 매개변수(window_size, overlap)가 상한에서 파생되므로 자동 재계산된다 |
-
-> 이 임계값은 조정 가능하다. 값을 조정하고 위 표에 따라 적절한 단계를 재실행한다.
+- **대상**: `< 하한` 문서만 병합 후보이다. 상한 초과로 이미 분할된 문서의 조각은 standalone WU로 유지되며 다른 문서와 **병합되지 않는다**.
+- **상한 준수**: 병합된 WU의 합계 토큰은 상한(`chunk_max`)을 초과할 수 없다.
+- **병합 적격성**: 다음 조건을 **모두** 충족하는 문서만 동일한 WU로 병합할 수 있다:
+  - 동일한 `Authority`, `DocType`, 언어, `grammar_version`, `measure_method` (토큰 측정 방식이 다르면 상한 판정이 불가)
+- **병합 순서**: DocumentKey 순서(ASCII 사전식 — slug 규칙에 의해 `[a-z0-9_]` 문자만 생성되도록 보장됨)로 적격 문서를 추가하다가, 다음 추가가 상한을 초과하게 되면 현재 WU를 닫고 새 WU를 시작한다.
+- **잔여 수용**: 마지막 WU가 하한 미만이라도 그대로 수용한다(강제 병합 금지).
 
 ---
 
@@ -60,7 +47,11 @@ Step 3가 새로 생성하는 산출물:
 | **Split** (1 Doc → N WU) | `{doc_instance_key}_wu{NNN}` | `ur_z10_2_rev3_en_wu001` |
 | **Merged** (N Docs → 1 WU) | `merge_{short_hash}` (정렬된 구성 키의 SHA-256 중 처음 8자) | `merge_a3f7c2b1` |
 
-> 병합된 WU의 경우, 짧은 해시가 과도하게 긴 파일명을 방지한다. 전체 구성 목록은 WU 메타데이터 JSON에 기록된다.
+### Split WU 인덱싱
+
+- **`_wu{NNN}`**: 0 패딩 3자리. 소스 `doc_instance_key`별로 청크 순서대로 순번 부여 (가장 낮은 `_ch{NNN}`를 포함하는 WU가 `_wu001`).
+
+> 서브청크 키(`_p{NNN}` / `_w{NNN}`)는 청크 계획의 `sub_chunks` 필드에서 정의된다 (§청크 계획 스키마 참조).
 
 ### WU 헤더 메타데이터
 
@@ -73,47 +64,52 @@ Step 3가 새로 생성하는 산출물:
 | `authority` | string | 발행 기관 (모든 구성 문서 동일) | `IACS` |
 | `doc_type` | string | 문서 카테고리 (모든 구성 문서 동일) | `UR` |
 | `language` | string | 언어 코드 | `en` |
-| `grammar_version` | string | 사용된 제목 문법 버전 | `v02` |
+| `grammar_version` | string | 사용된 헤딩 문법 버전 (구성 문서 전체에서 균일 — 병합 제약 조건으로 강제) | `v02` |
+| `measure_method` | string | `tiktoken` 또는 `char_approx` (구성 문서 전체에서 균일 — 병합 제약 조건으로 강제) | `tiktoken` |
 | `constituent_docs` | array | 구성 문서 항목 목록 | 아래 참조 |
 | `constituent_docs[].doc_instance_key` | string | DocumentInstanceKey | `ur_f1_rev2_en` |
 | `constituent_docs[].document_key` | string | DocumentKey | `ur_f1` |
+| `constituent_docs[].grammar_version` | string | 문서별 문법 버전 (WU 수준 `grammar_version`과 동일해야 함) | `v02` |
+| `constituent_docs[].measure_method` | string | 문서별 측정 방법 (WU 수준 `measure_method`와 동일해야 함) | `tiktoken` |
 | `constituent_docs[].start_line` | int | 정규 입력의 첫 줄 (포함) | `1` |
 | `constituent_docs[].end_line` | int | 정규 입력의 마지막 줄 (포함) | `27` |
 | `constituent_docs[].est_tokens` | int | 이 문서의 토큰 수 | `5200` |
 | `constituent_docs[].heading_range` | object | 이 구성 문서의 첫/마지막 Heading_ID | {"first": "..._HD_NNN", "last": "..._HD_NNN"} |
-| `est_tokens_total` | int | 총 WU 토큰 수 | `18450` |
-| `split_part` | int\|null | Split WU의 경우: 1 기반 인덱스 | `1` |
-| `split_total` | int\|null | Split WU의 경우: 총 부분 수 | `2` |
+| `est_tokens_total` | int | WU 전체 토큰 수 | `18450` |
+| `split_part` | int\|null | 분할(split) WU의 경우: 1부터 시작하는 인덱스 | `1` |
+| `split_total` | int\|null | 분할(split) WU의 경우: 전체 파트 수 | `2` |
 | `chunk_keys` | array | 이 WU에 포함된 ChunkKey 목록 | `["ur_f1_rev2_en_ch001"]` |
+| `status` | string | 라이프사이클 상태 — [pre_specification.md](pre_specification.md) §Work Unit Lifecycle States 참조. 초기값은 `planned`이며, 매니페스트 생성 이전 §3.3 이슈 게이트 처리 후 Coordinator가 `processed`/`proceeded`/`revised`/`aborted`로 갱신한다. | `processed` |
+| `output_files` | array | 해당 WU에 대해 `results/` 하위에 생성된 산출물 파일 경로(청크 플랜, 태스크 브리프 등). §3.3 매니페스트 최종화 단계에서 채워진다. | `["results/wu-..._meta.json", ...]` |
 | `created_at` | string | ISO 8601 타임스탬프 | `2026-04-05T10:30:00Z` |
 
-> Standalone 및 Split WU의 경우 `constituent_docs`에 단일 항목이 있다. Merged WU의 경우 각 구성 문서가 자체 제목 범위를 가진다.
-
-> 모든 다운스트림 산출물은 파일 scope 접두사로 `wu-{wu_key}`를 사용한다. 문서 수준 집계는 WU 수준 처리 후 `constituent_docs` 필드를 읽어 수행한다.
+> PRE 매니페스트 `work_units[]`로의 필드 매핑 contract는 [pre_specification_ko.md](pre_specification_ko.md) §PRE 매니페스트 — 다운스트림 인터페이스 계약을 정본으로 한다.
 
 ---
 
-## Step 3.1 — 컨텍스트 윈도우 청킹
+## Step 3.1 — Context-Window Chunking
 
-제목 수준 토큰 측정값을 사용하여 **재귀적 하향 분할**을 통해 청킹 전략을 결정한다. 이 단계에서는 **제목 정렬 Chunk**를 생성한다 — 각 Chunk ≤ 상한 토큰. WU 할당은 Step 3.2로 보류한다.
+**Coordinator**는 헤딩 레벨 토큰 측정값을 사용하여 **재귀적 하향식 분할(recursive top-down splitting)**을 통해 청킹 전략을 결정한다. 이 단계는 **헤딩 정렬 청크(heading-aligned Chunks)**를 생성하며, 각 청크는 Upper Bound 토큰 이하다. WU 할당은 Step 3.2로 미뤄진다.
 
-- **≤ 상한** → 청킹 불필요(단일 Chunk = 1 Document, WU 결정은 §3.2로 위임)
-- **> 상한** → 제목 경계에서 재귀적 분할 필수, 각 Chunk ≤ 상한 토큰 목표
+| 전체 문서 크기 | 청킹 전략 |
+|:---|:---|
+| **≤ Upper Bound** | 청킹 불필요 — 단일 청크 = 1 문서; WU 결정은 §3.2로 연기 |
+| **> Upper Bound** | 헤딩 경계에서 재귀 분할 필수; 각 청크는 Upper Bound 토큰 이하를 목표로 함 |
 
-### 재귀적 분할 알고리즘
+### 재귀 분할 알고리즘
 
-1. 최상위 제목 수준에서 시작 (하향)
-2. 현재 수준의 형제 범위를 **`Est_Tokens_Inclusive`**를 사용하여 검토
-3. 형제 범위의 `Est_Tokens_Inclusive`가 ≤ 상한이면 → Chunk로 채택
-4. 형제 범위가 상한을 초과하면 → 하위 제목으로 재귀, 단계 2부터 반복
-5. **리프 제목**(자식 없음)이 상한을 초과하면 → **초과 크기 리프 예외** 적용 (아래 참조)
-6. 여러 형제 범위로 구성된 Chunk의 총 토큰을 계산할 때, 각각의 `Est_Tokens_Inclusive` 값을 합산한다 (형제는 겹치지 않으므로 이중 계산 없음).
+1. 가장 높은 헤딩 레벨에서 시작(하향식)
+2. 현재 레벨의 형제(sibling) 스팬을 검사하며, 스팬 크기 산정에는 **`Est_Tokens_Inclusive`**를 사용
+3. 형제 스팬의 `Est_Tokens_Inclusive`가 Upper Bound 이하이면 → 청크로 채택
+4. 형제 스팬이 Upper Bound를 초과하면 → 자식 헤딩으로 재귀하여 step 2부터 반복
+5. **리프 헤딩(leaf heading)**(자식 없음)이 Upper Bound를 초과하면 → **오버사이즈 리프 예외(oversize leaf exception)** 적용(아래 참조)
+6. 여러 형제 스팬으로 구성된 청크의 전체 토큰을 계산할 때는 각 스팬의 `Est_Tokens_Inclusive` 값을 합산한다(형제는 서로 겹치지 않으므로 중복 계산이 발생하지 않는다).
 
-> **제목 줄 포함 규칙**: 제목 줄 자체가 범위의 토큰 수에 포함된다. 형제 합산을 계산할 때 각 형제 범위의 `Est_Tokens_Inclusive`를 사용한다 (겹치지 않는 형제는 안전하게 합산 가능).
+> **헤딩 라인 포함 규칙**: 헤딩 라인 자체는 해당 스팬의 토큰 수에 포함된다. 형제 합계를 계산할 때는 각 형제 스팬의 `Est_Tokens_Inclusive`를 사용한다(겹치지 않는 형제는 안전하게 합산 가능).
 
-> **선택적 병합**: 재귀 패스 후, 연속 형제 범위의 결합된 `Est_Tokens_Inclusive`가 ≤ 상한으로 유지되면 단일 Chunk로 병합하여 파편화를 줄일 수 있다.
+> **선택적 병합(Optional coalesce)**: 재귀 패스 이후, 합친 `Est_Tokens_Inclusive`가 여전히 Upper Bound 이하인 연속된 형제 스팬들은 단편화를 줄이기 위해 단일 청크로 병합할 수 있다.
 
-### 초과 크기 리프 예외
+### 오버사이즈 리프 예외(Oversize Leaf Exception)
 
 리프 제목이 상한 토큰을 초과하고 제목 경계에서 분할할 수 없는 경우:
 
@@ -169,41 +165,60 @@ Step 3가 새로 생성하는 산출물:
 
 ### 패킹 로직
 
-분기 기준은 §Work Unit 토큰 범위 참조.
+> 분기 기준: §Work Unit 토큰 범위 참조. 아래 표는 청킹 결과를 WU 패킹 조치에만 매핑한다.
 
 | 청킹 결과 | WU 패킹 조치 |
 |:---|:---|
-| **단일 청크** | 해당 문서에 §Work Unit 토큰 범위의 분기(Standalone / Merge 후보) 적용. |
-| **다중 청크** | 각 청크(또는 인접 청크의 병합 그룹)가 **split WU**가 됨. 동일 문서의 인접 청크는 결합 가능 범위 내에서 하나의 WU로 병합 가능. |
-| **오류** | 발생해서는 안 됨 — 에스컬레이션. |
+| **단일 청크, > 상한** | 오류 — Step 3.1 이후에는 발생해서는 안 됨. 에스컬레이션. |
+| **동일 문서에서 발생한 다중 청크** | **인접 병합 필수**: 결합된 `est_tokens` ≤ 상한인 한 연속 청크(청크 순서대로)를 탐욕적으로 병합한 후, 해당 그룹을 하나의 **split WU**로 닫는다. 모든 청크가 할당될 때까지 반복한다. 이는 하한 미만인 split WU의 수를 최소화한다. |
+| **단일 청크, WU 목표 범위 내** | **Standalone** — 1 Document = 1 WU. |
+| **단일 청크, WU 목표 범위 미만** | **Merge 후보** — §병합 제약 조건에 따라 문서 간 병합 적격. |
 
-> **Split WU 나머지**: 분할 문서의 마지막 WU가 하한 미만이면 그대로 수용. 분할 문서 조각을 다른 문서와 병합하지 않는다.
+> **Split WU 나머지**: 분할 문서의 마지막 WU가 인접 병합 필수 적용 후에도 여전히 하한 미만이면 그대로 수용한다. 분할 문서 조각을 다른 문서와 병합하지 않는다.
 
-### Coordinator 실행
+> **단일 초과 크기 병합 후보**: 작은 문서가 하한 미만이지만 병합 적격인 다른 문서가 없는 경우(예: Authority/DocType/언어/grammar_version/measure_method를 공유하는 문서가 없음), 해당 문서는 하한 미만의 standalone WU로 남는다. 이는 수용되며, §3.3 이슈 게이트가 Info로 표면화할 수 있다.
 
-Coordinator는 모든 제목 구조 TSV, 토큰 측정, 청크 계획이 완료된 후(Step 2 에이전트 종료 후) 즉시 WU 패킹을 수행한다:
+> **Split WU 내 Measure_Method**: 분할 문서의 모든 청크는 동일한 `measure_method`를 공유해야 한다 (Step 2가 문서별로 균일한 `Measure_Method`를 생성하므로 보장됨 — §Step 2 Completion 참조). split WU 내에서 혼합하는 것은 오류이다.
 
-1. 모든 입력 파일(문서 메타데이터, 제목 구조 TSV, 청크 계획) 읽기
-2. 병합 적격성 확인과 함께 WU 토큰 범위 규칙(split/standalone/merge) 적용 및 명명 규칙에 따라 WU_Key 할당
-3. WU 메타데이터 생성 및 §3.3에 패킹 계획 제시
+### 코디네이터 실행
+
+코디네이터는 모든 제목 구조 TSV, 토큰 측정, 청크 계획이 완료된 직후(Step 2 에이전트 종료 후) WU 패킹을 수행한다:
+
+1. 모든 문서 메타데이터, 제목 구조 TSV, 청크 계획을 읽는다
+2. 병합 적격성 확인과 함께 WU 토큰 범위 규칙(split/standalone/merge)을 적용하고, 명명 규칙에 따라 WU_Key를 할당한다
+3. WU 메타데이터를 생성하고 WU 패킹 계획을 제시한다 (§Outputs 및 §3.3 참조)
 
 ---
 
 ## Step 3.3 — 이슈 게이트 및 자동 완료
 
-기본 동작은 자동 완료. 이슈 발생 여부는 Coordinator가 자동으로 판정한다 (각 트리거 정의는 §2.4, §초과 크기 리프 예외, §병합 제약 조건, §Work Unit 토큰 범위 등 해당 출처에 정의됨). 이슈가 발생한 경우에만 아래 형식으로 사용자에게 보고하고 결정을 요청한다.
+기본 동작은 자동 완료이다. 코디네이터는 각 섹션에 정의된 트리거에 따라 이슈를 자동으로 감지한다 ([step2_heading_extraction.md](step2_heading_extraction.md) §2.4, §초과 크기 리프 예외, §병합 제약 조건, §Work Unit 토큰 범위 등). 트리거가 발동되지 않으면 코디네이터는 아래 표를 제시하지 않고 산출물을 직접 `results/`에 기록한다 (§산출물 저장 참조). 트리거가 발동되면 코디네이터는 다음 보고서를 표면화하고 결정을 요청한다.
 
-### 이슈 발생 시 보고
+### 이슈 보고서
 
-이슈 발생 시 Coordinator는 사용자가 원인을 진단할 수 있도록 청킹 계획, WU 패킹 계획, 대상 Document 목록, 실행 요약(총 Document/Chunk/WU 수, 미결 Warning 수, 문법 버전, 초과 크기 예외, 병합 적격성 위반 등)을 제공한다. 보고 형식과 포함 항목은 이슈 종류와 컨텍스트에 따라 Coordinator가 결정한다.
+트리거가 발동되면 코디네이터는 **최소한** 다음 필드를 포함하는 이슈 보고서를 표면화한다 (이슈 유형에 따라 추가 컨텍스트가 첨부될 수 있다):
+
+| 필드 | 설명 |
+|:---|:---|
+| `issue_type` | 예: `oversize_leaf`, `merge_eligibility_violation`, `warning_overflow`, `single_chunk_overflow`, `headingless_oversize` |
+| `trigger_rule` | 발동된 정확한 규칙/섹션 (예: "§초과 크기 리프 예외 → 사용자 에스컬레이션") |
+| `affected_doc_instance_keys` | 영향받은 DocumentInstanceKey 배열 |
+| `affected_wu_keys` | 영향받은 WU_Key 배열 (WU 패킹이 이미 시도된 경우) |
+| `summary` | 실행 요약: 총 Document/Chunk/WU 수, 미결 Warning 수, 문법 버전, 초과 크기 예외 수, 병합 위반 |
+| `suggested_action` | 코디네이터가 권장하는 `proceed` / `revise` / `abort` 선택 및 근거 |
+| `attached_plan` | 영향받은 항목에 대한 청킹 계획 및 WU 패킹 계획 슬라이스 |
 
 ### 사용자 응답
 
-| 사용자 응답 | 조치 |
-|:---|:---|
-| **`proceed`** | 이슈를 인지하고 그대로 진행 (예: Warning 초과 수용). Coordinator가 산출물을 자동 프로모션. |
-| **`revise`** | 임계값 조정 또는 재처리 범위 지정 후 재실행. §임계값 변경 재실행 규칙 참조. |
-| **`abort`** | 해당 Document/문서군 처리 중단. 임시 사본을 `results/aborted/{doc_instance_key}/`로 격리 보존. |
+> WU 라이프사이클 상태(`planned → running → completed → validated → processed/proceeded/revised/aborted`)는 [pre_specification.md](pre_specification.md) §Work Unit Lifecycle States에 정의되어 있다. 아래 매핑은 WU 메타데이터(`status` 필드)의 종료 상태를 설정한다.
+
+| 사용자 응답 | 조치 | 결과 WU `status` |
+|:---|:---|:---|
+| **`proceed`** | 이슈를 인지하고 계속 진행 (예: Warning 초과 수용). 코디네이터가 자동 완료를 재개한다. | `proceeded` |
+| **`revise`** | 임계값 조정 또는 재실행 범위 지정. Coordinator가 영향받은 단계를 재실행한다. | `revised` (재실행 후 → `processed`) |
+| **`abort`** | 해당 Document(들)의 처리를 중단. 임시 사본을 `results/aborted/{doc_instance_key}/`로 격리 보존. 중단된 문서와 그 WU는 **`corpus__pre__manifest.json`에서 제외**된다. | `aborted` |
+
+> 자동 완료된(트리거가 발생하지 않은) WU에는 `status = processed`가 부여된다.
 
 ---
 

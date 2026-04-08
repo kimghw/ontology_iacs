@@ -637,3 +637,619 @@ This may or may not be related to the current task.</ide_selection>
 5. `corpus__pre__manifest.json` 이 생성되었으며, [pre_specification_ko.md](pre_specification_ko.md) §PRE 매니페스트 인터페이스 contract 의 필수 필드를 모두 포함한다.
 6. `aborted` 처리된 문서/WU 는 매니페스트에서 제외되고, 임시 사본이 `results/aborted/{doc_instance_key}/` 에 격리 보존되어 있다.
    --- 좀 일반적으로 해줄래? 다운스트림에 제공될 wu가 나오면 종료하고 처리되지 못한것은 직접 문서를 읽고 판단하고 보고하고 종료.
+
+## 2026-04-08 13:49:07
+
+<ide_opened_file>The user opened the file /home/kimghw/ontology_iacs/prerequisite/step3_chunking_packing_ko.md in the IDE. This may or may not be related to the current task.</ide_opened_file>
+현재 커밋을 푸쉬해줘.
+
+## 2026-04-08 13:50:01
+
+staged 된걸 커밋해줘.
+
+## 2026-04-08 13:52:28
+
+<ide_opened_file>The user opened the file /home/kimghw/ontology_iacs/scripts/update_thresholds.py in the IDE. This may or may not be related to the current task.</ide_opened_file>
+### 1.2 입력
+
+| 파일 | 용도 |
+|:---|:---|
+| `doc-{doc_instance_key}__heading__structure.tsv` | 청킹 경계 산정 (헤딩 트리 + 토큰 측정값) |
+| `file-{source_file_key}__pre__normalised.md` | 오버사이즈 리프 폴백 시 본문 접근 (조건부) |
+| `doc-{doc_instance_key}__pre__meta.json` | 문서 메타 (`Authority`, `DocType`, `language` 등) |
+| `doctype-{DocType}__heading__grammar_v{NN}.md` | `grammar_version` 추출 |
+| `shared/thresholds.yaml` | 토큰 임계값 (`chunk_max`, `wu_range`) | 이거  /home/kimghw/ontology_iacs/scripts/update_thresholds.py
+/home/kimghw/ontology_iacs/scripts/validate_files.py
+/home/kimghw/ontology_iacs/shared/files_registry.yaml
+/home/kimghw/ontology_iacs/shared/thresholds.yaml  이 형식 으로 해줄래?
+
+## 2026-04-08 13:54:31
+
+<ide_selection>The user selected the lines 30 to 30 from /home/kimghw/ontology_iacs/prerequisite/step2_heading_extraction.md:
+- #1 `doc-{doc_instance_key}__heading__structure.tsv`
+
+This may or may not be related to the current task.</ide_selection>
+아니.. - #1 `doc-{doc_instance_key}__heading__structure.tsv`    이렇게 넘버링 하잖아 등신아
+
+## 2026-04-08 13:55:24
+
+<ide_selection>The user selected the lines 20 to 22 from /home/kimghw/ontology_iacs/prerequisite/step3_chunking_packing_ko.md:
+- `shared/thresholds.yaml` — 토큰 임계값 (`chunk_max`, `wu_range`); 갱신은 `scripts/update_thresholds.py`
+- `shared/files_registry.yaml` — 파일 레지스트리 (B4 정본); 검증은 `scripts/validate_files.py`
+
+
+This may or may not be related to the current task.</ide_selection>
+- `shared/thresholds.yaml` — 토큰 임계값 (`chunk_max`, `wu_range`); 갱신은 `scripts/update_thresholds.py`
+- `shared/files_registry.yaml` — 파일 레지스트리 (B4 정본); 검증은 `scripts/validate_files.py`
+   -- 이건 검증용이니깐 여기 입력으로 넣을 필요 없지
+
+## 2026-04-08 13:57:19
+
+<ide_selection>The user selected the lines 64 to 66 from /home/kimghw/ontology_iacs/prerequisite/step3_chunking_packing_ko.md:
+## 4. 이슈 게이트
+
+> *(상세
+
+This may or may not be related to the current task.</ide_selection>
+3. **이슈 게이트** — 청킹·패킹 단계의 자동 트리거가 발동된 경우에만 이슈 보고서를 표면화하고 에이전트 또는 사용자 결정(`proceed`/`revise`/`abort`)을 받는다. 트리거가 없으면 자동 완료. (상세 규칙은 §4)   -- 이 내용은 ## 4. 이슈 게이트
+
+> *(상세  여기에 간략히 넣어줘
+
+## 2026-04-08 13:58:37
+
+<ide_selection>The user selected the lines 56 to 62 from /home/kimghw/ontology_iacs/prerequisite/step3_chunking_packing_ko.md:
+## 2. 청킹 — 상한 분할
+
+> *(상세 지침은 후속 작성 — 재귀 분할, 오버사이즈 리프 예외, 헤딩 없는 폴백, 청크 계획 스키마)*
+
+## 3. WU 패킹 — 하한 머지 및 split 그룹화
+
+> *(상세 지침은 후속 작성 — 패킹 로직, 병합 제약 조건, WU_Key 명명 규칙, WU 메타데이터 스키마)*
+
+This may or may not be related to the current task.</ide_selection>
+## 2. 청킹 — 상한 분할
+
+> *(상세 지침은 후속 작성 — 재귀 분할, 오버사이즈 리프 예외, 헤딩 없는 폴백, 청크 계획 스키마)*
+
+## 3. WU 패킹 — 하한 머지 및 split 그룹화
+
+> *(상세 지침은 후속 작성 — 패킹 로직, 병합 제약 조건, WU_Key 명명 규칙, WU 메타데이터 스키마)*  이게 청킹,,  wu 패킹, 용어가 맞냐?
+
+## 2026-04-08 13:59:31
+
+윈도우 청킹 하면 wu 가 되잖아. 이건 wu 패킹 아닌가
+
+## 2026-04-08 14:00:29
+
+split 그룹화는 뭐냐
+
+## 2026-04-08 14:01:31
+
+청킹에서 wu의 상한이고  wu 패킹에서는  하한위로 머지하는 거야
+
+## 2026-04-08 14:02:25
+
+그래서 용어가  청킹/wu패킹  이렇게 해도 되냐
+
+## 2026-04-08 14:03:14
+
+그럼 청킹 하면 wu 패킹 대상이 안되잖아
+
+## 2026-04-08 14:04:37
+
+split WU, merged WU 로 하면 되냐?
+
+## 2026-04-08 14:05:56
+
+<ide_opened_file>The user opened the file /home/kimghw/ontology_iacs/prerequisite/step3_chunking_packing_ko.md in the IDE. This may or may not be related to the current task.</ide_opened_file>
+여기서 WU를 3가지로 나눠서 구분하자, split WU, standalone Wu, merge Wu,, split WU 작업을 chunking,  merged WU는 wu 패킹 이렇게 하면 되나
+
+## 2026-04-08 14:06:47
+
+/home/kimghw/ontology_iacs/prerequisite/step3_chunking_packing_ko.md  여기 반영해줘
+
+## 2026-04-08 14:10:26
+
+<ide_selection>The user selected the lines 69 to 75 from /home/kimghw/ontology_iacs/prerequisite/step3_chunking_packing_ko.md:
+## 2. 청킹 — 상한 분할 및 split/standalone WU 확정
+
+> *(상세 지침은 후속 작성 — 재귀 분할, 오버사이즈 리프 예외, 헤딩 없는 폴백, 청크 계획 스키마, split/standalone WU 확정 규칙)*
+
+## 3. WU 패킹 — 하한 머지 (merge WU 생성)
+
+> *(상세 지침은 후속 작성 — 머지 로직, 머지 제약 조건, WU_Key 명명 규칙, merge WU 메타데이터 스키마)*
+
+This may or may not be related to the current task.</ide_selection>
+## 2. 청킹 — 상한 분할 및 split/standalone WU 확정
+
+> *(상세 지침은 후속 작성 — 재귀 분할, 오버사이즈 리프 예외, 헤딩 없는 폴백, 청크 계획 스키마, split/standalone WU 확정 규칙)*
+
+## 3. WU 패킹 — 하한 머지 (merge WU 생성)
+
+> *(상세 지침은 후속 작성 — 머지 로직, 머지 제약 조건, WU_Key 명명 규칙, merge WU 메타데이터 스키마)*   이 부분 간략히 절차랑 출력 파일/포맷 등 간략한 부분 작성해줘
+
+## 2026-04-08 14:13:21
+
+<ide_selection>The user selected the lines 73 to 73 from /home/kimghw/ontology_iacs/prerequisite/step3_chunking_packing_ko.md:
+서 `chunk_max`(기본 32K), `wu_min`(기본 16K)을 가져온다.
+
+This may or may not be related to the current task.</ide_selection>
+서 `chunk_max`(기본 32K), `wu_min`(기본 16K)을 가져온다.   -- 이 수치들은 /home/kimghw/ontology_iacs/scripts/update_thresholds.py  여기에서 읽을 수 있게 해야 하는데 이걸 뭐라고 해야 할지 모르겠네
+
+## 2026-04-08 14:21:21
+
+<ide_opened_file>The user opened the file /home/kimghw/ontology_iacs/shared/files_registry.yaml in the IDE. This may or may not be related to the current task.</ide_opened_file>
+claude.md 에 임계값 플레이홀더랑 파일/경로는  /home/kimghw/ontology_iacs/shared/files_registry.yaml  여기에 확인하고 처리 하도록 작성해줘
+
+## 2026-04-08 14:24:09
+
+<ide_opened_file>The user opened the file /home/kimghw/ontology_iacs/CLAUDE.md in the IDE. This may or may not be related to the current task.</ide_opened_file>
+작성규칙하고 참고할 문서만 넣어줘, 예시/검증 이런건 넣지마
+
+## 2026-04-08 14:24:55
+
+/home/kimghw/ontology_iacs/prerequisite/step3_chunking_packing_ko.md  여기 수치는 반영해줘
+
+## 2026-04-08 14:27:35
+
+<ide_selection>The user selected the lines 69 to 81 from /home/kimghw/ontology_iacs/prerequisite/step3_chunking_packing_ko.md:
+## 2. 청킹 — 상한 분할 및 split/standalone WU 확정
+
+### 2.1 절차 (문서당 독립 수행)
+
+1. **입력 로드** — `doc-{doc_instance_key}__heading__structure.tsv`에서 헤딩 트리와 노드별 토큰 측정값을 읽고, `shared/thresholds.yaml`에서 `chunk_max`(기본 {{chunk_max:32K}}), `wu_min`(기본 {{wu_min:16K}})을 가져온다.
+2. **상한 판정** — 문서 총 토큰 ≤ `chunk_max`이면 단일 청크로 확정하고 §2.2의 WU 분기로 진입.
+3. **재귀 헤딩 분할** — 상한 초과면 최상위 헤딩 경계부터 청크를 만들고, 청크가 여전히 상한을 넘으면 하위 헤딩에서 다시 분할(재귀). 헤딩 없는 구간은 폴백 규칙(문단/문장 단위)으로 분할.
+4. **오버사이즈 리프 처리** — 단일 헤딩 리프가 여전히 상한을 넘는 경우 본문(`file-{source_file_key}__pre__normalised.md`)을 직접 읽어 폴백 분할하고, 트리거 이벤트를 기록한다.
+5. **WU 분기**
+   - 청크 ≥ 2개 → 같은 문서끼리 묶어 **split WU 1개** 확정
+   - 청크 = 1개 & 토큰 ≥ `wu_min` → **standalone WU 1개** 확정
+   - 청크 = 1개 & 토큰 < `wu_min` → WU 미확정, **머지 후보**로 §3에 인계
+
+
+This may or may not be related to the current task.</ide_selection>
+## 2. 청킹 — 상한 분할 및 split/standalone WU 확정
+
+### 2.1 절차 (문서당 독립 수행)
+
+1. **입력 로드** — `doc-{doc_instance_key}__heading__structure.tsv`에서 헤딩 트리와 노드별 토큰 측정값을 읽고, `shared/thresholds.yaml`에서 `chunk_max`(기본 {{chunk_max:32K}}), `wu_min`(기본 {{wu_min:16K}})을 가져온다.
+2. **상한 판정** — 문서 총 토큰 ≤ `chunk_max`이면 단일 청크로 확정하고 §2.2의 WU 분기로 진입.
+3. **재귀 헤딩 분할** — 상한 초과면 최상위 헤딩 경계부터 청크를 만들고, 청크가 여전히 상한을 넘으면 하위 헤딩에서 다시 분할(재귀). 헤딩 없는 구간은 폴백 규칙(문단/문장 단위)으로 분할.
+4. **오버사이즈 리프 처리** — 단일 헤딩 리프가 여전히 상한을 넘는 경우 본문(`file-{source_file_key}__pre__normalised.md`)을 직접 읽어 폴백 분할하고, 트리거 이벤트를 기록한다.
+5. **WU 분기**
+   - 청크 ≥ 2개 → 같은 문서끼리 묶어 **split WU 1개** 확정
+   - 청크 = 1개 & 토큰 ≥ `wu_min` → **standalone WU 1개** 확정
+   - 청크 = 1개 & 토큰 < `wu_min` → WU 미확정, **머지 후보**로 §3에 인계
+   -- 여기서 에이전트가 문서 맥락에서 알 수 있는 내용은 제거 해보자
+
+## 2026-04-08 14:29:23
+
+<ide_opened_file>The user opened the file /home/kimghw/ontology_iacs/prerequisite/step3_chunking_packing_ko.md in the IDE. This may or may not be related to the current task.</ide_opened_file>
+응정리해줘.
+
+## 2026-04-08 14:31:16
+
+/home/kimghw/ontology_iacs/shared/files_registry.yaml  여기서 파일마다 넘버링을 하고 문서에서 파일 넘버링이랑 문서 이름을 같이 작성 하도록 해줄건데 일단 claude.md 에 이 내용을 작성해줘.
+
+## 2026-04-08 14:31:57
+
+<ide_selection>The user selected the lines 39 to 52 from /home/kimghw/ontology_iacs/CLAUDE.md:
+### SSOT 정본
+
+**1. 임계값 (토큰 한도, 반복 횟수, 비율 등)**
+- 정본: `shared/thresholds.yaml`
+- 본문 작성 문법: `{{key:current_value}}` (임계값 플레이스홀더)
+- 새 임계값은 yaml에 먼저 등록 후 본문에서 참조
+
+**2. 파일명·경로**
+- 정본: `shared/files_registry.yaml` (artifacts / paths / docs)
+- 새 산출물 파일명/경로/문서명을 도입하기 전에 registry에 먼저 등록
+- 파일명 템플릿의 가변부는 `{placeholder}` 형식
+- 동일 식별자는 registry에서만 정의하고 본문에서는 그대로 인용 (재정의 금지)
+- 파일 넘버링: `files_registry.yaml`의 각 파일 항목에 고유 번호를 부여한다
+- 본문에서 파일을 참조할 때는 반드시 `번호 + 파일명` 형식으로 함께 표기 (예: `[F12] step3_chunking_packing.md`)
+
+This may or may not be related to the current task.</ide_selection>
+### SSOT 정본
+
+**1. 임계값 (토큰 한도, 반복 횟수, 비율 등)**
+- 정본: `shared/thresholds.yaml`
+- 본문 작성 문법: `{{key:current_value}}` (임계값 플레이스홀더)
+- 새 임계값은 yaml에 먼저 등록 후 본문에서 참조
+
+**2. 파일명·경로**
+- 정본: `shared/files_registry.yaml` (artifacts / paths / docs)
+- 새 산출물 파일명/경로/문서명을 도입하기 전에 registry에 먼저 등록
+- 파일명 템플릿의 가변부는 `{placeholder}` 형식
+- 동일 식별자는 registry에서만 정의하고 본문에서는 그대로 인용 (재정의 금지)
+- 파일 넘버링: `files_registry.yaml`의 각 파일 항목에 고유 번호를 부여한다
+- 본문에서 파일을 참조할 때는 반드시 `번호 + 파일명` 형식으로 함께 표기 (예: `[F12] step3_chunking_packing.md` _ 에이전트가 에측할 수 있는거는 제거해줘.
+
+## 2026-04-08 14:32:48
+
+/home/kimghw/ontology_iacs/prerequisite/step3_chunking_packing_ko.md 이 것에 대해서만  ssot 정본 적용해줘
+
+## 2026-04-08 14:38:09
+
+<ide_opened_file>The user opened the file /home/kimghw/ontology_iacs/shared/files_registry.yaml in the IDE. This may or may not be related to the current task.</ide_opened_file>
+스크립트 이용하면 나중에 이거 검증 가능하겠지 번호랑 파일명이랑 같은지?
+
+## 2026-04-08 14:39:29
+
+yaml을 dict로 바꾸자
+
+## 2026-04-08 14:40:04
+
+진행해줘
+
+## 2026-04-08 14:44:01
+
+/home/kimghw/ontology_iacs/shared/thresholds.yaml  이것도,, 지금 한것 처럼 dic로 되 었지?  근데 문서에서 **[A07}**  이런데 **[warn_min]** 으로 하면 본문에 이중 플레이스 홀드로 2번 처리 하지 않아도 되고 좋을거 같은데
+
+## 2026-04-08 14:49:28
+
+<ide_selection>The user selected the lines 9 to 9 from /home/kimghw/ontology_iacs/prerequisite/step3_chunking_packing_ko.md:
+**[chunk_max]**
+
+This may or may not be related to the current task.</ide_selection>
+아 근데... **[chunk_max]**  여기는 **[chunk_max : value]**  가 들어가야 하고 이건 업데이트를 해줘야해. ** 안붙이고 그냥 { } 이것만 해도 될거 같은데 {{ chunk_max: value}} 이렇게 하면 돌려나
+
+## 2026-04-08 14:53:07
+
+<ide_opened_file>The user opened the file /home/kimghw/ontology_iacs/prerequisite/step3_chunking_packing_ko.md in the IDE. This may or may not be related to the current task.</ide_opened_file>
+저 파일 명도 {{A05: 파일ㄹ명}} 이렇게 하면 문제 되냐?
+
+## 2026-04-08 14:53:35
+
+검토만
+그냥 현재 유지할게
+
+## 2026-04-08 14:54:04
+
+claude.md 에 간략히 정리해줘.
+
+## 2026-04-08 14:54:28
+
+<ide_opened_file>The user opened the file /home/kimghw/ontology_iacs/CLAUDE.md in the IDE. This may or may not be related to the current task.</ide_opened_file>
+파일/경로: **[A05]** \filename`` (ID + 백틱 파일명)
+임계값: {{key:value}} (값 인라인, update_thresholds.py로 동기화)   --이 2줄만 넣으면 될거 같은데.
+
+## 2026-04-08 14:54:55
+
+검증해봐 번호랑, 맞나
+
+## 2026-04-08 14:55:42
+
+근데 서브 에이전트를 두고,,, 파일경로랑 내용  그리고 스키마 정보를 담당하고 얘한테 이것만 주라고 해도 될거 같은데...
+
+## 2026-04-08 14:56:57
+
+나중에 해볼게.
+
+## 2026-04-08 14:57:22
+
+ssot 뿐만 아니라 shared 폴더 전체를 할 수도 있잖아
+
+## 2026-04-08 14:58:31
+
+하나의 에이전트가 공통 규칙을 가지고 값을 주거나 검증하거나 하면 좋을거 같아. .. 너의 생각은?
+
+## 2026-04-08 14:59:14
+
+근데 떠 컨텍스트가 크지 않은데 하는 것도 좀 그렇다
+
+## 2026-04-08 15:11:18
+
+<ide_selection>The user selected the lines 43 to 43 from /home/kimghw/ontology_iacs/prerequisite/step3_chunking_packing_ko.md:
+1. **청킹** (문서당 독립 수행) — 헤딩 구조 TSV를 읽어 청크 경계를 결정하고 `chunk_plan.json`을 생성한다. 토큰 ≤ 상한이면 단일 청크, 초과면 헤딩 경계에서 재귀 분할. 청킹 결과에 따라 즉시 WU를 확정한다:
+
+This may or may not be related to the current task.</ide_selection>
+1. **청킹** (문서당 독립 수행) — 헤딩 구조 TSV를 읽어 청크 경계를 결정하고 `chunk_plan.json`을 생성한다. 토큰 ≤ 상한이면 단일 청크, 초과면 헤딩 경계에서 재귀 분할. 청킹 결과에 따라 즉시 WU를 확정한다:   -- 토큰 상한 파라미터 넣어줘
+
+## 2026-04-08 15:11:35
+
+작업계획서라 거기 까진 필요 없구나. 오키
+
+## 2026-04-08 15:13:08
+
+<ide_selection>The user selected the lines 49 to 55 from /home/kimghw/ontology_iacs/prerequisite/step3_chunking_packing_ko.md:
+### 1.5 에스컬레이션 조건
+
+본 단계의 에스컬레이션은 **2단계 게이트** 구조를 따른다.
+
+1. **서브에이전트 자체 판단** — 청킹/패킹 트리거가 발동되면 서브에이전트가 먼저 이슈의 심각도를 **상/중/하** 로 판정한다.
+2. **오케스트레이터 집계 및 공통 지침** — 오케스트레이터는 서브에이전트가 보고한 **중/하** 이슈들을 코퍼스 전역에서 모아 **공통 지침**(예: 임계값 조정, 동일 패턴에 대한 일괄 처리 규칙)을 도출하여 서브에이전트에 재배포한다.
+3. **사용자 결정** — 위의 공통 지침으로도 해결되지 않거나, 심각도 **상** 이슈는 §4 이슈 게이트를 통해 사용자에게 보고하고 결정(`proceed`/`revise`/`abort`)을 받는다.
+
+This may or may not be related to the current task.</ide_selection>
+### 1.5 에스컬레이션 조건
+
+본 단계의 에스컬레이션은 **2단계 게이트** 구조를 따른다.
+
+1. **서브에이전트 자체 판단** — 청킹/패킹 트리거가 발동되면 서브에이전트가 먼저 이슈의 심각도를 **상/중/하** 로 판정한다.
+2. **오케스트레이터 집계 및 공통 지침** — 오케스트레이터는 서브에이전트가 보고한 **중/하** 이슈들을 코퍼스 전역에서 모아 **공통 지침**(예: 임계값 조정, 동일 패턴에 대한 일괄 처리 규칙)을 도출하여 서브에이전트에 재배포한다.
+3. **사용자 결정** — 위의 공통 지침으로도 해결되지 않거나, 심각도 **상** 이슈는 §4 이슈 게이트를 통해 사용자에게 보고하고 결정(`proceed`/`revise`/`abort`)을 받는다.   간략하게 정리해줘,
+
+## 2026-04-08 15:17:47
+
+<ide_selection>The user selected the lines 9 to 11 from /home/kimghw/ontology_iacs/prerequisite/step3_chunking_packing_ko.md:
+- **상한 초과 문서 → 분할** (청킹 담당): 단일 문서가 상한 {{chunk_max:32K}}을 넘는 경우 헤딩 경계에서 다수의 청크로 나누고 같은 문서끼리 묶어 **split WU**로 확정한다.
+- **하한 미만 문서 → 병합** (WU 패킹 담당): 단일 문서가 하한 {{wu_min:16K}}에 못 미치는 경우 동질 문서끼리 묶어 하나의 **merge WU**로 만든다.
+- **그 외 단일 문서 (하한 ≤ 크기 ≤ 상한)**: 청킹 단계에서 즉시 **standalone WU**로 확정한다.
+
+This may or may not be related to the current task.</ide_selection>
+- **상한 초과 문서 → 분할** (청킹 담당): 단일 문서가 상한 {{chunk_max:32K}}을 넘는 경우 헤딩 경계에서 다수의 청크로 나누고 같은 문서끼리 묶어 **split WU**로 확정한다.
+- **하한 미만 문서 → 병합** (WU 패킹 담당): 단일 문서가 하한 {{wu_min:16K}}에 못 미치는 경우 동질 문서끼리 묶어 하나의 **merge WU**로 만든다.
+- **그 외 단일 문서 (하한 ≤ 크기 ≤ 상한)**: 청킹 단계에서 즉시 **standalone WU**로 확정한다.    -- 구체적 수치빼고 한줄로 정리
+
+## 2026-04-08 15:18:48
+
+<ide_selection>The user selected the lines 7 to 11 from /home/kimghw/ontology_iacs/prerequisite/step3_chunking_packing_ko.md:
+문서별 토큰 측정값을 기준으로 다음 두 가지 조정을 수행하여, 다운스트림 단계가 LLM 컨텍스트 윈도우 안에서 안정적으로 처리할 수 있는 **Work Unit(WU) 집합**을 생성한다.
+
+문서 토큰 크기에 따라 **상한 초과는 분할(split WU)**, **하한 미만은 동질 문서끼리 병합(merge WU)**, **그 사이는 단독(standalone WU)** 으로 확정한다.
+
+본 단계는 **기능적으로 두 개의 독립 절차**로 분리된다. **청킹**은 상한을 강제하며 split/standalone WU를 직접 확정하고, **WU 패킹**은 하한을 강제하며 merge WU만 생성한다. 본 단계는 PRE 파이프라인의 최종 스테이지이다.
+
+This may or may not be related to the current task.</ide_selection>
+문서별 토큰 측정값을 기준으로 다음 두 가지 조정을 수행하여, 다운스트림 단계가 LLM 컨텍스트 윈도우 안에서 안정적으로 처리할 수 있는 **Work Unit(WU) 집합**을 생성한다.
+
+문서 토큰 크기에 따라 **상한 초과는 분할(split WU)**, **하한 미만은 동질 문서끼리 병합(merge WU)**, **그 사이는 단독(standalone WU)** 으로 확정한다.
+
+본 단계는 **기능적으로 두 개의 독립 절차**로 분리된다. **청킹**은 상한을 강제하며 split/standalone WU를 직접 확정하고, **WU 패킹**은 하한을 강제하며 merge WU만 생성한다. 본 단계는 PRE 파이프라인의 최종 스테이지이다.   -- 이것도 간략하게 정리해줘.
+
+## 2026-04-08 15:32:19
+
+<ide_selection>The user selected the lines 39 to 39 from /home/kimghw/ontology_iacs/prerequisite/step3_chunking_packing_ko.md:
+`chunk_plan.json`
+
+This may or may not be related to the current task.</ide_selection>
+`chunk_plan.json`  이건 왜 넘버가 없지.
+
+## 2026-04-08 16:03:07
+
+<ide_opened_file>The user opened the file /home/kimghw/ontology_iacs/prerequisite/step3_chunking_packing_ko.md in the IDE. This may or may not be related to the current task.</ide_opened_file>
+클로드 코드에서 도구를 만드는 것과 스킬을 만드는게 같나? 다르나?
+
+## 2026-04-08 16:04:04
+
+<ide_opened_file>The user opened the file /home/kimghw/ontology_iacs/CLAUDE.md in the IDE. This may or may not be related to the current task.</ide_opened_file>
+그럼  pdf 파일을 md 파일로 변환하는 건데 LLM으로 변환한느 것은 도구 인가?
+
+## 2026-04-08 16:05:16
+
+claude code가 제공하는 도구는 .... 함수인가 LLM을 쓰지 않나? 읽고, 쓰고 , 조사하고 그런거나끼나
+
+## 2026-04-08 16:06:06
+
+음..  도구를 cli로 해도 되나?
+
+## 2026-04-08 16:07:32
+
+pdf 파일을 md 파일로 변환한다.. 이건 스킬이겠지?
+
+## 2026-04-08 16:09:23
+
+/home/kimghw/ontology_iacs/prerequisite  여기서 스킬로 처리 할 수 있는게 뭐냐?
+
+## 2026-04-08 16:10:06
+
+<ide_opened_file>The user opened the file /home/kimghw/ontology_iacs/CLAUDE.md in the IDE. This may or may not be related to the current task.</ide_opened_file>
+웹검색해서 스킬을 선택적으로 불러와서 로드할 수 있는 방법이 뭐가 있지?
+
+## 2026-04-08 16:11:51
+
+specification  스킬을 작성할게, 현재 문서들 참조해서, 해야할거, 하지 말아야 할것 그리고 예시를 작성해줘,
+
+## 2026-04-08 16:16:05
+
+<ide_opened_file>The user opened the file /home/kimghw/ontology_iacs/.claude/skills/specification/SKILL.md in the IDE. This may or may not be related to the current task.</ide_opened_file>
+specification skill을 gemini 랑 codex한테 주고 검토해봐,  작업 계획서를 어떻게 해야 잘 작성할지...
+
+## 2026-04-08 16:16:54
+
+<task-notification>
+<task-id>b4cuhf80n</task-id>
+<tool-use-id>toolu_01EFTP6arAH35HJ8sKFgDaWd</tool-use-id>
+<output-file>/tmp/claude-1000/-home-kimghw-ontology-iacs/7e630c16-26b0-4cc4-bb4c-d72a0d127fe2/tasks/b4cuhf80n.output</output-file>
+<status>completed</status>
+<summary>Background command "Send skill to Codex for review" completed (exit code 0)</summary>
+</task-notification>
+
+## 2026-04-08 16:17:12
+
+<task-notification>
+<task-id>bkzc7cwws</task-id>
+<tool-use-id>toolu_01EDnYueFYfGE5z4YGSDENLe</tool-use-id>
+<output-file>/tmp/claude-1000/-home-kimghw-ontology-iacs/7e630c16-26b0-4cc4-bb4c-d72a0d127fe2/tasks/bkzc7cwws.output</output-file>
+<status>completed</status>
+<summary>Background command "Send skill to Gemini for review" completed (exit code 0)</summary>
+</task-notification>
+
+## 2026-04-08 16:24:39
+
+<ide_opened_file>The user opened the file /home/kimghw/ontology_iacs/.claude/skills/specification/SKILL.md in the IDE. This may or may not be related to the current task.</ide_opened_file>
+작업계획서 지침이면 일반적이고 구체적이면 안되지.
+
+## 2026-04-08 16:35:13
+
+<ide_opened_file>The user opened the file /home/kimghw/ontology_iacs/.claude/skills/specification/SKILL.md in the IDE. This may or may not be related to the current task.</ide_opened_file>
+codex / gemini  검토해 달라고해
+
+## 2026-04-08 16:35:45
+
+<task-notification>
+<task-id>bifx4xkmk</task-id>
+<tool-use-id>toolu_01FNeBinkQyiZAwhpEoVgWGi</tool-use-id>
+<output-file>/tmp/claude-1000/-home-kimghw-ontology-iacs/7e630c16-26b0-4cc4-bb4c-d72a0d127fe2/tasks/bifx4xkmk.output</output-file>
+<status>completed</status>
+<summary>Background command "Codex review of work plan skill" completed (exit code 0)</summary>
+</task-notification>
+
+## 2026-04-08 16:35:54
+
+<task-notification>
+<task-id>bxhy55qko</task-id>
+<tool-use-id>toolu_01896NqkisiSXHQUfH64C5sL</tool-use-id>
+<output-file>/tmp/claude-1000/-home-kimghw-ontology-iacs/7e630c16-26b0-4cc4-bb4c-d72a0d127fe2/tasks/bxhy55qko.output</output-file>
+<status>completed</status>
+<summary>Background command "Gemini review of work plan skill" completed (exit code 0)</summary>
+</task-notification>
+
+## 2026-04-08 16:36:20
+
+/home/kimghw/ontology_iacs/prerequisite  여기에서 생성할 수 있는 스킬 추출해줘
+
+## 2026-04-08 16:37:35
+
+<ide_selection>The user selected the lines 46 to 51 from /home/kimghw/ontology_iacs/.claude/skills/specification/SKILL.md:
+### 4. 담당자 명시 (RACI 또는 단일 Owner)
+- 모든 작업에 단 한 명의 책임자(R)가 있어야 한다
+- "우리가", "팀이" 같은 주어 금지
+
+### 5. 리스크는 발생 확률 × 영향 + 대응책
+- 단순 리스크 나열이 아니라 **사전 대응책(mitigation)** 과 **발생 시 대응(contingency)** 을 분리
+
+This may or may not be related to the current task.</ide_selection>
+스킬표는 최소 작업 단위 임을 하고 에이전트에 제공할거야
+
+## 2026-04-08 16:40:32
+
+<ide_opened_file>The user opened the file /home/kimghw/ontology_iacs/.claude/skills/specification/SKILL.md in the IDE. This may or may not be related to the current task.</ide_opened_file>
+테이블 스키마 관리 도구를 만들면 어떨까?
+
+## 2026-04-08 16:41:23
+
+<ide_opened_file>The user opened the file /home/kimghw/ontology_iacs/.claude/skills/specification/SKILL.md in the IDE. This may or may not be related to the current task.</ide_opened_file>
+처음이랑 마지막에, 예측하지 마라, 모르는 내용을 답변하지 마라 이런 내용 추가해줘.
+
+## 2026-04-08 16:44:23
+
+<ide_opened_file>The user opened the file /home/kimghw/ontology_iacs/.claude/skills/specification/SKILL.md in the IDE. This may or may not be related to the current task.</ide_opened_file>
+200 줄을 넘지 않도록 할것.. 추가해줘.
+
+## 2026-04-08 16:50:40
+
+<ide_opened_file>The user opened the file /home/kimghw/ontology_iacs/.claude/skills/specification/SKILL.md in the IDE. This may or may not be related to the current task.</ide_opened_file>
+스킬하고 작업 명세서하고 같냐? 다르냐?
+
+## 2026-04-08 16:52:19
+
+<ide_opened_file>The user opened the file /home/kimghw/ontology_iacs/.claude/skills/specification/SKILL.md in the IDE. This may or may not be related to the current task.</ide_opened_file>
+스킬은 어떻게 작성해야 될지 좀 찾아보고 지침으로 작성해줘
+
+## 2026-04-08 16:56:19
+
+/skill-authoring
+
+## 2026-04-08 17:02:22
+
+/skill-authoring  LLM opus 모델을 에이전트로 md 파일을 생성한다. 원문텍스트는 유지하고, 그림은 다운 받고 그 링크를 md 파일에 포함하고 텍스트는 구조화 한다. 50페이지를 초과할 경우  페이지를 분할 한다. 50페이지당 1개의 서브에이전트를 할당해서 md파일을 직접 읽고 원본 손실 보지 않도록 작성한다. 페이지 단위로 마크를 집어 넣고  1개 파일에 대한 모든 작업이 완료되면 병합한다.  페이지 간의 마크는 필요 없을듯 하다. 완료 후  markdonwlint 를 이용해서 넘버링 순서랑 검증할 수 있는 항목을 검증한다.
+
+## 2026-04-08 17:06:45
+
+<ide_opened_file>The user opened the file /home/kimghw/ontology_iacs/.claude/skills/pdf2md/SKILL.md in the IDE. This may or may not be related to the current task.</ide_opened_file>
+skill 에 이거 넣어저, 파일이 많거나 페이지가 에이전트 호출보다 클 경우  선택된 모든 파일을 분해 해서  디렉토리에 넣고 작업이 진행 중인 것은 작업 디렉토리에 넣고 완료 되면 완료 디렉토리로 이동 할 수 있도록 하고, 작업 중인 에이전트 1개가 작업이 완료 되면 남겨진 작업을 진행한다.. 이거 추가해줘.  페이지단위 마크 삽입 안할게
+
+## 2026-04-08 17:07:25
+
+/skill-authoring  skill 에 이거 넣어저, 파일이 많거나 페이지가 에이전트 호출보다 클 경우  선택된 모든 파일을 분해 해서  디렉토리에 넣고 작업이 진행 중인 것은 작업 디렉토리에 넣고 완료 되면 완료 디렉토리로 이동 할 수 있도록 하고, 작업 중인 에이전트 1개가 작업이 완료 되면 남겨진 작업을 진행한다.. 이거 추가해줘.  페이지단위 마크 삽입 안할게  보완해줘, /home/kimghw/ontology_iacs/.claude/skills/pdf2md/SKILL.md
+
+## 2026-04-08 17:10:43
+
+/home/kimghw/ontology_iacs/.claude/skills/skill-authoring/SKILL.md   여기에 서브에이전트를 호출한 경우 모든 결과를 반환하지 말고 문서에 작성할건 문서를 작성하고 반환이 필요한 내용이나 이슈들만 반환한다..추가해줘. 들어가 있는지 모르겠네
+
+## 2026-04-08 17:12:02
+
+/home/kimghw/ontology_iacs/.claude/skills/pdf2md/SKILL.md  여기에서 최종 md 파일은  원본 파일을 포함한 폴더의 이름에 _md 만 붙여서 결과를 저장한다를 추가해줘
+
+## 2026-04-08 17:13:56
+
+/home/kimghw/ontology_iacs/.claude/skills/pdf2md/SKILL.md 논리적으로 문제가 되는 부분이 있나 경로가 맞지 않다던지
+
+## 2026-04-08 17:15:46
+
+<ide_opened_file>The user opened the file /home/kimghw/ontology_iacs/.claude/skills/pdf2md/SKILL.md in the IDE. This may or may not be related to the current task.</ide_opened_file>
+1. 최종 산출 경로가 문서 내에서 불일치 (심각도: 상)
+정본은 "원본PDF 폴더 이름에 _md 접미사 폴더" (SKILL.md:27, SKILL.md:38, SKILL.md:69)인데, 다른 곳에서는 <workroot>/out/으로 쓰여 있습니다.
+
+SKILL.md:46: <workroot>/out/ 생성 지시
+SKILL.md:72: markdownlint <workroot>/out/<input>.md
+SKILL.md:119: 체크리스트 out/ 생성
+SKILL.md:127: 체크리스트 out/<input>.md로 병합
+→ out/ 전부 <원본폴더>_md/로 통일하거나, out/을 스테이징으로 정의하고 복사 단계를 추가해야 합니다.
+
+2. 서브에이전트 템플릿의 경로 레이아웃이 본문과 완전히 다름 (심각도: 상)
+SKILL.md:86-94 템플릿은
+
+이미지: <input>.assets/
+출력 조각: <input>.parts/part-<NN>.md
+로 되어 있는데, 본문 큐 구조는 <workroot>/queue/working/<input>__partNN.md, <workroot>/assets/<input>/ (SKILL.md:36, SKILL.md:63)입니다. 절차와 템플릿이 서로 다른 디렉토리 규약을 쓰고 있어 에이전트에 그대로 주면 엉뚱한 위치에 파일을 만듭니다.
+
+3. 이미지 상대경로가 최종 위치 기준으로 깨짐 (심각도: 상)
+SKILL.md:64는 에이전트에게 ../assets/<input>/fig-XXX.ext를 쓰라고 지시합니다. 이 상대경로는 <workroot>/queue/working/에서 올라가는 기준인데, 최종 .md는 <원본폴더>_md/로 이동합니다(SKILL.md:69). 이동 후에는 ../assets/...가 가리키는 위치가 완전히 달라지므로 모든 이미지 링크가 깨집니다.
+
+→ 병합 단계에서 (a) 이미지를 <원본폴더>_md/assets/<input>/로 복사/이동하고 (b) 링크를 재작성하는 절차가 빠져 있습니다. 체크리스트의 "이미지 링크 깨짐 여부"(SKILL.md:74)만으로는 방지 불가.
+
+4. assets/ 위치 이중 정의 (심각도: 중)
+SKILL.md:32-36 레이아웃 그림은 <workroot>/assets/<input>/, SKILL.md:50의 pdfimages 명령도 동일. 하지만 SKILL.md:86, SKILL.md:94은 <input>.assets/. 둘 중 하나로 통일 필요.
+
+5. 에이전트가 "담당 페이지만" 변환하는 수단이 미지정 (심각도: 중)
+SKILL.md:62, SKILL.md:90에서 페이지 범위만 지정할 뿐, 에이전트가 실제로 해당 범위만 읽도록 하는 방법(예: pdftotext -f N -l M, 또는 PDF 분할)이 언급되지 않습니다. 에이전트가 전체 PDF를 읽으면 50p 분할의 의미가 약해집니다.   이 부분 에이전트 여러개 호출해서 처리해줘
+
+## 2026-04-08 17:21:31
+
+/home/kimghw/ontology_iacs/.claude/skills/pdf2md/SKILL.md  여기서 markdownlint 있지?
+
+## 2026-04-08 17:22:41
+
+<ide_opened_file>The user opened the file /home/kimghw/ontology_iacs/.claude/skills/pdf2md/SKILL.md in the IDE. This may or may not be related to the current task.</ide_opened_file>
+여기서 에러나는 것은  에이전트가 직접 수정하고 그 결과는 사용자에게 보고한다로 해줘, 그리고 용어에 오케스트레이터는 사용자의 협력자 이고 서브에이전트는 오케스트레이터가 호출하는 에이전트임을 명시해줘.
+
+## 2026-04-08 17:24:36
+
+/home/kimghw/ontology_iacs/UR  여기 있는 .md 파일들 삭제해줘.
+
+## 2026-04-08 17:25:37
+
+/pdf2md /home/kimghw/ontology_iacs/UR/UR_A
+
+## 2026-04-08 17:32:21
+
+<ide_opened_file>The user opened the file /home/kimghw/ontology_iacs/UR/UR_D/ur-d1rev4.pdf in the IDE. This may or may not be related to the current task.</ide_opened_file>
+Extract PDF text with PyMuPDF  야.. 왜 pymupdf로  읽냐?
+
+## 2026-04-08 17:33:17
+
+<task-notification>
+<task-id>bz23w2t34</task-id>
+<tool-use-id>toolu_014xDtMfFMfgaViryqnVZG2Q</tool-use-id>
+<output-file>/tmp/claude-1000/-home-kimghw-ontology-iacs/7d343ad9-0358-4100-91cb-8410b2f35cfa/tasks/bz23w2t34.output</output-file>
+<status>completed</status>
+<summary>Background command "Search for PDF tools" completed (exit code 0)</summary>
+</task-notification>
+
+## 2026-04-08 17:33:46
+
+/home/kimghw/ontology_iacs/.claude/skills/pdf2md/SKILL.md  여기에 분명 서브에이전트가 직접 읽고 md 파일 변환하라고 했는데  패키지를 사용했네
+
+## 2026-04-08 17:34:52
+
+<ide_opened_file>The user opened the file /home/kimghw/ontology_iacs/.claude/skills/pdf2md/SKILL.md in the IDE. This may or may not be related to the current task.</ide_opened_file>
+skill 을 수정하고 do 랑 dont 이랑 각각 작성해줘.
+
+## 2026-04-08 17:37:29
+
+커밋하고 푸쉬해줘
+
+## 2026-04-08 17:38:29
+
+스테이지, 커밋, 푸쉬 완료해줘
+
+## 2026-04-08 17:39:09
+
+상관없어.
+
+## 2026-04-08 17:39:26
+
+UR/UR_A/pdf2md_work/  이건 제외 해라

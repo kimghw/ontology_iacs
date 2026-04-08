@@ -35,3 +35,9 @@
 ## 공유하는 경로, 파일명 등
 - 번호 ↔ 텍스트 일관성 검증: 번호와 식별자(파일명/섹션명/단계명 등)를 함께 쓸 때 두 표현이 항상 같은 대상을 가리키는지 확인
 - 단일 정본(SSOT) 원칙: 경로·파일명 같은 식별자는 한 곳에서 정의·관리하고, 다른 문서는 정본을 참조하기만 함 (중복 정의 금지)
+
+### SSOT 정본
+
+- **파일/경로**: 정본 `shared/files_registry.yaml`. 본문 참조는 `**[A05]** \`filename\`` (ID + 백틱 파일명). ID: `A##` artifacts / `P##` paths / `D##` docs.
+- **임계값**: 정본 `shared/thresholds.yaml`. 본문 참조는 `{{key:value}}` (값 인라인, `scripts/update_thresholds.py`로 동기화).
+- **검증**: `python3 scripts/validate_files.py` (등록 여부 + ID↔파일명 일치 + 임계값 키 확인)

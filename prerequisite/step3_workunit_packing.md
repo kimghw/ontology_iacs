@@ -2,6 +2,8 @@
 
 > **Purpose.** Determine context-window Chunks based on the heading structure TSV and token measurements, pack them into Work Units, and write all artefacts directly to `results/`. The user is engaged only when an issue trigger fires (§Step 3.3). This is the final stage of PRE.
 
+> **Executor.** Step 3 is **Coordinator-only**: no worker agents are spawned (see [pre_specification.md](pre_specification.md) §Agent Lifecycle). The Coordinator performs context-window chunking (§3.1), Work Unit packing (§3.2), issue gate handling (§3.3), and PRE manifest finalisation. All Step 2 agents are terminated before Step 3 begins.
+
 ---
 
 ## Outputs
@@ -18,37 +20,24 @@ Step 3 newly produces:
 
 ## Work Unit Token Range
 
-| Parameter | Value |
-|:---|:---|
-| **WU Target Range** | **{{wu_range:16K–32K}}** tokens |
+| Zone | Token Range | Action |
+|:---|:---|:---|
+| **> Upper Bound** | > **{{chunk_max:32K}}** | **Split** — split into multiple WUs at heading boundaries, each within `wu_range` |
+| **`wu_range`** (Lower Bound ≤ size ≤ Upper Bound) | **{{wu_range:16K–32K}}** | **Standalone** — 1 Document = 1 WU |
+| **< Lower Bound** | < **16K** | **Merge candidate** — eligible for merging with other whole documents until `wu_range` is reached |
 
-| Document Size | Action |
-|:---|:---|
-| **> Upper Bound (> {{chunk_max:32K}} tokens)** | **Split** — split into multiple WUs at heading boundaries, each within {{wu_range:16K–32K}} range |
-| **Lower Bound ≤ size ≤ Upper Bound** | **Standalone** — 1 Document = 1 WU |
-| **< Lower Bound** | **Merge candidate** — eligible for merging with other whole documents until {{wu_range:16K–32K}} is reached |
+> Upper Bound (`chunk_max`) and `wu_range` derive from the single source of truth in `shared/thresholds.yaml`. Throughout Step 3, "Lower Bound" / "Upper Bound" always refer to the values above.
 
 ### Merge Constraints
 
-- **Whole documents only** — a document is either fully included or not included at all
-- **Merge eligibility**: Only documents satisfying **all** of the following may be merged into the same WU:
-  - Same `Authority`
-  - Same `DocType`
-  - Same language
-  - Same `grammar_version` (heading grammar version used during extraction)
-  - Same `Measure_Method` (tiktoken or char_approx) — do not mix measurement methods within a merged WU
-- Documents exceeding the Upper Bound are split; each piece is a standalone WU and must **not** be merged with other documents
-- When merging, add eligible documents in DocumentKey order (ASCII lexicographic order — guaranteed by the slug rule which produces only `[a-z0-9_]` characters) until the next addition would exceed the Upper Bound; then close the current WU and start a new one
-- If the last WU falls below the Lower Bound, it is accepted as-is (do not force-merge across split boundaries)
+> Precondition: documents exceeding the Upper Bound (`chunk_max`) are already split in Step 3.1, so this section only governs how **`< Lower Bound` (< 16K) documents** are combined without exceeding the Upper Bound.
 
-### Threshold Change Rerun Rules
-
-| Change | Rerun Scope |
-|:---|:---|
-| **Lower Bound only changed** | Rerun Step 3.2 only (WU packing) |
-| **Upper Bound changed** | Rerun Step 3.1 (chunking) **and** Step 3.2 (packing) — chunk boundaries and the derived sliding-window parameters (`window_size`, `overlap`) both depend on the Upper Bound |
-
-> These thresholds are tuneable. Adjust the values and re-run the appropriate steps per the table above.
+- **Scope**: only `< Lower Bound` documents are merge candidates. Pieces of documents already split for exceeding the Upper Bound remain standalone WUs and must **not** be merged with other documents.
+- **Upper Bound compliance**: the total tokens of a merged WU must not exceed the Upper Bound (`chunk_max`).
+- **Merge eligibility**: only documents satisfying **all** of the following may be merged into the same WU:
+  - Same `Authority`, `DocType`, language, `grammar_version`, `measure_method` (mixing measurement methods makes the Upper Bound check meaningless)
+- **Merge order**: add eligible documents in DocumentKey order (ASCII lexicographic — guaranteed by the slug rule which produces only `[a-z0-9_]` characters) until the next addition would exceed the Upper Bound; then close the current WU and start a new one.
+- **Residual acceptance**: if the last WU falls below the Lower Bound, it is accepted as-is (no forced merging).
 
 ---
 
@@ -58,9 +47,15 @@ Step 3 newly produces:
 |:---|:---|:---|
 | **Standalone** (1 Doc = 1 WU) | `{doc_instance_key}` | `ur_e26_rev1_en` |
 | **Split** (1 Doc → N WUs) | `{doc_instance_key}_wu{NNN}` | `ur_z10_2_rev3_en_wu001` |
-| **Merged** (N Docs → 1 WU) | `merge_{short_hash}` (first 8 chars of SHA-256 of sorted constituent keys) | `merge_a3f7c2b1` |
+| **Merged** (N Docs → 1 WU) | `merge_{short_hash}` (see canonicalisation rule below) | `merge_a3f7c2b1` |
 
-> For merged WUs, the short hash avoids excessively long filenames. The full constituent list is recorded in the WU metadata JSON.
+> **`short_hash`:** first 8 lowercase hex chars of SHA-256 over the ASCII-sorted constituent `doc_instance_key`s joined by `|` (UTF-8 encoded). The full constituent list is recorded in the WU metadata JSON.
+
+### Split WU Indexing
+
+- **`_wu{NNN}`**: zero-padded 3-digit, sequential per source `doc_instance_key` in chunk order (the WU containing the lowest `_ch{NNN}` of that document is `_wu001`).
+
+> Sub-chunk keys (`_p{NNN}` / `_w{NNN}`) are defined in the chunk plan's `sub_chunks` field (see §Chunk Plan Schema).
 
 ### WU Header Metadata
 
@@ -73,10 +68,13 @@ Recorded in `wu-{wu_key}__pre__meta.json`:
 | `authority` | string | Issuing body (same for all constituents) | `IACS` |
 | `doc_type` | string | Document category (same for all constituents) | `UR` |
 | `language` | string | Language code | `en` |
-| `grammar_version` | string | Heading grammar version used | `v02` |
+| `grammar_version` | string | Heading grammar version used (uniform across constituents — enforced by Merge Constraints) | `v02` |
+| `measure_method` | string | `tiktoken` or `char_approx` (uniform across constituents — enforced by Merge Constraints) | `tiktoken` |
 | `constituent_docs` | array | List of constituent document entries | See below |
 | `constituent_docs[].doc_instance_key` | string | DocumentInstanceKey | `ur_f1_rev2_en` |
 | `constituent_docs[].document_key` | string | DocumentKey | `ur_f1` |
+| `constituent_docs[].grammar_version` | string | Per-document grammar version (must equal WU-level `grammar_version`) | `v02` |
+| `constituent_docs[].measure_method` | string | Per-document measure method (must equal WU-level `measure_method`) | `tiktoken` |
 | `constituent_docs[].start_line` | int | First line in canonical input (inclusive) | `1` |
 | `constituent_docs[].end_line` | int | Last line in canonical input (inclusive) | `27` |
 | `constituent_docs[].est_tokens` | int | Token count for this document | `5200` |
@@ -85,17 +83,17 @@ Recorded in `wu-{wu_key}__pre__meta.json`:
 | `split_part` | int\|null | For split WUs: 1-based index | `1` |
 | `split_total` | int\|null | For split WUs: total number of parts | `2` |
 | `chunk_keys` | array | List of ChunkKeys included in this WU | `["ur_f1_rev2_en_ch001"]` |
+| `status` | string | Lifecycle state — see [pre_specification.md](pre_specification.md) §Work Unit Lifecycle States. Initial value `planned`; updated by Coordinator to `processed`/`proceeded`/`revised`/`aborted` after §3.3 issue gate handling, before manifest generation. | `processed` |
+| `output_files` | array | Artefact file paths generated for this WU under `results/` (chunk plan, task brief, etc.). Populated during §3.3 manifest finalisation. | `["results/wu-..._meta.json", ...]` |
 | `created_at` | string | ISO 8601 timestamp | `2026-04-05T10:30:00Z` |
 
-> For standalone and split WUs, `constituent_docs` has a single entry. For merged WUs, each constituent carries its own heading range.
-
-> All downstream artefacts use `wu-{wu_key}` as the file scope prefix. Document-level aggregation is performed after WU-level processing by reading the `constituent_docs` field.
+> The field mapping contract from WU metadata to the PRE manifest `work_units[]` is defined in [pre_specification.md](pre_specification.md) §PRE Manifest — Downstream Interface Contract (source of truth).
 
 ---
 
 ## Step 3.1 — Context-Window Chunking
 
-Use heading-level token measurements to determine chunking strategy via **recursive top-down splitting**. This step produces **heading-aligned Chunks** — each Chunk ≤ Upper Bound tokens. WU assignment is deferred to Step 3.2.
+**The Coordinator** uses heading-level token measurements to determine chunking strategy via **recursive top-down splitting**. This step produces **heading-aligned Chunks** — each Chunk ≤ Upper Bound tokens. WU assignment is deferred to Step 3.2.
 
 | Total Document Size | Chunking Strategy |
 |:---|:---|
@@ -121,9 +119,9 @@ When a leaf heading exceeds the Upper Bound tokens and cannot be split at headin
 
 | Option | When to use | Merge rule |
 |:---|:---|:---|
-| **Paragraph/list-item split** | Content contains ≥ 3 structural split boundaries (blank-line separators `\n\n`, or line-start item markers matching `^\s*(?:\.\d+\|\d+[.)]\|\(\d+\)\|[A-Za-z][.)]\|[-*+])\s`) and splitting at those boundaries produces all segments ≤ Upper Bound | Split at paragraph boundaries; assign synthetic sub-chunk IDs (`{ChunkKey}_p{NNN}`). Merge results by paragraph order; deduplicate at overlap. |
-| **Sliding extraction window** | Paragraph/list-item split fails (< 3 structural boundaries, or any segment > Upper Bound after split) | `window_size = floor(Upper_Bound × 0.875)`, `overlap = floor(window_size × 0.21)`, `unique = window_size - overlap`. Adjusts automatically when Upper Bound changes. Coordinator merges and deduplicates. Assign synthetic sub-chunk IDs (`{ChunkKey}_w{NNN}`). |
-| **User escalation** | Sliding window produces segments with > 20% token variance from target, or content structure is ambiguous | Present the oversize leaf to user with a recommendation |
+| **Paragraph/list-item split** | **Both** must hold: (1) content contains ≥ 3 structural split boundaries (blank-line separators `\n\n`, or line-start item markers matching `^\s*(?:\.\d+\|\d+[.)]\|\(\d+\)\|[A-Za-z][.)]\|[-*+])\s`); (2) splitting at **all** of those boundaries produces **every** segment ≤ Upper Bound. If either condition fails, fall through to sliding window. | Split at paragraph boundaries; assign synthetic sub-chunk IDs (`{ChunkKey}_p{NNN}`). Merge results by paragraph order; deduplicate at overlap. |
+| **Sliding extraction window** | Paragraph/list-item split fails (< 3 structural boundaries, or any segment > Upper Bound after split) | `window_size = floor(Upper_Bound × 0.875)`, `overlap = floor(window_size × 0.21)`, `unique = window_size - overlap`. Both ratios are step3-local constants (rationale: 12.5% headroom, 21% inter-window redundancy for dedup). Adjusts automatically when Upper Bound changes. Coordinator merges and deduplicates. Assign synthetic sub-chunk IDs (`{ChunkKey}_w{NNN}`). |
+| **User escalation** | Sliding window produces any segment whose token count deviates by > 20% from `unique` (the per-segment target = `window_size − overlap`), or content structure is ambiguous | Present the oversize leaf to user with a recommendation |
 
 > Oversize leaf splits are recorded in the chunk plan with `split_method = "oversize_paragraph"` or `"oversize_window"`. They are surfaced in the §3.3 Issue Gate report when user escalation is triggered.
 
@@ -137,9 +135,8 @@ When a **non-leaf heading's own exclusive content** (preamble before the first c
 
 If a document has no headings at all (or only a DocumentRoot with no child headings):
 
-1. If ≤ Upper Bound → single Chunk = 1 Document (proceed to WU packing)
-2. If > Upper Bound → apply paragraph/list-item split or sliding window (same as oversize leaf exception) with the entire document treated as a single leaf
-3. Record as `split_method = "headingless"` in the chunk plan
+1. If ≤ Upper Bound → single Chunk = 1 Document (proceed to WU packing); record as `split_method = "headingless"`
+2. If > Upper Bound → apply paragraph/list-item split or sliding window (same as oversize leaf exception) with the entire document treated as a single leaf; record as `split_method = "headingless_paragraph"` or `"headingless_window"` per which sub-method was used
 
 ### Chunking Rules
 
@@ -157,7 +154,7 @@ If a document has no headings at all (or only a DocumentRoot with no child headi
 - `heading_level`: name of the heading level at which the chunk boundary was cut, or `null`
 - `start_line`, `end_line`: line range in the canonical input file (inclusive)
 - `est_tokens`: chunk token count
-- `split_method`: `recursive` / `oversize_paragraph` / `oversize_window` / `oversize_preamble` / `headingless`
+- `split_method`: `recursive` / `oversize_paragraph` / `oversize_window` / `oversize_preamble` / `headingless` / `headingless_paragraph` / `headingless_window`
 - `measure_method`: `tiktoken` or `char_approx`
 - `sub_chunks`: array of sub-chunks when further split via the oversize-leaf exception or the headingless fallback; otherwise `null`. Each sub-chunk contains `sub_chunk_key` (`{ChunkKey}_p{NNN}` or `{ChunkKey}_w{NNN}`), `start_line`, `end_line`, and `est_tokens`.
 
@@ -176,11 +173,15 @@ After context-window Chunks are determined, pack Chunks (or whole Documents wher
 | Chunking Outcome | WU Packing Action |
 |:---|:---|
 | **Single chunk, > Upper Bound** | Error — should not occur after Step 3.1. Escalate. |
-| **Multiple chunks from same document** | Each chunk (or coalesced group of adjacent chunks) becomes a **split WU**. Adjacent chunks from the same document may be coalesced into one WU if combined ≤ Upper Bound. |
+| **Multiple chunks from same document** | **Mandatory adjacent-coalesce**: greedily merge consecutive chunks (in chunk order) while combined `est_tokens` ≤ Upper Bound, then close the group as one **split WU**. Repeat until all chunks are assigned. This minimises below-Lower-Bound split WUs. |
 | **Single chunk, within WU target range** | **Standalone** — 1 Document = 1 WU. |
 | **Single chunk, below WU target range** | **Merge candidate** — eligible for cross-document merge per §Merge Constraints. |
 
-> **Split WU remainder**: If a split document's last WU falls below the Lower Bound, it is accepted as-is. Do not merge split document pieces with other documents.
+> **Split WU remainder**: If a split document's last WU (after mandatory adjacent-coalesce) still falls below the Lower Bound, it is accepted as-is. Do not merge split document pieces with other documents.
+
+> **Single oversize merge candidate**: If a small document is < Lower Bound but no other eligible documents are available (e.g., none share Authority/DocType/language/grammar_version/measure_method), it remains a standalone WU below Lower Bound. This is accepted; the §3.3 Issue Gate may surface it as Info.
+
+> **Measure_Method in split WUs**: All chunks of a split document must share the same `measure_method` (guaranteed because Step 2 produces a uniform `Measure_Method` per document — see §Step 2 Completion). Mixing within a split WU is an error.
 
 ### Coordinator Execution
 
@@ -194,19 +195,33 @@ The Coordinator performs WU packing immediately after all heading structure TSVs
 
 ## Step 3.3 — Issue Gate and Auto-Completion
 
-Default behaviour is auto-completion. The Coordinator automatically detects issues based on triggers defined in their respective sections (§2.4, §Oversize-Leaf Exception, §Merge Constraints, §Work Unit Token Range, etc.). When no trigger fires, the Coordinator writes artefacts directly to `results/` (see §Artefact Storage) without presenting the tables below. When a trigger fires, the Coordinator surfaces the following report and requests a decision.
+Default behaviour is auto-completion. The Coordinator automatically detects issues based on triggers defined in their respective sections ([step2_heading_extraction.md](step2_heading_extraction.md) §2.4, §Oversize Leaf Exception, §Merge Constraints, §Work Unit Token Range, etc.). When no trigger fires, the Coordinator writes artefacts directly to `results/` (see §Artefact Storage) without presenting the tables below. When a trigger fires, the Coordinator surfaces the following report and requests a decision.
 
 ### Issue Report
 
-When a trigger fires, the Coordinator provides the chunking plan, WU packing plan, target Document list, and execution summary (total Document/Chunk/WU counts, open Warning count, grammar versions, oversize exceptions, merge eligibility violations, etc.) so the user can diagnose the cause. The exact report format and included items are determined by the Coordinator based on the issue type and context.
+When a trigger fires, the Coordinator surfaces an Issue Report containing **at minimum** the following fields (additional context may be appended per issue type):
+
+| Field | Description |
+|:---|:---|
+| `issue_type` | e.g., `oversize_leaf`, `merge_eligibility_violation`, `warning_overflow`, `single_chunk_overflow`, `headingless_oversize` |
+| `trigger_rule` | The exact rule/section that fired (e.g., "§Oversize Leaf Exception → user escalation") |
+| `affected_doc_instance_keys` | Array of impacted DocumentInstanceKeys |
+| `affected_wu_keys` | Array of impacted WU_Keys (if WU packing already attempted) |
+| `summary` | Execution summary: total Document/Chunk/WU counts, open Warning count, grammar versions, oversize exception count, merge violations |
+| `suggested_action` | Coordinator's recommended `proceed` / `revise` / `abort` choice and rationale |
+| `attached_plan` | Chunking plan and WU packing plan slices for the affected items |
 
 ### User Response
 
-| User Response | Action |
-|:---|:---|
-| **`proceed`** | Acknowledge the issue and continue (e.g., accept Warning overflow). Coordinator resumes auto-completion. |
-| **`revise`** | Adjust thresholds or rerun scope. Coordinator re-runs affected steps per §Threshold Change Rerun Rules. |
-| **`abort`** | Halt processing for affected Document(s). Quarantine temp copies to `results/aborted/{doc_instance_key}/`. |
+> WU lifecycle states (`planned → running → completed → validated → processed/proceeded/revised/aborted`) are defined in [pre_specification.md](pre_specification.md) §Work Unit Lifecycle States. The mapping below sets the terminal state in WU metadata (`status` field).
+
+| User Response | Action | Resulting WU `status` |
+|:---|:---|:---|
+| **`proceed`** | Acknowledge the issue and continue (e.g., accept Warning overflow). Coordinator resumes auto-completion. | `proceeded` |
+| **`revise`** | Adjust thresholds or rerun scope. Coordinator re-runs the affected steps. | `revised` (after rerun → `processed`) |
+| **`abort`** | Halt processing for affected Document(s). Quarantine temp copies to `results/aborted/{doc_instance_key}/`. Aborted documents and their WUs are **excluded from `corpus__pre__manifest.json`**. | `aborted` |
+
+> Auto-completed (no trigger fired) WUs receive `status = processed`.
 
 ---
 
@@ -218,7 +233,7 @@ At step completion, the following intermediate artefacts are auto-deleted: Step 
 
 When a Document is aborted due to an issue, a debug copy is quarantined to `results/aborted/{doc_instance_key}/`.
 
-`coverage.json` (#8) is always generated.
+`coverage.json` (#8) is always generated by Step 2 Pass 4 — see [pre_specification.md](pre_specification.md) §Artefact Catalogue. It is mentioned here only because it is a hard prerequisite for Step 3 chunking integrity checks; Step 3 does **not** produce it.
 
 The authoritative artefact catalogue and file naming rules live in [pre_specification.md](pre_specification.md) §Artefact Catalogue.
 

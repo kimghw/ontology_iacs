@@ -3,116 +3,120 @@
 # prerequisite/ 및 shared/ 문서에서 참조되는 모든 파일명·경로를 이 파일 한 곳에 정의한다.
 # 문서가 새로운 파일명/경로를 도입할 때는 반드시 이 파일에도 등록해야 한다.
 #
-# 검증: python scripts/validate_files.py
-#   - 문서에 등장한 파일명·경로가 이 registry에 있는지 확인한다.
-#   - `{placeholder}`는 `{}` 로 정규화하여 템플릿 단위로 비교한다 (예: `doc-{doc_instance_key}__pre__split.md` 매칭).
+# 구조: artifacts/paths/docs 는 `{ID: 템플릿}` 매핑이다.
+#   - A## : artifact (산출물 파일명 템플릿)
+#   - P## : path     (디렉토리 경로)
+#   - D## : doc      (명세·가이드·스크립트 등 정적 문서)
+#   본문에서는 `[ID] filename` 형식으로 참조한다 (예: `**[A05]** \`doc-...tsv\``).
 #
-# 엔트리 작성 규칙
-#   - artifacts: `{scope}__{phase}__{artifact}.{ext}` 패턴의 산출물 파일명
-#   - paths:     디렉토리 경로 (trailing slash 포함)
-#   - docs:      문서(명세·가이드·공통정의) 파일명. 링크 텍스트 기준.
+# 검증: python3 scripts/validate_files.py
+#   - 문서에 등장한 파일명·경로가 이 registry에 있는지 확인
+#   - `[ID] filename` 페어의 ID와 파일명이 registry와 일치하는지 확인
+#   - `{placeholder}` 는 `{}` 로 정규화하여 템플릿 단위로 비교
 
 # ── Artifacts (파일명 템플릿) ─────────────────────────────
 artifacts:
   # Step 1.1 — Normalisation
-  - "file-{source_file_key}__pre__meta.json"
-  - "file-{source_file_key}__pre__normalised.md"
+  A01: "file-{source_file_key}__pre__meta.json"
+  A02: "file-{source_file_key}__pre__normalised.md"
 
   # Step 1.2 — Document split & manifest
-  - "doc-{doc_instance_key}__pre__split.md"
-  - "corpus__pre__document_manifest.jsonl"
+  A03: "doc-{doc_instance_key}__pre__split.md"
+  A04: "corpus__pre__document_manifest.jsonl"
 
   # Step 2 — Heading extraction
-  - "doc-{doc_instance_key}__heading__structure.tsv"
-  - "doc-{doc_instance_key}__heading__regex_spec.json"
-  - "doc-{doc_instance_key}__heading__chunk_plan.json"
-  - "doc-{doc_instance_key}__heading__discrepancy.tsv"
-  - "doc-{doc_instance_key}__heading__discrepancy_final.tsv"
-  - "doc-{doc_instance_key}__heading__coverage.json"
-  - "doc-{doc_instance_key}__heading__extraction_llm.tsv"
-  - "doc-{doc_instance_key}__heading__extraction_script.tsv"
-  - "doc-{doc_instance_key}__heading__validated.tsv"
-  - "doc-{doc_instance_key}__heading__grammar_candidate.md"
-  - "doctype-{DocType}__heading__grammar_v{NN}.md"
-  - "doctype-{DocType}__heading__grammar_candidate.md"
+  A05: "doc-{doc_instance_key}__heading__structure.tsv"
+  A06: "doc-{doc_instance_key}__heading__regex_spec.json"
+  A07: "doc-{doc_instance_key}__heading__chunk_plan.json"
+  A08: "doc-{doc_instance_key}__heading__discrepancy.tsv"
+  A09: "doc-{doc_instance_key}__heading__discrepancy_final.tsv"
+  A10: "doc-{doc_instance_key}__heading__coverage.json"
+  A11: "doc-{doc_instance_key}__heading__extraction_llm.tsv"
+  A12: "doc-{doc_instance_key}__heading__extraction_script.tsv"
+  A13: "doc-{doc_instance_key}__heading__validated.tsv"
+  A14: "doc-{doc_instance_key}__heading__grammar_candidate.md"
+  A15: "doctype-{DocType}__heading__grammar_v{NN}.md"
+  A16: "doctype-{DocType}__heading__grammar_candidate.md"
 
   # 후속 단계 (TD/APP/CT) — WU 산출물 (naming_convention 예시에서 참조)
-  - "wu-{wu_key}__true_def__extracted_segments.tsv"
-  - "wu-{wu_key}__applicability__extracted_segments.tsv"
-  - "wu-{wu_key}__controlled_term__extracted_segments.tsv"
+  A17: "wu-{wu_key}__true_def__extracted_segments.tsv"
+  A18: "wu-{wu_key}__applicability__extracted_segments.tsv"
+  A19: "wu-{wu_key}__controlled_term__extracted_segments.tsv"
 
   # documentSplit (임시 분할본)
-  - "documentSplit-{doc_instance_key}_s{NNN}__heading__extraction_llm.tsv"
-  - "documentSplit-{doc_instance_key}_s{NNN}__heading__extraction_script.tsv"
+  A20: "documentSplit-{doc_instance_key}_s{NNN}__heading__extraction_llm.tsv"
+  A21: "documentSplit-{doc_instance_key}_s{NNN}__heading__extraction_script.tsv"
 
   # Step 3 — WU & manifest
-  - "wu-{wu_key}__pre__meta.json"
-  - "wu-{wu_key}__pre__task_brief.md"
-  - "corpus__pre__manifest.json"
+  A22: "wu-{wu_key}__pre__meta.json"
+  A23: "wu-{wu_key}__pre__task_brief.md"
+  A24: "corpus__pre__manifest.json"
 
 # ── Storage paths (디렉토리) ─────────────────────────────
 paths:
-  - "results/"
-  - "results/temp/"
-  - "results/temp/pre/"
-  - "results/temp/pre/documentSplits/"
-  - "results/grammars/"
-  - "results/grammars/staging/"
-  - "results/aborted/"
-  - "results/aborted/{doc_instance_key}/"
-  - "staging/"                    # results/grammars/staging/ 약식 (prose shorthand)
-  - "shared/"
-  - "prerequisite/"
-  - "pre_skos/"
-  - "pre_skos/task_brief/"
-  - "commands/"
-  - "scripts/"
+  P01: "results/"
+  P02: "results/temp/"
+  P03: "results/temp/pre/"
+  P04: "results/temp/pre/documentSplits/"
+  P05: "results/grammars/"
+  P06: "results/grammars/staging/"
+  P07: "results/aborted/"
+  P08: "results/aborted/{doc_instance_key}/"
+  P09: "staging/"                    # results/grammars/staging/ 약식 (prose shorthand)
+  P10: "shared/"
+  P11: "prerequisite/"
+  P12: "pre_skos/"
+  P13: "pre_skos/task_brief/"
+  P14: "commands/"
+  P15: "scripts/"
 
   # 예시 입력 디렉토리 (문서 예시에서만 사용)
-  - "UR_MD/"
-  - "UI_MD/"
-  - "PR_MD/"
+  P16: "UR_MD/"
+  P17: "UI_MD/"
+  P18: "PR_MD/"
 
 # ── Documents (명세·가이드·공통정의 파일) ──────────────
 docs:
   # prerequisite/
-  - "pre_specification.md"
-  - "pre_specification_ko.md"
-  - "step1_document_split.md"
-  - "step1_document_split_ko.md"
-  - "step2_heading_extraction.md"
-  - "step2_heading_extraction_ko.md"
-  - "step3_workunit_packing.md"
-  - "step3_workunit_packing_ko.md"
+  D01: "pre_specification.md"
+  D02: "pre_specification_ko.md"
+  D03: "step1_document_split.md"
+  D04: "step1_document_split_ko.md"
+  D05: "step2_heading_extraction.md"
+  D06: "step2_heading_extraction_ko.md"
+  D07: "step3_workunit_packing.md"
+  D08: "step3_workunit_packing_ko.md"
+  D09: "step3_chunking_packing.md"
+  D10: "step3_chunking_packing_ko.md"
 
   # shared/
-  - "project_definitions.md"
-  - "project_definitions_ko.md"
-  - "naming_convention.md"
-  - "naming_convention_ko.md"
-  - "document_classification.md"
-  - "document_classification_ko.md"
-  - "thresholds.yaml"
-  - "files_registry.yaml"
-  - "validate.md"
+  D11: "project_definitions.md"
+  D12: "project_definitions_ko.md"
+  D13: "naming_convention.md"
+  D14: "naming_convention_ko.md"
+  D15: "document_classification.md"
+  D16: "document_classification_ko.md"
+  D17: "thresholds.yaml"
+  D18: "files_registry.yaml"
+  D19: "validate.md"
 
   # pre_skos/
-  - "pre_skos/phase1_heading_instruction.md"
-  - "pre_skos/task_brief/task_brief_generator.md"
+  D20: "pre_skos/phase1_heading_instruction.md"
+  D21: "pre_skos/task_brief/task_brief_generator.md"
 
   # commands/
-  - "commands/agents.md"
+  D22: "commands/agents.md"
 
   # scripts/
-  - "scripts/update_thresholds.py"
-  - "scripts/validate_files.py"
-  - "scripts/step2_regex_runner.py"
-  - "scripts/html_to_md.py"
-  - "scripts/xml_to_md.py"
-  - "scripts/json_to_md.py"
+  D23: "scripts/update_thresholds.py"
+  D24: "scripts/validate_files.py"
+  D25: "scripts/step2_regex_runner.py"
+  D26: "scripts/html_to_md.py"
+  D27: "scripts/xml_to_md.py"
+  D28: "scripts/json_to_md.py"
 
   # 설정 파일
-  - "prerequisite/.markdownlint.json"
+  D29: "prerequisite/.markdownlint.json"
 
 # ── Examples (문서 예시에서 사용되는 리터럴 소스 파일명) ──
 # 실제 산출물이 아니라 설명용 예시. registry 에 등록만 해두면 validator 가 통과시킨다.

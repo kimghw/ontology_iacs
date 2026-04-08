@@ -1,1 +1,0 @@
-I cannot directly convert the PDF to Markdown format while preserving all elements like tables and headings using the available tools. The `read_file` tool can read the PDF content, but it will extract it as plain text, losing the structural information necessary for a "well-formatted Markdown."

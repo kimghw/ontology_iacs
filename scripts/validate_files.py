@@ -41,12 +41,28 @@ except ImportError:
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 REGISTRY_PATH = PROJECT_ROOT / "shared" / "files_registry.yaml"
+THRESHOLDS_PATH = PROJECT_ROOT / "shared" / "thresholds.yaml"
 SCAN_DIRS = [PROJECT_ROOT / "prerequisite", PROJECT_ROOT / "shared"]
 SCAN_EXT = {".md"}
 
 # ── 추출 정규식 (명시적 컨텍스트만) ─────────────────────
 RE_MD_LINK   = re.compile(r"\]\(([^)\s]+)(?:\s+\"[^\"]*\")?\)")
 RE_BACKTICK  = re.compile(r"`([^`\n]+)`")
+
+# `[A05]` 또는 `**[A05]**` 다음에 백틱 파일명 또는 마크다운 링크가 오는 페어
+# 예: **[A05]** `doc-...tsv`  /  **[D02]** [pre_specification_ko.md](...)
+RE_ID_PAIR = re.compile(
+    r"\*{0,2}\[([ADP]\d{2,})\]\*{0,2}"   # [A05] 또는 **[A05]**
+    r"\s*"
+    r"(?:`([^`\n]+)`"                     # 백틱 파일명
+    r"|\[[^\]]+\]\(([^)\s]+)\))"          # 또는 [text](target)
+)
+
+# 임계값 참조: `{{key:value}}` 형식 (key 만 캡처). value 는 update_thresholds.py 가 동기화.
+RE_THRESHOLD_REF = re.compile(r"\{\{([a-z][a-z0-9_]*)\s*:[^}]*\}\}")
+
+# 코드 영역 (인라인 / 펜스) — 임계값 참조 검증 시 제외 (update_thresholds.py 와 동일 정책)
+RE_CODE_SPAN = re.compile(r"```.*?```|`[^`\n]*`", re.DOTALL)
 
 # 파일스러운 토큰인지 판단
 RE_FILEISH   = re.compile(r"\.[A-Za-z0-9]{1,8}(/)?$|/$")
@@ -87,15 +103,48 @@ def template_to_regex(template: str) -> re.Pattern:
     return re.compile(r"\A" + "".join(out) + r"\Z")
 
 
+def _values(section) -> list:
+    """artifacts/paths/docs 섹션을 리스트로 정규화. dict({ID: 템플릿}) 또는 list 둘 다 허용."""
+    if section is None:
+        return []
+    if isinstance(section, dict):
+        return list(section.values())
+    return list(section)
+
+
 def load_registry() -> dict:
     with REGISTRY_PATH.open(encoding="utf-8") as f:
         data = yaml.safe_load(f) or {}
-    artifacts = list(data.get("artifacts", []))
-    paths     = list(data.get("paths", []))
-    docs      = list(data.get("docs", []))
+    artifacts_map = data.get("artifacts") or {}
+    paths_map     = data.get("paths") or {}
+    docs_map      = data.get("docs") or {}
+    artifacts = _values(artifacts_map)
+    paths     = _values(paths_map)
+    docs      = _values(docs_map)
     examples  = list(data.get("examples", []))
     # examples 는 artifact/doc 양쪽에서 매칭 가능하도록 docs 에 병합
     all_docs = docs + examples
+
+    # ID → 정규화 템플릿 매핑 ([A05]/[P01]/[D02] 검증용)
+    id_to_norm: dict[str, str] = {}
+    if isinstance(artifacts_map, dict):
+        for k, v in artifacts_map.items():
+            id_to_norm[k] = normalize_placeholders(v)
+    if isinstance(paths_map, dict):
+        for k, v in paths_map.items():
+            id_to_norm[k] = normalize_placeholders(v)
+    if isinstance(docs_map, dict):
+        for k, v in docs_map.items():
+            id_to_norm[k] = normalize_placeholders(v)
+
+    # 임계값 키 로드 (`**[key]**` 참조 검증용)
+    threshold_keys: set[str] = set()
+    if THRESHOLDS_PATH.exists():
+        with THRESHOLDS_PATH.open(encoding="utf-8") as f:
+            tdata = yaml.safe_load(f) or {}
+        if isinstance(tdata, dict):
+            threshold_keys = {str(k) for k in tdata.keys()}
+
     return {
         "artifacts_norm":  {normalize_placeholders(x) for x in artifacts},
         "paths_norm":      {normalize_placeholders(x) for x in paths},
@@ -104,6 +153,8 @@ def load_registry() -> dict:
         "paths_regex":     [template_to_regex(x) for x in paths],
         "docs_regex":      [template_to_regex(x) for x in all_docs],
         "docs_basenames":  {normalize_placeholders(x).rsplit("/", 1)[-1] for x in all_docs},
+        "id_to_norm":      id_to_norm,
+        "threshold_keys":  threshold_keys,
     }
 
 
@@ -214,6 +265,35 @@ def _rel(path: Path) -> Path:
         return path
 
 
+def scan_id_pairs(path: Path, text: str, registry: dict, verbose: bool) -> list[str]:
+    """`[ID] filename` 페어의 ID와 파일명이 registry와 일치하는지 확인."""
+    mismatches: list[str] = []
+    id_to_norm = registry["id_to_norm"]
+    rel = _rel(path)
+    for lineno, line in enumerate(text.splitlines(), 1):
+        for m in RE_ID_PAIR.finditer(line):
+            ref_id = m.group(1)
+            token = m.group(2) or m.group(3) or ""
+            if not token:
+                continue
+            actual_norm = normalize_placeholders(strip_relative(token.split("#", 1)[0]))
+            expected_norm = id_to_norm.get(ref_id)
+            if expected_norm is None:
+                mismatches.append(f"{rel}:{lineno}  [{ref_id}] 미등록 ID — registry에 없음")
+                continue
+            # basename 비교 (registry가 경로 prefix를 포함하는 경우 허용)
+            actual_base = actual_norm.rsplit("/", 1)[-1]
+            expected_base = expected_norm.rsplit("/", 1)[-1]
+            if actual_norm == expected_norm or actual_base == expected_base:
+                if verbose:
+                    print(f"  OK   [id-pair] {rel}:{lineno}  [{ref_id}] {token}")
+                continue
+            mismatches.append(
+                f"{rel}:{lineno}  [{ref_id}] 파일명 불일치 — 본문={token!r}, registry={expected_norm!r}"
+            )
+    return mismatches
+
+
 def scan_file(path: Path, registry: dict, verbose: bool) -> list[str]:
     text = path.read_text(encoding="utf-8")
     missing: list[str] = []
@@ -234,7 +314,38 @@ def scan_file(path: Path, registry: dict, verbose: bool) -> list[str]:
                 continue
             rel = _rel(path)
             missing.append(f"{rel}:{lineno}  [{category}] {token}")
+    # ID↔파일명 페어 검증
+    missing.extend(scan_id_pairs(path, text, registry, verbose))
+    # 임계값 키 참조 검증
+    missing.extend(scan_threshold_refs(path, text, registry, verbose))
     return missing
+
+
+def scan_threshold_refs(path: Path, text: str, registry: dict, verbose: bool) -> list[str]:
+    """`{{key:value}}` 참조의 key가 thresholds.yaml에 등록된 키인지 확인.
+
+    코드 영역(`...`, ```...```) 안의 placeholder 는 제외 — update_thresholds.py
+    가 동일 정책으로 치환을 건너뛰므로 (메타 예시 보호) validator 도 같이 무시한다.
+    """
+    mismatches: list[str] = []
+    keys = registry["threshold_keys"]
+    rel = _rel(path)
+    code_spans = [(m.start(), m.end()) for m in RE_CODE_SPAN.finditer(text)]
+
+    def in_code_span(pos: int) -> bool:
+        return any(s <= pos < e for s, e in code_spans)
+
+    for m in RE_THRESHOLD_REF.finditer(text):
+        if in_code_span(m.start()):
+            continue
+        lineno = text.count("\n", 0, m.start()) + 1
+        key = m.group(1)
+        if key in keys:
+            if verbose:
+                print(f"  OK   [threshold] {rel}:{lineno}  {{{{{key}:...}}}}")
+            continue
+        mismatches.append(f"{rel}:{lineno}  {{{{{key}:...}}}} 미등록 임계값 키 — thresholds.yaml에 없음")
+    return mismatches
 
 
 def main() -> int:

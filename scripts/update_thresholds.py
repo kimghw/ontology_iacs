@@ -38,6 +38,8 @@ DEFAULT_TARGETS = [
     "prerequisite/step2_heading_extraction_ko.md",
     "prerequisite/step3_workunit_packing.md",
     "prerequisite/step3_workunit_packing_ko.md",
+    "prerequisite/step3_chunking_packing.md",
+    "prerequisite/step3_chunking_packing_ko.md",
     "shared/splitting_stages.md",
     "shared/splitting_stages_ko.md",
 ]

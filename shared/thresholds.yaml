@@ -11,10 +11,15 @@ split_overlap: "100"            # 인접 documentSplit 간 중복 라인 수
 split_overlaptkn: "200–400"     # 중복 라인의 대략적 토큰 수
 split_context: "50"             # 경계 충돌 해결 시 추가 컨텍스트 라인 (±)
 
+# ── Step 1.2.2: 소규모 인접 문서 병합 ──
+merge_threshold: "32K"          # 소형 문서 병합 기준 (이하이면 인접 문서와 병합) — Step 1.2.2 전용
+
 # ── Chunk & WU (Step 3: 청킹, Work Unit 패킹) ──
-chunk_max: "32K"                # Chunk 최대 토큰 (heading 경계 기준)
-merge_threshold: "32K"          # 소형 문서 병합 기준 (이하이면 인접 문서와 병합)
-wu_range: "16K–32K"             # Work Unit 목표 토큰 범위
+# 청킹: 상한(chunk_max) 강제 → split WU(상한 초과 분할) / standalone WU(하한~상한 단일) 확정
+# WU 패킹: 하한(wu_min) 미달 문서를 동질끼리 머지 → merge WU 생성
+chunk_max: "32K"                # Chunk 최대 토큰 (= WU 상한, heading 경계 기준)
+wu_min: "16K"                   # WU 하한 (이 미만이면 merge WU 후보로 인계)
+wu_range: "16K–32K"             # Work Unit 목표 토큰 범위 (= wu_min ~ chunk_max, 표시용)
 
 # ── PDF Normalisation (Step 1.1) ──
 pdf_pages: "50"                 # PDF 에이전트당 페이지 수
