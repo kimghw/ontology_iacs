@@ -40,3 +40,78 @@
   - 4.7을 외부화하면서 4.4 변환 절차의 단계 번호를 재정렬했음(5→6, 6→7, 7→8). 이 번호를 참조하는 외부 문서/다른 스킬이 있다면 깨질 수 있음(현재 저장소 내 교차 참조 없음으로 확인됨).
 
 - **심각도**: 중 (기존 원칙과의 충돌 + 외부 런타임 의존 추가)
+
+---
+
+## 2026-04-09 pdf2md bulk conversion — UR_A/C/D/E/F (83 PDFs)
+
+### 개요
+- 입력: UR_A(2) + UR_C(2) + UR_D(11) + UR_E(22) + UR_F(46) = 83 PDF
+- 분할: UR-E26(56p)만 50p 단위 2파트 분할. 나머지 82개는 단일 파트. 총 84 서브에이전트 작업.
+- 출력: `UR/UR_A_md/`, `UR/UR_C_md/`, `UR/UR_D_md/`, `UR/UR_E_md/`, `UR/UR_F_md/` (각 폴더에 `<원본>.md` + `assets/<원본>/`).
+- markdownlint: 83/83 통과 (각 `_md/` 폴더 `.markdownlint.json`로 MD036/MD056/MD024/MD013 비활성화).
+
+### 모호/판단 사항
+
+#### 1. ur-d7rev3 — 이미지 1/2 미사용 (심각도: 하)
+- 관찰: `pdfimages`가 fig-000.png / fig-001.png 2개 추출. 에이전트는 본문 Figure 참조가 1개뿐이라 fig-000.png만 링크, fig-001.png는 임의 삽입 회피.
+- 해석: fig-001.png는 회사 로고/장식 이미지로 추정.
+- 처리: 에이전트 판단대로 fig-000.png만 링크. fig-001.png는 assets에 그대로 복사됨(orphan).
+
+#### 2. UR-F44 — 12 이미지 순서 매핑 불확실 (심각도: 중)
+- 관찰: 12개 이미지(fig-000 ~ fig-011)를 본문 Sample 1~6 다이어그램 본체+범례에 매핑해야 하나, PDF 본문 텍스트만으로는 정확한 매칭 불가.
+- 해석: 순서 기반 할당(원문 등장 순서대로).
+- 처리: 에이전트가 `![\[Sample N\]...]` 형태의 캡션으로 12개 전부 링크. 사용자가 렌더링 시 Sample 번호 ↔ fig 번호 대응 재확인 권장.
+
+#### 3. ur-f39del-1 — orphan 이미지 2개 (심각도: 하)
+- 관찰: F39 삭제 고지 페이지로 본문에 그림 참조 없음. 그러나 `pdfimages`가 fig-000/001.png 2개 추출.
+- 해석: PDF 내 배경/로고 이미지로 추정.
+- 처리: 에이전트가 링크 삽입 생략. 이미지는 assets에 그대로 복사됨.
+
+#### 4. ur-e20rev1 — 이미지 확장자 `.jpg` (심각도: 하)
+- 관찰: 에이전트가 `fig-000.png`로 링크했으나 실제 추출 파일은 `.jpg`.
+- 처리: 오케스트레이터가 병합 후 `.png → .jpg`로 sed 재작성. 검증 통과.
+
+#### 5. UR-E26 — 50p/6p 분할 경계 (심각도: 하)
+- 관찰: 56p 문서를 1-50, 51-56 두 파트로 분할. 51페이지 시작 부분이 4.2 섹션 표 연장으로 관찰됨(part01 끝이 "종료 단편", part02 시작이 "시작 단편").
+- 처리: 각 파트 에이전트가 원문 그대로 기록, 오케스트레이터가 빈 줄로 단순 연결. 표 자체는 self-contained하여 구조 복원 없이도 의미 보존됨.
+
+### markdownlint 위반 처리
+
+최초 스캔: 12개 파일 위반. 다음과 같이 처리:
+
+| 규칙 | 처리 |
+|---|---|
+| MD036 (no-emphasis-as-heading) | `.markdownlint.json`로 전역 비활성화. 이유: IACS 문서의 Table/Figure 캡션, IEC 이미지 크레딧, 개정이력 블록 등이 bold 표기로 등장해 오탐 다수. |
+| MD056 (table-column-count) | `.markdownlint.json`로 전역 비활성화. 이유: UR-E10의 대형 표가 셀 내부에 중첩 표를 포함하여 `\|` 파서 기준으로는 열 수 불일치. 마크다운 한계 사항. |
+| MD024 (no-duplicate-heading) | 비활성화. IACS 문서는 동일 섹션 번호 간 중복 제목 허용. |
+| MD013 (line-length) | 비활성화. 원문 장문 문단 보존 우선. |
+| MD033 (no-inline-html) | `<!-- markdownlint-disable MD033 -->`를 `<sub>`/`<sup>` 있는 21개 파일 최상단에 주입. |
+| MD026 (trailing-punctuation) | ur-d7rev3, ur-f37del-1 헤딩 끝 `.` 제거. |
+| MD030 (list-marker-space) | UR-E26 line 403의 `-  ` → `- ` 수정. |
+| MD034 (no-bare-urls) | UR-E26 line 695 URL을 `<...>`로 감쌈. |
+| MD007 (ul-indent) | ur-a2rev5 line 206-207의 3칸 들여쓰기 제거. |
+| UR-F44의 `<Operational requirements>` (inline HTML 오생성) | `**Operational requirements**`로 교정. |
+
+재검증: **83/83 파일 markdownlint 통과**.
+
+### 오탈자 검사 (language_tool_python)
+
+- **자동 수정 비활성화**. 사유:
+  - LT의 `en-US` 사전이 영국식 철자를 TYPOS로 오탐. IACS 선박 기술 문서는 영국식 철자 일관 사용(draught/moulded/manoeuvring/centre/fibre/vapour/analyse/recognise/harmonise/categorise 등). 자동 수정 시 기술 용어 파괴.
+  - 복합 기술 용어 분리 오류: `twistlock → twist lock`, `weatherdeck → weather deck`, `downflooding → down flooding`, `pumproom → pump room`, `longitudinals → longitudinal`, `portlights → port lights`.
+  - 심각한 오역: `Shell → She'll`, `KG-draught → KG-drought`, `FPSOs → FPS Os`(약어 파괴), `markdownlint-disable → markdown lint-disable`(MD033 directive 파괴).
+  - `ko-KR`은 현재 설치된 LT 6.8-SNAPSHOT이 미지원 → 영어만 검사. IACS 문서는 모두 영문이므로 실질 영향 없음.
+- 최종 동작: **report-only** (심각도: 중) — `pdf2md_work/typo_report.json`에 전체 1386건 매뉴얼 리뷰 항목 저장. 사용자 결정 대기.
+- skill 본문에 "자동 수정 범위는 단일 후보 + TYPOS/MISSPELLING"로 규정되어 있으나, 본 실행에서는 해당 범위 내에도 파괴적 변경 다수 발생. `SKILL.md`의 오탈자 자동 수정 정책 재검토 필요(별도 보고).
+
+### 서브에이전트 병렬 기동 수 피드백 반영
+- 실행 중반까지 라운드당 3개씩 기동 중 사용자 지적: "기본 20개 이상 써야 하는데 skill에 명시 안됨".
+- `SKILL.md` 동시 상한 기본값을 4 → 20으로 갱신.
+- 이후 라운드는 7/9/9 병렬로 기동하여 UR_F 나머지 34개를 3라운드로 완료.
+- 피드백 메모리 `~/.claude/projects/.../memory/feedback_subagent_parallelism.md`에 저장.
+
+### 최종 산출 확인
+- 83/83 `.md` 파일 각 `UR_X_md/` 배치 완료.
+- 이미지 링크 14개 전부 실재 파일 참조(broken: 0).
+- 이미지 원본/최종 개수 전부 일치(UR-E10 1, UR-E21 3, UR-F44 12, ur-a2rev5 5, ur-d3rev6 3, ur-d7rev3 2, ur-e20rev1 1, ur-f39del-1 2).
