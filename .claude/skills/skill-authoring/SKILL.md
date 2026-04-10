@@ -148,6 +148,7 @@ description: 파일을 변환하는 유용한 스킬입니다. 필요할 때 사
 | `reference.md` | 긴 스키마·API·용어집 | 본문에서 필요 시 Read |
 | `examples.md` | 실제 입출력 예시 모음 | 본문에서 필요 시 Read |
 | `scripts/*.py` | 스킬이 실행할 유틸리티 | 스킬이 Bash로 실행 |
+| `.venv/` | 스킬 전용 Python 가상환경 (gitignore 대상). 패키지 설치·스크립트 실행 시 `${CLAUDE_SKILL_DIR}/.venv/bin/pip`, `…/python` 사용 | 스킬이 Bash로 생성·사용 |
 | `assets/*` | 템플릿·샘플 파일 | 스킬이 복사·참조 |
 
 - 보조 파일은 **SKILL.md 본문에서 상대경로로 명시적으로 참조**해야 Claude가 찾는다.

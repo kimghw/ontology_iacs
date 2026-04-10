@@ -1,1 +1,3 @@
 .pdf2md_venv/
+node_modules/
+.claude/skills/*/.venv/

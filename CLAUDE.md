@@ -24,6 +24,12 @@
 ## llm 에서 요청한 질의는 모두 저장
 - user_query.md 에 질의 내용 자동 저장 (UserPromptSubmit hook → .claude/log_query.py)
 
+## 스킬별 가상환경
+- 각 스킬이 Python 패키지를 필요로 하면 스킬 디렉토리 내 `.venv/`에 가상환경을 생성·사용한다.
+- 경로: `.claude/skills/<skill-name>/.venv/`
+- 패키지 설치·스크립트 실행 시 반드시 해당 `.venv`의 pip/python을 사용한다.
+- `.venv/`는 `.gitignore`에 등록되어 있으므로 커밋하지 않는다.
+
 ## 중복된 내용은 지양
 
 ## 에이전트 처리 보고

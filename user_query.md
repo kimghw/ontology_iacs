@@ -1365,3 +1365,129 @@ wsl 경로
 ## 2026-04-10 11:44:06
 
 /git
+
+## 2026-04-10 11:59:17
+
+/home/kimghw/ontology_iacs/.claude/skills/pdf2md   -- 여기서  영국식 영어를 미국식 영어로 변경하라고 하지마.
+
+## 2026-04-10 12:08:12
+
+<ide_opened_file>The user opened the file /home/kimghw/ontology_iacs/.claude/commands/git.md in the IDE. This may or may not be related to the current task.</ide_opened_file>
+현재 공로 wsl 어떤 경로에 있지?
+
+## 2026-04-10 12:08:25
+
+윈도우에서 접근할 수 있는 경로
+
+## 2026-04-10 12:48:54
+
+원본 경로와 링크 위치를 알려주시면 만들어 드리겠습니다.
+
+wsl.localhost\Ubuntu\home\kimghw\ontology_iacs  이거 맞는데
+Bash Search for ontology directories
+IN
+ls /home/kimghw/ | grep -i ontology
+
+OUT
+(Bash completed with no output)
+Bash List home directory
+IN
+ls /home/kimghw/
+
+OUT
+(Bash completed with no output)
+Bash List home directory with details
+IN
+ls -la /home/kimghw/ 2>&1
+
+OUT
+total 88
+drwxr-x--- 12 kimghw kimghw  4096 Apr 10 12:46 .
+drwxr-xr-x  3 root   root    4096 Apr 10 12:18 ..
+-rw-------  1 kimghw kimghw   949 Apr 10 12:14 .bash_history
+-rw-r--r--  1 kimghw kimghw   220 Mar 31 13:11 .bash_logout
+-rw-r--r--  1 kimghw kimghw  3771 Mar 31 13:11 .bashrc
+drwx------  7 kimghw kimghw  4096 Apr 10 11:36 .cache
+drwx------ 12 kimghw kimghw  4096 Apr 10 12:09 .claude
+-rw-------  1 kimghw kimghw 20957 Apr 10 12:46 .claude.json
+drwxr-xr-x  5 kimghw kimghw  4096 Mar 31 15:07 .codex
+drwxr-xr-x  3 kimghw kimghw  4096 Mar 31 14:36 .dotnet
+drwxr-xr-x  4 kimghw kimghw  4096 Mar 31 15:08 .gemini
+drwxr-xr-x  2 kimghw kimghw  4096 Apr  1 09:18 .landscape
+drwxr-xr-x  4 kimghw kimghw  4096 Apr 10 11:16 .local
+-rw-rw-r--  1 kimghw kimghw     0 Apr 10 10:37 .motd_shown
+drwxr-xr-x  5 kimghw kimghw  4096 Apr 10 11:27 .npm
+-rw-r--r--  1 kimghw kimghw   807 Mar 31 13:11 .profile
+-rw-r--r--  1 kimghw kimghw     0 Mar 31 14:51 .sudo_as_admin_successful
+drwxr-xr-x  3 kimghw kimghw  4096 Mar 31 13:13 .vscode-remote-containers
+drwxr-xr-x  5 kimghw kimghw  4096 Mar 31 13:13 .vscode-server
+/home/kimghw/ 안에 ontology_iacs 디렉토리가 실제로 존재하지 않습니다. 숨김 파일까지 모두 표시했지만 해당 폴더가 없습니다.
+
+확인해 주세요:
+
+다른 WSL 배포판에 있는 건 아닌가요? (예: Ubuntu가 아닌 Ubuntu-22.04 등)
+원본이 어디에 있는 디렉토리인지 — Windows 쪽 경로(C:\... 또는 /mnt/c/...)인지, 아니면 만들고 싶은 새 폴더인지?
+심볼릭 링크의 목적은 무엇인가요? (예: Windows 폴더를 WSL에서 접근, 또는 다른 WSL 배포판 접근 등)
+WSL 배포판 목록을 확인하려면 Windows PowerShell에서:
+
+
+wsl -l -v
+원본이 어디 있는지 알려주시면 링크를 만들어 드리겠습니다.   -- 다른 disto 에서 안보인다는데
+
+## 2026-04-10 12:50:25
+
+현재 폴더를 윈도우에 마운트
+
+## 2026-04-10 12:55:20
+
+"C:\ubuntu_shared"  여기에 현재 ontolog_iacs 폴더 복사해줘
+
+## 2026-04-10 14:46:23
+
+"C:\shared_wk\ontology" 이거 심볼릭 만들어줘
+
+## 2026-04-10 14:47:14
+
+저 경로를 심볼릭으로 쓰고 싶다고.
+
+## 2026-04-10 14:47:55
+
+심볼릭 할때,,, 원본의 위치가 있고 심볼릭 링크가 있잖아
+
+## 2026-04-10 14:48:24
+
+아니.. 원본이 mnt/c 에 있는거지
+
+## 2026-04-10 14:49:31
+
+근데 이해가 안갔던게... 내가 심볼릭으로 만들어 달라고 하면 뭘 원본으로 할지 이야기 해줘야 하나?
+
+## 2026-04-10 14:51:41
+
+좋아.  현재 폴더를 C:\shared_wk 여기 안에 넣어주고 이 /mnt 경로를 내가 심볼릭으로 사용할게.. 현재 폴더 이름은 뒤에 _temp를 붙여줘
+
+## 2026-04-10 14:52:40
+
+네
+
+## 2026-04-10 14:55:33
+
+근데 깃 정보는 못갖어 오나보네?
+
+## 2026-04-10 15:05:48
+
+<ide_opened_file>The user opened the file /home/kimghw/ontology_iacs/CLAUDE.md in the IDE. This may or may not be related to the current task.</ide_opened_file>
+현재 심볼릭이지?
+
+## 2026-04-10 15:07:28
+
+/home/kimghw/ontology_iacs/node_modules 이거 gitignore
+
+## 2026-04-10 15:08:25
+
+/home/kimghw/ontology_iacs/.claude/skills/pdf2md 여기에.venv 이용해서 라이브러리나 등등 여기에 설치하라고해
+
+## 2026-04-10 15:09:14
+
+<ide_opened_file>The user opened the file /home/kimghw/ontology_iacs/CLAUDE.md in the IDE. This may or may not be related to the current task.</ide_opened_file>
+각 스킬별 가상환경으로 실행하고 gitignore 해달라고 skill에 작성해줘

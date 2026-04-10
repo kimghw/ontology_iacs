@@ -60,6 +60,5 @@
   - **MD056** (table-column-count): 관찰 사례 — UR-E10의 대형 표(셀 내부 중첩 표 포함). 제안: 셀 내부에 `|` 등장 시 파서가 열 분리로 오인. 회피 어려움(마크다운 한계). 권장: 해당 파일 단위로 `.markdownlint.json` MD056 비활성화. "병합 후 검증" 섹션에 `- **MD056** (table-column-count): 셀 내부 파이프 문자가 포함된 중첩 표가 있으면 비활성화 허용(원문 구조 복원 우선).`
 
 - [2026-04-09] 오탈자 자동 수정 정책 이슈: `language_tool_python` + `en-US` 기본 사전이 IACS 선박 기술 문서의 영국식 철자(draught/moulded/manoeuvring/centre/fibre/vapour/recognise/analyse/categorise 등)와 복합 기술 용어(twistlock/weatherdeck/downflooding/pumproom/portlights/longitudinals)를 **단일 후보 TYPOS**로 반환하여 자동 수정 시 내용 파괴(예: `FPSOs → FPS Os`, `Shell → She'll`, `markdownlint-disable → markdown lint-disable`). 제안:
-  - SKILL.md 3.5절 자동 수정 범위에 **제외 카테고리 추가**: `BRITISH_ENGLISH_DETECTOR` 룰, `en-US`와 `en-GB` 사전 결과 비교 필요.
-  - 또는 **자동 수정 기본 비활성화** + 모든 항목 report-only 출력. 사용자가 수동 결정.
+  - ✅ **반영 완료** (2026-04-10): SKILL.md 오탈자 자동 수정 범위에서 `BRITISH_ENGLISH_DETECTOR` 룰을 제외. 영국식 철자는 원문 그대로 보존한다.
   - 본 실행에서는 report-only로 1386건을 `reports/pdf2md_typo_report_2026-04-09.json`에 저장.
