@@ -1357,3 +1357,11 @@ wsl 경로
 ## 2026-04-10 11:41:07
 
 /git
+
+## 2026-04-10 11:41:39
+
+/home/kimghw/ontology_iacs/.claude/commands/git.md  여기 /git 하면 그냥 스텡지커밋푸쉬하고 /git pull 하면 땡겨 오도록 설정해줘
+
+## 2026-04-10 11:44:06
+
+/git
