@@ -1,1 +1,0 @@
-I am unable to convert the PDF file to Markdown directly using the available tools. The `web_fetch` tool only supports `http://` and `https://` protocols, not local `file://` paths. There is no other tool that can perform PDF to Markdown conversion.

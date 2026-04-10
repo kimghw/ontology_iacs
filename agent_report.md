@@ -115,3 +115,44 @@
 - 83/83 `.md` 파일 각 `UR_X_md/` 배치 완료.
 - 이미지 링크 14개 전부 실재 파일 참조(broken: 0).
 - 이미지 원본/최종 개수 전부 일치(UR-E10 1, UR-E21 3, UR-F44 12, ur-a2rev5 5, ur-d3rev6 3, ur-d7rev3 2, ur-e20rev1 1, ur-f39del-1 2).
+
+---
+
+## 2026-04-10 pdf2md: UR_A 디렉토리 PDF 변환
+
+### 입력 파일
+
+| 파일 | 페이지 | 파트 수 |
+|---|---|---|
+| ur-a2rev5.pdf | 10 | 1 |
+| ur-a3rev1.pdf | 6 | 1 |
+
+### 산출물
+
+- `UR/UR_A_md/ur-a2rev5.md` (269 lines, 이미지 3개)
+- `UR/UR_A_md/ur-a3rev1.md` (173 lines, 이미지 0개)
+
+### markdownlint 검증
+
+- **ur-a2rev5.md**: 위반 0건 (초회 통과)
+- **ur-a3rev1.md**: 위반 7건 → 자가 수정 후 통과
+  - MD007 (ul-indent): 5건 — 4칸 들여쓰기를 2칸으로 수정 (lines 45-49)
+  - MD036 (no-emphasis-as-heading): 2건 — `**(a) Holding Loads**`, `**(b) Inertia Loads**`를 `#####` 헤딩으로 전환 (lines 75, 79)
+
+### 이미지 링크 해소
+
+- ur-a2rev5: 3/3 통과 (part01-fig-000.png, part01-fig-001.png, part01-fig-002-merged.png)
+- ur-a3rev1: 링크 0/0 통과 (이미지 없음)
+
+### 오탈자 검사
+
+- **ur-a2rev5**: 52건 검출, 11건 FP 제거(whitelist), 자동 수정 0건 (2건 harbour→harbor는 영국식 영어 보존), 잔여 39건은 도메인 용어(IACS, SOLAS, OCIMF, scantlings 등) 오탐
+- **ur-a3rev1**: 19건 검출, 5건 FP 제거(whitelist), 자동 수정 0건 (2건 metres→meters는 영국식 영어 보존), 잔여 14건은 도메인 용어(IACS, SNAME, declutched 등) 오탐
+
+### 특이사항
+
+- ur-a2rev5 page 8의 bollard 그림은 pdfimages가 3개 조각으로 분리 추출 → `convert -append`로 병합하여 part01-fig-002-merged.png 생성
+- ur-a2rev5 page 4-5의 structural arrangement diagram은 벡터 그래픽으로 pdfimages 미추출 (본문 텍스트 설명으로 대체)
+- ur-a3rev1 원문 "standards.The" (마침표 뒤 공백 없음) 등 원문 오류는 그대로 보존
+- 양 파일 모두 첨자 사용 → `<!-- markdownlint-disable MD033 -->` 디렉티브 주입 완료
+
