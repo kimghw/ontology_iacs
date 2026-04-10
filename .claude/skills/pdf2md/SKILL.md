@@ -176,7 +176,7 @@ description: PDF를 구조화된 마크다운으로 변환. 원문 텍스트 무
 매 Agent 호출마다 다음 조립 절차를 따른다.
 
 1. **4절 서브에이전트 지시문 템플릿 전체를 문자 그대로 복사**한다(4.1부터 4.10까지 모두).
-2. 4.1의 경로 플레이스홀더(`<workroot>`, `<input>`, `<start>`, `<end>`, `partNN`)를 실제 값으로 치환한다.
+2. 4.1의 변수 정의(`part_source`, `page_range`, `image_dir`, `image_prefix`, `output_file`)의 `=` 우변을 실제 값으로 치환한다.
 3. 4.2 조건 플래그 슬롯의 각 항목을 3.3에서 확정한 실제 값으로 치환한다.
 4. 4.3~4.10은 **일체 축약·생략·재작성 금지**. 원문 문장을 그대로 포함한다.
 5. 템플릿 외부에 추가 지시사항을 덧붙이지 않는다. 문서별 특이사항이 있다면 에이전트가 4.10 "특이사항" 항목으로 역보고하게 두고, 병합 단계에서 오케스트레이터가 처리한다.
@@ -263,16 +263,14 @@ description: PDF를 구조화된 마크다운으로 변환. 원문 텍스트 무
 
 ### 4.1 역할 / 입력
 
-```text
 역할: PDF 구간을 무손실 마크다운으로 변환하는 전문 에이전트. 이미지 추출·위치 매칭·링크 삽입까지 단독 수행한다.
 
-입력:
-- 담당 페이지 추출물 (part_source, 이것만 Read 도구로 직독): <workroot>/queue/pdf_parts/<input>__partNN.pdf
-- 담당 페이지 범위: <start>-<end>
-- 이미지 출력 디렉토리 (서브에이전트가 추출한 이미지 저장): <workroot>/assets/<input>/
-- 이미지 파일명 접두사: partNN-fig  (예: pdfimages -all <part_source> <workroot>/assets/<input>/partNN-fig)
-- 출력 파일: <workroot>/queue/working/<input>__partNN.md
-```
+part_source  = <workroot>/queue/pdf_parts/<input>__partNN.pdf
+page_range   = <start>-<end>
+image_dir    = <workroot>/assets/<input>/
+image_prefix = partNN-fig
+output_file  = <workroot>/queue/working/<input>__partNN.md
+
 
 ### 4.2 작업 조건 (조건 플래그)
 

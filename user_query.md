@@ -365,3 +365,565 @@ This may or may not be related to the current task.</ide_selection>
 ## 2026-04-10 16:58:06
 
 /git
+
+## 2026-04-10 16:59:24
+
+/pdf2md /home/kimghw/ontology_iacs/UR/UR_A
+/home/kimghw/ontology_iacs/UR/UR_C
+/home/kimghw/ontology_iacs/UR/UR_D
+/home/kimghw/ontology_iacs/UR/UR_E
+/home/kimghw/ontology_iacs/UR/UR_F
+
+## 2026-04-10 17:02:14
+
+/home/kimghw/ontology_iacs/.claude/skills/pdf2md/SKILL.md  여기서  4번에서 플레이스 홀도를 채울 부분하고, 공통적인 부분을 나눌 수 있을까?  ### 4.1 역할 / 입력
+
+```text
+역할: PDF 구간을 무손실 마크다운으로 변환하는 전문 에이전트. 이미지 추출·위치 매칭·링크 삽입까지 단독 수행한다.
+
+입력:
+- 담당 페이지 추출물 (part_source, 이것만 Read 도구로 직독): <workroot>/queue/pdf_parts/<input>__partNN.pdf
+- 담당 페이지 범위: <start>-<end>
+- 이미지 출력 디렉토리 (서브에이전트가 추출한 이미지 저장): <workroot>/assets/<input>/
+- 이미지 파일명 접두사: partNN-fig  (예: pdfimages -all <part_source> <workroot>/assets/<input>/partNN-fig)
+- 출력 파일: <workroot>/queue/working/<input>__partNN.md
+```  이게 문제였어,  이게 프롬프트를 요약하게 만들었네
+
+## 2026-04-10 17:04:13
+
+<ide_selection>The user selected the lines 260 to 260 from /home/kimghw/ontology_iacs/.claude/skills/pdf2md/SKILL.md:
+## 4. 서브에이전트 지시문 템플릿
+
+This may or may not be related to the current task.</ide_selection>
+아니.. 4번을 모두 다 넘겨야지
+
+## 2026-04-10 17:04:31
+
+<task-notification>
+<task-id>a488d9c94a6722da0</task-id>
+<tool-use-id>toolu_012BvifTDhX2SrxnKUTNCKL9</tool-use-id>
+<output-file>/tmp/claude-1000/-mnt-c-shared-wk-ontology-iacs/bb5c43b6-36d2-4b5f-aaa8-03c22946fdd5/tasks/a488d9c94a6722da0.output</output-file>
+<status>completed</status>
+<summary>Agent "pdf2md: UR-C6New part01" completed</summary>
+<result>Self-checklist verification:
+
+- [x] `part_source` PDF read via Read tool only
+- [x] `pdfimages -all` executed -- 0 images extracted (text-only document)
+- [x] No images to match positions for
+- [x] No orphan images to handle
+- [x] `markdownlint_rules.md` consulted via Grep before conversion
+- [x] Original text order and content preserved verbatim
+- [x] Heading numbers/text/hierarchy match original (C6 -&gt; C6.1 -&gt; C6.1.1/C6.1.2 -&gt; C6.2 ... C6.8, using #/##/### correctly)
+- [x] `is_first_part=true`: H1 placed as first line
+- [x] Superscript footnote in C6.7 title preserved with `&lt;sup&gt;1&lt;/sup&gt;`
+- [x] No tables or code blocks in original
+- [x] Page numbers, headers/footers ("C6", "Page X of 4", "IACS Req. May 2024", "(cont)") removed
+- [x] No page boundary marks inserted
+- [x] Output saved to correct path
+- [x] MD022 (blank lines around headings) followed
+- [x] MD030 (single space after list marker) followed
+
+```text
+완료 보고:
+- 파트:           UR-C6New__part01 (pages 1-4)
+- 변환 페이지 수: 4
+- 추출 이미지 수: 0
+- 삽입 이미지 수: 0
+- orphan 이미지:  0
+- 첨자 발견:      true
+- 경계 잘림:      없음
+- 특이사항:       텍스트 전용 문서(이미지 없음). C6.7 제목의 위첨자 각주 번호(&lt;sup&gt;1&lt;/sup&gt;)와 하단 각주 텍스트를 보존함.
+```</result>
+<usage><total_tokens>31633</total_tokens><tool_uses>6</tool_uses><duration_ms>82580</duration_ms></usage>
+</task-notification>
+
+## 2026-04-10 17:05:58
+
+<ide_opened_file>The user opened the file /home/kimghw/ontology_iacs/.claude/skills/pdf2md/SKILL.md in the IDE. This may or may not be related to the current task.</ide_opened_file>
+4.1 역할/ 입력 에서 (입력) 떄문에 발생하는 거 같아.
+
+## 2026-04-10 17:06:04
+
+<task-notification>
+<task-id>a031a585e8956141b</task-id>
+<tool-use-id>toolu_01JSK6dZghEoXGLVqCUP5TsR</tool-use-id>
+<output-file>/tmp/claude-1000/-mnt-c-shared-wk-ontology-iacs/bb5c43b6-36d2-4b5f-aaa8-03c22946fdd5/tasks/a031a585e8956141b.output</output-file>
+<status>completed</status>
+<summary>Agent "pdf2md: UR-C7New part01" completed</summary>
+<result>Output file written. Self-check:
+
+- All sections C7.1 through C7.6 present, with subsections C7.2.1-C7.2.4, C7.5.1-C7.5.2
+- Heading hierarchy: H1 &gt; H2 &gt; H3, no level jumps
+- All footnotes (1-4) preserved with `&lt;sup&gt;` tags
+- All bullet lists preserved in original order
+- Page numbers and repeated headers/footers removed
+- No images in source PDF, none inserted
+- "End of Document" marker omitted (not substantive content)
+- Blank lines around headings (MD022) and no trailing punctuation on headings (MD026) observed
+
+```text
+완료 보고:
+- 파트:           UR-C7New__part01 (pages 1-3)
+- 변환 페이지 수: 3
+- 추출 이미지 수: 0
+- 삽입 이미지 수: 0
+- orphan 이미지:  0
+- 첨자 발견:      true
+- 경계 잘림:      없음
+- 특이사항:       없음
+```</result>
+<usage><total_tokens>23692</total_tokens><tool_uses>6</tool_uses><duration_ms>61134</duration_ms></usage>
+</task-notification>
+
+## 2026-04-10 17:06:12
+
+<task-notification>
+<task-id>a7d963e608dbd4f8d</task-id>
+<tool-use-id>toolu_01M3GyQtorsR9ZUiPzoL2rMQ</tool-use-id>
+<output-file>/tmp/claude-1000/-mnt-c-shared-wk-ontology-iacs/bb5c43b6-36d2-4b5f-aaa8-03c22946fdd5/tasks/a7d963e608dbd4f8d.output</output-file>
+<status>completed</status>
+<summary>Agent "pdf2md: UR-E18 part01" completed</summary>
+<result>변환이 완료되었습니다.
+
+```text
+완료 보고:
+- 파트:           UR-E18-Rev.2-Jun-2025-CLN__part01 (pages 1-2)
+- 변환 페이지 수: 2
+- 추출 이미지 수: 0
+- 삽입 이미지 수: 0
+- orphan 이미지:  0
+- 첨자 발견:      true
+- 경계 잘림:      없음
+- 특이사항:       단일 파트(is_single_part=true). 이미지 없는 텍스트 전용 문서. 본문 내 superscript 각주 참조 5개(&lt;sup&gt;1&lt;/sup&gt;~&lt;sup&gt;5&lt;/sup&gt;)를 원문 그대로 보존. 수식 Q=110ln은 이탤릭 변수 표기로 변환. 페이지 번호/머리말(E18, Page 1 of 2, IACS Req. 2003/Rev.2 2025) 제거 완료.
+```
+
+출력 파일: `/mnt/c/shared_wk/ontology_iacs/pdf2md_work/queue/working/UR-E18-Rev.2-Jun-2025-CLN__part01.md`</result>
+<usage><total_tokens>20246</total_tokens><tool_uses>6</tool_uses><duration_ms>55185</duration_ms></usage>
+</task-notification>
+
+## 2026-04-10 17:06:20
+
+<task-notification>
+<task-id>aa4de15bd09898da2</task-id>
+<tool-use-id>toolu_0152AsczE7Qov5HRXHY9qcPd</tool-use-id>
+<output-file>/tmp/claude-1000/-mnt-c-shared-wk-ontology-iacs/bb5c43b6-36d2-4b5f-aaa8-03c22946fdd5/tasks/aa4de15bd09898da2.output</output-file>
+<status>completed</status>
+<summary>Agent "pdf2md: UR-E25 part01" completed</summary>
+<result>```text
+완료 보고:
+- 파트:           UR-E25-Rev.2-Mar-2022CLN__part01 (pages 1-2)
+- 변환 페이지 수:  2
+- 추출 이미지 수:  0
+- 삽입 이미지 수:  0
+- orphan:         없음
+- 첨자 발견:      없음
+- 경계 잘림:      없음 (single part)
+- 특이사항:       PDF에 래스터 이미지 없음. 각주 asterisk(*)는 escaped literal로 처리.
+```
+
+**산출물**: `/mnt/c/shared_wk/ontology_iacs/pdf2md_work/queue/working/UR-E25-Rev.2-Mar-2022CLN__part01.md`</result>
+<usage><total_tokens>16162</total_tokens><tool_uses>5</tool_uses><duration_ms>43410</duration_ms></usage>
+</task-notification>
+
+## 2026-04-10 17:06:24
+
+<task-notification>
+<task-id>a6a59a5554cf40646</task-id>
+<tool-use-id>toolu_01VPdiME5HUhJ8Pjvysavbiu</tool-use-id>
+<output-file>/tmp/claude-1000/-mnt-c-shared-wk-ontology-iacs/bb5c43b6-36d2-4b5f-aaa8-03c22946fdd5/tasks/a6a59a5554cf40646.output</output-file>
+<status>completed</status>
+<summary>Agent "pdf2md: UR-D8 part01" completed</summary>
+<result>Self-check:
+- H1 present as first line (is_single_part=true, MD041 satisfied)
+- Single H1 (MD025 satisfied)
+- Heading hierarchy: H1 -&gt; H2 -&gt; H3 (no level jumps, MD001 satisfied)
+- Blank lines around headings (MD022 satisfied)
+- No page numbers/headers/footers included
+- No page boundary marks
+- No images in PDF, no image links inserted (correct per "0 images = no forced insertion")
+- Original text preserved verbatim, no summarization
+- No inline HTML (no subscripts/superscripts needed in this document)
+- No MD033 directives added
+
+```text
+완료 보고:
+- 파트:           UR-D8-Rev.3-Feb-2021CLN__part01 (pages 1-4)
+- 변환 페이지 수: 4
+- 추출 이미지 수: 0
+- 삽입 이미지 수: 0
+- orphan 이미지:  0
+- 첨자 발견:      false
+- 경계 잘림:      없음
+- 특이사항:       없음
+```</result>
+<usage><total_tokens>28035</total_tokens><tool_uses>6</tool_uses><duration_ms>82594</duration_ms></usage>
+</task-notification>
+
+## 2026-04-10 17:06:36
+
+<task-notification>
+<task-id>a6a0c73b52ba9ea7c</task-id>
+<tool-use-id>toolu_01MNvYaiLWYBJF7tvVV53YFn</tool-use-id>
+<output-file>/tmp/claude-1000/-mnt-c-shared-wk-ontology-iacs/bb5c43b6-36d2-4b5f-aaa8-03c22946fdd5/tasks/a6a0c73b52ba9ea7c.output</output-file>
+<status>completed</status>
+<summary>Agent "pdf2md: UR-E21Rev2 part01" completed</summary>
+<result>```text
+완료 보고:
+- 파트:           UR-E21Rev2-CLN__part01 (pages 1-4)
+- 변환 페이지 수: 4
+- 추출 이미지 수: 3
+- 삽입 이미지 수: 3
+- orphan 이미지:  0
+- 첨자 발견:      false
+- 경계 잘림:      없음
+- 특이사항:       없음
+```</result>
+<usage><total_tokens>23681</total_tokens><tool_uses>7</tool_uses><duration_ms>71897</duration_ms></usage>
+</task-notification>
+
+## 2026-04-10 17:06:44
+
+<task-notification>
+<task-id>a07830b8d410a5392</task-id>
+<tool-use-id>toolu_01XH31ArnZfPiAPwTGhzTQcK</tool-use-id>
+<output-file>/tmp/claude-1000/-mnt-c-shared-wk-ontology-iacs/bb5c43b6-36d2-4b5f-aaa8-03c22946fdd5/tasks/a07830b8d410a5392.output</output-file>
+<status>completed</status>
+<summary>Agent "pdf2md: UR-E7 part01" completed</summary>
+<result>```text
+완료 보고:
+- 파트:           UR-E7-Rev.5-Feb-2021CLN__part01 (pages 1-1)
+- 변환 페이지 수:  1
+- 추출 이미지 수:  0
+- 삽입 이미지 수:  0
+- orphan:         없음
+- 첨자 발견:      없음
+- 경계 잘림:      없음
+- 특이사항:       단일 페이지 문서. 이미지 없음. 좌측 개정이력 사이드바(E7, 1975, Rev.1~Rev.5)와 페이지 번호("Page 1 of 1 IACS Req. 1975/Rev.5 2021")는 본문 외 메타정보로 제거. "A2 (cont)" 헤더 장식도 제거. 본문 텍스트 무손실 보존.
+```
+
+출력 파일: `/mnt/c/shared_wk/ontology_iacs/pdf2md_work/queue/working/UR-E7-Rev.5-Feb-2021CLN__part01.md`</result>
+<usage><total_tokens>19027</total_tokens><tool_uses>7</tool_uses><duration_ms>46691</duration_ms></usage>
+</task-notification>
+
+## 2026-04-10 17:06:51
+
+<task-notification>
+<task-id>a6e75c07b6a0b997c</task-id>
+<tool-use-id>toolu_01SjmSfrejr5b4VLoQRLzyTk</tool-use-id>
+<output-file>/tmp/claude-1000/-mnt-c-shared-wk-ontology-iacs/bb5c43b6-36d2-4b5f-aaa8-03c22946fdd5/tasks/a6e75c07b6a0b997c.output</output-file>
+<status>completed</status>
+<summary>Agent "pdf2md: UR-F42 part01" completed</summary>
+<result>Conversion complete. Here is the report:
+
+```text
+완료 보고:
+- 파트:           UR-F42-Del-Nov-2023__part01 (pages 1-1)
+- 변환 페이지 수: 1
+- 추출 이미지 수: 0
+- 삽입 이미지 수: 0
+- orphan:         없음
+- 첨자 발견:      없음
+- 경계 잘림:      없음
+- 특이사항:       단일 페이지 삭제(Del) 문서. 본문은 삭제 안내 1문장과 "End of Document" 표식만 포함. 페이지 번호("Page 1 of 1") 및 헤더/푸터("F 42", "IACS Req. 1995/Del 2023") 제거 완료.
+```
+
+**Output file**: `/mnt/c/shared_wk/ontology_iacs/pdf2md_work/queue/working/UR-F42-Del-Nov-2023__part01.md`
+
+This is a very short deleted-UR document. The original PDF contained only a single deletion notice stating the interpretations are now covered by IACS UR P2. No images, tables, formulas, or subscripts were present. The markdown preserves the H1 title with the UR identifier, the revision history annotations (1995 / Del Nov 2023), and the deletion notice text verbatim.</result>
+<usage><total_tokens>17369</total_tokens><tool_uses>7</tool_uses><duration_ms>32898</duration_ms></usage>
+</task-notification>
+
+## 2026-04-10 17:06:57
+
+<task-notification>
+<task-id>a1a6405fd65a1a143</task-id>
+<tool-use-id>toolu_01EyUjuzRnSq9G5cv14kBBrW</tool-use-id>
+<output-file>/tmp/claude-1000/-mnt-c-shared-wk-ontology-iacs/bb5c43b6-36d2-4b5f-aaa8-03c22946fdd5/tasks/a1a6405fd65a1a143.output</output-file>
+<status>completed</status>
+<summary>Agent "pdf2md: UR-F43Del part01" completed</summary>
+<result>```text
+완료 보고:
+- 파트:           UR-F43Del__part01 (pages 1-1)
+- 변환 페이지 수:  1
+- 추출 이미지 수:  0
+- 삽입 이미지 수:  0
+- orphan:         없음
+- 첨자 발견:      없음
+- 경계 잘림:      없음
+- 특이사항:       삭제(Deleted) 문서. 본문은 FSS CODE CHAPTER 16으로 통합되었다는 안내만 포함. 페이지 번호("Page 1 of 1", "IACS Req. 1997/2025") 제거 완료.
+```
+
+출력 파일: `/mnt/c/shared_wk/ontology_iacs/pdf2md_work/queue/working/UR-F43Del__part01.md`</result>
+<usage><total_tokens>16550</total_tokens><tool_uses>6</tool_uses><duration_ms>30110</duration_ms></usage>
+</task-notification>
+
+## 2026-04-10 17:07:04
+
+<task-notification>
+<task-id>a35b3e8366755f659</task-id>
+<tool-use-id>toolu_01NXU56PmKg5ULdGEjFR4tiN</tool-use-id>
+<output-file>/tmp/claude-1000/-mnt-c-shared-wk-ontology-iacs/bb5c43b6-36d2-4b5f-aaa8-03c22946fdd5/tasks/a35b3e8366755f659.output</output-file>
+<status>completed</status>
+<summary>Agent "pdf2md: UR-F15 part01" completed</summary>
+<result>```text
+완료 보고:
+- 파트:           UR-F15-Rev.7-Sep-2023CLN__part01 (pages 1-2)
+- 변환 페이지 수:  2
+- 추출 이미지 수:  0
+- 삽입 이미지 수:  0
+- orphan:         없음
+- 첨자 발견:      4건 (&lt;sup&gt;1&lt;/sup&gt;, &lt;sup&gt;2&lt;/sup&gt; 본문 2회 + 각주 2회)
+- 경계 잘림:      없음
+- 특이사항:       단일 파트(is_single_part=true). 이미지 없음(pdfimages 추출 0건). 각주 상첨자 &lt;sup&gt; 사용(MD033 디렉티브 미삽입 — 오케스트레이터 책임). 페이지 머리말(F15)·페이지 번호·"End of Document" 표식 제거 완료.
+```
+
+**출력 파일**: `/mnt/c/shared_wk/ontology_iacs/pdf2md_work/queue/working/UR-F15-Rev.7-Sep-2023CLN__part01.md`</result>
+<usage><total_tokens>17679</total_tokens><tool_uses>6</tool_uses><duration_ms>49131</duration_ms></usage>
+</task-notification>
+
+## 2026-04-10 17:07:11
+
+<task-notification>
+<task-id>a554ee32c39af2f94</task-id>
+<tool-use-id>toolu_01VnCoGz4UfcBYR34aa1vB4Y</tool-use-id>
+<output-file>/tmp/claude-1000/-mnt-c-shared-wk-ontology-iacs/bb5c43b6-36d2-4b5f-aaa8-03c22946fdd5/tasks/a554ee32c39af2f94.output</output-file>
+<status>completed</status>
+<summary>Agent "pdf2md: ur-d10del part01" completed</summary>
+<result>변환이 완료되었습니다.
+
+```text
+완료 보고:
+- 파트:           ur-d10del__part01 (pages 1-1)
+- 변환 페이지 수: 1
+- 추출 이미지 수: 0
+- 삽입 이미지 수: 0
+- orphan:         없음
+- 첨자 발견:      없음
+- 경계 잘림:      없음
+- 특이사항:       삭제 문서(Deleted in Dec 2018). 본문 내용 없이 삭제 고지만 존재. 페이지 번호("Page 1 of 1") 및 푸터("IACS Req. 1979/Rev.2 1990") 제거 완료.
+```
+
+**산출물**: `/mnt/c/shared_wk/ontology_iacs/pdf2md_work/queue/working/ur-d10del__part01.md`</result>
+<usage><total_tokens>18326</total_tokens><tool_uses>6</tool_uses><duration_ms>25315</duration_ms></usage>
+</task-notification>
+
+## 2026-04-10 17:07:24
+
+<task-notification>
+<task-id>aaa28c129104732f0</task-id>
+<tool-use-id>toolu_016Jn2PP19ijw58aSxj5GbPT</tool-use-id>
+<output-file>/tmp/claude-1000/-mnt-c-shared-wk-ontology-iacs/bb5c43b6-36d2-4b5f-aaa8-03c22946fdd5/tasks/aaa28c129104732f0.output</output-file>
+<status>completed</status>
+<summary>Agent "pdf2md: UR-E26 part02" completed</summary>
+<result>```text
+완료 보고:
+- 파트:           UR-E26-Rev.1-Nov-2023-CR__part02 (pages 51-56)
+- 변환 페이지 수: 6
+- 추출 이미지 수: 0
+- 삽입 이미지 수: 0
+- orphan:         없음
+- 첨자 발견:      없음
+- 경계 잘림:      없음
+- 특이사항:       전 6페이지가 Annex 매핑 표(sections 4.2.3~6)로 구성. 이미지 없음(pdfimages 추출 0건). is_first_part=false이므로 H1 미작성, ###(H3) 레벨로 각 섹션 테이블 그룹 헤더 작성. 마지막 페이지(56)에 "End of document" 표기 포함.
+```
+
+출력 파일: `/mnt/c/shared_wk/ontology_iacs/pdf2md_work/queue/working/UR-E26-Rev.1-Nov-2023-CR__part02.md` (190줄, 16개 섹션 테이블)</result>
+<usage><total_tokens>33729</total_tokens><tool_uses>18</tool_uses><duration_ms>109415</duration_ms></usage>
+</task-notification>
+
+## 2026-04-10 17:07:33
+
+<task-notification>
+<task-id>ae7cc01c49c5d6df0</task-id>
+<tool-use-id>toolu_01WuBJhVcZvUUWrkaHHUUqgL</tool-use-id>
+<output-file>/tmp/claude-1000/-mnt-c-shared-wk-ontology-iacs/bb5c43b6-36d2-4b5f-aaa8-03c22946fdd5/tasks/ae7cc01c49c5d6df0.output</output-file>
+<status>completed</status>
+<summary>Agent "pdf2md: ur-d12del part01" completed</summary>
+<result>```text
+완료 보고:
+- 파트:           ur-d12del__part01 (pages 1-1)
+- 변환 페이지 수:  1
+- 추출 이미지 수:  0
+- 삽입 이미지 수:  0
+- orphan:         없음
+- 첨자 발견:      없음
+- 경계 잘림:      없음
+- 특이사항:       단일 페이지, 본문 1문장. UR D12는 2002년 8월 UR Z15로 재분류(삭제) 공지 문서.
+```
+
+**산출물**: `/mnt/c/shared_wk/ontology_iacs/pdf2md_work/queue/working/ur-d12del__part01.md`</result>
+<usage><total_tokens>15823</total_tokens><tool_uses>5</tool_uses><duration_ms>34847</duration_ms></usage>
+</task-notification>
+
+## 2026-04-10 17:07:39
+
+<task-notification>
+<task-id>a2485e12af3cc2beb</task-id>
+<tool-use-id>toolu_01VcqsihAkTEixvx8DC7KJD8</tool-use-id>
+<output-file>/tmp/claude-1000/-mnt-c-shared-wk-ontology-iacs/bb5c43b6-36d2-4b5f-aaa8-03c22946fdd5/tasks/a2485e12af3cc2beb.output</output-file>
+<status>completed</status>
+<summary>Agent "pdf2md: UR-E10 part01" completed</summary>
+<result>```text
+완료 보고:
+- 파트:           UR-E10-Rev.10-Aug-2024-CLN__part01 (pages 1-12)
+- 변환 페이지 수: 12
+- 추출 이미지 수: 1
+- 삽입 이미지 수: 1
+- orphan 이미지:  0
+- 첨자 발견:      true
+- 경계 잘림:      없음
+- 특이사항:       대형 표가 문서 대부분(pages 2-11)을 차지함. Test No.4의 AC SUPPLY/DC SUPPLY 중첩 표와 Test No.9/10의 중첩 표는 별도 테이블로 분리 표현. Test No.7의 vibration 범위에 상첨자/하첨자 조합(2^+3_-0 Hz) 존재. dBµV/m 단위의 그리스 문자 µ 보존.
+```
+
+**산출물**: `/mnt/c/shared_wk/ontology_iacs/pdf2md_work/queue/working/UR-E10-Rev.10-Aug-2024-CLN__part01.md` (185 lines)
+
+**이미지**: `/mnt/c/shared_wk/ontology_iacs/pdf2md_work/assets/UR-E10-Rev.10-Aug-2024-CLN/part01-fig-000.png` (645x504 PNG, Test Set-up figure from page 12)</result>
+<usage><total_tokens>37753</total_tokens><tool_uses>6</tool_uses><duration_ms>194083</duration_ms></usage>
+</task-notification>
+
+## 2026-04-10 17:07:47
+
+아니.. 에이전트 입력이 잘못되었잖아. 왜 감시자 역할을 제대로 못하지?
+
+## 2026-04-10 17:08:11
+
+<task-notification>
+<task-id>a208356f44990f1d8</task-id>
+<tool-use-id>toolu_01KLEpwQvJPTJdXTifq64UKU</tool-use-id>
+<output-file>/tmp/claude-1000/-mnt-c-shared-wk-ontology-iacs/bb5c43b6-36d2-4b5f-aaa8-03c22946fdd5/tasks/a208356f44990f1d8.output</output-file>
+<status>completed</status>
+<summary>Agent "pdf2md: ur-a3rev1 part01" completed</summary>
+<result>변환 완료. 최종 보고:
+
+```text
+완료 보고:
+- 파트:           ur-a3rev1__part01 (pages 1-6)
+- 변환 페이지 수:  6
+- 추출 이미지 수:  0 (텍스트 전용 문서, pdfimages 추출 결과 없음)
+- 삽입 이미지 수:  0
+- orphan:         0
+- 첨자 발견:      있음 (sup: 1st → 1&lt;sup&gt;st&lt;/sup&gt;, d² → d&lt;sup&gt;2&lt;/sup&gt; / sub: Z_cont1 → Z&lt;sub&gt;cont1&lt;/sub&gt;, Z_cont2 → Z&lt;sub&gt;cont2&lt;/sub&gt;, Z_cont → Z&lt;sub&gt;cont&lt;/sub&gt;)
+- 경계 잘림:      없음 (단일 파트, is_single_part=true)
+- 특이사항:       표 1개(3.1.2 Continuous Duty Pull의 Grade/Z_cont1 표) 이탤릭체 보존. Note 섹션의 번호 리스트(1-4) 및 하위 i)/ii) 구조 보존.
+```
+
+출력 파일: `/mnt/c/shared_wk/ontology_iacs/pdf2md_work/queue/working/ur-a3rev1__part01.md`</result>
+<usage><total_tokens>26273</total_tokens><tool_uses>7</tool_uses><duration_ms>125693</duration_ms></usage>
+</task-notification>
+
+## 2026-04-10 17:08:20
+
+<task-notification>
+<task-id>a2c5ef5da77f159dd</task-id>
+<tool-use-id>toolu_01B5LZsrkSBmiUUgjCyQhTcM</tool-use-id>
+<output-file>/tmp/claude-1000/-mnt-c-shared-wk-ontology-iacs/bb5c43b6-36d2-4b5f-aaa8-03c22946fdd5/tasks/a2c5ef5da77f159dd.output</output-file>
+<status>completed</status>
+<summary>Agent "pdf2md: UR-F44 part01" completed</summary>
+<result>The conversion is complete. Here is the completion report:
+
+```text
+완료 보고:
+- 파트:           UR-F44-Rev.3-Corr.1-Mar-2025-CLN__part01 (pages 1-5)
+- 변환 페이지 수:  5
+- 추출 이미지 수:  12 (6 pairs: raw diagram + composite with labels)
+- 삽입 이미지 수:  6 (composite images: 001, 003, 005, 007, 009, 011)
+- orphan:         6 (raw layer images 000, 002, 004, 006, 008, 010 -- underlying vector layers, not used)
+- 첨자 발견:      없음
+- 경계 잘림:      없음
+- 특이사항:       pdfimages extracted 2 layers per figure (raw vector + composite with annotations). Used composite images (odd-numbered) which contain all text labels and operational requirement notes. Note section relocated to end per original PDF structure (appears on page 1 but logically closes the document).
+```
+
+**Output file**: `/mnt/c/shared_wk/ontology_iacs/pdf2md_work/queue/working/UR-F44-Rev.3-Corr.1-Mar-2025-CLN__part01.md` (123 lines)
+
+**Key details**:
+- H1 title includes document ID (F44) and full title per original
+- Revision history preserved as plain text under H1 (not headings)
+- Definitions section as H2, Section 1 and 2 as H2, Samples as H3
+- 6 sample figures inserted using composite layer images (001/003/005/007/009/011) with descriptive alt text
+- Operational requirements text preserved verbatim for each sample
+- Note section with implementation dates preserved at document end
+- Page numbers removed; no boundary markers inserted
+- All markdownlint rules (MD022, MD031, MD041, MD025, MD036) observed</result>
+<usage><total_tokens>38811</total_tokens><tool_uses>21</tool_uses><duration_ms>138421</duration_ms></usage>
+</task-notification>
+
+## 2026-04-10 17:08:27
+
+<task-notification>
+<task-id>a9ef651757d79e41d</task-id>
+<tool-use-id>toolu_01NgP43hr7wAyciZ2D8kvkEk</tool-use-id>
+<output-file>/tmp/claude-1000/-mnt-c-shared-wk-ontology-iacs/bb5c43b6-36d2-4b5f-aaa8-03c22946fdd5/tasks/a9ef651757d79e41d.output</output-file>
+<status>completed</status>
+<summary>Agent "pdf2md: ur-d11rev4corr1 part01" completed</summary>
+<result>변환이 완료되었습니다.
+
+```text
+완료 보고:
+- 파트:           ur-d11rev4corr1__part01 (pages 1-7)
+- 변환 페이지 수:  7
+- 추출 이미지 수:  0
+- 삽입 이미지 수:  0
+- orphan:         없음
+- 첨자 발견:      있음 (sup: in², m², m³, 100m³/h; sub: CO₂)
+- 경계 잘림:      없음 (single_part)
+- 특이사항:       이미지 없는 텍스트 전용 문서. 페이지 번호 및 헤더/푸터("D11", "(cont)", "Page X of 7", "IACS Req. ...") 모두 제거 완료. 개정 이력은 H1 아래 평문으로 보존.
+```
+
+출력 파일: `/mnt/c/shared_wk/ontology_iacs/pdf2md_work/queue/working/ur-d11rev4corr1__part01.md`</result>
+<usage><total_tokens>27203</total_tokens><tool_uses>6</tool_uses><duration_ms>131135</duration_ms></usage>
+</task-notification>
+
+## 2026-04-10 17:08:45
+
+<task-notification>
+<task-id>aa0c33adaaefb8f0f</task-id>
+<tool-use-id>toolu_01T2Rf3SwBKY3iYW9SmF1a87</tool-use-id>
+<output-file>/tmp/claude-1000/-mnt-c-shared-wk-ontology-iacs/bb5c43b6-36d2-4b5f-aaa8-03c22946fdd5/tasks/aa0c33adaaefb8f0f.output</output-file>
+<status>completed</status>
+<summary>Agent "pdf2md: ur-a2rev5 part01" completed</summary>
+<result>```text
+완료 보고:
+- 파트:           ur-a2rev5__part01 (pages 1-10)
+- 변환 페이지 수:  10
+- 추출 이미지 수:  5 (part01-fig-000 ~ part01-fig-004)
+- 삽입 이미지 수:  4 (fig-000, fig-001, fig-004 단독 + fig-002/003 병합)
+- orphan:         0
+- 첨자 발견:      15 (&lt;sub&gt; 사용: t_net, t_c, t_w, MBL_SD, R_eH, v_w 등)
+- 경계 잘림:      없음 (single_part)
+- 특이사항:       fig-002(eye splice)와 fig-003(bollard a)를 convert -append로 수직 병합 → part01-fig-002-003-merged.png 생성 (page 8 mooring figure). fig-004는 page 5 상단 supporting hull structure 배치도로 매핑.
+```
+
+출력 파일: `/mnt/c/shared_wk/ontology_iacs/pdf2md_work/queue/working/ur-a2rev5__part01.md` (278줄)</result>
+<usage><total_tokens>35076</total_tokens><tool_uses>16</tool_uses><duration_ms>204046</duration_ms></usage>
+</task-notification>
+
+## 2026-04-10 17:08:59
+
+<ide_opened_file>The user opened the file /home/kimghw/ontology_iacs/.claude/skills/pdf2md/SKILL.md in the IDE. This may or may not be related to the current task.</ide_opened_file>
+응
+
+## 2026-04-10 17:09:27
+
+<task-notification>
+<task-id>a63f88f94a6251f91</task-id>
+<tool-use-id>toolu_019tE6g6zsSduatF35AKZ1M2</tool-use-id>
+<output-file>/tmp/claude-1000/-mnt-c-shared-wk-ontology-iacs/bb5c43b6-36d2-4b5f-aaa8-03c22946fdd5/tasks/a63f88f94a6251f91.output</output-file>
+<status>completed</status>
+<summary>Agent "pdf2md: UR-E27 part01" completed</summary>
+<result>```text
+완료 보고:
+- 파트:           UR-E27-Rev.1-Sep-2023-CLN__part01 (pages 1-20)
+- 변환 페이지 수:  20
+- 추출 이미지 수:  0 (pdfimages로 래스터 이미지 미검출; Figure 1, Figure 2는 벡터 플로차트)
+- 삽입 이미지 수:  0 (이미지 0개이므로 억지삽입 없음)
+- orphan:         0
+- 첨자 발견:      있음 (Appendix II 표의 sup 태그: 1), 2) 등 -- &lt;sup&gt; 사용)
+- 경계 잘림:      없음 (단일 파트, is_single_part=true)
+- 특이사항:       Figure 1/Figure 2는 벡터 기반 플로차트로 pdfimages 추출 불가. 위치에 **Figure 1**, **Figure 2** 텍스트 마커만 배치. Table 1(30개 항목), Table 2(11개 항목), Appendix II 표 완전 변환.
+```</result>
+<usage><total_tokens>45073</total_tokens><tool_uses>8</tool_uses><duration_ms>304680</duration_ms></usage>
+</task-notification>
+
+## 2026-04-10 17:11:01
+
+/git
