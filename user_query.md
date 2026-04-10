@@ -1253,3 +1253,80 @@ skill 을 수정하고 do 랑 dont 이랑 각각 작성해줘.
 ## 2026-04-08 17:39:26
 
 UR/UR_A/pdf2md_work/  이건 제외 해라
+
+## 2026-04-10 08:47:51
+
+풀해줘
+
+## 2026-04-10 08:48:58
+
+/home/kimghw/ontology_iacs/user_query.md  내 질문의 일관성이나 목표가 뭔지 알려줘봐
+
+## 2026-04-10 08:56:36
+
+/home/kimghw/ontology_iacs/.claude/skills/pdf2md/SKILL.md  여기서 md 칼리브레이션 하는 내용들만 추출해줘봐
+
+## 2026-04-10 08:59:46
+
+<ide_opened_file>The user opened the file /home/kimghw/ontology_iacs/.claude/skills/pdf2md/SKILL.md in the IDE. This may or may not be related to the current task.</ide_opened_file>
+스킬이 스킬을 호출하는 거는 문제가 있나?
+
+## 2026-04-10 09:00:27
+
+지금 서브에이전트가 종료되면 호출되는 hook 기능이 있나?
+
+## 2026-04-10 09:02:26
+
+스킬하고 상관 없어 후크 기능 되잖아 글치?
+
+## 2026-04-10 09:02:45
+
+후크는 꼭 스크립트만 실행하도록 되어 있지?
+
+## 2026-04-10 09:03:57
+
+subagent 에서 markdownlint 로 검증하는 것은 hook로 되는거잖아 글치?.  이게 종료하면서 실행해서 오케스트레이터에 넘기는 건가 아니면 지만 하고 끝나는건가?
+
+## 2026-04-10 09:09:40
+
+/home/kimghw/ontology_iacs/.claude/skills/pdf2md/SKILL.md  여기에서  나중에 md 파일을 붙일때 오케스트레이터가 다 받아서 처리하는건 아니지?
+
+## 2026-04-10 09:13:11
+
+<ide_opened_file>The user opened the file /home/kimghw/ontology_iacs/.claude/skills/pdf2md/SKILL.md in the IDE. This may or may not be related to the current task.</ide_opened_file>
+pdf 분할하고 md 파일로 변환할때 md 파일간 구분선은 체크를 하나?
+
+## 2026-04-10 09:14:35
+
+현재 페이지간의 연결할때 아무런 문제가 없었는데. 일단 지금은 오케스트레이터가 경계부분을 확인하고 머지 하도록 되어 있다는 거지?
+
+## 2026-04-10 09:28:47
+
+<ide_opened_file>The user opened the file /home/kimghw/ontology_iacs/.claude/skills/pdf2md/SKILL.md in the IDE. This may or may not be related to the current task.</ide_opened_file>
+이거 이미지 비율이 어떻게 되지?
+
+## 2026-04-10 10:49:48
+
+<ide_opened_file>The user opened the file /home/kimghw/ontology_iacs/.claude/skills/pdf2md/SKILL.md in the IDE. This may or may not be related to the current task.</ide_opened_file>
+현재 깃 주소가 어떻게 되지?
+
+## 2026-04-10 10:50:09
+
+<ide_opened_file>The user opened the file /home/kimghw/ontology_iacs/.claude/skills/pdf2md/SKILL.md in the IDE. This may or may not be related to the current task.</ide_opened_file>
+xptmxm
+
+## 2026-04-10 10:50:19
+
+현재 깃 주소가 어떻게 되지?
+
+## 2026-04-10 10:51:15
+
+현재 폴더 경로가 어떻게 되지?
+
+## 2026-04-10 10:51:40
+
+wsl 경로
+
+## 2026-04-10 10:58:28
+
+커밋하고 푸쉬해줘
