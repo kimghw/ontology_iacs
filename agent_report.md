@@ -156,3 +156,43 @@
 - ur-a3rev1 원문 "standards.The" (마침표 뒤 공백 없음) 등 원문 오류는 그대로 보존
 - 양 파일 모두 첨자 사용 → `<!-- markdownlint-disable MD033 -->` 디렉티브 주입 완료
 
+
+## 2026-04-10 pdf2md: UR/UR_E 폴더 변환
+
+### 변환 현황
+- **입력**: UR/UR_E/ 폴더 내 PDF 22개
+- **출력**: UR/UR_E_md/ 폴더에 MD 22개 + 이미지 5개
+- **스킵**: 0개 (기존 변환물 없음)
+- **실패**: 0개
+- **배치**: 2개 (배치0: 20파트, 배치1: 3파트)
+
+### 이미지 현황
+| 파일 | 추출 | 삽입 | 비고 |
+|---|---|---|---|
+| UR-E10 | 1 | 1 | Test Set-up 도표 |
+| UR-E21Rev2 | 3 | 3 | UPS 토폴로지 다이어그램 |
+| ur-e20rev1 | 1 | 1 | Engine room layout |
+| UR-E15rev4 | 0 | 0 | Figure 1은 벡터 그래픽으로 추출 불가 |
+| UR-E27 | 0 | 0 | Figure 1, 2는 벡터 플로차트로 추출 불가 |
+| 나머지 17개 | 0 | 0 | 이미지 없음 |
+
+### markdownlint
+- MD013(line-length): PDF 변환 특성상 전역 비활성화
+- MD033(inline HTML): 첨자 보존 파일 6개에 비활성화 (UR-E10, E18, E26, E27, ur-e13, ur-e16, ur-e9)
+- MD036(emphasis as heading): 표/그림 캡션 보존 파일 3개에 비활성화 (ur-e13, ur-e15, UR-E26, UR-E27)
+- MD029(ordered list prefix): 원문 번호 보존 파일 3개에 비활성화 (UR-E18, ur-e19, ur-e5)
+- MD026(trailing punctuation): 원문 제목 보존 1개 (ur-e20)
+- MD060(table column style): 열 병합 보존 1개 (UR-E27)
+- MD034(bare URL): UR-E26에서 2건 수정 (angle bracket 래핑)
+
+### 오탈자 검사
+- 총 검출: 427건 (auto-fixable 52건, manual 375건)
+- 자동 수정: 0건 (대부분 도메인 약어 오탐 - IACS, CBS, SPa 등)
+- 화이트리스트 필터링 후 잔여: 375건 (모두 도메인 특화 오탐)
+
+### 특이사항
+- UR-E26(56p)은 2파트로 분할, 파트 경계에서 빈 줄 삽입하여 테이블 구조 복원
+- UR-E15, UR-E27: 벡터 그래픽 Figure는 pdfimages로 추출 불가, 캡션만 보존
+- ur-e1, ur-e2del, ur-e3del: 동일 내용(E1 see revised M 3.2, E2·E3 Deleted)
+- ur-e4del, ur-e6del, ur-e23del-1: 삭제 공고 문서
+- 심각도: 하 (전체적으로 정상 변환, 벡터 이미지 미추출은 도구 한계)
