@@ -1349,3 +1349,11 @@ wsl 경로
 
 <ide_opened_file>The user opened the file /home/kimghw/ontology_iacs/.claude/skills/pdf2md/SKILL.md in the IDE. This may or may not be related to the current task.</ide_opened_file>
 스테이지/커밋/푸쉬해줘
+
+## 2026-04-10 11:38:55
+
+/home/kimghw/ontology_iacs/.claude/skills/skill-authoring/SKILL.md  이것도 markdownlin 해줘
+
+## 2026-04-10 11:41:07
+
+/git
