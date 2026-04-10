@@ -196,3 +196,44 @@
 - ur-e1, ur-e2del, ur-e3del: 동일 내용(E1 see revised M 3.2, E2·E3 Deleted)
 - ur-e4del, ur-e6del, ur-e23del-1: 삭제 공고 문서
 - 심각도: 하 (전체적으로 정상 변환, 벡터 이미지 미추출은 도구 한계)
+
+---
+
+## 2026-04-10 — pdf2md: UR_F 46개 PDF→MD 변환
+
+### 결과 요약
+
+| 항목 | 값 |
+|---|---|
+| 입력 폴더 | `UR/UR_F/` |
+| 총 PDF 수 | 46 |
+| 스킵(기존 변환) | 0 |
+| 변환 완료 | 46/46 |
+| 실패 | 0 |
+| 최종 산출물 | `UR/UR_F_md/*.md` (46개) |
+| 이미지 | UR-F44: 6개 (`UR/UR_F_md/assets/UR-F44-Rev.3-Corr.1-Mar-2025-CLN/`) |
+| 첨자 사용 파일 | UR-F15, ur-f20rev7, ur-f45new, ur-f46new, ur-f4del, ur-f5rev1, ur-f7corr1 (MD033 disable 주입) |
+
+### 라운드 실행
+
+- Round 1: 20 서브에이전트 (UR-F15 ~ ur-f25del) — 완료
+- Round 2: 20 서브에이전트 (ur-f26rev3 ~ ur-f46new) — 완료
+- Round 3: 6 서브에이전트 (ur-f4del ~ ur-f9del) — 완료
+
+### markdownlint 검증
+
+- MD013 (line-length), MD029 (ol-prefix): 프로젝트 `.markdownlint.json`에서 비활성화 — 위반 아님
+- MD036 (no-emphasis-as-heading): ur-f33, ur-f46new — bold 연도/참조를 plain text로 수정
+- MD026 (trailing punctuation in heading): ur-f45new 1.2.4절 — 말미 마침표 제거
+- MD007 (ul-indent): ur-f45new — 4-space → 2-space 중첩 목록 인덴트 수정
+- 최종 재검증: 위반 0건
+
+### 이미지 링크 해소 검증
+
+- UR-F44: 6/6 링크 통과
+- 나머지 45개 파일: 이미지 0개 (링크 0/0 통과 — 이미지 없음)
+
+### 모호·정보부족 사항
+
+- 없음 (심각도: 해당 없음)
+
