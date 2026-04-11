@@ -1,0 +1,31 @@
+================================================================================
+PDF→MD 변환 정확도 비교 (master_260p.pdf 기준)
+baseline (pdftotext): 67326 tokens, 4282 unique types
+================================================================================
+         metric      50p   200p*    260p*
+-----------------------------------------
+          lines    6,366     873    5,724
+          chars  465,678  57,305  425,235
+             H1        1       0        1
+             H2       90      44       54
+             H3      160      14      131
+             H4      149      14       76
+     table_rows      381      17      318
+      img_links       20       6       22
+    code_blocks        1       0        0
+    math_inline       39       0        0
+     math_block        4       0        4
+       sub_tags       86       7       94
+       sup_tags       97       1      108
+md_total_tokens   66,568   8,622   61,066
+md_unique_types    4,212   1,311    3,989
+ overlap_tokens   64,595   8,403   59,846
+   token_recall   95.94%  12.48%   88.89%
+    type_recall   97.08%  30.31%   92.27%
+
+* 200p part01 (200p) worker가 단일 응답 한도 초과로 중단 → part02(60p)만 산출.
+* 260p worker는 Request too large(>20MB) 도달 전까지만 변환 → 전체의 약 1/2 커버.
+
+해석:
+- token_recall: baseline(pdftotext) 토큰 중 MD에 포함된 비율. 100%에 가까울수록 무손실.
+- type_recall : baseline 고유 단어 중 MD에 존재하는 비율. 어휘 커버리지.

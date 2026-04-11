@@ -1,3 +1,8 @@
 .pdf2md_venv/
 node_modules/
 .claude/skills/*/.venv/
+
+# pdf2md 파트 크기 비교 실험의 재생성 가능한 중간 PDF
+UR/_compare/merged_pdf/
+UR/_compare/parts_50p/
+UR/_compare/parts_200p/
