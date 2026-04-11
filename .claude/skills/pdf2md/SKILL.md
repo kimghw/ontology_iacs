@@ -1,303 +1,305 @@
 ---
 name: pdf2md
-description: Convert PDFs to structured markdown. Lossless preservation of source text, image extraction and link insertion, split conversion across sub-agents (opus) in 50-page units followed by merge, and markdownlint and typo (en/ko) validation. TRIGGER when the user requests PDF→MD conversion, document markdownification, or PDF structuring. DO NOT TRIGGER when converting HTML/DOCX/JSON, performing OCR image recognition, or doing summarization/translation work.
+description: PDF를 구조화된 마크다운으로 변환. 원문 텍스트 무손실 보존, 이미지 추출·링크 삽입, 50p 단위 서브에이전트(opus) 분할 변환 후 병합, markdownlint·오탈자(en/ko) 검증. TRIGGER when 사용자가 PDF→MD 변환, 문서 마크다운화, PDF 구조화 요청. DO NOT TRIGGER when HTML/DOCX/JSON 변환, OCR 이미지 인식, 요약/번역 작업.
 ---
 
-# pdf2md — Convert PDFs to Structured Markdown
+# pdf2md — PDF를 구조화 마크다운으로 변환
 
-This skill defines the procedure for converting PDF files to structured markdown without losing any source text. Sub-agents (opus model) are allocated in parallel in 50-page units, and each agent reads its assigned page extract directly with the Read tool and converts it, while images are extracted into separate files and referenced via links. **Up to 20 sub-agents per round** are launched, and if any parts remain unprocessed they are handled continuously in the next round.
+본 스킬은 PDF 파일을 원문 손실 없이 구조화된 마크다운으로 변환하는 절차를 정의한다. 50페이지 단위로 서브에이전트(opus 모델)를 병렬 할당하고, 각 에이전트는 담당 페이지 추출물을 Read 도구로 직접 읽어 변환하며, 이미지는 별도 파일로 추출하여 링크로 참조한다. **라운드당 최대 20개 서브에이전트**를 기동하고, 미처리 파트가 남으면 다음 라운드에서 연속 처리한다.
 
-## Skill Structure
+## 스킬 구조
 
-This skill clearly separates the responsibilities of two actors: the **orchestrator** and the **sub-agents**.
+본 스킬은 **오케스트레이터**와 **서브에이전트** 두 주체의 책임을 명확히 분리한다.
 
-- **Section 3 Orchestrator Scope**: Work performed by the skill executor (the actor conversing with the user). Root preparation, decomposition, round loop, merge, validation, and cleanup.
-- **Section 4 Sub-agent Prompt Template**: A template for the dynamic inputs (paths, condition flags) to be included in the prompt when calling Agent. Static directives (conversion rules, DO/DON'T, checklists, etc.) are embedded as the system prompt in the Claude Code sub-agent definition file `.claude/agents/pdf2md-worker.md`, and are automatically injected when the orchestrator invokes Agent with `subagent_type: "pdf2md-worker"`.
+- **3절 오케스트레이터 작업 범위**: 스킬 실행자(사용자와 대화하는 주체)가 수행하는 작업. 루트 준비, 분해, 라운드 루프, 병합, 검증, 정리.
+- **4절 서브에이전트 프롬프트 템플릿**: Agent 호출 시 prompt에 포함할 동적 입력(경로, 조건 플래그)의 템플릿. 정적 지시문(변환 규칙, DO/DON'T, 체크리스트 등)은 Claude Code 서브에이전트 정의 파일 `.claude/agents/pdf2md-worker.md`의 시스템 프롬프트로 내장되어 있으며, 오케스트레이터가 `subagent_type: "pdf2md-worker"`로 Agent를 호출하면 자동 주입된다.
 
-The orchestrator's core principles, procedures, DO/DON'T, and checklists are defined in Section 3, while the sub-agent's static directives are defined in `.claude/agents/pdf2md-worker.md`.
+오케스트레이터의 핵심 원칙·절차·DO/DON'T·체크리스트는 3절에, 서브에이전트의 정적 지시문은 `.claude/agents/pdf2md-worker.md`에 각각 정의되어 있다.
 
-## 1. Terminology
+## 1. 용어
 
-- **Orchestrator**: The actor executing this skill and the user's collaborator. Receives user requests and is responsible for queue construction, sub-agent invocation and coordination, merging, image aggregation and link rewriting, validation, cleanup, and reporting.
-- **Sub-agent**: An opus conversion agent that the orchestrator invokes via the Agent tool. It converts only a single assigned page range and does not converse directly with the user. Results and errors are delivered only to the orchestrator.
-- **part_source**: A PDF extract containing only the assigned pages, read directly by the sub-agent via the Read tool. The orchestrator pre-generates it with qpdf during decomposition.
-- **Condition flags**: Per-part metadata (`part_index`, `is_first_part`, etc.) that the orchestrator finalizes during decomposition and injects into prompt slots. They determine the conditional branching behavior of the sub-agent.
-- **Round**: A bundle of sub-agents launched in one execution cycle. **The number of sub-agents per round is capped at 20 (absolute upper bound)**. If the total number of parts exceeds 20, they are processed sequentially across multiple rounds.
+- **오케스트레이터(Orchestrator)**: 본 스킬을 실행하는 주체이자 사용자의 협력자. 사용자의 요청을 받아 큐 구성, 서브에이전트 호출·조율, 병합, 이미지 집계·링크 재작성, 검증, 정리, 보고를 담당한다.
+- **서브에이전트(Sub-agent)**: 오케스트레이터가 Agent 도구로 호출하는 opus 변환 에이전트. 담당 페이지 구간 1개만 변환하며 사용자와 직접 대화하지 않는다. 결과·오류는 오케스트레이터에게만 전달한다.
+- **part_source**: 서브에이전트가 Read 도구로 직독하는, 담당 페이지만 포함된 PDF 추출물. 오케스트레이터가 분해 시 qpdf로 사전 생성한다.
+- **조건 플래그**: 오케스트레이터가 분해 시 확정하여 프롬프트 슬롯에 주입하는 파트별 메타데이터(`part_index`, `is_first_part` 등). 서브에이전트의 조건부 분기 행동을 결정한다.
+- **라운드(Round)**: 한 번의 실행 사이클에서 기동하는 서브에이전트 묶음. **라운드당 서브에이전트 수는 최대 20개(절대 상한)**. 전체 파트가 20을 초과하면 여러 라운드에 걸쳐 순차 처리한다.
 
-## 2. Input / Output Contract
+## 2. 입력 / 출력 규약
 
-- **Input**: A single or multiple PDF paths (`<input>.pdf` …), or a **folder path**. If a folder is given, all `*.pdf` files within that folder become the targets.
-- **Target count cap (recommended 100, exceedance allowed with user approval)**:
-  - The orchestrator treats 100 as the recommended cap based on the **net conversion target count** after the skip decision (see "already-converted skip" below) is complete.
+- **입력**: 단일 또는 다중 PDF 경로 (`<input>.pdf` …), 또는 **폴더 경로**. 폴더가 주어지면 해당 폴더 내 모든 `*.pdf` 파일을 대상으로 한다.
+- **대상 수 상한 (권장 100건, 사용자 승인 시 초과 허용)**:
+  - 오케스트레이터는 스킵 판정(아래 "변환 완료 스킵")을 끝낸 **순 변환 대상 수**를 기준으로 100을 권장 상한으로 삼는다.
  
-- **Already-converted skip**: When a folder is given as input, the orchestrator checks **whether existing output artifacts are present** before finalizing the conversion target list. If `<source_folder>_md/<input>.md` already exists and its size is > 0, that PDF is classified as **already converted (skipped)** and not loaded into the queue. The list of skipped files is reported to the user and also recorded in `agent_report.md`.
-- **Final output path**: The final `.md` file is stored in **a folder whose name is the original PDF's containing folder name with the `_md` suffix appended**. Example: if the source is `docs/manual/foo.pdf`, the final artifact is `docs/manual_md/foo.md`. Multiple PDFs in the same folder are all stored under the same `<source_folder>_md/`.
-- **Work root**: `<workroot>/` (default `./pdf2md_work/`).
-- **Working directory layout**:
+- **변환 완료 스킵**: 폴더 입력 시 오케스트레이터는 변환 대상 목록을 확정하기 전에 **기존 산출물 존재 여부**를 검사한다. `<원본폴더>_md/<input>.md`가 이미 존재하고 크기 > 0이면 해당 PDF는 **변환 완료(skipped)**로 분류하여 큐에 적재하지 않는다. 스킵된 파일 목록은 사용자에게 보고하고 `agent_report.md`에도 기록한다.
+- **최종 산출 경로**: 최종 `.md` 파일은 **원본 PDF가 위치한 폴더의 이름에 `_md` 접미사를 붙인 폴더**에 저장한다. 예: 원본이 `docs/manual/foo.pdf`이면 최종 산출물은 `docs/manual_md/foo.md`. 동일 폴더 내 다중 PDF는 같은 `<원본폴더>_md/`에 모두 저장.
+- **작업 루트**: `<workroot>/` (기본값 `./pdf2md_work/`).
+- **작업 디렉토리 레이아웃**:
 
   ```text
   <workroot>/
   ├── queue/
-  │   ├── pdf_parts/    ← per-part PDF extracts pre-generated by the orchestrator via qpdf
-  │   ├── pending/      ← part task files waiting immediately after decomposition
-  │   ├── working/      ← tasks currently held by an agent
-  │   └── done/         ← tasks post-processed after sub-agent completion (merge input)
-  ├── assets/<input>/   ← per-part extractions by the sub-agent via pdfimages (partNN-fig-XXX.ext)
-  └── out/              ← merge/lint staging directory (not the final output location)
+  │   ├── pdf_parts/    ← 오케스트레이터가 qpdf로 사전 생성한 파트별 PDF 추출물
+  │   ├── pending/      ← 분해 직후 대기 중인 구간 작업 파일
+  │   ├── working/      ← 현재 에이전트가 점유 중인 작업
+  │   └── done/         ← 서브에이전트 완료 후 후처리된 작업 (병합 입력)
+  ├── assets/<input>/   ← 서브에이전트가 pdfimages로 파트별 추출 (partNN-fig-XXX.ext)
+  └── out/              ← 병합·린트 스테이징 디렉토리 (최종 산출 위치 아님)
 
-  <source_folder>_md/<input>.md      ← final merged artifact (placed after validation passes)
-  <source_folder>_md/assets/<input>/ ← final image copies
+  <원본폴더>_md/<input>.md      ← 최종 병합 산출물 (검증 통과 후 배치)
+  <원본폴더>_md/assets/<input>/ ← 최종 이미지 사본
   ```
 
-- **Queue task file**: Of the form `<input>__partNN.task.json`. Contents include the input PDF path, part_source path, page range, condition flags, output fragment path, image directory, and status.
-- **Intermediate artifact**: `<workroot>/queue/done/<input>__partNN.md` — deleted along with the entire `queue/` during final cleanup (procedure 8).
+- **큐 작업 파일**: `<input>__partNN.task.json` 형태. 내용은 입력 PDF 경로, part_source 경로, 페이지 범위, 조건 플래그, 출력 조각 경로, 이미지 디렉토리, 상태.
+- **중간 산출물**: `<workroot>/queue/done/<input>__partNN.md` — 최종 정리(절차 8)에서 `queue/` 전체와 함께 삭제된다.
 
 ---
 
-## 3. Orchestrator Scope of Work
+## 3. 오케스트레이터 작업 범위
 
-### 3.1 Core Principles (Orchestrator)
+### 3.1 핵심 원칙 (오케스트레이터)
 
-- **Lossless-preservation supervision**: Spot-check after merge to ensure sub-agents did not delete, paraphrase, or summarize the source text.
-- **Split conversion**: If total pages > 50, split into 50p units and assign one sub-agent (opus) per part. When processing multiple files at once, decompose each file under the same rule and bundle them into a single queue.
-- **Queue-based job management**: A job unit (= one part) moves sequentially through the `pending → working → done` directories. Use `mv` for atomic moves to prevent ownership contention. When a sub-agent finishes, the orchestrator performs post-processing (metadata parsing) and moves the job from `working/` to `done/`.
-- **Asynchronous parallel execution**: Launch sub-agents with `run_in_background: true` so the orchestrator does not block. The concurrent launch count is capped at 20 (absolute upper limit).
-- **Immediate handling**: When a sub-agent completion notification arrives, the orchestrator immediately performs post-processing (metadata parsing) and moves the job from `working/` to `done/`. As soon as all parts of a given source file are collected in `done/`, perform merge (procedure 6) and validation (procedure 7) immediately.
-- **Scope of pre-processing allowed**: PDF pre-processing is **limited to page splitting (`qpdf --pages` or `pdfseparate`+`pdfunite`) and metadata inspection (`pdfinfo`)**. Do not use body-text extraction tools such as `pdftotext`, `pymupdf`, or `pdfminer` for body conversion.
-- **Single output after merge**: The final output per file is one `.md`. Do not insert either per-page separator marks or inter-part marks.
-- **Mandatory validation**: After merging, run markdownlint + heading-order/hierarchy/notation consistency checks + image-link resolution check + typo inspection (en/ko), and fix any violations.
-- **Responsibility to inject subscript directive**: Collect subscript-usage flags from completion reports and, after merging, inject the MD033 disable directive once at the top of the file.
-- **Responsibility to stitch at boundaries**: At part boundaries, determine during merge whether paragraphs, lists, or tables have been cut, and stitch them back together.
+- **무손실 보존 감독**: 서브에이전트가 원문 텍스트를 삭제·의역·요약하지 않았는지 병합 후 스폿 체크한다.
+- **분할 변환**: 총 페이지 > 50이면 50p 단위로 분할, 구간당 서브에이전트 1개(opus)를 할당한다. 여러 파일을 한 번에 처리할 때도 각 파일을 동일 규칙으로 분해하고 단일 큐로 묶는다.
+- **큐 기반 작업 관리**: 작업 단위(= 한 구간)는 `pending → working → done` 디렉토리를 순차 이동. `mv`로 원자 이동하여 점유 경합을 막는다. 서브에이전트가 완료되면 오케스트레이터가 후처리(메타데이터 파싱) 후 `working/` → `done/`으로 이동한다.
+- **비동기 병렬 실행**: 서브에이전트는 `run_in_background: true`로 기동하여 오케스트레이터가 블로킹되지 않게 한다. 동시 기동 수는 최대 20개(절대 상한).
+- **즉시 처리**: 서브에이전트 완료 알림이 도착하면 오케스트레이터는 즉시 후처리(메타데이터 파싱)를 수행하고 `working/` → `done/`으로 이동한다. 한 소스 파일의 모든 파트가 `done/`에 모이면 병합(절차 6)·검증(절차 7)을 즉시 수행한다.
+- **사전 가공의 허용 범위**: PDF 전처리는 **페이지 분할(`qpdf --pages` 또는 `pdfseparate`+`pdfunite`), 메타데이터 조회(`pdfinfo`)에 한정**한다. `pdftotext`·`pymupdf`·`pdfminer` 등 본문 텍스트 추출 도구를 본문 변환 목적으로 사용하지 않는다.
+- **병합 후 단일 산출물**: 파일 1개당 최종 출력은 `.md` 1개. 페이지 단위 구분 마크·구간 간 마크 모두 삽입하지 않는다.
+- **검증 필수**: 병합 후 markdownlint + 헤딩 순서·계층·표기 일치 검증 + 이미지 링크 해소 검증 + 오탈자 검사(en/ko)를 수행하고 위반 사항을 수정한다.
+- **첨자 디렉티브 주입 책임**: 완료 보고에서 첨자 사용 플래그를 수집하고, 병합 후 파일 최상단에 MD033 disable 디렉티브를 1회 주입한다.
+- **경계 이어붙임 책임**: 파트 경계에서 잘린 문단·목록·표를 병합 시 판정하여 이어붙인다.
 
-#### Delegation to Sub-agents
+#### 서브에이전트 위임 사항
 
-Behavior principles on the sub-agent side that the orchestrator **must guarantee** through prompt design and path delivery. The concrete procedure is defined in the sub-agent instructions in Section 4; the items below are checkpoints for the orchestrator to maintain a correct delegation structure.
+오케스트레이터가 프롬프트 설계·경로 전달을 통해 **보장해야 할** 서브에이전트 측 행동 원칙. 구체적 절차는 4절 서브에이전트 지시문에 정의되어 있으며, 아래는 오케스트레이터가 위임 구조를 올바르게 유지하기 위한 체크포인트다.
 
-- **Single-responsibility delegation**: Pass only the `part_source` path in the prompt so that no reference to or modification of other parts occurs.
-- **Guaranteeing direct-read principle**: Do not pre-textify the body and pass it as a string. Pass only the `part_source` PDF path and let the agent read it directly with the Read tool.
-- **Automatic loading of static instructions**: Do not copy static instructions such as conversion rules, procedures, and DO/DON'Ts into the prompt. When invoking Agent, specify `subagent_type: "pdf2md-worker"` so that the system prompt from `.claude/agents/pdf2md-worker.md` is auto-injected without compression or truncation.
-- **Image extraction delegation**: Delegate image extraction (`pdfimages`) to sub-agents. The orchestrator is responsible only for image aggregation and path rewriting at merge time.
+- **단일 책임 위임**: 프롬프트에 `part_source` 경로만 전달하여 타 구간 참조·수정이 발생하지 않게 한다.
+- **직독 원칙 보장**: 본문을 사전 텍스트화하여 문자열로 넘기지 않는다. `part_source` PDF 경로만 전달하여 에이전트가 Read 도구로 직접 읽게 한다.
+- **정적 지시문 자동 로드**: 변환 규칙·절차·DO/DON'T 등 정적 지시문을 prompt에 복사하지 않는다. Agent 호출 시 `subagent_type: "pdf2md-worker"`를 지정하여 `.claude/agents/pdf2md-worker.md`의 시스템 프롬프트가 압축·잘림 없이 자동 주입되게 한다.
+- **이미지 추출 위임**: 이미지 추출(`pdfimages`)은 서브에이전트에 위임한다. 오케스트레이터는 병합 시 이미지 집계와 경로 재작성만 담당한다.
 
-### 3.2 Procedure
+### 3.2 절차
 
-1. **Input scan and skip determination**
-   - If the input is a folder, collect the list of `*.pdf` files.
-   - For each PDF, check whether `<source_folder>_md/<input>.md` exists (`test -f`, size > 0).
-   - Add any PDF whose output already exists to the **skipped** list and exclude it from the conversion targets.
-   - Report the skip results to the user immediately (e.g., `"3/5 files converted — skipped: foo.pdf, bar.pdf, baz.pdf / targets: qux.pdf, quux.pdf"`).
-   - If there are 0 conversion targets, report "all PDFs already converted" and terminate.
-   - **Upper-limit check (recommended 100)**: If the **net conversion targets exceed 100** after skipping, per the "target count upper limit" convention in Section 2, **do not proceed beyond procedure 2 and request user approval**.
+1. **입력 스캔 및 스킵 판정**
+   - 입력이 폴더이면 `*.pdf` 파일 목록을 수집한다.
+   - 각 PDF에 대해 `<원본폴더>_md/<input>.md` 존재 여부를 확인한다(`test -f`, 크기 > 0).
+   - 이미 산출물이 존재하는 PDF는 **skipped** 목록에 추가하고 변환 대상에서 제외한다.
+   - 스킵 결과를 사용자에게 즉시 보고한다(예: `"3/5 파일 변환 완료 — 스킵: foo.pdf, bar.pdf, baz.pdf / 변환 대상: qux.pdf, quux.pdf"`).
+   - 변환 대상이 0개이면 "모든 PDF가 이미 변환됨"을 보고하고 종료한다.
+   - **상한 확인 (권장 100건)**: 스킵 후 **순 변환 대상이 100건을 초과**하면 2절의 "대상 수 상한" 규약에 따라 **절차 2 이하로 진행하지 말고 사용자에게 승인 요청**한다.
 
-2. **Prepare work root**
-   - Create `<workroot>/queue/{pdf_parts,pending,working,done}`, `<workroot>/assets/`, and `<workroot>/out/`.
+2. **작업 루트 준비**
+   - `<workroot>/queue/{pdf_parts,pending,working,done}`, `<workroot>/assets/`, `<workroot>/out/` 생성.
 
 
-3. **Preliminary inspection** (per file)
-   - Check the total page count with `pdfinfo <input>.pdf`.
-   - `mkdir -p <workroot>/assets/<input>/` — pre-create a shared directory where the sub-agent will extract images.
+3. **사전 조사** (파일별)
+   - `pdfinfo <input>.pdf`로 총 페이지 수 확인.
+   - `mkdir -p <workroot>/assets/<input>/` — 서브에이전트가 이미지를 추출할 공용 디렉토리를 사전 생성한다.
 
-4. **Decomposition, flag finalization, extract creation, enqueue**
-   - Compute `ceil(total/50)` parts per file.
-   - For each part, finalize the **condition flags** (see 3.3).
-   - For each part, pre-create the **assigned-page extract** and save it to `<workroot>/queue/pdf_parts/<input>__partNN.pdf`.
-     - **Recommended (qpdf)**: `qpdf <input>.pdf --pages <input>.pdf <start>-<end> -- <workroot>/queue/pdf_parts/<input>__partNN.pdf`
-     - **Alternative (pdfseparate + pdfunite)**: `pdfseparate -f <start> -l <end> <input>.pdf /tmp/_p_%d.pdf && pdfunite /tmp/_p_*.pdf <workroot>/queue/pdf_parts/<input>__partNN.pdf && rm /tmp/_p_*.pdf`
-     - **Strictly forbidden**: using `pdfseparate` alone (it produces per-page files and does not yield a single extract).
-     - **Note**: If total pages ≤ 50 and there is only one part, it is acceptable to simply `cp` the original PDF to `partNN.pdf`.
-   - Create a **task file** `<input>__partNN.task.json` for each part (input PDF path, part_source path, page range, condition flags, output fragment path, image output directory, status).
-   - Place all task files in `queue/pending/`. For multiple input files, flatten-load them into a single queue.
+4. **분해 · 플래그 확정 · 추출물 생성 · 큐 적재**
+   - 파일당 `ceil(total/50)`개 구간을 계산.
+   - 각 구간에 대해 **조건 플래그**를 확정한다(3.3 참조).
+   - 각 구간마다 **담당 페이지 추출물**을 사전 생성하여 `<workroot>/queue/pdf_parts/<input>__partNN.pdf`에 저장.
+     - **권장 (qpdf)**: `qpdf <input>.pdf --pages <input>.pdf <start>-<end> -- <workroot>/queue/pdf_parts/<input>__partNN.pdf`
+     - **대안 (pdfseparate + pdfunite)**: `pdfseparate -f <start> -l <end> <input>.pdf /tmp/_p_%d.pdf && pdfunite /tmp/_p_*.pdf <workroot>/queue/pdf_parts/<input>__partNN.pdf && rm /tmp/_p_*.pdf`
+     - **절대 금지**: `pdfseparate` 단독 사용(페이지별 파일이 생성되어 단일 추출물이 되지 않음).
+     - **참고**: 총 페이지 ≤ 50이고 파트가 1개뿐이면 원본 PDF를 그대로 `cp`하여 `partNN.pdf`로 두어도 무방.
+   - 각 구간의 **작업 파일** `<input>__partNN.task.json`을 생성(입력 PDF 경로, part_source 경로, 페이지 범위, 조건 플래그, 출력 조각 경로, 이미지 출력 디렉토리, 상태).
+   - 모든 작업 파일을 `queue/pending/`에 배치. 다중 입력 파일은 단일 큐로 평탄 적재.
 
-5. **Worker loop** (producer–consumer pattern)
+5. **워커 루프** (생산자-소비자 패턴)
 
-   Sub-agents (producers) perform conversion in the background, while the orchestrator (consumer) pulls completed results from the queue and immediately post-processes them.
+   서브에이전트(생산자)가 백그라운드에서 변환을 수행하고, 오케스트레이터(소비자)가 완료된 결과를 큐에서 꺼내 즉시 후처리한다.
 
-   **5a. Produce — launching sub-agents**
-   - Atomically move (`mv`) up to 20 task files from `queue/pending` to `queue/working`.
-   - Delegate **all** moved tasks to `subagent_type: "pdf2md-worker"` sub-agents via the Agent tool. **Launch with `run_in_background: true`**. Start concurrently via multiple Agent calls in a single message.
-   - The agent prompt **contains only 4.1 (role/input) and 4.2 (condition flags)**, with placeholders replaced by actual values. Static instructions are embedded in the `pdf2md-worker` sub-agent definition and are auto-injected simply by specifying `subagent_type`, so do not add paths to the prompt (see 3.4).
+   **5a. 생산 — 서브에이전트 기동**
+   - `pending/`에서 최대 20개 작업 파일을 `working/`으로 원자 이동(`mv`).
+   - 이동한 **모든** 작업을 Agent 도구로 `subagent_type: "pdf2md-worker"` 서브에이전트에 위임. **`run_in_background: true`로 기동**한다. 단일 메시지 내 다중 Agent 호출로 동시 기동한다.
+   - 에이전트 프롬프트는 **4.1(역할/입력)과 4.2(조건 플래그)만 포함**하고 플레이스홀더를 실제 값으로 치환한다. 정적 지시문은 `pdf2md-worker` 서브에이전트 정의에 내장되어 있어 `subagent_type` 지정만으로 자동 주입되므로 prompt에 경로를 추가하지 않는다(3.4 참조).
 
-   **5b. Completion handling (on every completion notification)**
-   - As soon as a sub-agent completion notification arrives, the orchestrator immediately:
-     1. Parses the completion report and accumulates per-file metadata (in particular, the `"subscript detected"` flag and the `"extracted image count"` total).
-     2. Moves the corresponding task file and the generated `partNN.md` from `working/` to `done/`.
-     3. Once all parts of a given input file are gathered in `done/`, **immediately** performs step 6 (merge) and step 7 (validation).
-     4. Returns failed tasks from `working/` to `pending/` and increments the retry counter. If the threshold (default 2) is exceeded, moves them to `failed/` and reports.
+   **5b. 완료 처리 (완료 알림 도착 시마다)**
+   - 서브에이전트 완료 알림이 도착하면 오케스트레이터는 즉시:
+     1. 완료 보고를 파싱하여 파일별 메타데이터에 누적(특히 `첨자 발견` 플래그, `추출 이미지 수` 합계).
+     2. 해당 작업 파일과 생성된 `partNN.md`를 `working/` → `done/`으로 이동.
+     3. 해당 입력 파일의 모든 파트가 `done/`에 모였으면 절차 6(병합)·절차 7(검증)을 **즉시** 수행한다.
+     4. 실패한 작업은 `working/` → `pending/`으로 되돌리고 재시도 카운트를 증가. 임계(기본 2회) 초과 시 `failed/`로 분리 후 보고.
 
-   **5c. Continuous pipeline — launch additional**
-   - After completion handling, if there are remaining parts in `pending/` and the current count in `working/` is below 20, move additional parts to `working/` and launch new sub-agents with `run_in_background: true`.
-   - This way, it operates as a **continuous pipeline** without round boundaries.
+   **5c. 연속 파이프라인 — 추가 기동**
+   - 완료 처리 후 `pending/`에 잔여 파트가 있고 현재 `working/` 수가 20 미만이면, 추가 파트를 `working/`으로 이동하여 새 서브에이전트를 `run_in_background: true`로 기동한다.
+   - 이로써 라운드 경계 없이 **연속 파이프라인**으로 동작한다.
 
-   **5d. Termination condition**
-   - Once `pending/` and `working/` are both empty and all files have been merged and validated, proceed to step 8 (final cleanup).
+   **5d. 종료 조건**
+   - `pending/`, `working/`이 모두 비고, 모든 파일의 병합·검증이 완료되면 절차 8(최종 정리)로 진행한다.
 
-6. **Merge** (per file)
-   - Merge a given input file at the moment all of its segments have been gathered in `done/`.
-   - Simple concatenation in order starting from `<input>__part01.md` → `<workroot>/out/<input>.md` (staging location).
-   - **Boundary stitching**: At each part boundary, inspect the last line of `partNN.md` and the first line of `part(NN+1).md`.
-     - Paragraph fragment (ending mid-sentence) → stitch with a single space.
-     - List continuation (a bullet/numbered list crossing the boundary) → restore the list structure as one.
-     - Table continuation (a table row starting without a header) → merge into the preceding part's table.
-     - Do not modify the content itself; restore structure only.
-   - **Inject subscript directive**: If any part's completion report contains `"subscript detected": true`, insert `<!-- markdownlint-disable MD033 -->` once at the very top of the merged file (just above the H1).
-   - **Image aggregation**: Copy the images (`partNN-fig-XXX.ext`) extracted by the sub-agents in `<workroot>/assets/<input>/` to `<source_folder>_md/assets/<input>/`. If the target directory does not exist, create it with `mkdir -p`. Since the per-part prefix (`partNN-fig-`) prevents filename collisions, a simple copy suffices.
-   - **Image-link rewrite**: The sub-agents used relative paths of the form `../../assets/<input>/...` based on `queue/working/`, so rewrite the links in the merged file in bulk to `assets/<input>/...` based on the final location. Example: `sed -i 's|\.\./\.\./assets/<input>/|assets/<input>/|g' <file_path>`.
-7. **Validation and final placement**
-   - Run `markdownlint <workroot>/out/<input>.md`.
-   - Target rules: heading hierarchy order (MD001), numbering increment (MD029), duplicate headings (MD024), link validity (MD042), single H1 (MD025), first-line H1 (MD041), table formatting, etc.
-   - **Heading order, hierarchy, and notation check (mandatory)**: Using the table of contents and chapter/section numbers of the source PDF as reference, verify that the headings of the final `.md` satisfy the following.
-     - **Order matches**: arranged in the order of appearance in the source, with no omission, duplication, or inversion.
-     - **Hierarchy matches**: `#`~`######` levels are assigned to match the chapter/section/subsection depth of the source, and does not skip more than one level.
-     - **Notation matches**: the numbering scheme and heading text are identical to the source (arbitrary abbreviation, translation, or renumbering is forbidden).
-   - **Self-correction on violation**: the orchestrator directly edits the relevant `.md` to resolve the issue and then re-validates. The scope of edits is limited to structure and formatting (heading hierarchy, numbering, whitespace, link format, etc.) and must not change the source text or meaning. If a violation can only be resolved by touching the source, or when automatic judgment is difficult, stop and report to the user.
-   - **image-link resolution check**: After final path placement, verify the existence of actual files for all image links (`![...](...)`) with `test -f`. On failure, re-execute the image aggregation/rewrite of procedure 6.
-   - **typo check (mandatory)**: Use the `language_tool_python` package to detect English (`en-US`) and Korean (`ko-KR`) typos. Language detection is based on the ratio of Hangul characters (≥0.3 → ko; when mixed, run both). **preprocessing**: Before passing text to LanguageTool, substitute math regions (`$$...$$` block, `$...$` inline) and HTML comments (`<!-- ... -->`) with empty string to avoid false positives on math tokens. The auto-fix scope is limited to **single candidate + category `TYPOS`/`MISSPELLING`**, but **the `BRITISH_ENGLISH_DETECTOR` rule is excluded from auto-fix** (preserve as-is when the source uses British English). Multi-candidate, context-dependent, grammar-category items are not fixed; instead, report the position, original text, and candidate list to the user. After generating the report, run `python3 scripts/filter_typo_report.py` to remove false positives based on the whitelist (`shared/typo_whitelist.yaml`). Append both auto-fixed and unfixed items to `agent_report.md`. Re-run markdownlint to re-validate the fix results.
-   - **Explicitly report the zero-image case**: Even when the input file has zero images, explicitly state "0/0 links pass (no images)" in the user report. Do not silently pass vacuously true.
-   - **user report**: Summarize to the user which rule was violated where and how it was fixed (file, line, rule ID, fix summary), and also append to `agent_report.md` (timestamp + task-name header).
-   - **Update the rule-guide feedback (mandatory)**: Once the markdownlint run results are available, the orchestrator updates `.claude/skills/pdf2md/markdownlint_rules.md`. update procedure:
-     1. First, Read the entire existing file to identify registered rules (`MD###`) and their classification (avoid-at-conversion-time / post-merge validation).
-     2. Compare the violated rules observed in this run with the existing entries.
-        - **registered rule**: duplicate addition is forbidden. If necessary, only augment the description/examples (within a scope that does not overturn the meaning of existing sentences).
-        - **unregistered rule**: append to the corresponding section ("Rules that can be avoided at conversion time" or "Rules subject to post-merge validation") in the same format (`- **MD###** (rule-name): description`).
-        - **conflict with existing description**: do not arbitrarily modify existing wording.
-     3. **When the difference is large** (three or more new rules, or a change that overturns the existing classification or description), instead of modifying the body directly, create or append a **`## User consultation required` section at the bottom** of the file and append in the format `- [YYYY-MM-DD] <input_file>: <observation>, <proposal>`. Until the user decides, do not touch the rule sections at the top.
-     4. When updating, do not re-embed the rules into the body of SKILL.md (SSOT violation).
-   - **After lint passes**, copy the staging file to the final path `<source_pdf_folder>_md/<input>.md`. If the target directory does not exist, create it with `mkdir -p`. Multiple PDFs from the same source folder are stored cumulatively in the same `<source_folder>_md/`.
+6. **병합** (파일별)
+   - 한 입력 파일의 모든 구간이 `done/`에 모인 시점에 해당 파일 병합을 수행한다.
+   - `<input>__part01.md`부터 순서대로 단순 연결 → `<workroot>/out/<input>.md` (스테이징 위치).
+   - **경계 이어붙임**: 각 파트 경계에서 `partNN.md`의 마지막 줄과 `part(NN+1).md`의 첫 줄을 검사한다.
+     - 문단 단편(문장 중간에서 끝남) → 한 칸 공백으로 이어붙임.
+     - 목록 계속(불릿/번호 목록이 경계를 넘나듦) → 목록 구조를 하나로 복원.
+     - 표 계속(헤더 없이 시작하는 표 행) → 앞 파트 표에 병합.
+     - 내용 자체는 변경하지 않고 구조만 복원한다.
+   - **첨자 디렉티브 주입**: 어느 파트라도 완료 보고에 `첨자 발견: true`가 있으면 병합 파일 최상단(H1 바로 위)에 `<!-- markdownlint-disable MD033 -->`를 1회 삽입한다.
+   - **이미지 집계**: `<workroot>/assets/<input>/`에 서브에이전트들이 추출한 이미지(`partNN-fig-XXX.ext`)를 `<원본폴더>_md/assets/<input>/`으로 복사한다. 대상 디렉토리가 없으면 `mkdir -p`로 생성. 파트별 접두사(`partNN-fig-`)로 파일명 충돌이 없으므로 단순 복사.
+   - **이미지 링크 재작성**: 서브에이전트는 `queue/working/` 기준 `../../assets/<input>/...` 상대경로를 사용했으므로, 병합 파일의 링크를 최종 위치 기준 `assets/<input>/...`로 일괄 재작성한다. 예: `sed -i 's|\.\./\.\./assets/<input>/|assets/<input>/|g' <파일경로>`.
 
-8. **Final path verification and cleanup**
-   - **path verification**: For every PDF in the conversion scope, verify all of the following.
-     - `<source_pdf_folder>_md/<input>.md` exists, size > 0.
-     - The number of images in `<source_pdf_folder>_md/assets/<input>/` matches the sum of `extracted image count` from the sub-agent completion reports.
-     - Every image link in the final `.md` points to an actual file per `test -f`.
-     - `pending/` and `working/` are empty, and all segments exist in `done/` (failed items are separated into `failed/` and reported).
-   - **Cleanup**: If all the above checks pass, delete the entire `<workroot>/queue/` (`rm -rf <workroot>/queue`) and also delete `<workroot>/assets/`. As a result, `<workroot>/` may be empty or completely removed.
-   - **On verification failure, does not delete under any circumstances.** Report the failure cause and wait for user instructions while preserving the queue.
+7. **검증 및 최종 배치**
+   - `markdownlint <workroot>/out/<input>.md` 실행.
+   - 대상 규칙: 제목 계층 순서(MD001), 넘버링 증가(MD029), 중복 제목(MD024), 링크 유효성(MD042), H1 1개(MD025), 첫 줄 H1(MD041), 표 형식 등.
+   - **헤딩 순서·표기 검증(필수)**: 원문 PDF의 목차/장·절 번호를 기준으로 최종 `.md`의 헤딩이 다음을 만족하는지 확인한다.
+     - **순서 일치**: 원문 등장 순서대로 배열, 누락·중복·역전 없음.
+     - **계층 일치**: 원문의 장·절·하위절 깊이에 맞춰 `#`~`######` 레벨이 부여되었고, 한 단계 이상 건너뛰지 않음.
+     - **표기 일치**: 번호 체계와 제목 텍스트가 원문과 동일(임의 축약·번역·번호 재부여 금지).
+   - **위반 발생 시 자가 수정**: 오케스트레이터가 직접 해당 `.md`를 수정하여 해소한 뒤 재검증한다. 수정 범위는 구조·포맷(제목 계층, 넘버링, 공백, 링크 형식 등)에 한정하며 원문 텍스트·의미는 변경하지 않는다. 원문을 건드려야만 해결되는 위반이거나 자동 판단이 어려운 경우는 중단하고 사용자에게 보고한다.
+   - **이미지 링크 해소 검증**: 최종 경로 배치 후 모든 이미지 링크(`![...](...)`)의 실제 파일 존재 여부를 `test -f`로 확인한다. 실패 시 절차 6의 이미지 집계/재작성을 재수행한다.
+   - **오탈자 검사 (필수)**: `language_tool_python` 패키지로 영문(`en-US`)·국문(`ko-KR`) 오탈자를 검출한다. 언어 판정은 한글 문자 비율 기준(≥0.3 → ko, 혼재 시 둘 다 실행). **전처리**: LanguageTool에 텍스트를 넘기기 전에 수식 구간(`$$...$$` 블록, `$...$` 인라인)과 HTML 주석(`<!-- ... -->`)을 빈 문자열로 치환하여 수식 토큰 오탐을 방지한다. 자동 수정 범위는 **단일 후보 + 카테고리 `TYPOS`/`MISSPELLING`**에 한정하되, **`BRITISH_ENGLISH_DETECTOR` 룰은 자동 수정에서 제외**한다(원문이 영국식 영어인 경우 그대로 보존). 다중 후보·문맥 의존·문법 카테고리는 수정하지 않고 위치·원문·후보 목록을 사용자에게 보고한다. 리포트 생성 후 `python3 scripts/filter_typo_report.py`로 화이트리스트(`shared/typo_whitelist.yaml`) 기반 False Positive를 제거한다. 자동 수정·미수정 항목 모두 `agent_report.md`에 append한다. 수정 결과는 markdownlint를 재실행하여 재검증한다.
+   - **이미지 0개 케이스도 명시 보고**: 이미지가 0개인 입력 파일이라도 "링크 0/0 통과(이미지 없음)"로 사용자 보고에 명시한다. vacuously true임을 암묵 처리하지 않는다.
+   - **사용자 보고**: 어떤 규칙이 어디서 위반되었고 어떻게 수정했는지(파일·줄·규칙ID·수정 요지)를 사용자에게 요약 보고하고, `agent_report.md`에도 append한다(타임스탬프 + 작업명 헤더).
+   - **규칙 가이드 피드백 갱신(필수)**: markdownlint 실행 결과가 나오면 오케스트레이터는 `.claude/skills/pdf2md/markdownlint_rules.md`를 갱신한다. 갱신 절차:
+     1. 먼저 Read로 기존 파일 전체를 읽어 등록된 규칙(`MD###`)과 분류(변환 시점 회피 / 병합 후 검증)를 파악한다.
+     2. 이번 실행에서 관찰된 위반 규칙을 기존 항목과 대조한다.
+        - **이미 등록된 규칙**: 중복 추가 금지. 필요 시 설명·예시만 보강한다(기존 문장 의미를 뒤집지 않는 범위에서).
+        - **미등록 규칙**: 해당 섹션("변환 시점에 피할 수 있는 규칙" 또는 "병합 후 검증 대상 규칙")에 동일 형식(`- **MD###** (rule-name): 설명`)으로 append.
+        - **기존 설명과 충돌·상충**: 기존 문구를 임의 수정하지 않는다.
+     3. **차이가 큰 경우**(신규 규칙 3개 이상, 또는 기존 분류/설명을 뒤집어야 하는 변경)에는 파일 본문을 직접 수정하지 말고, 파일 **하단에 `## 사용자 협의 필요` 섹션**을 만들거나 이어 붙여 `- [YYYY-MM-DD] <입력파일>: <관찰 내용>, <제안>` 형식으로 append한다. 사용자 결정 전까지 상단 규칙 섹션은 건드리지 않는다.
+     4. 갱신 시 SKILL.md 본문에 규칙을 재이식하지 않는다(SSOT 위반).
+   - **린트 통과 후** 스테이징 파일을 최종 경로 `<원본PDF폴더>_md/<input>.md`로 복사한다. 대상 디렉토리가 없으면 `mkdir -p`로 생성. 동일 원본 폴더의 다중 PDF는 동일한 `<원본폴더>_md/`에 누적 저장.
 
-### 3.3 Condition-flag finalization rules
+8. **최종 경로 검증 및 정리**
+   - **경로 검증**: 전체 변환 대상 PDF에 대해 다음을 모두 확인한다.
+     - `<원본PDF폴더>_md/<input>.md` 존재, 크기 > 0.
+     - `<원본PDF폴더>_md/assets/<input>/` 이미지 개수가 서브에이전트 완료 보고의 `추출 이미지 수` 합계와 일치.
+     - 최종 `.md` 내 모든 이미지 링크가 `test -f` 기준으로 실제 파일을 가리킴.
+     - `pending/`·`working/`이 비어 있고, 모든 구간이 `done/`에 존재(실패 항목은 `failed/`로 분리되어 보고됨).
+   - **정리**: 위 검증이 모두 통과하면 `<workroot>/queue/` 전체를 삭제하고(`rm -rf <workroot>/queue`), `<workroot>/assets/`도 삭제한다. 결과적으로 `<workroot>/`는 비거나 완전히 제거되어도 무방하다.
+   - **검증 실패 시 절대 삭제하지 않는다.** 실패 원인을 보고하고 큐를 보존한 채 사용자 지시를 기다린다.
 
-At the time of decomposition (procedure 4), compute the following values for each part and inject them into task.json and the prompt slots (4.2).
+### 3.3 조건 플래그 확정 규칙
 
-| Flag | Type | How it is computed |
+분해(절차 4) 시점에 각 파트에 대해 다음 값을 산출하여 task.json과 프롬프트 슬롯(4.2)에 주입한다.
+
+| 플래그 | 타입 | 산출 방법 |
 |---|---|---|
-| `part_index` | string | `01`, `02`, … `NN` (split order, 2-digit zero-padded) |
+| `part_index` | 문자열 | `01`, `02`, … `NN` (분할 순서, 2자리 zero-pad) |
 | `total_parts` | int | `ceil(total_pages / 50)` |
 | `is_first_part` | bool | `part_index == "01"` |
 | `is_last_part` | bool | `part_index == total_parts` |
 | `is_single_part` | bool | `total_parts == 1` |
 
-**Flags that are NOT precomputed**:
+**사전 플래그가 아닌 것들**:
 
-- **`images_in_range` is not a precomputed flag.** The sub-agent reads `part_source` directly at runtime, determines existence and count of images, and includes the extracted image count in the completion report (4.10).
-- **`has_subscripts` is not a precomputed flag.** The sub-agent reads `part_source` directly and includes whether subscripts were found (`subscript detected`) in the completion report (4.10); the orchestrator injects the MD033 disable directive when merging (procedure 6).
-- **`boundary_warning` is also not a precomputed flag.** The orchestrator inspects the part-boundary lines directly when merging (procedure 6) and stitches them. Per the 4.5 invariant rules, the agent does not arbitrarily complete sentences that were cut off.
-### 3.4 Sub-agent prompt assembly rules
+- **`images_in_range`는 사전 플래그가 아니다.** 서브에이전트가 런타임에 `part_source`를 직접 읽어 이미지 존재 여부와 개수를 판단하고, 추출된 이미지 수를 완료 보고(4.10)에 포함한다.
+- **`has_subscripts`는 사전 플래그가 아니다.** 서브에이전트가 `part_source`를 직접 읽어 첨자 발견 여부를 완료 보고(4.10)에 포함하고, 오케스트레이터가 병합 시(절차 6) MD033 disable 디렉티브를 주입한다.
+- **`boundary_warning`도 사전 플래그가 아니다.** 오케스트레이터가 병합 시(절차 6) 파트 경계 줄을 직접 검사하여 이어붙인다. 에이전트는 4.5 불변 규칙에 따라 잘린 문장을 임의 완성하지 않는다.
 
-For every Agent call, follow the assembly procedure below.
+### 3.4 서브에이전트 프롬프트 조립 규칙
 
-1. When calling the Agent, specify `subagent_type: "pdf2md-worker"`. This automatically loads the system prompt (static instructions) of `.claude/agents/pdf2md-worker.md`.
-2. Substitute the path placeholders (`<workroot>`, `<input>`, `<start>`, `<end>`, `partNN`) in 4.1 (role/input) with actual values and include in the prompt.
-3. Substitute each item in the 4.2 (condition flags) slot with the actual values finalized in 3.3 and include in the prompt.
-4. Do not copy directly into the prompt any static instructions outside 4.1/4.2 (conversion rules, DO/DON'T, etc.). They are embedded as a system prompt in the sub-agent definition and automatically injected, so no compression or truncation occurs.
-5. Do not append extra instructions outside the template. If there are document-specific peculiarities, leave it for the agent to reverse-report via the "peculiarities" item in its completion report, and have the orchestrator handle them at the merge stage.
+매 Agent 호출마다 다음 조립 절차를 따른다.
 
-### 3.5 DO / DON'T (orchestrator)
+1. Agent 호출 시 `subagent_type: "pdf2md-worker"`를 지정한다. 이것으로 `.claude/agents/pdf2md-worker.md`의 시스템 프롬프트(정적 지시문)가 자동 로드된다.
+2. 4.1(역할/입력)의 경로 플레이스홀더(`<workroot>`, `<input>`, `<start>`, `<end>`, `partNN`)를 실제 값으로 치환하여 prompt에 포함한다.
+3. 4.2(조건 플래그) 슬롯의 각 항목을 3.3에서 확정한 실제 값으로 치환하여 prompt에 포함한다.
+4. prompt에 4.1/4.2 외의 정적 지시문(변환 규칙, DO/DON'T 등)을 직접 복사하지 않는다. 서브에이전트 정의에 시스템 프롬프트로 내장되어 자동 주입되므로 압축·잘림이 발생하지 않는다.
+5. 템플릿 외부에 추가 지시사항을 덧붙이지 않는다. 문서별 특이사항이 있다면 에이전트가 완료 보고 "특이사항" 항목으로 역보고하게 두고, 병합 단계에서 오케스트레이터가 처리한다.
+
+### 3.5 DO / DON'T (오케스트레이터)
 
 #### DO
 
-- When a folder is provided as input, check whether `<source_folder>_md/<input>.md` exists and skip already-converted files. Report the skip list to the user and also record it in `agent_report.md`.
-- Before decomposition, collect metadata via `pdfinfo` to accurately compute the condition flags.
-- Generate page extracts as a single file using `qpdf --pages`.
-- Pre-create the shared directory (`<workroot>/assets/<input>/`) where sub-agents extract images.
-- Queue movement (`pending → working → done`) is handled atomically via `mv`.
-- Start sub-agents with `run_in_background: true`. Immediately upon arrival of the completion notification, after post-processing, move from `working/` to `done/`.
-- After completion handling, if there are remaining parts in `pending/`, start additional sub-agents (continuous pipeline).
-- Accumulate the "subscript detected" flag from the sub-agent completion reports per file to determine whether to inject the MD033 directive at merge time.
-- At merge time, inspect the part boundary lines and stitch fragmented paragraphs, lists, and tables (restore structure only without modifying content).
-- If there is no markdownlint configuration, use the default; if the project has `.markdownlint.json`, it takes precedence.
-- The markdownlint rule guide (4.7) is continuously updated and maintained in a separate file `.claude/skills/pdf2md/markdownlint_rules.md`. It is the single source of truth (SSOT) consulted during conversion (sub-agent) and final validation (orchestrator).
-- For typo check, run `language_tool_python` with en/ko, auto-fix limited to single-candidate, typo-category items; others are reported to the user.
-- After generating the typo report, remove false positives with `python3 scripts/filter_typo_report.py`. Whitelist SSOT: `shared/typo_whitelist.yaml`.
-- On validation failure, preserve the queue and report to the user.
+- 폴더 입력 시 `<원본폴더>_md/<input>.md` 존재 여부를 검사하여 변환 완료 파일을 스킵한다. 스킵 목록은 사용자에게 보고하고 `agent_report.md`에도 기록한다.
+- 분해 전 `pdfinfo`로 메타데이터를 수집하여 조건 플래그를 정확히 산출한다.
+- 페이지 추출물은 `qpdf --pages`로 단일 파일로 생성한다.
+- 서브에이전트가 이미지를 추출할 공용 디렉토리(`<workroot>/assets/<input>/`)를 사전 생성한다.
+- 큐 이동(`pending → working → done`)은 `mv`로 원자 처리한다.
+- 서브에이전트는 `run_in_background: true`로 기동한다. 완료 알림 도착 시 즉시 후처리 후 `working/` → `done/`으로 이동한다.
+- 완료 처리 후 `pending/`에 잔여 파트가 있으면 추가 서브에이전트를 기동한다(연속 파이프라인).
+- 서브에이전트 완료 보고의 `첨자 발견` 플래그를 파일별로 누적하여 병합 시 MD033 디렉티브 주입 여부를 결정한다.
+- 병합 시 파트 경계 줄을 검사하여 잘린 문단·목록·표를 이어붙인다(내용 변경 없이 구조만 복원).
+- markdownlint 설정이 없으면 기본값, 프로젝트에 `.markdownlint.json`이 있으면 그것을 우선한다.
+- markdownlint 규칙 가이드는 별도 파일 `.claude/skills/pdf2md/markdownlint_rules.md`에서 상시 갱신·관리한다. 변환 시 참고(서브에이전트) 및 최종 검증(오케스트레이터)의 단일 출처(SSOT)이다.
+- 오탈자 검사는 `language_tool_python`으로 en/ko 실행, 단일 후보·오탈자 카테고리 한정 자동 수정, 그 외는 사용자 보고.
+- 오탈자 리포트 생성 후 `python3 scripts/filter_typo_report.py`로 False Positive를 제거한다. 화이트리스트 SSOT: `shared/typo_whitelist.yaml`.
+- 검증 실패 시 큐를 보존한 채 사용자에게 보고한다.
 
 #### DON'T
 
-- Do not pre-textify the body and pass it as a string to the agent (do not extract the body with `pdftotext`/`pymupdf`/`pdfminer` etc. and pass it along).
-- The orchestrator does not pre-extract images (`pdfimages`). Image extraction is the sub-agent's responsibility.
-- Do not copy static instructions directly into the sub-agent prompt (when `subagent_type: "pdf2md-worker"` is specified, they are automatically injected as a system prompt).
-- Do not assign more than one task to a single agent at a time.
-- When judging part boundaries, do not change content itself (structure restoration only).
-- Do not insert page or boundary markers (`--- page N ---`, etc.) into any intermediate or final artifact.
-- Do not declare completion while ignoring markdownlint violations.
-- Do not arbitrarily auto-fix multi-candidate, context-dependent, grammar-category typos (risk of altering the source meaning).
-- Do not re-embed the 4.7 markdownlint rules into the SKILL.md body. `markdownlint_rules.md` is the sole source.
-- Do not delete the queue on validation failure.
+- 본문을 사전 텍스트화하여 에이전트에 문자열로 넘기지 않는다(`pdftotext`·`pymupdf`·`pdfminer` 등으로 본문 추출 후 전달 금지).
+- 오케스트레이터가 이미지를 사전 추출(`pdfimages`)하지 않는다. 이미지 추출은 서브에이전트 책임이다.
+- 서브에이전트 prompt에 정적 지시문을 직접 복사하지 않는다(`subagent_type: "pdf2md-worker"` 지정 시 시스템 프롬프트로 자동 주입된다).
+- 한 에이전트에 두 개 이상의 작업을 동시에 점유시키지 않는다.
+- 파트 경계 판정에서 내용 자체를 변경하지 않는다(구조 복원만).
+- 페이지 단위·경계 마크(`--- page N ---` 등)를 중간·최종 산출물 어디에도 삽입하지 않는다.
+- markdownlint 위반을 무시한 채 완료 선언하지 않는다.
+- 다중 후보·문맥 의존·문법 카테고리의 오탈자를 임의 자동 수정하지 않는다(원문 의미 변형 위험).
+- markdownlint 규칙을 SKILL.md 본문에 재이식하지 않는다. `markdownlint_rules.md`가 유일한 출처.
+- 검증 실패 시 큐를 삭제하지 않는다.
 
-### 3.6 Checklist (orchestrator)
+### 3.6 체크리스트 (오케스트레이터)
 
-**Initialization (procedures 1–4)**
+**초기화 (절차 1~4)**
 
-- [ ] create `<workroot>/queue/{pdf_parts,pending,working,done}` and `assets/`, `out/`
-- [ ] on folder input, scan existing outputs → skip already-converted files, user report the skip list
-- [ ] per input file determine total page count (`pdfinfo`), number of parts = `ceil(total/50)`
-- [ ] pre-create the `<workroot>/assets/<input>/` image output directory
-- [ ] finalize each part's condition flags (`part_index`, `total_parts`, `is_first_part`, `is_last_part`, `is_single_part`)
-- [ ] create the `part_source` PDF extract for each part under `queue/pdf_parts/` (`qpdf --pages`)
-- [ ] all part task files loaded into `pending/`
+- [ ] `<workroot>/queue/{pdf_parts,pending,working,done}` 및 `assets/`, `out/` 생성
+- [ ] 폴더 입력 시 기존 산출물 스캔 → 변환 완료 파일 스킵, 스킵 목록 사용자 보고
+- [ ] 입력 파일별 총 페이지 확인(`pdfinfo`), 구간 수 = `ceil(total/50)`
+- [ ] `<workroot>/assets/<input>/` 이미지 출력 디렉토리 사전 생성
+- [ ] 각 파트의 조건 플래그(`part_index`, `total_parts`, `is_first_part`, `is_last_part`, `is_single_part`) 확정
+- [ ] 각 파트의 `part_source` PDF 추출물을 `queue/pdf_parts/`에 생성(`qpdf --pages`)
+- [ ] 모든 구간 작업 파일이 `pending/`에 적재됨
 
-**Produce — launching sub-agents (procedure 5a)**
+**생산 — 서브에이전트 기동 (절차 5a)**
 
-- [ ] move up to 20 tasks from `pending/` to `working/`
-- [ ] include only 4.1/4.2 in the prompt and substitute slots (static instructions are auto-loaded via `subagent_type`)
-- [ ] all sub-agents started with `subagent_type: "pdf2md-worker"` + `run_in_background: true`
+- [ ] `pending/`에서 최대 20개 작업을 `working/`으로 이동
+- [ ] 4.1/4.2만 prompt에 포함하여 슬롯 치환 (정적 지시문은 `subagent_type`으로 자동 로드)
+- [ ] 모든 서브에이전트를 `subagent_type: "pdf2md-worker"` + `run_in_background: true`로 기동
 
-**Completion handling (procedure 5b, repeat on every completion notification)**
+**완료 처리 (절차 5b, 완료 알림마다 반복)**
 
-- [ ] parse the completion report, accumulate the `subscript found` flag and `extracted image count`
-- [ ] move completed tasks from `working/` → `done/`
-- [ ] re-enqueue failed tasks from `working/` → `pending/`, separate into `failed/` when the threshold is exceeded
-- [ ] once all pieces of a file arrive in `done/`, **immediately** perform procedure 6 (merge) and procedure 7 (verification):
-  - [ ] merge into `out/<input>.md`, stitch part boundaries
-  - [ ] when `subscript found: true`, inject `<!-- markdownlint-disable MD033 -->`
-  - [ ] aggregate-copy images and rewrite links
-  - [ ] markdownlint pass
-  - [ ] typo check pass + false-positive filtering + `agent_report.md` append
-  - [ ] heading order, hierarchy, and number notation match the source
-  - [ ] spot-check for omissions against the source
-  - [ ] final path placement
+- [ ] 완료 보고 파싱, `첨자 발견` 플래그·`추출 이미지 수` 누적
+- [ ] 완료된 작업을 `working/` → `done/`으로 이동
+- [ ] 실패 작업은 `working/` → `pending/`으로 재투입, 임계 초과 시 `failed/` 분리
+- [ ] 파일별 모든 조각이 `done/`에 모이면 **즉시** 절차 6(병합)·절차 7(검증) 수행:
+  - [ ] `out/<input>.md`로 병합, 파트 경계 이어붙임
+  - [ ] `첨자 발견: true` 시 `<!-- markdownlint-disable MD033 -->` 주입
+  - [ ] 이미지 집계 복사 + 링크 재작성
+  - [ ] markdownlint 통과
+  - [ ] 오탈자 검사 통과 + FP 필터링 + `agent_report.md` append
+  - [ ] 헤딩 순서·계층·번호 표기 원문 일치
+  - [ ] 원문 대비 누락 스폿 체크
+  - [ ] 최종 경로 배치
 
-**Continuous pipeline (procedure 5c)**
+**연속 파이프라인 (절차 5c)**
 
-- [ ] after completion handling, if `pending/` has remaining parts and `working/` < 20, launch additional sub-agents
-- [ ] when `pending/` and `working/` are both empty → proceed to procedure 8 (Final cleanup)
+- [ ] 완료 처리 후 `pending/`에 잔여 파트 + `working/` < 20이면 추가 서브에이전트 기동
+- [ ] `pending/`, `working/`이 모두 비면 → 절차 8(최종 정리)로 진행
 
-**Final cleanup (procedure 8, after all rounds complete)**
+**최종 정리 (절차 8, 모든 라운드 완료 후)**
 
-- [ ] path verification: `<source_folder>_md/<input>.md` exists, image counts match, all image links resolved
-- [ ] user report + `agent_report.md` append complete
-- [ ] after passing verification, delete `<workroot>/queue/` and `<workroot>/assets/` — preserve on validation failure
+- [ ] 경로 검증: `<원본폴더>_md/<input>.md` 존재, 이미지 개수 일치, 모든 이미지 링크 해소
+- [ ] 사용자 보고 + `agent_report.md` append 완료
+- [ ] 검증 통과 후 `<workroot>/queue/`, `<workroot>/assets/` 삭제 — 검증 실패 시 보존
 
 ---
 
-## 4. Sub-agent prompt template
+## 4. 서브에이전트 프롬프트 템플릿
 
-> **Orchestrator note**: When invoking the Agent, specify `subagent_type: "pdf2md-worker"` and include **only 4.1 (Role / Input) and 4.2 (condition flags)** in the prompt, substituting the placeholders with actual values. The static instructions (core principles, conversion procedure, invariant rules, DO/DON'T, checklist, completion-report format) are embedded as a system prompt in the sub-agent definition file `.claude/agents/pdf2md-worker.md`, so they are automatically injected simply by specifying `subagent_type` (see 3.4).
+> **오케스트레이터 주의**: Agent 호출 시 `subagent_type: "pdf2md-worker"`를 지정하고 프롬프트에는 **4.1(역할/입력)과 4.2(조건 플래그)만 포함**하여 플레이스홀더를 실제 값으로 치환한다. 정적 지시문(핵심 원칙, 변환 절차, 불변 규칙, DO/DON'T, 체크리스트, 완료 보고 형식)은 서브에이전트 정의 파일 `.claude/agents/pdf2md-worker.md`에 시스템 프롬프트로 내장되어 있어 `subagent_type` 지정만으로 자동 주입된다(3.4 참조).
 
-### 4.1 Role / Input
+### 4.1 역할 / 입력
 
 ```text
-Role: Specialized agent that converts a PDF part into lossless markdown. Performs image extraction, position matching, and link insertion by itself.
+역할: PDF 구간을 무손실 마크다운으로 변환하는 전문 에이전트. 이미지 추출·위치 매칭·링크 삽입까지 단독 수행한다.
 
-Input:
-- assigned-page extract (part_source, read only this via the Read tool): <workroot>/queue/pdf_parts/<input>__partNN.pdf
-- assigned page range: <start>-<end>
-- image output directory (stores images extracted by the sub-agent): <workroot>/assets/<input>/
-- image filename prefix: partNN-fig  (e.g. pdfimages -all <part_source> <workroot>/assets/<input>/partNN-fig)
-- output file: <workroot>/queue/working/<input>__partNN.md
+입력:
+- 담당 페이지 추출물 (part_source, 이것만 Read 도구로 직독): <workroot>/queue/pdf_parts/<input>__partNN.pdf
+- 담당 페이지 범위: <start>-<end>
+- 이미지 출력 디렉토리 (서브에이전트가 추출한 이미지 저장): <workroot>/assets/<input>/
+- 이미지 파일명 접두사: partNN-fig  (예: pdfimages -all <part_source> <workroot>/assets/<input>/partNN-fig)
+- 출력 파일: <workroot>/queue/working/<input>__partNN.md
 ```
 
-### 4.2 Work conditions (condition flags)
+### 4.2 작업 조건 (조건 플래그)
 
 ```text
-Work conditions (finalized by the orchestrator during decomposition):
+작업 조건 (오케스트레이터가 분해 시 확정):
 - part_index:      <01 | NN>
 - total_parts:     <N>
 - is_first_part:   <true | false>
@@ -305,15 +307,15 @@ Work conditions (finalized by the orchestrator during decomposition):
 - is_single_part:  <true | false>
 ```
 
-### 4.3 Static instructions (sub-agent definition)
+### 4.3 정적 지시문 (서브에이전트 정의)
 
-The sub-agent's conversion rules, procedure, DO/DON'T, checklist, and completion-report format are embedded as the system prompt of the Claude Code sub-agent definition file. When the orchestrator invokes the Agent with `subagent_type: "pdf2md-worker"`, they are automatically injected.
+서브에이전트의 변환 규칙, 절차, DO/DON'T, 체크리스트, 완료 보고 형식은 Claude Code 서브에이전트 정의 파일의 시스템 프롬프트로 내장되어 있다. 오케스트레이터가 `subagent_type: "pdf2md-worker"`로 Agent를 호출하면 자동 주입된다.
 
-- **File path**: `.claude/agents/pdf2md-worker.md`
-- **Contents**: core principles, conversion procedure, invariant conversion rules, conditional branching rules, markdownlint references, DO/DON'T, self-checklist, completion-report format
+- **파일 경로**: `.claude/agents/pdf2md-worker.md`
+- **포함 내용**: 핵심 원칙, 변환 절차, 불변 변환 규칙, 조건부 분기 규칙, markdownlint 참조, DO/DON'T, 자가 체크리스트, 완료 보고 형식
 
 ---
 
-## 5. References
+## 5. 참조
 
-- Sub-agent definition (static instructions): `.claude/agents/pdf2md-worker.md`
+- 서브에이전트 정의(정적 지시문): `.claude/agents/pdf2md-worker.md`
