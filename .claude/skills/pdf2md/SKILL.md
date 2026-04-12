@@ -155,7 +155,7 @@ description: PDF를 구조화된 마크다운으로 변환. 원문 텍스트 무
    - 서브에이전트 완료 알림이 도착하면 오케스트레이터는 즉시:
      1. 완료 보고를 파싱하여 파일별 메타데이터에 누적(특히 `첨자_발견` 플래그, `추출_이미지_수` 합계).
      2. 해당 `partNN.task.json`과 생성된 `partNN.md`를 `sessions/<session_id>/working/<input>/` → `sessions/<session_id>/done/<input>/`으로 이동.
-     3. 해당 입력 파일의 모든 파트가 `sessions/<session_id>/done/<input>/`에 모였으면 락 상태를 `merging`으로 갱신하고 절차 6(병합)·절차 7(검증)을 **즉시** 수행한다. 검증 통과 시 락을 해제(`rm -rf locks/<input>.lock`)한다.
+     3. 해당 입력 파일의 모든 파트가 `sessions/<session_id>/done/<input>/`에 모였으면 락 상태를 `merging`으로 갱신하고 절차 6(병합)·절차 7(검증)을 **즉시** 수행한다. 검증 통과 시 **절차 8에 따라 큐·자산 정리를 모두 마친 후** 락을 해제한다.
      4. 실패한 작업은 `sessions/<session_id>/working/<input>/` 내부에서 재시도 카운트를 증가시킨 뒤 **동일 라운드 내에서 재기동**한다. 임계(기본 2회) 초과 시 `sessions/<session_id>/failed/<input>/`로 분리하고 보고한다. 재시도는 100 총 상한에 포함되지 않는다(이미 집계된 파트의 재실행).
 
    **5c. 라운드 종료 판정 · 다음 라운드**
@@ -209,8 +209,9 @@ description: PDF를 구조화된 마크다운으로 변환. 원문 텍스트 무
      - 해당 파일의 모든 구간이 `sessions/<session_id>/done/<input>/`에 존재(실패 항목은 `sessions/<session_id>/failed/<input>/`로 분리되어 보고됨).
    - **파일 단위 정리**: 검증을 통과한 파일마다 다음을 **이 순서대로** 수행한다.
      1. `<workroot>/queue/sessions/<session_id>/{pending,working,done,assets}/<input>/`를 `rm -rf`로 삭제.
-     2. `<workroot>/queue/sessions/<session_id>/pdf_parts/<input>__part*.pdf`를 삭제.
-     3. **마지막에** `<workroot>/queue/locks/<input>.lock`을 `rm -rf`로 삭제하여 락을 해제한다. **순서 엄수**: 큐·자산 정리 전에 락을 해제하면 다른 오케스트레이터가 절반만 정리된 상태를 점유해 손상된 큐를 읽을 수 있으므로 반드시 이 순서를 지킨다.
+     2. `<workroot>/queue/sessions/<session_id>/out/<input>.md`를 삭제.
+     3. `<workroot>/queue/sessions/<session_id>/pdf_parts/<input>__part*.pdf`를 삭제.
+     4. **마지막에** `<workroot>/queue/locks/<input>.lock`을 `rm -rf`로 삭제하여 락을 해제한다. **순서 엄수**: 큐·자산 정리 전에 락을 해제하면 다른 오케스트레이터가 절반만 정리된 상태를 점유해 손상된 큐를 읽을 수 있으므로 반드시 이 순서를 지킨다.
    - **다른 파일 보존**: 이번 실행이 점유하지 않은 파일(다른 오케스트레이터가 사용 중일 수 있음)의 큐·락·자산은 **절대 건드리지 않는다**.
    - **라스트 원 클린업**: 모든 파일 정리 후 `<workroot>/queue/sessions/<session_id>/{pending,working,done,assets,pdf_parts,failed,out}/`가 모두 비어 있으면 `rmdir` 시도로 빈 디렉토리를 제거한다. 세션 디렉토리 자체(`sessions/<session_id>/`)도 비어 있으면 `rmdir`로 제거한다. `locks/`는 글로벌이므로 별도 판정한다(실패는 무시).
    - **검증 실패 시 절대 삭제하지 않는다.** 실패 원인을 보고하고 해당 파일의 큐·락을 보존한다. 락은 `state=failed`로 갱신하여 사용자에게 수동 복구 대상임을 명시한다.
@@ -288,7 +289,7 @@ description: PDF를 구조화된 마크다운으로 변환. 원문 텍스트 무
 **초기화 (절차 1~4)**
 
 - [ ] session_id 확인 (현재 Claude Code 세션 UUID)
-- [ ] 큐 트리 준비: `<workroot>/queue/{pdf_parts,locks,pending,working,done,failed,assets,out}`
+- [ ] 큐 트리 준비: `<workroot>/queue/locks/` + `<workroot>/queue/sessions/<session_id>/{pdf_parts,pending,working,done,failed,assets,out}/`
 - [ ] 폴더 입력 시 기존 산출물 스캔 → 변환 완료 파일 스킵, 스킵 목록 사용자 보고
 - [ ] 각 대상 파일 `pdfinfo`로 총 페이지 수 확인 → `ceil(pages/50)` 파트 수 산출
 - [ ] 파일당 파트 수 ≤ 40 확인(초과 → 물리 분할 요청 + 제외, 우회 불가)
@@ -329,7 +330,7 @@ description: PDF를 구조화된 마크다운으로 변환. 원문 텍스트 무
   - [ ] 헤딩 순서·계층·번호 표기 원문 일치
   - [ ] 원문 대비 누락 스폿 체크
   - [ ] 최종 경로 배치
-  - [ ] 락 해제(`rm -rf locks/<input>.lock`)
+  - [ ] 절차 8에 따라 큐·자산 정리 후 락 해제 (5b에서 조기 해제하지 않음)
 
 **다음 라운드 (절차 5c)**
 
@@ -341,7 +342,7 @@ description: PDF를 구조화된 마크다운으로 변환. 원문 텍스트 무
 
 - [ ] 경로 검증: 점유했던 모든 파일에 대해 `<원본폴더>_md/<input>.md` 존재, 이미지 개수 일치, 모든 이미지 링크 해소
 - [ ] 사용자 보고 + `agent_report.md` append 완료
-- [ ] 검증 통과 파일 단위로 `queue/sessions/<session_id>/{pending,working,done,assets}/<input>/` + `pdf_parts/<input>__*.pdf` 삭제
+- [ ] 검증 통과 파일 단위로 `queue/sessions/<session_id>/{pending,working,done,assets}/<input>/` + `out/<input>.md` + `pdf_parts/<input>__*.pdf` 삭제
 - [ ] **마지막에** `queue/locks/<input>.lock` 삭제(락 해제) — 순서 엄수
 - [ ] 점유하지 않은 파일의 큐·락은 건드리지 않음
 - [ ] 모든 큐 디렉토리가 비었으면 `rmdir` 시도(실패 무시)
