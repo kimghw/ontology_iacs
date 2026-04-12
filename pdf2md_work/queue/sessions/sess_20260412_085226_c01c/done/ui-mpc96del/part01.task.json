@@ -1,0 +1,15 @@
+{
+  "input_pdf": "/home/kimghw/ontology_iacs/UI/UI_MPC/ui-mpc96del.pdf",
+  "src_dir": "/home/kimghw/ontology_iacs/UI/UI_MPC",
+  "input_base": "ui-mpc96del",
+  "part_source": "/home/kimghw/ontology_iacs/pdf2md_work/queue/pdf_parts/ui-mpc96del__part01.pdf",
+  "page_range": "1-1",
+  "pages": 1,
+  "part_index": "01",
+  "total_parts": 1,
+  "is_first_part": true,
+  "is_last_part": true,
+  "is_single_part": true,
+  "out_md": "partNN.md",
+  "status": "pending"
+}

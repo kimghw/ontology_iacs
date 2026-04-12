@@ -19,7 +19,7 @@ PDF 구간(part_source)을 무손실 마크다운으로 변환하는 전문 에�
 
 1. `part_source` PDF를 Read 도구로 연다.
 2. 문서 구조를 파악한다(제목 계층, 섹션 번호, 표·수식·그림 배치, 캡션, 머리말/꼬리말, 페이지 번호). 이때 **그림이 등장하는 위치와 캡션을 메모**한다.
-3. **이미지 추출**: `pdfimages -all <part_source> <workroot>/assets/<input>/partNN-fig`을 Bash로 실행한다. 추출 결과 파일 목록을 `ls <workroot>/assets/<input>/partNN-fig*`로 확인한다.
+3. **이미지 추출**: `pdfimages -all <part_source> <image_output_dir>/partNN-fig`을 Bash로 실행한다(`<image_output_dir>`는 prompt 4.1 "이미지 출력 디렉토리"로 전달받은 경로, 예: `<workroot>/queue/sessions/<session_id>/assets/<input>/`). 추출 결과 파일 목록을 `ls <image_output_dir>/partNN-fig*`로 확인한다.
 4. **이미지 병합·위치 매칭·description 작성**:
    - **병합 판정**: PDF를 Read로 시각 확인한 그림 1개에 대해 `pdfimages` 추출 파일이 여러 개(레이어·조각·오버레이 등)로 분리된 경우, `magick composite` 또는 `magick convert +append`/`-append`로 단일 이미지로 병합한다. 병합 결과 파일명은 `partNN-fig-XXX-merged.ext`로 저장하고, 원본 조각은 삭제한다.
    - **위치 매칭**: Read로 확인한 PDF 내 그림 등장 순서와 추출(또는 병합 후) 이미지를 대응시킨다.
@@ -43,7 +43,7 @@ PDF 구간(part_source)을 무손실 마크다운으로 변환하는 전문 에�
 8. **제거 대상**: 본문 흐름과 무관한 **페이지 번호, 반복 머리말/꼬리말**은 제거한다.
 9. **페이지 경계 마크 금지**: `--- page N ---` 등 페이지 단위·경계 구분 마크를 어떤 형태로도 삽입하지 않는다.
 10. **경계 보존**: 담당 범위의 첫/마지막 문단·목록·표가 경계에서 잘려 보여도 **임의로 문장을 완성하거나 마침표·단어를 추가하지 않는다**. 원문 그대로 기록한다. (오케스트레이터가 병합 시 이어붙인다.)
-11. **이미지 링크 규약**: 그림은 `![description](../../assets/<input>/partNN-fig-XXX.ext)` 형태의 상대경로로 삽입한다(`queue/working/` 기준). `partNN-fig-XXX.ext`는 2절 단계 3에서 `pdfimages`가 생성한 실제 파일명을 사용한다. alt 텍스트(description)는 다음 우선순위로 결정한다: **(1)** 원본 캡션이 있으면 그대로 사용, **(2)** 캡션이 없으면 앞뒤 본문 문맥을 참고하여 이미지가 나타내는 내용을 한 문장으로 기술한다(예: `![Table 3에서 참조하는 응력-변형률 곡선](...)`, `![절차 2.3의 검사 흐름도](...)`). 추측이 어려운 경우 `![Image](...)`로 남긴다. (병합 후 오케스트레이터가 최종 위치 기준으로 경로를 재작성한다.)
+11. **이미지 링크 규약**: 그림은 `![description](../../assets/<input>/partNN-fig-XXX.ext)` 형태의 상대경로로 삽입한다. 출력 파일이 `<workroot>/queue/sessions/<session_id>/working/<input>/partNN.md`이고 이미지는 `<workroot>/queue/sessions/<session_id>/assets/<input>/`에 있으므로, md 위치에서 `../` 두 번(= working 디렉토리와 input 디렉토리를 벗어나 `sessions/<session_id>/`에 도달)이면 `sessions/<session_id>/assets/<input>/`에 도달한다. `partNN-fig-XXX.ext`는 2절 단계 3에서 `pdfimages`가 생성한 실제 파일명을 사용한다. alt 텍스트(description)는 다음 우선순위로 결정한다: **(1)** 원본 캡션이 있으면 그대로 사용, **(2)** 캡션이 없으면 앞뒤 본문 문맥을 참고하여 이미지가 나타내는 내용을 한 문장으로 기술한다(예: `![Table 3에서 참조하는 응력-변형률 곡선](...)`, `![절차 2.3의 검사 흐름도](...)`). 추측이 어려운 경우 `![Image](...)`로 남긴다. (병합 후 오케스트레이터가 최종 위치 기준으로 경로를 재작성한다.)
 12. **분할 추출 이미지 병합**: `pdfimages`가 PDF 상의 단일 그림을 여러 파일(레이어·조각·텍스트 오버레이 등)로 분리 추출한 경우, `magick composite` 또는 `magick convert +append`/`-append`로 병합하여 단일 파일로 만든다. 병합 결과는 `partNN-fig-XXX-merged.ext`로 저장하고 원본 조각은 삭제한다.
 13. **인라인 이미지 금지**: 인라인 base64 이미지 임베드 금지. 반드시 파일 링크.
 
@@ -87,7 +87,7 @@ markdownlint 규칙 가이드는 상시 갱신되는 외부 파일에서 관리�
 ### DO
 
 - `part_source` PDF를 Read 도구로 **직접** 읽어 시각 구조(제목, 표, 수식, 그림 배치)를 파악한다.
-- `pdfimages -all <part_source> <workroot>/assets/<input>/partNN-fig`으로 이미지를 추출하고, `ls`로 추출 결과를 확인한다.
+- `pdfimages -all <part_source> <image_output_dir>/partNN-fig`으로 이미지를 추출하고(`<image_output_dir>`는 prompt 4.1에서 전달), `ls`로 추출 결과를 확인한다.
 - `pdfimages`가 단일 그림을 여러 파일로 분리 추출한 경우, `magick`으로 병합하여 단일 이미지로 만든 뒤 링크한다.
 - PDF Read 시 확인한 그림 등장 순서와 추출(또는 병합 후) 이미지를 대응시켜 정확한 위치에 이미지 링크를 삽입한다.
 - 본문에 참조가 없는 추출 이미지(로고, 장식 등)는 orphan으로 판정하여 링크하지 않되, 완료 보고에 orphan 수를 명시한다.
@@ -129,18 +129,82 @@ markdownlint 규칙 가이드는 상시 갱신되는 외부 파일에서 관리�
 
 ## 8. 완료 보고 형식
 
-```text
-완료 보고:
-- 파트:           <input>__partNN (pages <start>-<end>)
-- 변환 페이지 수: <int>
-- 추출 이미지 수: <int>    # pdfimages가 추출한 총 파일 수
-- 삽입 이미지 수: <int>    # 본문에 링크로 삽입한 이미지 수
-- orphan 이미지:  <int>    # 추출되었으나 본문 참조 없어 링크하지 않은 수 (로고/장식 등)
-- 첨자 발견:      <true | false>    # true이면 오케스트레이터가 MD033 디렉티브 주입
-- 경계 잘림:      <없음 | 시작 단편 | 종료 단편 | 양쪽>
-- 특이사항:       <간단 기술 또는 "없음">
-- 사용 토큰:   - 입력 토큰: <int>
-    - 출력 토큰: <int>
-    - 총 토큰:   <int>
-- 오케스트레이터 리마인드: SKILL.md 절차 5b에 따라 후속 처리를 수행하라.
+완료 보고는 **두 곳에 동시에 기록**한다.
+
+1. **오케스트레이터 반환**: 아래 YAML 블록을 그대로 작성하여 최종 메시지로 반환한다(오케스트레이터가 파싱하여 후속 처리에 사용).
+2. **`agent_report.md` append**: 변환 완료 직후 프로젝트 루트의 `agent_report.md` 파일에 동일 내용 + 타임스탬프 헤더를 **Bash의 append 리다이렉션**(`cat >> agent_report.md <<'EOF' … EOF`)으로 반드시 append한다. 파일이 없으면 새로 생성한다. 특히 **특이사항·모호성·원문 오탈자·OCR 아티팩트·벡터 도면 추출 실패·이미지 파일명 규칙 벗어남 등 심각도(상/중/하) 표기 항목은 반드시 포함**한다(CLAUDE.md "에이전트 처리 보고" 규칙 준수).
+
+```yaml
+완료_보고:
+  파트: "<input>__partNN (pages <start>-<end>)"
+  변환_페이지_수: <int>
+  추출_이미지_수: <int>        # pdfimages가 추출한 총 파일 수
+  삽입_이미지_수: <int>        # 본문에 링크로 삽입한 이미지 수
+  orphan_이미지: <int>         # 추출되었으나 본문 참조 없어 링크하지 않은 수 (로고/장식 등)
+  첨자_발견: <true|false>      # true이면 오케스트레이터가 MD033 디렉티브 주입
+  경계_잘림: "<없음|시작 단편|종료 단편|양쪽>"
+  특이사항: "<간단 기술 또는 '없음'>"
+  사용_토큰:
+    입력_토큰: <int>
+    출력_토큰: <int>
+    총_토큰: <int>
+  오케스트레이터_리마인드: "SKILL.md 절차 5b에 따라 후속 처리를 수행하라."
 ```
+
+### 8.1 `agent_report.md` append 형식
+
+반드시 다음 형식을 준수한다(타임스탬프는 `date -Iseconds` 결과 사용).
+
+```markdown
+## [YYYY-MM-DDTHH:MM:SS+09:00] pdf2md-worker: <input>__partNN
+
+```yaml
+완료_보고:
+  파트: "<input>__partNN (pages <start>-<end>)"
+  …(상동)…
+```
+
+**해석·처리 보고** (CLAUDE.md 에이전트 처리 보고 규칙):
+- 모호하거나 정보가 부족한 요청 내용: <기술 또는 "없음">
+- 에이전트 해석: <해석 내용>
+- 실제 처리 방식: <처리 내용>
+- 문제점·위험: <기술 또는 "없음">
+- 심각도: <상 | 중 | 하>
+```
+
+### 8.2 Append 실행 예시
+
+```bash
+cat >> /home/kimghw/ontology_iacs/agent_report.md <<'EOF'
+
+## [2026-04-12T10:23:45+09:00] pdf2md-worker: UR-G1-Rev.3-Corr.3-Sep-2023-CLN__part01
+
+```yaml
+완료_보고:
+  파트: "UR-G1-Rev.3-Corr.3-Sep-2023-CLN__part01 (pages 1-20)"
+  변환_페이지_수: 20
+  추출_이미지_수: 5
+  삽입_이미지_수: 3
+  orphan_이미지: 0
+  첨자_발견: true
+  경계_잘림: "없음"
+  특이사항: "page 1-2 경계의 'consideration.ss' OCR 아티팩트 단편을 포함하지 않음"
+  사용_토큰:
+    입력_토큰: 58000
+    출력_토큰: 12000
+    총_토큰: 70000
+  오케스트레이터_리마인드: "SKILL.md 절차 5b에 따라 후속 처리를 수행하라."
+```
+
+**해석·처리 보고**:
+- 모호하거나 정보가 부족한 요청 내용: G1.1.2 문장 말미의 "consideration.ss" 단편(OCR 아티팩트 추정)을 원문 그대로 보존할지 제외할지 명확하지 않음
+- 에이전트 해석: "ss"는 원문 의미 없는 OCR 잡음으로 판단
+- 실제 처리 방식: 최종 마크다운에 포함하지 않음
+- 문제점·위험: 원문 엄격 보존 원칙과 충돌 가능성
+- 심각도: 하
+EOF
+```
+
+**금지 사항**:
+- 완료 보고를 오케스트레이터 반환만 하고 `agent_report.md` append를 누락하는 것은 **규칙 위반**이다.
+- `agent_report.md`를 덮어쓰기(`>`)로 기록하지 말 것. 반드시 append(`>>`) 사용.

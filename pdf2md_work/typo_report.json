@@ -1,0 +1,1585 @@
+{
+  "auto_fixed": [],
+  "manual_review": [
+    {
+      "file": "ui-cc1rev2.md",
+      "lang": "en",
+      "rule": "EN_COMPOUNDS_SUB_SECTION",
+      "cat": "MISC",
+      "msg": "This word is normally spelled as one.",
+      "ctx": "...979) (Rev.2 Feb 2007) Interpretation of sub-section 3.9(b), BCH Code  (corresponds to parag...",
+      "offset": 61,
+      "length": 11,
+      "repl": [
+        "subsection"
+      ]
+    },
+    {
+      "file": "ui-cc1rev2.md",
+      "lang": "en",
+      "rule": "EN_COMPOUNDS_SUB_SECTION",
+      "cat": "MISC",
+      "msg": "This word is normally spelled as one.",
+      "ctx": "...to paragraph 13.1.1.2 of the IBC Code)  Sub-section 3.9(b) of the Code reads as follows:  '...",
+      "offset": 144,
+      "length": 11,
+      "repl": [
+        "Subsection"
+      ]
+    },
+    {
+      "file": "ui-cc1rev2.md",
+      "lang": "en",
+      "rule": "MORFOLOGIK_RULE_EN_US",
+      "cat": "TYPOS",
+      "msg": "Possible spelling mistake. ‘vapour’ is British English.",
+      "ctx": "... use, permits a small quantity of cargo vapour or liquid to be exposed to the atmosphe...",
+      "offset": 301,
+      "length": 6,
+      "repl": [
+        "vapor"
+      ]
+    },
+    {
+      "file": "ui-cc1rev2.md",
+      "lang": "en",
+      "rule": "MORFOLOGIK_RULE_EN_US",
+      "cat": "TYPOS",
+      "msg": "Possible spelling mistake. ‘vapour’ is British English.",
+      "ctx": "...ide diameter not exceeding 200 mm, with vapour tight cover.'  End of Document ",
+      "offset": 663,
+      "length": 6,
+      "repl": [
+        "vapor"
+      ]
+    },
+    {
+      "file": "ui-cc2rev1.md",
+      "lang": "en",
+      "rule": "MORFOLOGIK_RULE_EN_US",
+      "cat": "TYPOS",
+      "msg": "Possible spelling mistake. ‘vapour’ is British English.",
+      "ctx": "...uld be provided with a connection for a vapour return line to shore installation.'  Th...",
+      "offset": 244,
+      "length": 6,
+      "repl": [
+        "vapor"
+      ]
+    },
+    {
+      "file": "ui-cc2rev1.md",
+      "lang": "en",
+      "rule": "MORFOLOGIK_RULE_EN_US",
+      "cat": "TYPOS",
+      "msg": "Possible spelling mistake. ‘vapours’ is British English.",
+      "ctx": "...ng systems with lines for the return of vapours to shore plants:  'Tank venting systems...",
+      "offset": 449,
+      "length": 7,
+      "repl": [
+        "vapors"
+      ]
+    },
+    {
+      "file": "ui-cc2rev1.md",
+      "lang": "en",
+      "rule": "MORFOLOGIK_RULE_EN_US",
+      "cat": "TYPOS",
+      "msg": "Possible spelling mistake. ‘vapour’ is British English.",
+      "ctx": "...hould be provided with a stop valve for vapour return line to shore.'  End of Document...",
+      "offset": 538,
+      "length": 6,
+      "repl": [
+        "vapor"
+      ]
+    },
+    {
+      "file": "ui-cc3rev1.md",
+      "lang": "en",
+      "rule": "MORFOLOGIK_RULE_EN_US",
+      "cat": "TYPOS",
+      "msg": "Possible spelling mistake. ‘vapours’ is British English.",
+      "ctx": "...ng systems with lines for the return of vapours to shore plants:  'Tank venting systems...",
+      "offset": 438,
+      "length": 7,
+      "repl": [
+        "vapors"
+      ]
+    },
+    {
+      "file": "ui-cc3rev1.md",
+      "lang": "en",
+      "rule": "MORFOLOGIK_RULE_EN_US",
+      "cat": "TYPOS",
+      "msg": "Possible spelling mistake. ‘vapour’ is British English.",
+      "ctx": "...hould be provided with a stop valve for vapour return line to shore.'  End of Document...",
+      "offset": 527,
+      "length": 6,
+      "repl": [
+        "vapor"
+      ]
+    },
+    {
+      "file": "ui-cc4.md",
+      "lang": "en",
+      "rule": "MORFOLOGIK_RULE_EN_US",
+      "cat": "TYPOS",
+      "msg": "Possible spelling mistake found.",
+      "ctx": "...I CC4 is to be uniformly implemented by IACS Members and Associates from 1 January 2...",
+      "offset": 443,
+      "length": 4,
+      "repl": [
+        "ACS",
+        "IAS",
+        "ICS",
+        "SACS",
+        "IAC"
+      ]
+    },
+    {
+      "file": "ui-cc5.md",
+      "lang": "en",
+      "rule": "EN_UNPAIRED_QUOTES",
+      "cat": "PUNCTUATION",
+      "msg": "Unpaired symbol: ‘\"’ seems to be missing",
+      "ctx": "...C.219(82) and Res.MEPC.166(56)) read:  *\"11.1.1 The requirements for tankers in S...",
+      "offset": 296,
+      "length": 1,
+      "repl": []
+    },
+    {
+      "file": "ui-cc5.md",
+      "lang": "en",
+      "rule": "MORFOLOGIK_RULE_EN_US",
+      "cat": "TYPOS",
+      "msg": "Possible spelling mistake found.",
+      "ctx": "...\"11.1.1 The requirements for tankers in SOLAS chapter II-2 shall apply to ships cover...",
+      "offset": 336,
+      "length": 5,
+      "repl": [
+        "SOLAR",
+        "SOLOS",
+        "SOLES",
+        "SILAS",
+        "SOLIS"
+      ]
+    },
+    {
+      "file": "ui-cc5.md",
+      "lang": "en",
+      "rule": "MORFOLOGIK_RULE_EN_US",
+      "cat": "TYPOS",
+      "msg": "Possible spelling mistake found.",
+      "ctx": "...nage and over;*  ### Interpretation  1. SOLAS Regulations II-2/10.2 and 10.4 apply to...",
+      "offset": 718,
+      "length": 5,
+      "repl": [
+        "SOLAR",
+        "SOLOS",
+        "SOLES",
+        "SILAS",
+        "SOLIS"
+      ]
+    },
+    {
+      "file": "ui-cc5.md",
+      "lang": "en",
+      "rule": "MORFOLOGIK_RULE_EN_US",
+      "cat": "TYPOS",
+      "msg": "Possible spelling mistake found.",
+      "ctx": "...ips of 500 gross tonnage and over under SOLAS and to chemical carriers, regardless of...",
+      "offset": 812,
+      "length": 5,
+      "repl": [
+        "SOLAR",
+        "SOLOS",
+        "SOLES",
+        "SILAS",
+        "SOLIS"
+      ]
+    },
+    {
+      "file": "ui-cc5.md",
+      "lang": "en",
+      "rule": "MORFOLOGIK_RULE_EN_US",
+      "cat": "TYPOS",
+      "msg": "Possible spelling mistake found.",
+      "ctx": "...rdless of size, under the IBC Code.  2. SOLAS II-2/10.5, except for sub-paragraph 10....",
+      "offset": 888,
+      "length": 5,
+      "repl": [
+        "SOLAR",
+        "SOLOS",
+        "SOLES",
+        "SILAS",
+        "SOLIS"
+      ]
+    },
+    {
+      "file": "ui-cc5.md",
+      "lang": "en",
+      "rule": "MORFOLOGIK_RULE_EN_US",
+      "cat": "TYPOS",
+      "msg": "Possible spelling mistake found.",
+      "ctx": "..., constructed on/after 1 July 1986.  3. SOLAS II-2/10.5.6 applies only to chemical ta...",
+      "offset": 1025,
+      "length": 5,
+      "repl": [
+        "SOLAR",
+        "SOLOS",
+        "SOLES",
+        "SILAS",
+        "SOLIS"
+      ]
+    },
+    {
+      "file": "ui-cc5.md",
+      "lang": "en",
+      "rule": "MORFOLOGIK_RULE_EN_US",
+      "cat": "TYPOS",
+      "msg": "Possible spelling mistake found.",
+      "ctx": "...ucted on/after 1 July 2002 and of 2,000 gt and above.  ### Note  This Unified Inte...",
+      "offset": 1122,
+      "length": 2,
+      "repl": [
+        "GT",
+        "at",
+        "it",
+        "get",
+        "go"
+      ]
+    },
+    {
+      "file": "ui-cc5.md",
+      "lang": "en",
+      "rule": "MORFOLOGIK_RULE_EN_US",
+      "cat": "TYPOS",
+      "msg": "Possible spelling mistake found.",
+      "ctx": "...ation is to be uniformly implemented by IACS Members and Associates from 1 January 2...",
+      "offset": 1209,
+      "length": 4,
+      "repl": [
+        "ACS",
+        "IAS",
+        "ICS",
+        "SACS",
+        "IAC"
+      ]
+    },
+    {
+      "file": "ui-cc6rev1.md",
+      "lang": "en",
+      "rule": "MORFOLOGIK_RULE_EN_US",
+      "cat": "TYPOS",
+      "msg": "Possible spelling mistake found.",
+      "ctx": "...pporting boundary plating is to prevent debonding at the interface between the lining and...",
+      "offset": 796,
+      "length": 9,
+      "repl": [
+        "deboning"
+      ]
+    },
+    {
+      "file": "ui-cc6rev1.md",
+      "lang": "en",
+      "rule": "MORFOLOGIK_RULE_EN_US",
+      "cat": "TYPOS",
+      "msg": "Possible spelling mistake found.",
+      "ctx": "...ation is to be uniformly implemented by IACS Societies to ships contracted for const...",
+      "offset": 938,
+      "length": 4,
+      "repl": [
+        "ACS",
+        "IAS",
+        "ICS",
+        "SACS",
+        "IAC"
+      ]
+    },
+    {
+      "file": "ui-cc6rev1.md",
+      "lang": "en",
+      "rule": "MORFOLOGIK_RULE_EN_US",
+      "cat": "TYPOS",
+      "msg": "Possible spelling mistake found.",
+      "ctx": "...f \"contract for construction\", refer to IACS Procedural Requirement (PR) No. 29. 3. ...",
+      "offset": 1255,
+      "length": 4,
+      "repl": [
+        "ACS",
+        "IAS",
+        "ICS",
+        "SACS",
+        "IAC"
+      ]
+    },
+    {
+      "file": "ui-cc6rev1.md",
+      "lang": "en",
+      "rule": "MORFOLOGIK_RULE_EN_US",
+      "cat": "TYPOS",
+      "msg": "Possible spelling mistake found.",
+      "ctx": "...is UI is to be uniformly implemented by IACS Societies on ships contracted for const...",
+      "offset": 1350,
+      "length": 4,
+      "repl": [
+        "ACS",
+        "IAS",
+        "ICS",
+        "SACS",
+        "IAC"
+      ]
+    },
+    {
+      "file": "ui-cc7.md",
+      "lang": "en",
+      "rule": "OF_ANY_OF",
+      "cat": "REDUNDANCY",
+      "msg": "Consider simply using “of” instead.",
+      "ctx": "...ooded. Within this range, the immersion of any of the openings listed in 2.9.2.1 and othe...",
+      "offset": 545,
+      "length": 9,
+      "repl": [
+        "of"
+      ]
+    },
+    {
+      "file": "ui-cc7.md",
+      "lang": "en",
+      "rule": "MORFOLOGIK_RULE_EN_US",
+      "cat": "TYPOS",
+      "msg": "Possible spelling mistake found.",
+      "ctx": "...not include ventilators (complying with ILLC 19(4)) that for operational reasons hav...",
+      "offset": 777,
+      "length": 4,
+      "repl": [
+        "ILL",
+        "ILLS",
+        "ILLY",
+        "ILC",
+        "LLC"
+      ]
+    },
+    {
+      "file": "ui-cc7.md",
+      "lang": "en",
+      "rule": "MORFOLOGIK_RULE_EN_US",
+      "cat": "TYPOS",
+      "msg": "Possible spelling mistake found.",
+      "ctx": "...ation is to be uniformly implemented by IACS Societies on ships contracted for const...",
+      "offset": 1115,
+      "length": 4,
+      "repl": [
+        "ACS",
+        "IAS",
+        "ICS",
+        "SACS",
+        "IAC"
+      ]
+    },
+    {
+      "file": "ui-cc7.md",
+      "lang": "en",
+      "rule": "MORFOLOGIK_RULE_EN_US",
+      "cat": "TYPOS",
+      "msg": "Possible spelling mistake found.",
+      "ctx": "...f \"contract for construction\", refer to IACS Procedural Requirement (PR) No. 29.  En...",
+      "offset": 1435,
+      "length": 4,
+      "repl": [
+        "ACS",
+        "IAS",
+        "ICS",
+        "SACS",
+        "IAC"
+      ]
+    },
+    {
+      "file": "ui-colreg1corr1.md",
+      "lang": "en",
+      "rule": "MORFOLOGIK_RULE_EN_US",
+      "cat": "TYPOS",
+      "msg": "Possible spelling mistake found.",
+      "ctx": "  # COLREG1 - Interpretation to COLREG 1972 Annex 1, Section 9(b)  COL REG 1 (...",
+      "offset": 32,
+      "length": 6,
+      "repl": [
+        "COL REG"
+      ]
+    },
+    {
+      "file": "ui-colreg1corr1.md",
+      "lang": "en",
+      "rule": "MORFOLOGIK_RULE_EN_US",
+      "cat": "TYPOS",
+      "msg": "Possible spelling mistake found.",
+      "ctx": "... COL REG 1 (Jan 2006) (Rev.1 Oct 2012) (Corr.1 Feb 2013)  ## Interpretation to COLRE...",
+      "offset": 106,
+      "length": 4,
+      "repl": [
+        "Core",
+        "Cord",
+        "Corn",
+        "Carr",
+        "Cork"
+      ]
+    },
+    {
+      "file": "ui-colreg1corr1.md",
+      "lang": "en",
+      "rule": "MORFOLOGIK_RULE_EN_US",
+      "cat": "TYPOS",
+      "msg": "Possible spelling mistake found.",
+      "ctx": "...(Corr.1 Feb 2013)  ## Interpretation to COLREG 1972 Annex 1, Section 9(b)  ### Regulat...",
+      "offset": 145,
+      "length": 6,
+      "repl": [
+        "COL REG"
+      ]
+    },
+    {
+      "file": "ui-colreg1corr1.md",
+      "lang": "en",
+      "rule": "NEEDNT_TO_DO_AND_DONT_NEED_DO",
+      "cat": "GRAMMAR",
+      "msg": "Did you mean “be”?",
+      "ctx": "...s prescribed in Rule 30, which need not to be placed at an impractical height above t...",
+      "offset": 426,
+      "length": 5,
+      "repl": [
+        "be"
+      ]
+    },
+    {
+      "file": "ui-colreg1corr1.md",
+      "lang": "en",
+      "rule": "MORFOLOGIK_RULE_EN_US",
+      "cat": "TYPOS",
+      "msg": "Possible spelling mistake found.",
+      "ctx": "...is UI is to be uniformly implemented by IACS Members and Associates from 1 July 2006...",
+      "offset": 1211,
+      "length": 4,
+      "repl": [
+        "ACS",
+        "IAS",
+        "ICS",
+        "SACS",
+        "IAC"
+      ]
+    },
+    {
+      "file": "ui-colreg1corr1.md",
+      "lang": "en",
+      "rule": "MORFOLOGIK_RULE_EN_US",
+      "cat": "TYPOS",
+      "msg": "Possible spelling mistake found.",
+      "ctx": "...is UI is to be uniformly implemented by IACS Societies from 1 July 2013 when carryin...",
+      "offset": 1312,
+      "length": 4,
+      "repl": [
+        "ACS",
+        "IAS",
+        "ICS",
+        "SACS",
+        "IAC"
+      ]
+    },
+    {
+      "file": "ui-colreg2del.md",
+      "lang": "en",
+      "rule": "MORFOLOGIK_RULE_EN_US",
+      "cat": "TYPOS",
+      "msg": "Possible spelling mistake found.",
+      "ctx": "# Interpretation to COLREG 1972 Rule 23 (a)  COLREG 2 (Jan 2006) (...",
+      "offset": 20,
+      "length": 6,
+      "repl": [
+        "COL REG"
+      ]
+    },
+    {
+      "file": "ui-colreg2del.md",
+      "lang": "en",
+      "rule": "MORFOLOGIK_RULE_EN_US",
+      "cat": "TYPOS",
+      "msg": "Possible spelling mistake found.",
+      "ctx": "...erpretation to COLREG 1972 Rule 23 (a)  COLREG 2 (Jan 2006) (Corr.1 Apr 2006)  Deleted...",
+      "offset": 45,
+      "length": 6,
+      "repl": [
+        "COL REG"
+      ]
+    },
+    {
+      "file": "ui-colreg2del.md",
+      "lang": "en",
+      "rule": "MORFOLOGIK_RULE_EN_US",
+      "cat": "TYPOS",
+      "msg": "Possible spelling mistake found.",
+      "ctx": "... 1972 Rule 23 (a)  COLREG 2 (Jan 2006) (Corr.1 Apr 2006)  Deleted 1st January 2009 t...",
+      "offset": 66,
+      "length": 4,
+      "repl": [
+        "Core",
+        "Cord",
+        "Corn",
+        "Carr",
+        "Cork"
+      ]
+    },
+    {
+      "file": "ui-colreg3corr1.md",
+      "lang": "en",
+      "rule": "MORFOLOGIK_RULE_EN_US",
+      "cat": "TYPOS",
+      "msg": "Possible spelling mistake found.",
+      "ctx": "# COLREG3 (Jan 2006) (Rev.1 May 2009) (Corr.1 Jan 2010)  ## Interpretation to COLRE...",
+      "offset": 39,
+      "length": 4,
+      "repl": [
+        "Core",
+        "Cord",
+        "Corn",
+        "Carr",
+        "Cork"
+      ]
+    },
+    {
+      "file": "ui-colreg3corr1.md",
+      "lang": "en",
+      "rule": "MORFOLOGIK_RULE_EN_US",
+      "cat": "TYPOS",
+      "msg": "Possible spelling mistake found.",
+      "ctx": "...(Corr.1 Jan 2010)  ## Interpretation to COLREG 1972 Annex 1, Section 3 (b)  ### Regula...",
+      "offset": 78,
+      "length": 6,
+      "repl": [
+        "COL REG"
+      ]
+    },
+    {
+      "file": "ui-colreg3corr1.md",
+      "lang": "en",
+      "rule": "MORFOLOGIK_RULE_EN_US",
+      "cat": "TYPOS",
+      "msg": "Possible spelling mistake. ‘metre’ is British English.",
+      "ctx": "...ard from the side, up to a maximum of 1 metre.  Where the application of above requir...",
+      "offset": 516,
+      "length": 5,
+      "repl": [
+        "meter"
+      ]
+    },
+    {
+      "file": "ui-colreg3corr1.md",
+      "lang": "en",
+      "rule": "MORFOLOGIK_RULE_EN_US",
+      "cat": "TYPOS",
+      "msg": "Possible spelling mistake found.",
+      "ctx": "...is UI is to be uniformly implemented by IACS Members and Associates from 1 July 2006...",
+      "offset": 764,
+      "length": 4,
+      "repl": [
+        "ACS",
+        "IAS",
+        "ICS",
+        "SACS",
+        "IAC"
+      ]
+    },
+    {
+      "file": "ui-colreg3corr1.md",
+      "lang": "en",
+      "rule": "MORFOLOGIK_RULE_EN_US",
+      "cat": "TYPOS",
+      "msg": "Possible spelling mistake found.",
+      "ctx": "...ev.1 are to be uniformly implemented by IACS Societies for ships contracted for cons...",
+      "offset": 876,
+      "length": 4,
+      "repl": [
+        "ACS",
+        "IAS",
+        "ICS",
+        "SACS",
+        "IAC"
+      ]
+    },
+    {
+      "file": "ui-colreg3corr1.md",
+      "lang": "en",
+      "rule": "MORFOLOGIK_RULE_EN_US",
+      "cat": "TYPOS",
+      "msg": "Possible spelling mistake found.",
+      "ctx": "...f \"contract for construction\", refer to IACS Procedural Requirement (PR) No. 29.  En...",
+      "offset": 1197,
+      "length": 4,
+      "repl": [
+        "ACS",
+        "IAS",
+        "ICS",
+        "SACS",
+        "IAC"
+      ]
+    },
+    {
+      "file": "ui-colreg4corr1.md",
+      "lang": "en",
+      "rule": "MORFOLOGIK_RULE_EN_US",
+      "cat": "TYPOS",
+      "msg": "Possible spelling mistake found.",
+      "ctx": "# COLREG 4  ## Interpretation to COLREG 1972 Rul...",
+      "offset": 2,
+      "length": 6,
+      "repl": [
+        "COL REG"
+      ]
+    },
+    {
+      "file": "ui-colreg4corr1.md",
+      "lang": "en",
+      "rule": "MORFOLOGIK_RULE_EN_US",
+      "cat": "TYPOS",
+      "msg": "Possible spelling mistake found.",
+      "ctx": "# COLREG 4  ## Interpretation to COLREG 1972 Rule 27(b)(i)  (Jan 2006) (Corr.1 ...",
+      "offset": 33,
+      "length": 6,
+      "repl": [
+        "COL REG"
+      ]
+    },
+    {
+      "file": "ui-colreg4corr1.md",
+      "lang": "en",
+      "rule": "MORFOLOGIK_RULE_EN_US",
+      "cat": "TYPOS",
+      "msg": "Possible spelling mistake found.",
+      "ctx": "... COLREG 1972 Rule 27(b)(i)  (Jan 2006) (Corr.1 July 2007)  ### Regulation  Rule 27(b...",
+      "offset": 72,
+      "length": 4,
+      "repl": [
+        "Core",
+        "Cord",
+        "Corn",
+        "Carr",
+        "Cork"
+      ]
+    },
+    {
+      "file": "ui-colreg4corr1.md",
+      "lang": "en",
+      "rule": "MORFOLOGIK_RULE_EN_US",
+      "cat": "TYPOS",
+      "msg": "Possible spelling mistake. ‘manoeuvre’ is British English.",
+      "ctx": "...  A vessel restricted in her ability to manoeuvre, except a vessel engaged in mine cleara...",
+      "offset": 167,
+      "length": 9,
+      "repl": [
+        "maneuver"
+      ]
+    },
+    {
+      "file": "ui-colreg4corr1.md",
+      "lang": "en",
+      "rule": "COMMA_COMPOUND_SENTENCE_2",
+      "cat": "PUNCTUATION",
+      "msg": "Use a comma before “and” if it connects two independent clauses (unless they are closely connected and short).",
+      "ctx": "... and lowest of these lights shall be red and the middle light shall be white;  ### I...",
+      "offset": 363,
+      "length": 4,
+      "repl": [
+        ", and"
+      ]
+    },
+    {
+      "file": "ui-colreg4corr1.md",
+      "lang": "en",
+      "rule": "MORFOLOGIK_RULE_EN_US",
+      "cat": "TYPOS",
+      "msg": "Possible spelling mistake found.",
+      "ctx": "...## Interpretation  \"Not under command\" (NUC) all-round red lights (Rule 27(a)(i)) m...",
+      "offset": 443,
+      "length": 3,
+      "repl": [
+        "NFC",
+        "NYC",
+        "NUN",
+        "NUT",
+        "NEC"
+      ]
+    },
+    {
+      "file": "ui-colreg4corr1.md",
+      "lang": "en",
+      "rule": "MORFOLOGIK_RULE_EN_US",
+      "cat": "TYPOS",
+      "msg": "Possible spelling mistake found.",
+      "ctx": "...d as part of the \"Restricted Ability to Manouevre\" (RAM) lights provided the vertical and...",
+      "offset": 535,
+      "length": 9,
+      "repl": [
+        "Maneuver",
+        "Maneuvers",
+        "Maneuvered",
+        "Manure",
+        "Manometer"
+      ]
+    },
+    {
+      "file": "ui-colreg4corr1.md",
+      "lang": "en",
+      "rule": "MORFOLOGIK_RULE_EN_US",
+      "cat": "TYPOS",
+      "msg": "Possible spelling mistake found.",
+      "ctx": "...al and horizontal distances required by COLREG 1972 are complied with and the electric...",
+      "offset": 618,
+      "length": 6,
+      "repl": [
+        "COL REG"
+      ]
+    },
+    {
+      "file": "ui-colreg4corr1.md",
+      "lang": "en",
+      "rule": "INDEPENDENTLY_FROM_OF",
+      "cat": "COLLOCATIONS",
+      "msg": "The usual collocation for “independently” is “of”, not “from”. Did you mean “independently of”?",
+      "ctx": "...nd white light (RAM) may be switched on independently from the two all-round red lights (NUC).  ##...",
+      "offset": 745,
+      "length": 18,
+      "repl": [
+        "independently of"
+      ]
+    },
+    {
+      "file": "ui-colreg4corr1.md",
+      "lang": "en",
+      "rule": "MORFOLOGIK_RULE_EN_US",
+      "cat": "TYPOS",
+      "msg": "Possible spelling mistake found.",
+      "ctx": "...ntly from the two all-round red lights (NUC).  ### Note  This UI is to be uniformly...",
+      "offset": 794,
+      "length": 3,
+      "repl": [
+        "NFC",
+        "NYC",
+        "NUN",
+        "NUT",
+        "NEC"
+      ]
+    },
+    {
+      "file": "ui-colreg4corr1.md",
+      "lang": "en",
+      "rule": "MORFOLOGIK_RULE_EN_US",
+      "cat": "TYPOS",
+      "msg": "Possible spelling mistake found.",
+      "ctx": "...is UI is to be uniformly implemented by IACS Members and Associates from 1 July 2006...",
+      "offset": 853,
+      "length": 4,
+      "repl": [
+        "ACS",
+        "IAS",
+        "ICS",
+        "SACS",
+        "IAC"
+      ]
+    },
+    {
+      "file": "ui-colreg5.md",
+      "lang": "en",
+      "rule": "MORFOLOGIK_RULE_EN_US",
+      "cat": "TYPOS",
+      "msg": "Possible spelling mistake found.",
+      "ctx": "...OLREG5 (May 2018)  ## Interpretation to COLREG 1972 Annex I Sections 9(a)(i) and 10(a)...",
+      "offset": 45,
+      "length": 6,
+      "repl": [
+        "COL REG"
+      ]
+    },
+    {
+      "file": "ui-colreg5.md",
+      "lang": "en",
+      "rule": "NON3PRS_VERB",
+      "cat": "GRAMMAR",
+      "msg": "The pronoun ‘I’ must be used with a non-third-person form of a verb.",
+      "ctx": "...# Interpretation to COLREG 1972 Annex I Sections 9(a)(i) and 10(a)(i)  ### Regulation  A...",
+      "offset": 65,
+      "length": 8,
+      "repl": [
+        "Section"
+      ]
+    },
+    {
+      "file": "ui-colreg5.md",
+      "lang": "en",
+      "rule": "WITH_THE_EXCEPTION_OF",
+      "cat": "REDUNDANCY",
+      "msg": "Consider using “except” or “except for”",
+      "ctx": "...l sectors of electric lights as fitted, with the exception of lights on sailing vessels underway shal...",
+      "offset": 506,
+      "length": 21,
+      "repl": [
+        "except",
+        "except for"
+      ]
+    },
+    {
+      "file": "ui-colreg5.md",
+      "lang": "en",
+      "rule": "MORFOLOGIK_RULE_EN_US",
+      "cat": "TYPOS",
+      "msg": "Possible spelling mistake found.",
+      "ctx": "...### 9(a)(i) – Horizontal sectors (MSC.1/Circ.1427, MSC.1/Circ.1260/Rev.1)  COLREG An...",
+      "offset": 767,
+      "length": 4,
+      "repl": [
+        "CIRC",
+        "Circa",
+        "CIC",
+        "CRC",
+        "CIBC"
+      ]
+    },
+    {
+      "file": "ui-colreg5.md",
+      "lang": "en",
+      "rule": "MORFOLOGIK_RULE_EN_US",
+      "cat": "TYPOS",
+      "msg": "Possible spelling mistake found.",
+      "ctx": "...SC.1/Circ.1427, MSC.1/Circ.1260/Rev.1)  COLREG Annex I, section 9(a)(i) would require ...",
+      "offset": 802,
+      "length": 6,
+      "repl": [
+        "COL REG"
+      ]
+    },
+    {
+      "file": "ui-colreg5.md",
+      "lang": "en",
+      "rule": "MORFOLOGIK_RULE_EN_US",
+      "cat": "TYPOS",
+      "msg": "Possible spelling mistake found.",
+      "ctx": "... determine a \"head-on-situation\" as per COLREG rule 14.  Note:  1. This Unified Interp...",
+      "offset": 1118,
+      "length": 6,
+      "repl": [
+        "COL REG"
+      ]
+    },
+    {
+      "file": "ui-colreg5.md",
+      "lang": "en",
+      "rule": "MORFOLOGIK_RULE_EN_US",
+      "cat": "TYPOS",
+      "msg": "Possible spelling mistake found.",
+      "ctx": "...ation is to be uniformly implemented by IACS Societies on ships contracted for const...",
+      "offset": 1207,
+      "length": 4,
+      "repl": [
+        "ACS",
+        "IAS",
+        "ICS",
+        "SACS",
+        "IAC"
+      ]
+    },
+    {
+      "file": "ui-colreg5.md",
+      "lang": "en",
+      "rule": "ADJECTIVE_ADVERB",
+      "cat": "CONFUSED_WORDS",
+      "msg": "The word “acceptable” is an adjective and doesn’t fit in this context. Did you mean the adverb “acceptably”?",
+      "ctx": "... see Area A), then that installation is acceptable provided the installed sidelights are v...",
+      "offset": 2024,
+      "length": 10,
+      "repl": [
+        "acceptably"
+      ]
+    },
+    {
+      "file": "ui-colreg5.md",
+      "lang": "en",
+      "rule": "MORFOLOGIK_RULE_EN_US",
+      "cat": "TYPOS",
+      "msg": "Possible spelling mistake found.",
+      "ctx": "...측등(at side)·측등(near side) 위치, Main Deck/Focsle, 비가시 영역 'Area A'를 표시한 비가시 섹터(Area A)의 예...",
+      "offset": 2539,
+      "length": 6,
+      "repl": [
+        "Focal",
+        "Locale",
+        "Docile",
+        "Fosse",
+        "Facile"
+      ]
+    },
+    {
+      "file": "ui-ftp3rev3.md",
+      "lang": "en",
+      "rule": "EN_COMPOUNDS_SUB_SECTION",
+      "cat": "MISC",
+      "msg": "This word is normally spelled as one.",
+      "ctx": "... July 2010) (Rev.3 Apr 2021)  (FTP Code sub-section 5.3 and Annex 1, Part 3 – Test for \"A\",...",
+      "offset": 100,
+      "length": 11,
+      "repl": [
+        "subsection"
+      ]
+    },
+    {
+      "file": "ui-ftp3rev3.md",
+      "lang": "en",
+      "rule": "EN_COMPOUNDS_SUB_SECTION",
+      "cat": "MISC",
+      "msg": "This word is normally spelled as one.",
+      "ctx": "...ass divisions)  ## Regulation  FTP Code sub-section 5.3 reads:  > *5.3.1 The case-by-case a...",
+      "offset": 207,
+      "length": 11,
+      "repl": [
+        "subsection"
+      ]
+    },
+    {
+      "file": "ui-ftp3rev3.md",
+      "lang": "en",
+      "rule": "ALL_OF_THE",
+      "cat": "REDUNDANCY",
+      "msg": "Consider removing “of” to be more concise",
+      "ctx": "... with the same classification, provided all of the following is met:  1. dimensions (width...",
+      "offset": 5096,
+      "length": 10,
+      "repl": [
+        "all the"
+      ]
+    },
+    {
+      "file": "ui-ftp3rev3.md",
+      "lang": "en",
+      "rule": "WHITESPACE_RULE",
+      "cat": "TYPOGRAPHY",
+      "msg": "Possible typo: you repeated a whitespace",
+      "ctx": "...r the following times, as appropriate:     | Class  | Insulation     | Integrity   ...",
+      "offset": 5501,
+      "length": 3,
+      "repl": [
+        " "
+      ]
+    },
+    {
+      "file": "ui-ftp3rev3.md",
+      "lang": "en",
+      "rule": "WHITESPACE_RULE",
+      "cat": "TYPOGRAPHY",
+      "msg": "Possible typo: you repeated a whitespace",
+      "ctx": "...owing times, as appropriate:     | Class  | Insulation     | Integrity        |   ...",
+      "offset": 5511,
+      "length": 2,
+      "repl": [
+        " "
+      ]
+    },
+    {
+      "file": "ui-ftp3rev3.md",
+      "lang": "en",
+      "rule": "WHITESPACE_RULE",
+      "cat": "TYPOGRAPHY",
+      "msg": "Possible typo: you repeated a whitespace",
+      "ctx": "...s appropriate:     | Class  | Insulation     | Integrity        |    |--------|------...",
+      "offset": 5525,
+      "length": 5,
+      "repl": [
+        " "
+      ]
+    },
+    {
+      "file": "ui-ftp3rev3.md",
+      "lang": "en",
+      "rule": "WHITESPACE_RULE",
+      "cat": "TYPOGRAPHY",
+      "msg": "Possible typo: you repeated a whitespace",
+      "ctx": "...   | Class  | Insulation     | Integrity        |    |--------|----------------|--------...",
+      "offset": 5541,
+      "length": 8,
+      "repl": [
+        " "
+      ]
+    },
+    {
+      "file": "ui-ftp3rev3.md",
+      "lang": "en",
+      "rule": "WHITESPACE_RULE",
+      "cat": "TYPOGRAPHY",
+      "msg": "Possible typo: you repeated a whitespace",
+      "ctx": "...---------|------------------|    | \"B-0\"  | 0 min insulation  | 36 min integrity |...",
+      "offset": 5611,
+      "length": 2,
+      "repl": [
+        " "
+      ]
+    },
+    {
+      "file": "ui-ftp3rev3.md",
+      "lang": "en",
+      "rule": "WHITESPACE_RULE",
+      "cat": "TYPOGRAPHY",
+      "msg": "Possible typo: you repeated a whitespace",
+      "ctx": "...--------|    | \"B-0\"  | 0 min insulation  | 36 min integrity |    | \"B-15\" | 18 mi...",
+      "offset": 5631,
+      "length": 2,
+      "repl": [
+        " "
+      ]
+    },
+    {
+      "file": "ui-ftp3rev3.md",
+      "lang": "en",
+      "rule": "WHITESPACE_RULE",
+      "cat": "TYPOGRAPHY",
+      "msg": "Possible typo: you repeated a whitespace",
+      "ctx": "...sulation | 36 min integrity |    | \"A-0\"  | 0 min insulation  | 68 min integrity |...",
+      "offset": 5717,
+      "length": 2,
+      "repl": [
+        " "
+      ]
+    },
+    {
+      "file": "ui-ftp3rev3.md",
+      "lang": "en",
+      "rule": "WHITESPACE_RULE",
+      "cat": "TYPOGRAPHY",
+      "msg": "Possible typo: you repeated a whitespace",
+      "ctx": "...tegrity |    | \"A-0\"  | 0 min insulation  | 68 min integrity |    | \"A-15\" | 18 mi...",
+      "offset": 5737,
+      "length": 2,
+      "repl": [
+        " "
+      ]
+    },
+    {
+      "file": "ui-ftp3rev3.md",
+      "lang": "en",
+      "rule": "WHITESPACE_RULE",
+      "cat": "TYPOGRAPHY",
+      "msg": "Possible typo: you repeated a whitespace",
+      "ctx": "...ents. Such a \"specimen\" may be either:     1.1 a door already certified through the...",
+      "offset": 7056,
+      "length": 3,
+      "repl": [
+        " "
+      ]
+    },
+    {
+      "file": "ui-ftp3rev3.md",
+      "lang": "en",
+      "rule": "MORFOLOGIK_RULE_EN_US",
+      "cat": "TYPOS",
+      "msg": "Possible spelling mistake. ‘analysed’ is British English.",
+      "ctx": "...s identical in design to the door to be analysed (fire test to include additional instru...",
+      "offset": 7157,
+      "length": 8,
+      "repl": [
+        "analyzed"
+      ]
+    },
+    {
+      "file": "ui-ftp3rev3.md",
+      "lang": "en",
+      "rule": "WHITESPACE_RULE",
+      "cat": "TYPOGRAPHY",
+      "msg": "Possible typo: you repeated a whitespace",
+      "ctx": "... 3.4.2; or equivalent arrangement); or     1.2 a specially-built specimen where the...",
+      "offset": 7271,
+      "length": 3,
+      "repl": [
+        " "
+      ]
+    },
+    {
+      "file": "ui-ftp3rev3.md",
+      "lang": "en",
+      "rule": "WHITESPACE_RULE",
+      "cat": "TYPOGRAPHY",
+      "msg": "Possible typo: you repeated a whitespace",
+      "ctx": "...otype used to extrapolate the results.     In this respect, additional instrumentat...",
+      "offset": 8487,
+      "length": 3,
+      "repl": [
+        " "
+      ]
+    },
+    {
+      "file": "ui-ftp3rev3.md",
+      "lang": "en",
+      "rule": "MORFOLOGIK_RULE_EN_US",
+      "cat": "TYPOS",
+      "msg": "Possible spelling mistake. ‘centre’ is British English.",
+      "ctx": "...in a circle of 100 mm in diameter whose centre is 150 mm aside of the surface thermoco...",
+      "offset": 8777,
+      "length": 6,
+      "repl": [
+        "center"
+      ]
+    },
+    {
+      "file": "ui-ftp3rev3.md",
+      "lang": "en",
+      "rule": "MORFOLOGIK_RULE_EN_US",
+      "cat": "TYPOS",
+      "msg": "Possible spelling mistake. ‘centre’ is British English.",
+      "ctx": "...the surface thermocouples fitted in the centre of the top quarters;  3. mechanical cha...",
+      "offset": 8843,
+      "length": 6,
+      "repl": [
+        "center"
+      ]
+    },
+    {
+      "file": "ui-ftp3rev3.md",
+      "lang": "en",
+      "rule": "WHITESPACE_RULE",
+      "cat": "TYPOGRAPHY",
+      "msg": "Possible typo: you repeated a whitespace",
+      "ctx": "...uction of the door and its insulation:     3.1 Young's module;    3.2 yield strengt...",
+      "offset": 8978,
+      "length": 3,
+      "repl": [
+        " "
+      ]
+    },
+    {
+      "file": "ui-ftp3rev3.md",
+      "lang": "en",
+      "rule": "WHITESPACE_RULE",
+      "cat": "TYPOGRAPHY",
+      "msg": "Possible typo: you repeated a whitespace",
+      "ctx": "...3 density; and  4. thermal properties:     4.1 thermal expansion coefficient;    4....",
+      "offset": 9073,
+      "length": 3,
+      "repl": [
+        " "
+      ]
+    },
+    {
+      "file": "ui-ftp3rev3.md",
+      "lang": "en",
+      "rule": "COMMA_COMPOUND_SENTENCE_2",
+      "cat": "PUNCTUATION",
+      "msg": "Use a comma before “and” if it connects two independent clauses (unless they are closely connected and short).",
+      "ctx": "...hin the structural assembly are computed and the temperature is compared with the te...",
+      "offset": 10176,
+      "length": 4,
+      "repl": [
+        ", and"
+      ]
+    },
+    {
+      "file": "ui-ftp3rev3.md",
+      "lang": "en",
+      "rule": "NON_STANDARD_WORD",
+      "cat": "TYPOS",
+      "msg": "The word ‘sub>s’ is not standard English. Did you mean “sub’s” (curly apostrophe) or “sub's” (straight apostrophe)?",
+      "ctx": "...onstant - ε: Emissivity coefficient - T<sub>s</sub>: Surface temperature - T<sub>∞</s...",
+      "offset": 10746,
+      "length": 5,
+      "repl": [
+        "sub’s",
+        "sub's"
+      ]
+    },
+    {
+      "file": "ui-ftp3rev3.md",
+      "lang": "en",
+      "rule": "UPPERCASE_SENTENCE_START",
+      "cat": "CASING",
+      "msg": "This sentence does not start with an uppercase letter.",
+      "ctx": "...uivalent boundary condition:    where:  the equivalent coefficient H<sub>eq</sub> d...",
+      "offset": 10917,
+      "length": 3,
+      "repl": [
+        "The"
+      ]
+    },
+    {
+      "file": "ui-ftp3rev3.md",
+      "lang": "en",
+      "rule": "MORFOLOGIK_RULE_EN_US",
+      "cat": "TYPOS",
+      "msg": "Possible spelling mistake found.",
+      "ctx": "...here:  the equivalent coefficient H<sub>eq</sub> depends on the unknown surface te...",
+      "offset": 10950,
+      "length": 2,
+      "repl": [
+        "EQ",
+        "ex",
+        "EU",
+        "HQ",
+        "IQ"
+      ]
+    },
+    {
+      "file": "ui-ftp3rev3.md",
+      "lang": "en",
+      "rule": "MORFOLOGIK_RULE_EN_US",
+      "cat": "TYPOS",
+      "msg": "Possible spelling mistake. ‘behaviour’ is British English.",
+      "ctx": "...ch the non-linear temperature-dependent behaviour.  3.7.2 Once the model is prepared, the...",
+      "offset": 12057,
+      "length": 9,
+      "repl": [
+        "behavior"
+      ]
+    },
+    {
+      "file": "ui-ftp3rev3.md",
+      "lang": "en",
+      "rule": "COMMA_COMPOUND_SENTENCE_2",
+      "cat": "PUNCTUATION",
+      "msg": "Use a comma before “and” if it connects two independent clauses (unless they are closely connected and short).",
+      "ctx": "... by a temperature increase is calculated and a new stress level is obtained based on...",
+      "offset": 12249,
+      "length": 4,
+      "repl": [
+        ", and"
+      ]
+    },
+    {
+      "file": "ui-ftp3rev3.md",
+      "lang": "en",
+      "rule": "MORFOLOGIK_RULE_EN_US",
+      "cat": "TYPOS",
+      "msg": "Possible spelling mistake found.",
+      "ctx": "... surface area, a full analysis based on SOLAS regulation II-2/17 shall be performed t...",
+      "offset": 12683,
+      "length": 5,
+      "repl": [
+        "SOLAR",
+        "SOLOS",
+        "SOLES",
+        "SILAS",
+        "SOLIS"
+      ]
+    },
+    {
+      "file": "ui-ftp3rev3.md",
+      "lang": "en",
+      "rule": "MORFOLOGIK_RULE_EN_US",
+      "cat": "TYPOS",
+      "msg": "Possible spelling mistake found.",
+      "ctx": "...is UI is to be uniformly implemented by IACS Members and Associates to ships keel la...",
+      "offset": 13101,
+      "length": 4,
+      "repl": [
+        "ACS",
+        "IAS",
+        "ICS",
+        "SACS",
+        "IAC"
+      ]
+    },
+    {
+      "file": "ui-ftp3rev3.md",
+      "lang": "en",
+      "rule": "MORFOLOGIK_RULE_EN_US",
+      "cat": "TYPOS",
+      "msg": "Possible spelling mistake found.",
+      "ctx": "...is UI is to be uniformly implemented by IACS Members and Associates from 1 January 2...",
+      "offset": 13220,
+      "length": 4,
+      "repl": [
+        "ACS",
+        "IAS",
+        "ICS",
+        "SACS",
+        "IAC"
+      ]
+    },
+    {
+      "file": "ui-ftp3rev3.md",
+      "lang": "en",
+      "rule": "MORFOLOGIK_RULE_EN_US",
+      "cat": "TYPOS",
+      "msg": "Possible spelling mistake found.",
+      "ctx": "...is UI is to be uniformly implemented by IACS Societies from 1 January 2011. 4. Rev.3...",
+      "offset": 13323,
+      "length": 4,
+      "repl": [
+        "ACS",
+        "IAS",
+        "ICS",
+        "SACS",
+        "IAC"
+      ]
+    },
+    {
+      "file": "ui-ftp3rev3.md",
+      "lang": "en",
+      "rule": "MORFOLOGIK_RULE_EN_US",
+      "cat": "TYPOS",
+      "msg": "Possible spelling mistake found.",
+      "ctx": "...is UI is to be uniformly implemented by IACS Societies from 1 January 2022. ",
+      "offset": 13413,
+      "length": 4,
+      "repl": [
+        "ACS",
+        "IAS",
+        "ICS",
+        "SACS",
+        "IAC"
+      ]
+    },
+    {
+      "file": "ui-ftp4rev2.md",
+      "lang": "en",
+      "rule": "RESISTANT_HYPHEN",
+      "cat": "COMPOUNDING",
+      "msg": "The adjective “Fire-resistant” is normally spelled with a hyphen.",
+      "ctx": "# Fire resistant windows on tankers  FTP4 (Sep 2005) (Re...",
+      "offset": 2,
+      "length": 14,
+      "repl": [
+        "Fire-resistant"
+      ]
+    },
+    {
+      "file": "ui-ftp4rev2.md",
+      "lang": "en",
+      "rule": "ABBREVIATION_PUNCTUATION",
+      "cat": "PUNCTUATION",
+      "msg": "The abbreviation/initialism is missing a period after the last letter.",
+      "ctx": "...s, Paragraph 2.2 reads as follows:  ### A.I Windows  #### 2.2 Design  *2.2.1 The bu...",
+      "offset": 330,
+      "length": 3,
+      "repl": [
+        "A.I."
+      ]
+    },
+    {
+      "file": "ui-ftp4rev2.md",
+      "lang": "en",
+      "rule": "NON3PRS_VERB",
+      "cat": "GRAMMAR",
+      "msg": "The pronoun ‘I’ must be used with a non-third-person form of a verb.",
+      "ctx": "...aragraph 2.2 reads as follows:  ### A.I Windows  #### 2.2 Design  *2.2.1 The bulkhead w...",
+      "offset": 334,
+      "length": 7,
+      "repl": [
+        "Window"
+      ]
+    },
+    {
+      "file": "ui-ftp4rev2.md",
+      "lang": "en",
+      "rule": "MORFOLOGIK_RULE_EN_US",
+      "cat": "TYPOS",
+      "msg": "Possible spelling mistake found.",
+      "ctx": "...ed face of the structural core.  (MSC.1/Circ.1203)  Note:  1. This UI is editorially...",
+      "offset": 1346,
+      "length": 4,
+      "repl": [
+        "CIRC",
+        "Circa",
+        "CIC",
+        "CRC",
+        "CIBC"
+      ]
+    },
+    {
+      "file": "ui-ftp4rev2.md",
+      "lang": "en",
+      "rule": "MORFOLOGIK_RULE_EN_US",
+      "cat": "TYPOS",
+      "msg": "Possible spelling mistake found.",
+      "ctx": "...s editorially amended to refer to MSC.1/Circ.1203. 2. Rev.2 of FTP4 is to be uniform...",
+      "offset": 1417,
+      "length": 4,
+      "repl": [
+        "CIRC",
+        "Circa",
+        "CIC",
+        "CRC",
+        "CIBC"
+      ]
+    },
+    {
+      "file": "ui-ftp4rev2.md",
+      "lang": "en",
+      "rule": "MORFOLOGIK_RULE_EN_US",
+      "cat": "TYPOS",
+      "msg": "Possible spelling mistake found.",
+      "ctx": "... FTP4 is to be uniformly implemented by IACS Societies for approvals granted on or a...",
+      "offset": 1479,
+      "length": 4,
+      "repl": [
+        "ACS",
+        "IAS",
+        "ICS",
+        "SACS",
+        "IAC"
+      ]
+    },
+    {
+      "file": "ui-ftp5corr1.md",
+      "lang": "en",
+      "rule": "MORFOLOGIK_RULE_EN_US",
+      "cat": "TYPOS",
+      "msg": "Possible spelling mistake found.",
+      "ctx": "...nd details of joints  FTP5 (June 2010) (Corr.1 Sep 2022)  Interpretation of paragrap...",
+      "offset": 129,
+      "length": 4,
+      "repl": [
+        "Core",
+        "Cord",
+        "Corn",
+        "Carr",
+        "Cork"
+      ]
+    },
+    {
+      "file": "ui-ftp5corr1.md",
+      "lang": "en",
+      "rule": "MORFOLOGIK_RULE_EN_US",
+      "cat": "TYPOS",
+      "msg": "Possible spelling mistake. ‘centre’ is British English.",
+      "ctx": "...8:*  *.1 five thermocouples, one at the centre of the test specimen and one at the cen...",
+      "offset": 973,
+      "length": 6,
+      "repl": [
+        "center"
+      ]
+    },
+    {
+      "file": "ui-ftp5corr1.md",
+      "lang": "en",
+      "rule": "MORFOLOGIK_RULE_EN_US",
+      "cat": "TYPOS",
+      "msg": "Possible spelling mistake. ‘centre’ is British English.",
+      "ctx": "...tre of the test specimen and one at the centre of each of the four quarters, all posit...",
+      "offset": 1016,
+      "length": 6,
+      "repl": [
+        "center"
+      ]
+    },
+    {
+      "file": "ui-ftp5corr1.md",
+      "lang": "en",
+      "rule": "MORFOLOGIK_RULE_EN_US",
+      "cat": "TYPOS",
+      "msg": "Possible spelling mistake. ‘centre’ is British English.",
+      "ctx": "...8:*  *.1 five thermocouples, one at the centre of the test specimen and one at the cen...",
+      "offset": 2668,
+      "length": 6,
+      "repl": [
+        "center"
+      ]
+    },
+    {
+      "file": "ui-ftp5corr1.md",
+      "lang": "en",
+      "rule": "MORFOLOGIK_RULE_EN_US",
+      "cat": "TYPOS",
+      "msg": "Possible spelling mistake. ‘centre’ is British English.",
+      "ctx": "...tre of the test specimen and one at the centre of each of the four quarters, all posit...",
+      "offset": 2711,
+      "length": 6,
+      "repl": [
+        "center"
+      ]
+    },
+    {
+      "file": "ui-ftp5corr1.md",
+      "lang": "en",
+      "rule": "MORFOLOGIK_RULE_EN_US",
+      "cat": "TYPOS",
+      "msg": "Possible spelling mistake. ‘aluminium’ is British English.",
+      "ctx": "...und stiffeners; - Details of wire mesh, aluminium tape etc, if used in the test; - The ty...",
+      "offset": 4721,
+      "length": 9,
+      "repl": [
+        "aluminum"
+      ]
+    },
+    {
+      "file": "ui-ftp5corr1.md",
+      "lang": "en",
+      "rule": "ETC_PERIOD",
+      "cat": "AMERICAN_ENGLISH_STYLE",
+      "msg": "In American English, abbreviations like “etc.” require a period.",
+      "ctx": "... - Details of wire mesh, aluminium tape etc, if used in the test; - The type approv...",
+      "offset": 4736,
+      "length": 3,
+      "repl": [
+        "etc."
+      ]
+    },
+    {
+      "file": "ui-ftp5corr1.md",
+      "lang": "en",
+      "rule": "MORFOLOGIK_RULE_EN_US",
+      "cat": "TYPOS",
+      "msg": "Possible spelling mistake found.",
+      "ctx": "...ing numbers of the test sample.  (MSC.1/Circ.1435)  ## Note  1. This UI is to be uni...",
+      "offset": 4975,
+      "length": 4,
+      "repl": [
+        "CIRC",
+        "Circa",
+        "CIC",
+        "CRC",
+        "CIBC"
+      ]
+    },
+    {
+      "file": "ui-ftp5corr1.md",
+      "lang": "en",
+      "rule": "MORFOLOGIK_RULE_EN_US",
+      "cat": "TYPOS",
+      "msg": "Possible spelling mistake found.",
+      "ctx": "...is UI is to be uniformly implemented by IACS Societies for approvals issued in accor...",
+      "offset": 5041,
+      "length": 4,
+      "repl": [
+        "ACS",
+        "IAS",
+        "ICS",
+        "SACS",
+        "IAC"
+      ]
+    },
+    {
+      "file": "ui-ftp6rev1.md",
+      "lang": "en",
+      "rule": "MORFOLOGIK_RULE_EN_US",
+      "cat": "TYPOS",
+      "msg": "Possible spelling mistake found.",
+      "ctx": "...ation is to be uniformly implemented by IACS Societies for approvals granted on or a...",
+      "offset": 1923,
+      "length": 4,
+      "repl": [
+        "ACS",
+        "IAS",
+        "ICS",
+        "SACS",
+        "IAC"
+      ]
+    },
+    {
+      "file": "ui-ftp6rev1.md",
+      "lang": "en",
+      "rule": "MORFOLOGIK_RULE_EN_US",
+      "cat": "TYPOS",
+      "msg": "Possible spelling mistake found.",
+      "ctx": "...is UI is to be uniformly implemented by IACS Societies for approvals granted on or a...",
+      "offset": 2044,
+      "length": 4,
+      "repl": [
+        "ACS",
+        "IAS",
+        "ICS",
+        "SACS",
+        "IAC"
+      ]
+    }
+  ]
+}

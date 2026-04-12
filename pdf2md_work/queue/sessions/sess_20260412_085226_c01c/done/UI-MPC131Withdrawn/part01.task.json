@@ -1,0 +1,15 @@
+{
+  "input_pdf": "/home/kimghw/ontology_iacs/UI/UI_MPC/UI-MPC131Withdrawn.pdf",
+  "src_dir": "/home/kimghw/ontology_iacs/UI/UI_MPC",
+  "input_base": "UI-MPC131Withdrawn",
+  "part_source": "/home/kimghw/ontology_iacs/pdf2md_work/queue/pdf_parts/UI-MPC131Withdrawn__part01.pdf",
+  "page_range": "1-1",
+  "pages": 1,
+  "part_index": "01",
+  "total_parts": 1,
+  "is_first_part": true,
+  "is_last_part": true,
+  "is_single_part": true,
+  "out_md": "partNN.md",
+  "status": "pending"
+}

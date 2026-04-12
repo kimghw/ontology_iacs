@@ -1,3 +1,0 @@
-UI SC 181 BRIDGE DESIGN, EQUIPMENT ARRANGEMENT AND PROCEDURES
-
-Withdrawn pending further development work
