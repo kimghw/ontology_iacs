@@ -4270,3 +4270,18 @@ Gemini MCP는 Codex와 달리 등록 시 모델을 고정하는 게 아니라, �
 ## 2026-04-13 15:10:34
 
 /git
+
+## 2026-04-13 15:10:48
+
+<ide_opened_file>The user opened the file /home/kimghw/ontology_iacs/shared/document_classification_ko.md in the IDE. This may or may not be related to the current task.</ide_opened_file>
+일단 /md2wu 스킬을 하나 만들께. 1. 일단 입력된 경로, 파일들의 헤딩을 추출하고 각 헤딩의 트리구조를 만들고 그리고 각 헤딩의 토큰읠 계산하고, 상위가 하위 토큰 수를 포함하고, 토큰 수 또는 제목 형식을 포함해서  source Family 를 사용자랑  승인후 확정 후  reference에  저장, 그리고 각 문서들의 Authority, DocType, 그리고 heading 레벨을 추출해서 일반화 한다. /home/kimghw/ontology_iacs/shared/document_classification_ko.md  여기에 작업했던 파일이 있음
+
+## 2026-04-13 15:15:16
+
+<ide_opened_file>The user opened the file /home/kimghw/ontology_iacs/shared/naming_convention_ko.md in the IDE. This may or may not be related to the current task.</ide_opened_file>
+이 스킬은  wu를 생성하면서 heading level 등을 추출하는 거야...
+
+## 2026-04-13 15:21:16
+
+<ide_opened_file>The user opened the file /home/kimghw/ontology_iacs/.claude/skills/md2wu/SKILL.md in the IDE. This may or may not be related to the current task.</ide_opened_file>
+커밋하고 푸쉬해줘

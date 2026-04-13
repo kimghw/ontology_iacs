@@ -1,3 +1,4 @@
+<!-- markdownlint-disable MD033 -->
 # Procedural Requirements for MLC, 2006 Certification
 
 ## INTRODUCTION
