@@ -3148,3 +3148,15 @@ agents 폴더 경로 실볼링이 생성되지 않았네
 ## 2026-04-13 13:43:09
 
 /git
+
+## 2026-04-13 13:44:50
+
+develop reload window 이거 단축키 ctrl+R 인거 같은데. 다른건랑 충첩된건지 잘못알고 있던건지..
+
+## 2026-04-13 13:52:11
+
+/home/kimghw/ontology_iacs/.claude/commands/toolkit_git.md  여기 toolkit 에  mcp 랑 permission  파일이 심볼릭 복사가 안되어 있음
+
+## 2026-04-13 13:53:17
+
+/git

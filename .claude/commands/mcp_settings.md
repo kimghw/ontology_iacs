@@ -1,0 +1,1 @@
+/mnt/c/shared_wk/claude_toolkit/commands/mcp_settings.md
