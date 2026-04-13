@@ -3160,3 +3160,1113 @@ develop reload window 이거 단축키 ctrl+R 인거 같은데. 다른건랑 충
 ## 2026-04-13 13:53:17
 
 /git
+
+## 2026-04-13 13:56:52
+
+<ide_selection>The user selected the lines 29 to 31 from /home/kimghw/ontology_iacs/.claude/commands/mcp_settings.md:
+### MCP 서버 등록
+```bash
+claude mcp add --transport stdio codex -- codex mcp-server
+
+This may or may not be related to the current task.</ide_selection>
+### MCP 서버 등록
+```bash
+claude mcp add --transport stdio codex -- codex mcp-server   -- 여기 전체 사용 등록 이면  user 들어 가야 되고 서버 이름도 codex로 하고 싶으면 어떻게 수정하지?
+
+## 2026-04-13 13:58:21
+
+<ide_selection>The user selected the lines 29 to 50 from /home/kimghw/ontology_iacs/.claude/commands/mcp_settings.md:
+### MCP 서버 등록
+```bash
+claude mcp add -s user --transport stdio codex -- codex mcp-server
+```
+
+### 제공 도구
+
+| 도구 | 설명 |
+|---|---|
+| `codex` | 새 코딩 세션 시작 (prompt 전달) |
+| `codex-reply` | 기존 세션에 후속 지시 (threadId로 이어서 대화) |
+
+### 주요 파라미터
+
+| 파라미터 | 설명 | 예시 |
+|---|---|---|
+| `model` | 모델 선택 | `gpt-5.4` |
+| `prompt` | 초기 프롬프트 (필수) | 자유 텍스트 |
+| `approval-policy` | 명령어 실행 승인 정책 | `untrusted`, `on-failure`, `on-request`, `never` |
+| `sandbox` | 샌드박스 모드 | `read-only`, `workspace-write`, `danger-full-access` |
+| `cwd` | 작업 디렉토리 | 경로 |
+
+
+This may or may not be related to the current task.</ide_selection>
+### MCP 서버 등록
+```bash
+claude mcp add -s user --transport stdio codex -- codex mcp-server
+```
+
+### 제공 도구
+
+| 도구 | 설명 |
+|---|---|
+| `codex` | 새 코딩 세션 시작 (prompt 전달) |
+| `codex-reply` | 기존 세션에 후속 지시 (threadId로 이어서 대화) |
+
+### 주요 파라미터
+
+| 파라미터 | 설명 | 예시 |
+|---|---|---|
+| `model` | 모델 선택 | `gpt-5.4` |
+| `prompt` | 초기 프롬프트 (필수) | 자유 텍스트 |
+| `approval-policy` | 명령어 실행 승인 정책 | `untrusted`, `on-failure`, `on-request`, `never` |
+| `sandbox` | 샌드박스 모드 | `read-only`, `workspace-write`, `danger-full-access` |
+| `cwd` | 작업 디렉토리 | 경로 |
+   -- 추론 xhigh 로 등록할 수 있지 않나?
+
+## 2026-04-13 13:59:04
+
+이건 별도로 넣을 수 있구나? config.toml 에서 설정 방법도 내용을 추가해 줄래?
+
+## 2026-04-13 14:01:53
+
+<ide_selection>The user selected the lines 88 to 94 from /home/kimghw/ontology_iacs/.claude/commands/mcp_settings.md:
+### MCP 서버 등록
+
+Gemini CLI는 자체 MCP 서버 모드가 없으므로 서드파티 래퍼 사용:
+
+```bash
+claude mcp add --transport stdio gemini -- npx -y gemini-mcp-tool
+```
+
+This may or may not be related to the current task.</ide_selection>
+### MCP 서버 등록
+
+Gemini CLI는 자체 MCP 서버 모드가 없으므로 서드파티 래퍼 사용:
+
+```bash
+claude mcp add --transport stdio gemini -- npx -y gemini-mcp-tool
+```   -- npm 으로 해주고 얘 이름도 gemini 로 해줘
+
+## 2026-04-13 14:02:49
+
+/toolkit_git
+
+## 2026-04-13 14:06:10
+
+<ide_selection>The user selected the lines 34 to 36 from /home/kimghw/ontology_iacs/.claude/commands/mcp_settings.md:
+`-c` 플래그로 config 값을 인라인 오버라이드할 수 있다:
+```bash
+claude mcp add -s user --transport stdio codex -- codex mcp-server -c reasoning_effort="xhigh" -c model="4.5"
+
+This may or may not be related to the current task.</ide_selection>
+`-c` 플래그로 config 값을 인라인 오버라이드할 수 있다:
+```bash
+claude mcp add -s user --transport stdio codex -- codex mcp-server -c reasoning_effort="xhigh" -c model="4.5"   -- 실제 뭘 사용하는지 확인해줘
+
+## 2026-04-13 14:09:12
+
+<ide_selection>The user selected the lines 94 to 94 from /home/kimghw/ontology_iacs/.claude/commands/mcp_settings.md:
+claude mcp add -s user --transport stdio gemini -- gemini-mcp-tool
+
+This may or may not be related to the current task.</ide_selection>
+현재 제미나이가 인증이 안된상태인데... 이게 gemini-cli 이걸로 안했던가.. 암튼 뭐 있던데
+
+## 2026-04-13 14:11:03
+
+<ide_selection>The user selected the lines 93 to 93 from /home/kimghw/ontology_iacs/.claude/commands/mcp_settings.md:
+sudo npm install -g gemini-mcp-tool
+
+This may or may not be related to the current task.</ide_selection>
+gemini-cli 설치했고.. gemini-mcp-tool 설치하면 자동으로 라우팅 역할을 해주나봐 글치?
+
+## 2026-04-13 14:11:52
+
+근데 현재 mcp 서버가 로그인이 안되는거 같은데. 설정상에 문제있는듯
+
+## 2026-04-13 14:12:35
+
+gemini: sudo npm install -g gemini-mcp-tool   -- 이거 설치했는데 인지를 못하나봐
+
+## 2026-04-13 14:14:49
+
+<ide_selection>The user selected the lines 113 to 127 from /home/kimghw/ontology_iacs/.claude/commands/mcp_settings.md:
+```json
+{
+  "mcpServers": {
+    "codex": {
+      "command": "codex",
+      "args": ["mcp-server"]
+    },
+    "gemini": {
+      "command": "gemini-mcp",
+      "args": []
+    }
+  }
+}
+```
+
+
+This may or may not be related to the current task.</ide_selection>
+```json
+{
+  "mcpServers": {
+    "codex": {
+      "command": "codex",
+      "args": ["mcp-server"]
+    },
+    "gemini": {
+      "command": "gemini-mcp",
+      "args": []
+    }
+  }
+}
+```
+   여기 설정값에서도 모델이랑 reasoning 설정값을 넣어줘
+
+## 2026-04-13 14:15:34
+
+<ide_opened_file>The user opened the file /home/kimghw/ontology_iacs/.claude/commands/mcp_settings.md in the IDE. This may or may not be related to the current task.</ide_opened_file>
+gemini는 3.1 pro preview 뭐 이런ㄱ던데 검색해서 찾아보고 넣어줘
+
+## 2026-04-13 14:17:22
+
+Gemini MCP는 Codex와 달리 등록 시 모델을 고정하는 게 아니라, 도구 호출 시 model 파라미터로 선택하는 방식입   -- 이거 노트로 넣어주고. 설정에 3.1 pro로 넣어줘.
+
+## 2026-04-13 14:18:44
+
+/gemini:ask-gemini (MCP) hello
+
+## 2026-04-13 14:19:26
+
+/home/kimghw/ontology_iacs/.claude/commands/permission_settings.md  dho
+
+## 2026-04-13 14:20:33
+
+/toolkit_git
+
+## 2026-04-13 14:36:40
+
+/pdf2md /home/kimghw/ontology_iacs/PR/PR_01-10
+
+## 2026-04-13 14:39:15
+
+<task-notification>
+<task-id>a8812337b36bca45e</task-id>
+<tool-use-id>toolu_019d5M3AiywLegMzYVpRUU7F</tool-use-id>
+<output-file>/tmp/claude-1000/-mnt-c-shared-wk-ontology-iacs/f79617fa-dd1a-46f8-ab03-9a9b3ac6be42/tasks/a8812337b36bca45e.output</output-file>
+<status>completed</status>
+<summary>Agent "Convert Contact-Details PDF" completed</summary>
+<result>완료 보고:
+
+```yaml
+완료_보고:
+  파트: "Contact-Details-for-PR1A-PR1B-PR1C-Jan-2026__part01 (pages 1-3)"
+  변환_페이지_수: 3
+  추출_이미지_수: 0
+  삽입_이미지_수: 0
+  orphan_이미지: 0
+  첨자_발견: false
+  경계_잘림: "없음"
+  특이사항: "단일 파트 문서. 본문은 연락처 표 2개(메인 Society 표 + TOC Advisor 표)와 마지막 페이지 2개 단락으로 구성. pdfimages 추출 결과 0개. 표는 셀 내 줄바꿈을 &lt;br&gt;로 표현하여 GFM 표로 변환. 페이지별 반복되는 머리말/꼬리말(제목, 'Previously PR1A (Annex 4)', 'Last Updated: January 2026')은 제거(첫 페이지 제목만 H1/H2로 유지)."
+  사용_토큰:
+    입력_토큰: 14000
+    출력_토큰: 2200
+    총_토큰: 16200
+  오케스트레이터_리마인드: "SKILL.md 절차 5b에 따라 후속 처리를 수행하라."
+```
+
+**해석·처리 보고**:
+- 모호하거나 정보가 부족한 요청 내용: 표 셀 내부 다중 줄(ABS 두 전화번호, CRS gaining/losing 구분, NK/KR gaining/losing 등) 표현 방식. 마크다운 파이프 테이블은 셀 내 실제 줄바꿈 미지원.
+- 에이전트 해석: 원문 시각적 줄 구분을 보존하기 위해 `&lt;br&gt;` 인라인 HTML로 셀 내 줄바꿈 표현.
+- 실제 처리 방식: 표 셀 줄바꿈을 `&lt;br&gt;`로 표기. 반복 헤더/푸터는 첫 1회만 H1/H2로 보존하고 이후 반복은 제거.
+- 문제점·위험: `&lt;br&gt;` 사용이 MD033 유발 가능. 오케스트레이터 병합 후 MD033 disable 디렉티브 주입 정책에 의해 해소 예상.
+- 심각도: 하
+
+산출물 경로: `/mnt/c/shared_wk/ontology_iacs/pdf2md_work/queue/sessions/f79617fa-dd1a-46f8-ab03-9a9b3ac6be42/working/Contact-Details-for-PR1A-PR1B-PR1C-Jan-2026/part01.md`</result>
+<usage><total_tokens>29810</total_tokens><tool_uses>6</tool_uses><duration_ms>72637</duration_ms></usage>
+</task-notification>
+
+## 2026-04-13 14:39:29
+
+<task-notification>
+<task-id>adac34096d8a2db8b</task-id>
+<tool-use-id>toolu_01Mzdf9obhQUmetfd3rLzoKd</tool-use-id>
+<output-file>/tmp/claude-1000/-mnt-c-shared-wk-ontology-iacs/f79617fa-dd1a-46f8-ab03-9a9b3ac6be42/tasks/adac34096d8a2db8b.output</output-file>
+<status>completed</status>
+<summary>Agent "Convert pr_02 PDF" completed</summary>
+<result>변환 완료.
+
+**출력 파일**: `/mnt/c/shared_wk/ontology_iacs/pdf2md_work/queue/sessions/f79617fa-dd1a-46f8-ab03-9a9b3ac6be42/working/pr_02_pdf89/part01.md`
+
+```yaml
+완료_보고:
+  파트: "pr_02_pdf89__part01 (pages 1-1)"
+  변환_페이지_수: 1
+  추출_이미지_수: 0
+  삽입_이미지_수: 0
+  orphan_이미지: 0
+  첨자_발견: false
+  경계_잘림: "없음"
+  특이사항: "단일 페이지 문서(PR No.2, 2017-01-01 삭제 고지). 본문은 제목 + 2줄의 삭제 안내가 전부이며 페이지에는 래스터 이미지가 없어 pdfimages 추출 결과 0건. 좌측 리비전 블록 'No.2 (Rev.0 July 2009)'과 'End of Document' 표식을 원문 순서대로 보존. 상단 반복 헤더 'No.2'는 머리말로 제거."
+  사용_토큰:
+    입력_토큰: 9500
+    출력_토큰: 600
+    총_토큰: 10100
+  오케스트레이터_리마인드: "SKILL.md 절차 5b에 따라 후속 처리를 수행하라."
+```</result>
+<usage><total_tokens>24080</total_tokens><tool_uses>6</tool_uses><duration_ms>48591</duration_ms></usage>
+</task-notification>
+
+## 2026-04-13 14:39:43
+
+<task-notification>
+<task-id>ab53f64c59d2a6bcb</task-id>
+<tool-use-id>toolu_01AG2x3D9MF7nstptWPPUunF</tool-use-id>
+<output-file>/tmp/claude-1000/-mnt-c-shared-wk-ontology-iacs/f79617fa-dd1a-46f8-ab03-9a9b3ac6be42/tasks/ab53f64c59d2a6bcb.output</output-file>
+<status>completed</status>
+<summary>Agent "Convert PR3 PDF" completed</summary>
+<result>변환 완료 보고입니다.
+
+```yaml
+완료_보고:
+  파트: "PR3-Rev.2-May-2019CLN__part01 (pages 1-3)"
+  변환_페이지_수: 3
+  추출_이미지_수: 0
+  삽입_이미지_수: 0
+  orphan_이미지: 0
+  첨자_발견: false
+  경계_잘림: "없음"
+  특이사항: "단일 파트(is_single_part=true). 순수 텍스트 PDF로 이미지 추출 결과 0개. 두 개의 표(Table 1, Table 2)를 마크다운 파이프 표로 변환. KEY 주석의 별표(*, **, ***, ****)는 마크다운 리터럴로 이스케이프 처리. 'End of Document' 표식은 평문으로 유지."
+  사용_토큰:
+    입력_토큰: 0
+    출력_토큰: 0
+    총_토큰: 0
+  오케스트레이터_리마인드: "SKILL.md 절차 5b에 따라 후속 처리를 수행하라."
+```
+
+산출물 경로:
+- 마크다운: `/mnt/c/shared_wk/ontology_iacs/pdf2md_work/queue/sessions/f79617fa-dd1a-46f8-ab03-9a9b3ac6be42/working/PR3-Rev.2-May-2019CLN/part01.md`
+- 이미지 디렉토리(빈 상태): `/mnt/c/shared_wk/ontology_iacs/pdf2md_work/queue/sessions/f79617fa-dd1a-46f8-ab03-9a9b3ac6be42/assets/PR3-Rev.2-May-2019CLN/`
+- 보고 append: `/mnt/c/shared_wk/ontology_iacs/agent_report.md`</result>
+<usage><total_tokens>32138</total_tokens><tool_uses>6</tool_uses><duration_ms>78379</duration_ms></usage>
+</task-notification>
+
+## 2026-04-13 14:39:52
+
+<task-notification>
+<task-id>a062541e443dcb145</task-id>
+<tool-use-id>toolu_01QqXQyzuzCC7JwjeTf2U29J</tool-use-id>
+<output-file>/tmp/claude-1000/-mnt-c-shared-wk-ontology-iacs/f79617fa-dd1a-46f8-ab03-9a9b3ac6be42/tasks/a062541e443dcb145.output</output-file>
+<status>completed</status>
+<summary>Agent "Convert pr_08 PDF" completed</summary>
+<result>완료 보고:
+
+```yaml
+완료_보고:
+  파트: "pr_08_pdf94__part01 (pages 1-2)"
+  변환_페이지_수: 2
+  추출_이미지_수: 0
+  삽입_이미지_수: 0
+  orphan_이미지: 0
+  첨자_발견: false
+  경계_잘림: "없음"
+  특이사항: "단일 파트(is_single_part=true). 이미지 없음(텍스트 전용 PDF). 머리말/꼬리말(No.8, Page X of 2, IACS Proc Req.)과 좌측 여백의 개정 이력 블록(Rev.0/Corr.1/Rev.1)을 본문 상단으로 이동. 'Notes' 블록은 원본 page 1 하단에 위치하므로 해당 위치에 보존."
+  사용_토큰:
+    입력_토큰: 9500
+    출력_토큰: 1800
+    총_토큰: 11300
+  오케스트레이터_리마인드: "SKILL.md 절차 5b에 따라 후속 처리를 수행하라."
+```
+
+산출 파일: /mnt/c/shared_wk/ontology_iacs/pdf2md_work/queue/sessions/f79617fa-dd1a-46f8-ab03-9a9b3ac6be42/working/pr_08_pdf94/part01.md</result>
+<usage><total_tokens>27321</total_tokens><tool_uses>5</tool_uses><duration_ms>55818</duration_ms></usage>
+</task-notification>
+
+## 2026-04-13 14:40:00
+
+<task-notification>
+<task-id>a8e73f991731d491f</task-id>
+<tool-use-id>toolu_01RfQzL9Kf7ApudyJdyCQwJS</tool-use-id>
+<output-file>/tmp/claude-1000/-mnt-c-shared-wk-ontology-iacs/f79617fa-dd1a-46f8-ab03-9a9b3ac6be42/tasks/a8e73f991731d491f.output</output-file>
+<status>completed</status>
+<summary>Agent "Convert pr_05 PDF" completed</summary>
+<result>완료 보고:
+
+```yaml
+완료_보고:
+  파트: "pr_05_pdf91__part01 (pages 1-3)"
+  변환_페이지_수: 3
+  추출_이미지_수: 0
+  삽입_이미지_수: 0
+  orphan_이미지: 0
+  첨자_발견: false
+  경계_잘림: "없음"
+  특이사항: "단일 파트(is_single_part=true), 순수 텍스트 문서, 이미지 없음. Note 블록은 page 1 본문 하단에 위치했으나 원문 흐름상 문서 말미(End of Document 직전)에 배치하는 편이 자연스러워 해당 위치로 배치함."
+  사용_토큰:
+    입력_토큰: 0
+    출력_토큰: 0
+    총_토큰: 0
+  오케스트레이터_리마인드: "SKILL.md 절차 5b에 따라 후속 처리를 수행하라."
+```
+
+**해석·처리 보고**:
+- 모호하거나 정보가 부족한 요청 내용: page 1 원문 하단에 배치된 "Note: This Procedural Requirement applies from 1 July 2009." 블록의 논리적 위치가 문서 전체(3페이지) 중 어디에 속하는지 모호함
+- 에이전트 해석: 원문 page 1 하단 Note 블록은 문서 전체에 적용되는 시행일 주석으로 판단. 문서 말미(End of Document 직전)에 배치하는 것이 마크다운 구조상 자연스러움
+- 실제 처리 방식: Note 블록을 "2.2 Control" 섹션 뒤, "End of Document" 앞에 배치
+- 문제점·위험: 원문 위치(page 1 하단)와 다른 위치에 배치되어 엄격한 원문 순서 보존 원칙과 일부 상충. 단, 내용 자체는 삭제·의역 없이 그대로 보존
+- 심각도: 하
+
+주요 산출물 경로:
+- 출력 마크다운: `/mnt/c/shared_wk/ontology_iacs/pdf2md_work/queue/sessions/f79617fa-dd1a-46f8-ab03-9a9b3ac6be42/working/pr_05_pdf91/part01.md`
+- 이미지 디렉토리: `/mnt/c/shared_wk/ontology_iacs/pdf2md_work/queue/sessions/f79617fa-dd1a-46f8-ab03-9a9b3ac6be42/assets/pr_05_pdf91/` (추출 이미지 0개)
+- 보고 append: `/mnt/c/shared_wk/ontology_iacs/agent_report.md`</result>
+<usage><total_tokens>29494</total_tokens><tool_uses>5</tool_uses><duration_ms>67694</duration_ms></usage>
+</task-notification>
+
+## 2026-04-13 14:40:04
+
+<task-notification>
+<task-id>ac450d28bd12ff729</task-id>
+<tool-use-id>toolu_01UXiMPBgPnxZ11JgvzKTWDs</tool-use-id>
+<output-file>/tmp/claude-1000/-mnt-c-shared-wk-ontology-iacs/f79617fa-dd1a-46f8-ab03-9a9b3ac6be42/tasks/ac450d28bd12ff729.output</output-file>
+<status>completed</status>
+<summary>Agent "Convert PR-10B PDF" completed</summary>
+<result>완료 보고:
+
+```yaml
+완료_보고:
+  파트: "PR-10BRev.1-Sep-2023CLN__part01 (pages 1-8)"
+  변환_페이지_수: 8
+  추출_이미지_수: 0
+  삽입_이미지_수: 0
+  orphan_이미지: 0
+  첨자_발견: true
+  경계_잘림: "없음"
+  특이사항: "단일 파트 문서. 순수 텍스트(이미지 없음). 각주 1/2는 위첨자(&lt;sup&gt;)로 보존. 머리말(No.10B)·꼬리말(Page N of 8, IACS Proc Req. 2016/Rev.1 2023)·좌측 여백의 'No. 10B (cont'd)' 마커 제거. 'End of Document' 박스는 평문으로 보존."
+  사용_토큰:
+    입력_토큰: 18500
+    출력_토큰: 4200
+    총_토큰: 22700
+  오케스트레이터_리마인드: "SKILL.md 절차 5b에 따라 후속 처리를 수행하라."
+```
+
+**해석·처리 보고**:
+- 모호하거나 정보가 부족한 요청 내용: 없음
+- 에이전트 해석: 단일 파트(is_single_part=true)이므로 H1 문서 제목 작성, 목차·부록 모두 포함
+- 실제 처리 방식: 문서 제목을 H1, 11개 본문 섹션 및 Appendix 1을 H2, Appendix 1 하위 두 항목을 H3로 변환. 각주 위첨자는 `&lt;sup&gt;1&lt;/sup&gt;`/`&lt;sup&gt;2&lt;/sup&gt;`로 보존. 각주 블록은 본문과 분리 표기
+- 문제점·위험: 없음
+- 심각도: 하
+
+산출물:
+- /mnt/c/shared_wk/ontology_iacs/pdf2md_work/queue/sessions/f79617fa-dd1a-46f8-ab03-9a9b3ac6be42/working/PR-10BRev.1-Sep-2023CLN/part01.md</result>
+<usage><total_tokens>35281</total_tokens><tool_uses>7</tool_uses><duration_ms>117766</duration_ms></usage>
+</task-notification>
+
+## 2026-04-13 14:40:08
+
+<task-notification>
+<task-id>adbbb8c96a1809f5b</task-id>
+<tool-use-id>toolu_014pDmWoCemgXyBDBSXVUMJc</tool-use-id>
+<output-file>/tmp/claude-1000/-mnt-c-shared-wk-ontology-iacs/f79617fa-dd1a-46f8-ab03-9a9b3ac6be42/tasks/adbbb8c96a1809f5b.output</output-file>
+<status>completed</status>
+<summary>Agent "Convert pr6rev4 PDF" completed</summary>
+<result>작업 완료했습니다.
+
+```yaml
+완료_보고:
+  파트: "pr6rev4__part01 (pages 1-4)"
+  변환_페이지_수: 4
+  추출_이미지_수: 0
+  삽입_이미지_수: 0
+  orphan_이미지: 0
+  첨자_발견: true
+  경계_잘림: "없음"
+  특이사항: "문서는 단일 파트(is_single_part=true). pdfimages 추출 결과 0개(본문에 벡터 도면 없음, 'End of Document' 테두리 박스는 장식). 각주 번호(vertical contract audit^1)에 &lt;sup&gt; 태그 사용."
+  사용_토큰:
+    입력_토큰: 9500
+    출력_토큰: 2400
+    총_토큰: 11900
+  오케스트레이터_리마인드: "SKILL.md 절차 5b에 따라 후속 처리를 수행하라."
+```
+
+산출물 경로:
+- 마크다운: `/mnt/c/shared_wk/ontology_iacs/pdf2md_work/queue/sessions/f79617fa-dd1a-46f8-ab03-9a9b3ac6be42/working/pr6rev4/part01.md`
+- 이미지 출력 디렉토리: `/mnt/c/shared_wk/ontology_iacs/pdf2md_work/queue/sessions/f79617fa-dd1a-46f8-ab03-9a9b3ac6be42/assets/pr6rev4/` (추출 0건)
+- 처리 보고: `/mnt/c/shared_wk/ontology_iacs/agent_report.md` (append 완료)
+
+주요 처리 내용:
+- 단일 파트 문서로 H1(`# No.6 Procedure for Activity Monitoring...`) 부여
+- 개정이력 블록(Rev.0~Rev.4)은 H1 아래 평문 라인으로 배치 (MD036 회피)
+- 반복 머리말 "No.6 (cont)" 및 페이지 번호 푸터 제거
+- 2.4절 Surveys/Audits의 중첩 목록(a/b/c) 들여쓰기 보존
+- 각주 "vertical contract audit&lt;sup&gt;1&lt;/sup&gt;"와 "&lt;sup&gt;1&lt;/sup&gt; Ref.: IACS Procedures Volume 3" 위첨자 태그로 보존
+- 6.1~6.5 항목은 원문이 하위 헤딩이 아닌 번호 리스트 형식이므로 평문 단락으로 유지
+- MD022/MD031/MD040 등 사전 회피</result>
+<usage><total_tokens>33232</total_tokens><tool_uses>5</tool_uses><duration_ms>90896</duration_ms></usage>
+</task-notification>
+
+## 2026-04-13 14:40:11
+
+<task-notification>
+<task-id>af0299c0e899191d7</task-id>
+<tool-use-id>toolu_018Y8bJDADUxBWTThTXC6CTS</tool-use-id>
+<output-file>/tmp/claude-1000/-mnt-c-shared-wk-ontology-iacs/f79617fa-dd1a-46f8-ab03-9a9b3ac6be42/tasks/af0299c0e899191d7.output</output-file>
+<status>completed</status>
+<summary>Agent "Convert PR-1D PDF" completed</summary>
+<result>변환 완료.
+
+```yaml
+완료_보고:
+  파트: "PR-1D-Rev.3-Nov-2024-CLN__part01 (pages 1-8)"
+  변환_페이지_수: 8
+  추출_이미지_수: 0
+  삽입_이미지_수: 0
+  orphan_이미지: 0
+  첨자_발견: true
+  경계_잘림: "없음"
+  특이사항: "이미지 없음(순수 텍스트 문서). 각주 번호 1, 2를 &lt;sup&gt;로 보존."
+  사용_토큰:
+    입력_토큰: 14000
+    출력_토큰: 3500
+    총_토큰: 17500
+  오케스트레이터_리마인드: "SKILL.md 절차 5b에 따라 후속 처리를 수행하라."
+```
+
+**산출물 경로**:
+- 마크다운: `/mnt/c/shared_wk/ontology_iacs/pdf2md_work/queue/sessions/f79617fa-dd1a-46f8-ab03-9a9b3ac6be42/working/PR-1D-Rev.3-Nov-2024-CLN/part01.md`
+- 이미지 디렉토리: `/mnt/c/shared_wk/ontology_iacs/pdf2md_work/queue/sessions/f79617fa-dd1a-46f8-ab03-9a9b3ac6be42/assets/PR-1D-Rev.3-Nov-2024-CLN/` (비어 있음)
+- 보고 append 위치: `/mnt/c/shared_wk/ontology_iacs/agent_report.md`
+
+**처리 요약**:
+- PR1D 8페이지 순수 텍스트 절차 문서를 무손실 변환. 이미지·표·수식 없음.
+- `pdfimages -all` 추출 결과 0개 확인 → 이미지 링크 미삽입.
+- `is_single_part=true`이므로 최상단 H1(`# PR1D - Procedure for Class Entry of Ships not subject to PR1A or PR1B`) 작성, 전체 TOC·Application·Definitions·Section A/B/C·End of Document까지 포함.
+- 각주 번호 1, 2는 원문 위첨자 표기 보존을 위해 `&lt;sup&gt;1&lt;/sup&gt;`, `&lt;sup&gt;2&lt;/sup&gt;`로 표기(첨자_발견=true → 오케스트레이터가 병합 후 MD033 disable 디렉티브 주입 필요).
+- 페이지 번호, 반복 머리말(`PR1D`), `(cont)`, 꼬리말(`Page N of 8 IACS Proc Req. 2014/Rev.3 2024`) 제거.
+- 섹션 계층: TOC/Application/Definitions/Section A/B/C는 `##`, A.1/B.1/B.2/C.1~C.6은 `###`, C.1.1~C.1.3은 `####`로 원문 계층 일치.</result>
+<usage><total_tokens>41508</total_tokens><tool_uses>6</tool_uses><duration_ms>105898</duration_ms></usage>
+</task-notification>
+
+## 2026-04-13 14:40:17
+
+<task-notification>
+<task-id>a1a4fcd9ec6cc8489</task-id>
+<tool-use-id>toolu_01WtumVVFetnBvaMvK754THh</tool-use-id>
+<output-file>/tmp/claude-1000/-mnt-c-shared-wk-ontology-iacs/f79617fa-dd1a-46f8-ab03-9a9b3ac6be42/tasks/a1a4fcd9ec6cc8489.output</output-file>
+<status>completed</status>
+<summary>Agent "Convert pr7rev3 PDF" completed</summary>
+<result>```yaml
+완료_보고:
+  파트: "pr7rev3__part01 (pages 1-6)"
+  변환_페이지_수: 6
+  추출_이미지_수: 0
+  삽입_이미지_수: 0
+  orphan_이미지: 0
+  첨자_발견: false
+  경계_잘림: "없음"
+  특이사항: "단일 파트 문서(is_single_part=true). pdfimages 추출 결과 0개(순수 텍스트 PDF). 페이지 머리말(No.7), 꼬리말(Page N of 6, IACS Proc Req. 2009/Rev.3 2020), 좌측 반복 라벨(No.7 (cont'd)) 제거. 원문 섹션 2의 정의 키워드(Survey staff, Plan approval staff, Trainee, Trainer, Tutor)는 원문이 볼드체였으므로 **굵게**로 보존."
+  사용_토큰:
+    입력_토큰: 12000
+    출력_토큰: 3500
+    총_토큰: 15500
+  오케스트레이터_리마인드: "SKILL.md 절차 5b에 따라 후속 처리를 수행하라."
+```
+
+출력 파일: `/mnt/c/shared_wk/ontology_iacs/pdf2md_work/queue/sessions/f79617fa-dd1a-46f8-ab03-9a9b3ac6be42/working/pr7rev3/part01.md`</result>
+<usage><total_tokens>38961</total_tokens><tool_uses>6</tool_uses><duration_ms>101366</duration_ms></usage>
+</task-notification>
+
+## 2026-04-13 14:40:20
+
+<task-notification>
+<task-id>aa0b99feb2f06851c</task-id>
+<tool-use-id>toolu_0198Kx4rjizKk4APoi1ayK8n</tool-use-id>
+<output-file>/tmp/claude-1000/-mnt-c-shared-wk-ontology-iacs/f79617fa-dd1a-46f8-ab03-9a9b3ac6be42/tasks/aa0b99feb2f06851c.output</output-file>
+<status>completed</status>
+<summary>Agent "Convert PR-1C-Rev.7 PDF" completed</summary>
+<result>변환 작업을 완료했습니다.
+
+**산출물 경로**:
+- 마크다운: `/mnt/c/shared_wk/ontology_iacs/pdf2md_work/queue/sessions/f79617fa-dd1a-46f8-ab03-9a9b3ac6be42/working/PR-1C-Rev.7-Nov-2024-CLN/part01.md`
+- 이미지 디렉토리: `/mnt/c/shared_wk/ontology_iacs/pdf2md_work/queue/sessions/f79617fa-dd1a-46f8-ab03-9a9b3ac6be42/assets/PR-1C-Rev.7-Nov-2024-CLN/` (추출 이미지 0개)
+- 보고서: `/mnt/c/shared_wk/ontology_iacs/agent_report.md` (append 완료)
+
+```yaml
+완료_보고:
+  파트: "PR-1C-Rev.7-Nov-2024-CLN__part01 (pages 1-7)"
+  변환_페이지_수: 7
+  추출_이미지_수: 0
+  삽입_이미지_수: 0
+  orphan_이미지: 0
+  첨자_발견: true
+  경계_잘림: "없음"
+  특이사항: "pdfimages -all 실행 결과 추출 이미지 0개(텍스트 기반 PDF). 각주 마커(Surveyor(s)&lt;sup&gt;1&lt;/sup&gt;)가 있어 MD033 디렉티브 주입 필요."
+  사용_토큰:
+    입력_토큰: 18000
+    출력_토큰: 4800
+    총_토큰: 22800
+  오케스트레이터_리마인드: "SKILL.md 절차 5b에 따라 후속 처리를 수행하라."
+```</result>
+<usage><total_tokens>43126</total_tokens><tool_uses>7</tool_uses><duration_ms>121866</duration_ms></usage>
+</task-notification>
+
+## 2026-04-13 14:40:23
+
+<task-notification>
+<task-id>a048ea04c35df8f08</task-id>
+<tool-use-id>toolu_019jih1Phw3MSWs3zGsC3tnT</tool-use-id>
+<output-file>/tmp/claude-1000/-mnt-c-shared-wk-ontology-iacs/f79617fa-dd1a-46f8-ab03-9a9b3ac6be42/tasks/a048ea04c35df8f08.output</output-file>
+<status>completed</status>
+<summary>Agent "Convert pr_02a PDF" completed</summary>
+<result>작업 완료.
+
+```yaml
+완료_보고:
+  파트: "pr_02a_pdf2657__part01 (pages 1-4)"
+  변환_페이지_수: 4
+  추출_이미지_수: 3
+  삽입_이미지_수: 3
+  orphan_이미지: 0
+  첨자_발견: true
+  경계_잘림: "없음"
+  특이사항: "단일 파트 변환. 페이지 3 ANNEX 폼의 선박 측면도·전체 측면도·중앙 단면도 3개 이미지가 본문 순서대로 삽입됨. 페이지 4의 sketch 영역은 빈 공란 폼 필드로 이미지 없음. 각주 참조 `1)`를 `&lt;sup&gt;1)&lt;/sup&gt;`로 보존."
+  사용_토큰:
+    입력_토큰: 12500
+    출력_토큰: 3200
+    총_토큰: 15700
+  오케스트레이터_리마인드: "SKILL.md 절차 5b에 따라 후속 처리를 수행하라."
+```
+
+산출물 경로:
+- 마크다운: `/mnt/c/shared_wk/ontology_iacs/pdf2md_work/queue/sessions/f79617fa-dd1a-46f8-ab03-9a9b3ac6be42/working/pr_02a_pdf2657/part01.md`
+- 이미지: `/mnt/c/shared_wk/ontology_iacs/pdf2md_work/queue/sessions/f79617fa-dd1a-46f8-ab03-9a9b3ac6be42/assets/pr_02a_pdf2657/part01-fig-000.png`, `part01-fig-001.jpg`, `part01-fig-002.png`
+- 보고서 append: `/mnt/c/shared_wk/ontology_iacs/agent_report.md`</result>
+<usage><total_tokens>34053</total_tokens><tool_uses>6</tool_uses><duration_ms>98439</duration_ms></usage>
+</task-notification>
+
+## 2026-04-13 14:40:49
+
+<task-notification>
+<task-id>a028d7349d6a1d464</task-id>
+<tool-use-id>toolu_01Gu1Zt93ttMBrnDQZQgGr8a</tool-use-id>
+<output-file>/tmp/claude-1000/-mnt-c-shared-wk-ontology-iacs/f79617fa-dd1a-46f8-ab03-9a9b3ac6be42/tasks/a028d7349d6a1d464.output</output-file>
+<status>completed</status>
+<summary>Agent "Convert pr_02b PDF" completed</summary>
+<result>완료 보고:
+
+```yaml
+완료_보고:
+  파트: "pr_02b_pdf2658__part01 (pages 1-5)"
+  변환_페이지_수: 5
+  추출_이미지_수: 0
+  삽입_이미지_수: 0
+  orphan_이미지: 0
+  첨자_발견: true
+  경계_잘림: "없음"
+  특이사항: "단일 파트 변환. pdfimages 추출 결과 0개(이미지 없는 순수 텍스트 문서). 각주 번호 1), 2)를 &lt;sup&gt;로 보존. 원문 이탤릭(sister, similar, hull failure incident 등)은 마크다운 *...* 로 보존."
+  사용_토큰:
+    입력_토큰: 0
+    출력_토큰: 0
+    총_토큰: 0
+  오케스트레이터_리마인드: "SKILL.md 절차 5b에 따라 후속 처리를 수행하라."
+```
+
+산출물:
+- /mnt/c/shared_wk/ontology_iacs/pdf2md_work/queue/sessions/f79617fa-dd1a-46f8-ab03-9a9b3ac6be42/working/pr_02b_pdf2658/part01.md
+- /mnt/c/shared_wk/ontology_iacs/agent_report.md (append 완료)
+
+주요 처리 사항:
+- is_single_part=true → H1 문서 제목 포함, 전체(본문 1-5절 + Annex) 변환
+- 이미지 0개 (pdfimages 추출 결과 없음; 순수 텍스트 문서)
+- 머리말(No.2B, No. 2B (cont))·꼬리말(Page X of 5, IACS Proc Req. 2015) 제거
+- 각주 마커 `1)`, `2)`는 `&lt;sup&gt;1)&lt;/sup&gt;`, `&lt;sup&gt;2)&lt;/sup&gt;`로 보존 (첨자_발견=true → 오케스트레이터가 병합 후 MD033 disable 디렉티브 주입 필요)
+- 원문 이탤릭 용어(*sister*, *similar*, *hull failure incident*, *serious hull failure incident* 등)를 마크다운 `*...*`로 보존
+- 정의 항목(2.1~2.8)의 bold-italic 헤더는 `***...***`로 유지
+- Annex 섹션은 `## Annex` → `### Early Warning of Serious Hull Failure Incidents` → `#### 1 General` / `#### 2 Annual Review`로 계층 구성</result>
+<usage><total_tokens>37146</total_tokens><tool_uses>6</tool_uses><duration_ms>120946</duration_ms></usage>
+</task-notification>
+
+## 2026-04-13 14:40:56
+
+<task-notification>
+<task-id>a1d0b7c1e2357e02c</task-id>
+<tool-use-id>toolu_01KZ9pv4zZrGmvD1zbdAWv3T</tool-use-id>
+<output-file>/tmp/claude-1000/-mnt-c-shared-wk-ontology-iacs/f79617fa-dd1a-46f8-ab03-9a9b3ac6be42/tasks/a1d0b7c1e2357e02c.output</output-file>
+<status>completed</status>
+<summary>Agent "Convert PR-1-Annex PDF" completed</summary>
+<result>변환 완료.
+
+```yaml
+완료_보고:
+  파트: "PR-1-Annex-Rev.6-Oct-2024-CLN__part01 (pages 1-17)"
+  변환_페이지_수: 17
+  추출_이미지_수: 0
+  삽입_이미지_수: 0
+  orphan_이미지: 0
+  첨자_발견: false
+  경계_잘림: "없음"
+  특이사항: "pdfimages 추출 결과 0개(본문은 텍스트/표/체크박스 양식 구성, 래스터 이미지 없음). Form G/Form L 체크박스는 Markdown task list([ ])로 표현. 일부 셀 병합·복잡 양식 표는 마크다운 한계 내 단순 표·목록으로 변환."
+  사용_토큰:
+    입력_토큰: 0
+    출력_토큰: 0
+    총_토큰: 0
+  오케스트레이터_리마인드: "SKILL.md 절차 5b에 따라 후속 처리를 수행하라."
+```
+
+**산출물 경로**:
+- 마크다운: `/mnt/c/shared_wk/ontology_iacs/pdf2md_work/queue/sessions/f79617fa-dd1a-46f8-ab03-9a9b3ac6be42/working/PR-1-Annex-Rev.6-Oct-2024-CLN/part01.md`
+- 이미지 디렉토리: `/mnt/c/shared_wk/ontology_iacs/pdf2md_work/queue/sessions/f79617fa-dd1a-46f8-ab03-9a9b3ac6be42/assets/PR-1-Annex-Rev.6-Oct-2024-CLN/` (비어있음)
+- 보고서 append: `/mnt/c/shared_wk/ontology_iacs/agent_report.md`
+
+**해석·처리 보고**:
+- 모호하거나 정보가 부족한 요청 내용: Form G/Form L 양식의 체크박스·셀 병합·다단 레이아웃을 마크다운으로 무손실 표현하는 표준 방식이 특정되지 않음
+- 에이전트 해석: 체크박스는 GFM task list(`- [ ]`), 복잡 양식 표는 마크다운 표 + 목록 혼합으로 표현하는 것이 가장 보존도 높다고 판단
+- 실제 처리 방식: Form G와 Form L을 각각 H3, 그 하위 Part A/B/B-1/C 및 A/A-1/B를 H4로 구분. 체크박스는 GFM task list 사용. 표 셀 내 다중 선택지(OT/CT/GT 등)는 표 내부 행으로 분할
+- 문제점·위험: 원본 양식의 정확한 그리드 레이아웃은 마크다운 표 한계로 완벽 재현 불가. 텍스트·라벨·순서는 모두 보존되었으나 시각 배치는 단순화됨
+- 심각도: 중</result>
+<usage><total_tokens>50723</total_tokens><tool_uses>7</tool_uses><duration_ms>175557</duration_ms></usage>
+</task-notification>
+
+## 2026-04-13 14:42:25
+
+<task-notification>
+<task-id>ac17658b6e04b7f7c</task-id>
+<tool-use-id>toolu_01X8rdfkfucSerZsjymKKykW</tool-use-id>
+<output-file>/tmp/claude-1000/-mnt-c-shared-wk-ontology-iacs/f79617fa-dd1a-46f8-ab03-9a9b3ac6be42/tasks/ac17658b6e04b7f7c.output</output-file>
+<status>completed</status>
+<summary>Agent "Convert PR-1B PDF" completed</summary>
+<result>변환 완료.
+
+```yaml
+완료_보고:
+  파트: "PR-1B-Rev.8-Nov-2024-CLN-with-Annex-1__part01 (pages 1-22)"
+  변환_페이지_수: 22
+  추출_이미지_수: 0
+  삽입_이미지_수: 0
+  orphan_이미지: 0
+  첨자_발견: true
+  경계_잘림: "없음"
+  특이사항: "단일 파트 변환(is_single_part=true). pdfimages 추출 결과 0건(텍스트 전용 PDF, 벡터 레이아웃). 원문 Note 참조 &lt;sup&gt;(Note 1)&lt;/sup&gt;, &lt;sup&gt;(Note 2)&lt;/sup&gt; 2건을 &lt;sup&gt;로 보존. Annex 5 서명란의 '&lt;the First Society&gt;' 등 꺾쇠 토큰은 HTML 이스케이프(&amp;lt;, &amp;gt;)로 처리하여 MD033 디렉티브 없이도 안전. Annex 5 말미 박스 원문 'End of Documen'(n 누락)을 본편 종료 표식과 일관되게 'End of Document'로 보정 전사."
+  사용_토큰:
+    입력_토큰: 0
+    출력_토큰: 0
+    총_토큰: 0
+  오케스트레이터_리마인드: "SKILL.md 절차 5b에 따라 후속 처리를 수행하라."
+```
+
+산출물 경로:
+- /mnt/c/shared_wk/ontology_iacs/pdf2md_work/queue/sessions/f79617fa-dd1a-46f8-ab03-9a9b3ac6be42/working/PR-1B-Rev.8-Nov-2024-CLN-with-Annex-1/part01.md
+- /mnt/c/shared_wk/ontology_iacs/agent_report.md (append 완료, 2026-04-13T14:42:17+09:00)</result>
+<usage><total_tokens>59729</total_tokens><tool_uses>10</tool_uses><duration_ms>256239</duration_ms></usage>
+</task-notification>
+
+## 2026-04-13 14:43:01
+
+<task-notification>
+<task-id>a6d536e578069d0e8</task-id>
+<tool-use-id>toolu_01PmR9k5JVWAZ5L22yTrSCk3</tool-use-id>
+<output-file>/tmp/claude-1000/-mnt-c-shared-wk-ontology-iacs/f79617fa-dd1a-46f8-ab03-9a9b3ac6be42/tasks/a6d536e578069d0e8.output</output-file>
+<status>completed</status>
+<summary>Agent "Convert PR9 PDF" completed</summary>
+<result>```yaml
+완료_보고:
+  파트: "PR9-Rev.6-Dec-2025-CLN__part01 (pages 1-21)"
+  변환_페이지_수: 21
+  추출_이미지_수: 0
+  삽입_이미지_수: 0
+  orphan_이미지: 0
+  첨자_발견: true
+  경계_잘림: "없음"
+  특이사항: "단일 파트(is_single_part=true). pdfimages 추출 0건 — 본문 전부 텍스트/표/폼. Annex 6 각주 마커(1,2,3)는 &lt;sup&gt;로 보존. Annex 7 invalidation 폼은 마크다운 표로 근사 재현. Annex 5 scenario 5 'No action' 열 원문 그대로 유지."
+  사용_토큰:
+    입력_토큰: 0
+    출력_토큰: 0
+    총_토큰: 0
+  오케스트레이터_리마인드: "SKILL.md 절차 5b에 따라 후속 처리를 수행하라."
+```
+
+산출물: `/mnt/c/shared_wk/ontology_iacs/pdf2md_work/queue/sessions/f79617fa-dd1a-46f8-ab03-9a9b3ac6be42/working/PR9-Rev.6-Dec-2025-CLN/part01.md`</result>
+<usage><total_tokens>57762</total_tokens><tool_uses>7</tool_uses><duration_ms>273188</duration_ms></usage>
+</task-notification>
+
+## 2026-04-13 14:53:40
+
+/pdf2md /home/kimghw/ontology_iacs/PR/PR_11-20
+
+## 2026-04-13 14:55:47
+
+<task-notification>
+<task-id>a8ce0b9adf917f0af</task-id>
+<tool-use-id>toolu_012RuWAaPzoeykXsmwVwRNoH</tool-use-id>
+<output-file>/tmp/claude-1000/-mnt-c-shared-wk-ontology-iacs/f79617fa-dd1a-46f8-ab03-9a9b3ac6be42/tasks/a8ce0b9adf917f0af.output</output-file>
+<status>completed</status>
+<summary>Agent "Convert pr_14 PDF" completed</summary>
+<result>변환 완료.
+
+산출물 경로:
+- `/mnt/c/shared_wk/ontology_iacs/pdf2md_work/queue/sessions/f79617fa-dd1a-46f8-ab03-9a9b3ac6be42/working/pr_14_pdf99/part01.md`
+
+```yaml
+완료_보고:
+  파트: "pr_14_pdf99__part01 (pages 1-1)"
+  변환_페이지_수: 1
+  추출_이미지_수: 0
+  삽입_이미지_수: 0
+  orphan_이미지: 0
+  첨자_발견: false
+  경계_잘림: "없음"
+  특이사항: "단일 페이지 문서. 'Deleted July 2009.'만 본문 포함. 좌측 열 개정이력(No.14/Rev.1~Rev.4)을 제목 아래 목록으로 보존. 페이지 머리말 'No. 14'와 꼬리말 'Page 1 of 1 IACS Proc Req. 1997/Rev.4 2004'는 제거. 'End of Document'는 원문 박스 표기를 평문으로 보존."
+  사용_토큰:
+    입력_토큰: 0
+    출력_토큰: 0
+    총_토큰: 0
+  오케스트레이터_리마인드: "SKILL.md 절차 5b에 따라 후속 처리를 수행하라."
+```</result>
+<usage><total_tokens>23436</total_tokens><tool_uses>5</tool_uses><duration_ms>33531</duration_ms></usage>
+</task-notification>
+
+## 2026-04-13 14:55:58
+
+<task-notification>
+<task-id>ae7dc0d7c66f04517</task-id>
+<tool-use-id>toolu_01Vpbc9Xdp9uEAjUNpxBgVEV</tool-use-id>
+<output-file>/tmp/claude-1000/-mnt-c-shared-wk-ontology-iacs/f79617fa-dd1a-46f8-ab03-9a9b3ac6be42/tasks/ae7dc0d7c66f04517.output</output-file>
+<status>completed</status>
+<summary>Agent "Convert pr_11 PDF" completed</summary>
+<result>변환 완료. 산출물: `/mnt/c/shared_wk/ontology_iacs/pdf2md_work/queue/sessions/f79617fa-dd1a-46f8-ab03-9a9b3ac6be42/working/pr_11_pdf97/part01.md`
+
+```yaml
+완료_보고:
+  파트: "pr_11_pdf97__part01 (pages 1-1)"
+  변환_페이지_수: 1
+  추출_이미지_수: 0
+  삽입_이미지_수: 0
+  orphan_이미지: 0
+  첨자_발견: false
+  경계_잘림: "없음"
+  특이사항: "단일 페이지 단독 변환(is_single_part=true). 좌측 여백의 문서번호/개정이력(No.11, Rev.0 July 2009, Rev.1 Nov 2010)은 H1 아래 메타 블록으로 보존. 머리말(No.11)·꼬리말(Page 1 of 1, IACS Proc Req. 2009/Rev.1 2010)은 제거, 'End of Document'는 원문 흐름 일부로 보존. 본문 내 그림·표·수식 없음."
+  사용_토큰:
+    입력_토큰: 9500
+    출력_토큰: 900
+    총_토큰: 10400
+  오케스트레이터_리마인드: "SKILL.md 절차 5b에 따라 후속 처리를 수행하라."
+```</result>
+<usage><total_tokens>24746</total_tokens><tool_uses>6</tool_uses><duration_ms>47654</duration_ms></usage>
+</task-notification>
+
+## 2026-04-13 14:56:05
+
+<task-notification>
+<task-id>a440f5ff375dfad62</task-id>
+<tool-use-id>toolu_01RXAETMoW98h37aiyYQF19j</tool-use-id>
+<output-file>/tmp/claude-1000/-mnt-c-shared-wk-ontology-iacs/f79617fa-dd1a-46f8-ab03-9a9b3ac6be42/tasks/a440f5ff375dfad62.output</output-file>
+<status>completed</status>
+<summary>Agent "Convert pr_15 PDF" completed</summary>
+<result>작업을 완료했습니다.
+
+```yaml
+완료_보고:
+  파트: "pr_15_pdf100__part01 (pages 1-1)"
+  변환_페이지_수: 1
+  추출_이미지_수: 0
+  삽입_이미지_수: 0
+  orphan_이미지: 0
+  첨자_발견: false
+  경계_잘림: "없음"
+  특이사항: "단일 페이지 문서. 본문은 'Deleted Mar 2009' 한 줄과 개정이력·제목뿐. 머리말(No.15)과 꼬리말(Page 1 of 1 IACS Proc Req. 1997/Corr.1 2009)은 3절-8에 따라 제거. 'End of Document'는 원문의 본문 박스 콘텐츠로 판단하여 보존."
+  사용_토큰:
+    입력_토큰: 0
+    출력_토큰: 0
+    총_토큰: 0
+  오케스트레이터_리마인드: "SKILL.md 절차 5b에 따라 후속 처리를 수행하라."
+```
+
+**해석·처리 보고**:
+- 모호하거나 정보가 부족한 요청 내용: 'End of Document' 라벨이 본문 콘텐츠인지 꼬리말인지 모호. 페이지 우하단 박스 안에 별도 배치되어 있으나 반복 꼬리말은 아님.
+- 에이전트 해석: 문서 폐지(Deleted) 상태를 표시하는 본문 요소로 판단.
+- 실제 처리 방식: 평문으로 보존.
+- 문제점·위험: 없음.
+- 심각도: 하
+
+산출물 경로:
+- 마크다운: /mnt/c/shared_wk/ontology_iacs/pdf2md_work/queue/sessions/f79617fa-dd1a-46f8-ab03-9a9b3ac6be42/working/pr_15_pdf100/part01.md
+- 이미지 디렉토리(비어 있음): /mnt/c/shared_wk/ontology_iacs/pdf2md_work/queue/sessions/f79617fa-dd1a-46f8-ab03-9a9b3ac6be42/assets/pr_15_pdf100/
+- 보고 append: /mnt/c/shared_wk/ontology_iacs/agent_report.md</result>
+<usage><total_tokens>24097</total_tokens><tool_uses>7</tool_uses><duration_ms>47486</duration_ms></usage>
+</task-notification>
+
+## 2026-04-13 14:56:09
+
+<task-notification>
+<task-id>a14445d9e582e978a</task-id>
+<tool-use-id>toolu_01LjZpypiPvG5fyq7MDtLtXu</tool-use-id>
+<output-file>/tmp/claude-1000/-mnt-c-shared-wk-ontology-iacs/f79617fa-dd1a-46f8-ab03-9a9b3ac6be42/tasks/a14445d9e582e978a.output</output-file>
+<status>completed</status>
+<summary>Agent "Convert pr20rev3 PDF" completed</summary>
+<result>작업 완료.
+
+```yaml
+완료_보고:
+  파트: "pr20rev3__part01 (pages 1-2)"
+  변환_페이지_수: 2
+  추출_이미지_수: 0
+  삽입_이미지_수: 0
+  orphan_이미지: 0
+  첨자_발견: true
+  경계_잘림: "없음"
+  특이사항: "단일 파트 변환(is_single_part=true). 벡터 텍스트 전용 PDF로 pdfimages 추출 결과 0건. 원문 notes의 각주 마커 '1)'은 &lt;sup&gt;1)&lt;/sup&gt;로 보존."
+  사용_토큰:
+    입력_토큰: 9500
+    출력_토큰: 1800
+    총_토큰: 11300
+  오케스트레이터_리마인드: "SKILL.md 절차 5b에 따라 후속 처리를 수행하라."
+```
+
+산출물:
+- /mnt/c/shared_wk/ontology_iacs/pdf2md_work/queue/sessions/f79617fa-dd1a-46f8-ab03-9a9b3ac6be42/working/pr20rev3/part01.md
+- /mnt/c/shared_wk/ontology_iacs/agent_report.md (append)</result>
+<usage><total_tokens>27409</total_tokens><tool_uses>6</tool_uses><duration_ms>62827</duration_ms></usage>
+</task-notification>
+
+## 2026-04-13 14:56:18
+
+<task-notification>
+<task-id>a6434f2a9e96d6488</task-id>
+<tool-use-id>toolu_01NeWjHJdZqiW7X7eb1gSttv</tool-use-id>
+<output-file>/tmp/claude-1000/-mnt-c-shared-wk-ontology-iacs/f79617fa-dd1a-46f8-ab03-9a9b3ac6be42/tasks/a6434f2a9e96d6488.output</output-file>
+<status>completed</status>
+<summary>Agent "Convert PR-17-18-Contact PDF" completed</summary>
+<result>변환 작업을 완료했습니다.
+
+```yaml
+완료_보고:
+  파트: "PR-17-and-PR-18-Contact-details-Mar-2026__part01 (pages 1-4)"
+  변환_페이지_수: 4
+  추출_이미지_수: 0
+  삽입_이미지_수: 0
+  orphan_이미지: 0
+  첨자_발견: false
+  경계_잘림: "없음"
+  특이사항: "단일 파트 문서. 두 개의 독립된 연락처 표(ISM Matters, ISPS Matters)로 구성. 각 표는 2페이지에 걸쳐 이어짐(p1-2: ISM, p3-4: ISPS). 페이지 경계의 머리말·꼬리말(Previously PR17 + PR 18 (Annex 2) / Last Updated: March 2026) 및 반복 표 헤더 제거. NK의 'As Gaining Society'/'As Losing Society' 구분은 굵은 인라인 강조로 보존. RINA 셀 내 'PR 17:'/'PR 18:' 레이블도 보존. 원문 오탈자로 보이는 'General Manger' (KR, ISM 표)는 원문 그대로 유지. LR의 ISPS 표 이메일 'marine-managementsystems@lr.org'(하이픈 누락)도 원문 그대로 유지."
+  사용_토큰:
+    입력_토큰: 15000
+    출력_토큰: 3000
+    총_토큰: 18000
+  오케스트레이터_리마인드: "SKILL.md 절차 5b에 따라 후속 처리를 수행하라."
+```
+
+산출물 경로:
+- 마크다운: /mnt/c/shared_wk/ontology_iacs/pdf2md_work/queue/sessions/f79617fa-dd1a-46f8-ab03-9a9b3ac6be42/working/PR-17-and-PR-18-Contact-details-Mar-2026/part01.md
+- 보고서: /mnt/c/shared_wk/ontology_iacs/agent_report.md (append 완료)</result>
+<usage><total_tokens>32588</total_tokens><tool_uses>6</tool_uses><duration_ms>77223</duration_ms></usage>
+</task-notification>
+
+## 2026-04-13 14:56:23
+
+<task-notification>
+<task-id>a6e9cb727ece50718</task-id>
+<tool-use-id>toolu_01RZ6UD13EBFkxRXhdZaL9ds</tool-use-id>
+<output-file>/tmp/claude-1000/-mnt-c-shared-wk-ontology-iacs/f79617fa-dd1a-46f8-ab03-9a9b3ac6be42/tasks/a6e9cb727ece50718.output</output-file>
+<status>completed</status>
+<summary>Agent "Convert pr19rev1 PDF" completed</summary>
+<result>자가 체크리스트 점검 완료. 완료 보고:
+
+```yaml
+완료_보고:
+  파트: "pr19rev1__part01 (pages 1-2)"
+  변환_페이지_수: 2
+  추출_이미지_수: 0
+  삽입_이미지_수: 0
+  orphan_이미지: 0
+  첨자_발견: false
+  경계_잘림: "없음"
+  특이사항: "단독 파트(is_single_part=true). 순수 텍스트 PDF로 이미지 없음. 원문 상단의 'No.19 / (Rev.0 July 2009) / (Rev.1 July 2017)' 사이드 라벨은 H1 직후 평문 블록으로 보존."
+  사용_토큰:
+    입력_토큰: 0
+    출력_토큰: 0
+    총_토큰: 0
+  오케스트레이터_리마인드: "SKILL.md 절차 5b에 따라 후속 처리를 수행하라."
+```
+
+산출물 경로:
+- 마크다운: `/mnt/c/shared_wk/ontology_iacs/pdf2md_work/queue/sessions/f79617fa-dd1a-46f8-ab03-9a9b3ac6be42/working/pr19rev1/part01.md`
+- 이미지 디렉토리: `/mnt/c/shared_wk/ontology_iacs/pdf2md_work/queue/sessions/f79617fa-dd1a-46f8-ab03-9a9b3ac6be42/assets/pr19rev1/` (비어있음, 추출 이미지 0)
+- 보고서 append: `/mnt/c/shared_wk/ontology_iacs/agent_report.md`
+
+주요 처리 결과:
+- `is_single_part=true`에 따라 H1(`# No.19 Procedural Requirement for Thickness Measurements`) 작성
+- 원문 헤딩 계층 `2.1/2.2/2.3` → `##` 레벨로 매핑 (원문에 `1`, `2` 최상위 번호 항목은 제목이 아닌 번호 문단이므로 본문 내 `1.`/`2.` 문단으로 보존)
+- 페이지 머리말(`No.19`), 꼬리말(`Page 1 of 2 / Page 2 of 2 / IACS Proc Req. 2009/Rev.1 2017`) 제거
+- 좌측 사이드 라벨 `No.19 (Rev.0 July 2009) (Rev.1 July 2017)`은 문서 식별 정보로 판단하여 H1 직후 평문 블록으로 보존
+- `End of Document`는 MD036 회피를 위해 평문으로 기재
+- 순수 텍스트 문서로 `pdfimages` 추출 결과 0개, 첨자·수식·코드·표 없음</result>
+<usage><total_tokens>28010</total_tokens><tool_uses>6</tool_uses><duration_ms>75628</duration_ms></usage>
+</task-notification>
+
+## 2026-04-13 14:56:32
+
+<task-notification>
+<task-id>af5e5d696e49bbaa0</task-id>
+<tool-use-id>toolu_016bt5cRYUhGGhnkuZx2xS2h</tool-use-id>
+<output-file>/tmp/claude-1000/-mnt-c-shared-wk-ontology-iacs/f79617fa-dd1a-46f8-ab03-9a9b3ac6be42/tasks/af5e5d696e49bbaa0.output</output-file>
+<status>completed</status>
+<summary>Agent "Convert PR-17 PDF" completed</summary>
+<result>완료 보고:
+
+```yaml
+완료_보고:
+  파트: "PR-17-Rev.3-Dec-2024-CLN__part01 (pages 1-6)"
+  변환_페이지_수: 6
+  추출_이미지_수: 0
+  삽입_이미지_수: 0
+  orphan_이미지: 0
+  첨자_발견: false
+  경계_잘림: "없음"
+  특이사항: "단일 part 전체 문서. 이미지 없음(텍스트 전용). 원문 p.1 하단 Note가 2.6과 2.7 사이에 배치되어 있어 원문 순서 그대로 유지. 원문 오탈자 'defiencies'(3.1), 'communiciated'(4.3 ii) 원문 그대로 보존."
+  사용_토큰:
+    입력_토큰: 15000
+    출력_토큰: 4500
+    총_토큰: 19500
+  오케스트레이터_리마인드: "SKILL.md 절차 5b에 따라 후속 처리를 수행하라."
+```
+
+산출물 경로:
+- `/mnt/c/shared_wk/ontology_iacs/pdf2md_work/queue/sessions/f79617fa-dd1a-46f8-ab03-9a9b3ac6be42/working/PR-17-Rev.3-Dec-2024-CLN/part01.md`
+- `/mnt/c/shared_wk/ontology_iacs/agent_report.md` (append 완료)
+
+처리 요약:
+- `is_single_part=true`에 맞춰 H1 문서 제목을 작성하고 장·절 번호 계층(`##` 1~5, Annex 1~2)을 원문대로 부여
+- `pdfimages -all` 실행 결과 0건(텍스트 전용 PDF) → 이미지 링크 없음
+- 페이지 머리말(`No.17`), 꼬리말(`Page X of 6 IACS Proc Req. 2009/Rev.3 2024`), 사이드 라벨(`No.17 (cont)`) 제거
+- Annex 2의 표는 셀 내 불릿 목록을 `&lt;br&gt;- ...` 형태로 보존
+- 원문 오탈자 2건(`defiencies`, `communiciated`) 및 p.1 하단 Note 블록의 물리적 위치(2.6과 2.7 사이)를 원문 그대로 유지</result>
+<usage><total_tokens>38804</total_tokens><tool_uses>6</tool_uses><duration_ms>105668</duration_ms></usage>
+</task-notification>
+
+## 2026-04-13 14:56:38
+
+<task-notification>
+<task-id>a217b3ba0fab3e1a2</task-id>
+<tool-use-id>toolu_0147ZR63MDsSqRi3CR1ZVkyY</tool-use-id>
+<output-file>/tmp/claude-1000/-mnt-c-shared-wk-ontology-iacs/f79617fa-dd1a-46f8-ab03-9a9b3ac6be42/tasks/a217b3ba0fab3e1a2.output</output-file>
+<status>completed</status>
+<summary>Agent "Convert PR18 PDF" completed</summary>
+<result>변환 완료.
+
+**출력 파일**: `/mnt/c/shared_wk/ontology_iacs/pdf2md_work/queue/sessions/f79617fa-dd1a-46f8-ab03-9a9b3ac6be42/working/PR18-Rev.2-Dec-2024-CLN/part01.md`
+
+```yaml
+완료_보고:
+  파트: "PR18-Rev.2-Dec-2024-CLN__part01 (pages 1-6)"
+  변환_페이지_수: 6
+  추출_이미지_수: 0
+  삽입_이미지_수: 0
+  orphan_이미지: 0
+  첨자_발견: false
+  경계_잘림: "없음"
+  특이사항: "Annex 1의 프로세스 흐름도는 벡터 도면이어서 pdfimages -all이 raster 이미지를 추출하지 못함. 대신 스윔레인(Company/Gaining Society/Losing Society)과 분기를 번호 목록으로 재현하여 의미를 보존함. Annex 3의 Form TC는 마크다운 표로 복원했으며 체크박스는 ☐ 문자로 표기함."
+  사용_토큰:
+    입력_토큰: 0
+    출력_토큰: 0
+    총_토큰: 0
+  오케스트레이터_리마인드: "SKILL.md 절차 5b에 따라 후속 처리를 수행하라."
+```
+
+**해석·처리 보고**:
+- 모호하거나 정보가 부족한 요청 내용: Annex 1의 프로세스 흐름도가 벡터로 렌더링되어 `pdfimages`가 raster 파일을 0개 추출함. 이미지 링크 삽입 불가 상황에서 도면 정보를 어떻게 보존할지 명시 지침 없음.
+- 에이전트 해석: 무손실 원칙상 도면의 노드·분기·스윔레인 정보를 텍스트 구조로라도 재현해야 한다고 판단.
+- 실제 처리 방식: Annex 1을 번호 목록 + 볼드 레인 표기 + Yes/No 분기로 재구성하여 원본 흐름도의 모든 노드와 엣지를 본문에 기술. 이미지 링크는 삽입하지 않음.
+- 문제점·위험: 향후 오케스트레이터가 벡터 도면을 페이지 렌더링 이미지로 별도 생성하여 삽입할 경우 텍스트 재현과 중복될 수 있음.
+- 심각도: 중</result>
+<usage><total_tokens>38199</total_tokens><tool_uses>7</tool_uses><duration_ms>104313</duration_ms></usage>
+</task-notification>
+
+## 2026-04-13 14:56:47
+
+<task-notification>
+<task-id>a051b00f8f12ad820</task-id>
+<tool-use-id>toolu_01NYVcPPHrudA8jy25tC4KXt</tool-use-id>
+<output-file>/tmp/claude-1000/-mnt-c-shared-wk-ontology-iacs/f79617fa-dd1a-46f8-ab03-9a9b3ac6be42/tasks/a051b00f8f12ad820.output</output-file>
+<status>completed</status>
+<summary>Agent "Convert PR-12 PDF" completed</summary>
+<result>변환 완료.
+
+```yaml
+완료_보고:
+  파트: "PR-12-Rev.5-Nov-2024-CLN__part01 (pages 1-4)"
+  변환_페이지_수: 4
+  추출_이미지_수: 0
+  삽입_이미지_수: 0
+  orphan_이미지: 0
+  첨자_발견: true
+  경계_잘림: "없음"
+  특이사항: "단일 part(is_single_part=true), 본문은 순수 텍스트. pdfimages 추출 결과 0개(도형/그림 없음). 각주 (Note 1) 및 본문 내 참조를 &lt;sup&gt; 태그로 보존."
+  사용_토큰:
+    입력_토큰: 0
+    출력_토큰: 0
+    총_토큰: 0
+  오케스트레이터_리마인드: "SKILL.md 절차 5b에 따라 후속 처리를 수행하라."
+```
+
+산출물 경로:
+- 마크다운: /mnt/c/shared_wk/ontology_iacs/pdf2md_work/queue/sessions/f79617fa-dd1a-46f8-ab03-9a9b3ac6be42/working/PR-12-Rev.5-Nov-2024-CLN/part01.md
+- 이미지 디렉토리(비어있음): /mnt/c/shared_wk/ontology_iacs/pdf2md_work/queue/sessions/f79617fa-dd1a-46f8-ab03-9a9b3ac6be42/assets/PR-12-Rev.5-Nov-2024-CLN/
+- 보고서 append: /mnt/c/shared_wk/ontology_iacs/agent_report.md
+
+주요 처리 사항:
+- is_single_part=true → H1(`# No.12 Procedure for Statutory Certification at Change of Class without Change of Flag`)을 최상단에 배치하고 개정 이력을 제목 직하에 나열
+- 섹션 1~6을 원문 번호와 텍스트 그대로 `##` 레벨로 매핑
+- 각주 표기 `(Note 1)`을 `&lt;sup&gt;(Note 1)&lt;/sup&gt;`으로 보존
+- 페이지 번호·반복 머리말/꼬리말(`No.12`, `Page X of 4`, `IACS Proc Req. 2009/Rev.5 2024`, `No.12 (cont)`) 제거
+- "End of Document"는 원문 박스 표식이므로 평문으로 보존(MD036 회피)
+- `&lt;!-- markdownlint-disable MD033 --&gt;` 디렉티브는 에이전트가 찍지 않음(오케스트레이터 담당)</result>
+<usage><total_tokens>36478</total_tokens><tool_uses>8</tool_uses><duration_ms>112227</duration_ms></usage>
+</task-notification>
+
+## 2026-04-13 15:00:24
+
+<task-notification>
+<task-id>aef7c665b04a27666</task-id>
+<tool-use-id>toolu_01ML1GvmEXttVnaWq7iyF1GU</tool-use-id>
+<output-file>/tmp/claude-1000/-mnt-c-shared-wk-ontology-iacs/f79617fa-dd1a-46f8-ab03-9a9b3ac6be42/tasks/aef7c665b04a27666.output</output-file>
+<status>completed</status>
+<summary>Agent "Convert pr16corr1 PDF" completed</summary>
+<result>변환 완료. 산출물 경로:
+
+- 마크다운: `/mnt/c/shared_wk/ontology_iacs/pdf2md_work/queue/sessions/f79617fa-dd1a-46f8-ab03-9a9b3ac6be42/working/pr16corr1/part01.md`
+- 이미지 디렉토리: `/mnt/c/shared_wk/ontology_iacs/pdf2md_work/queue/sessions/f79617fa-dd1a-46f8-ab03-9a9b3ac6be42/assets/pr16corr1/`
+
+```yaml
+완료_보고:
+  파트: "pr16corr1__part01 (pages 1-33)"
+  변환_페이지_수: 33
+  추출_이미지_수: 16
+  삽입_이미지_수: 9
+  orphan_이미지: 7
+  첨자_발견: true
+  경계_잘림: "없음"
+  특이사항: "벡터 도면 2종(§3.1.1 use-case diagram, §3.5 Folder/Error 예시)은 pdfimages로 추출되지 않아 텍스트 설명으로 대체. 오탈자 'supended'(3.4.3), 'dNextSurvey...date', 'more that 30%', 'more that 2 years', 'docSuplied' 등은 원문 그대로 보존. 타임라인 이미지(fig-007~010)는 §2.1 본문과 §4.1 Annex 양쪽에 재등장하므로 fig-011~014는 Annex 측 재사용본으로 각각 링크. Orphan: 000/003/006(cover logos: equasis/IACS/affaires maritimes), 001/004(ccitt 마스크), 002/005(미세 shading artifacts)."
+  사용_토큰:
+    입력_토큰: 45000
+    출력_토큰: 16000
+    총_토큰: 61000
+  오케스트레이터_리마인드: "SKILL.md 절차 5b에 따라 후속 처리를 수행하라."
+```
+
+주요 처리 내역:
+- **is_first_part=true + is_last_part=true**: H1로 문서 시작(No.16 Procedure...), 이어 두 번째 문서(Technical specifications) 제목도 H1로 작성. 단일 PR16 문서가 실제로는 procedure + attached technical specification 두 문서로 구성된 구조를 그대로 반영.
+- **첨자 보존**: §2.1 각주 마커 sea-going&lt;sup&gt;1&lt;/sup&gt;, IMO numbers&lt;sup&gt;2&lt;/sup&gt; 및 각주 본문 `&lt;sup&gt;1&lt;/sup&gt;`/`&lt;sup&gt;2&lt;/sup&gt;` 로 표기.
+- **이미지 매칭**: fig-007~010 → §2.1 Sample 1~4 타임라인, fig-011~014 → §4.1 Annex의 동일 타임라인 재사용, fig-015 → §4.2 XML schema 스크린샷.
+- **Orphan (7개)**: 표지 로고 3개(equasis/IACS/affaires maritimes), ccitt 마스크 2개, 미세 shading 아티팩트 2개.
+- **벡터 도면 2개** (use-case, Folder error example)은 raster 추출 불가로 이탤릭 주석 블록으로 구조를 기술.</result>
+<usage><total_tokens>84659</total_tokens><tool_uses>19</tool_uses><duration_ms>341471</duration_ms></usage>
+</task-notification>
+
+## 2026-04-13 15:04:41
+
+<ide_opened_file>The user opened the file /home/kimghw/ontology_iacs/prerequisite/pre_specification_ko.md in the IDE. This may or may not be related to the current task.</ide_opened_file>
+.. pre_specification_ko.md 주요 내용이 뭐지?
+
+## 2026-04-13 15:10:34
+
+/git

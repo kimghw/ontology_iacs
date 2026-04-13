@@ -1,0 +1,13 @@
+{
+  "input_pdf": "/mnt/c/shared_wk/ontology_iacs/PR/PR_31-42/PR38Rev5.pdf",
+  "part_source": "/mnt/c/shared_wk/ontology_iacs/pdf2md_work/queue/sessions/bd67bf46-57f7-4f7b-9008-e781249dc0cc/pdf_parts/PR38Rev5__part02.pdf",
+  "page_range": "51-78",
+  "part_index": "02",
+  "total_parts": 2,
+  "is_first_part": false,
+  "is_last_part": true,
+  "is_single_part": false,
+  "output_md": "/mnt/c/shared_wk/ontology_iacs/pdf2md_work/queue/sessions/bd67bf46-57f7-4f7b-9008-e781249dc0cc/working/PR38Rev5/part02.md",
+  "assets_dir": "/mnt/c/shared_wk/ontology_iacs/pdf2md_work/queue/sessions/bd67bf46-57f7-4f7b-9008-e781249dc0cc/assets/PR38Rev5",
+  "status": "pending"
+}

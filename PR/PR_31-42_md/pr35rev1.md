@@ -1,0 +1,48 @@
+# No.35 Procedure for Imposing and Clearing Conditions of Class
+
+No.35
+(Rev.0 July 2009)
+(Rev.1 May 2019)
+
+## 1. Purpose
+
+The purpose of this Procedural Requirement is to set unified procedures for imposing, clearing and controlling Conditions of Class which Classification Societies are to follow.
+
+## 2. Definition
+
+'Conditions of Class' mean requirements to the effect that specific measures, repairs, surveys etc. are to be carried out within a specific time limit in order to retain Classification.
+
+## 3. Procedures for Members to follow for imposing, clearing and controlling Conditions of Class
+
+3.1 Conditions of Class shall be imposed for the following:
+
+a. Repairs and/or renewals related to damages that affect Classification (e.g. grounding, structural damages, machinery damages, wastage over the allowable limits, etc.)
+
+b. Supplementary survey requirements
+
+c. Temporary repairs
+
+3.2 For repairs not completed at the time of survey, a Condition of Class is to be imposed. In order to provide adequate information to the surveyor attending for survey of the repairs, the Condition of Class is to be sufficiently detailed with identification of items to be repaired. For identification of extensive repairs, reference may be given to the survey report.
+
+3.3 Conditions of Class may require imposing limitations related to navigation and operation that are deemed necessary for continued operation under Classification (e.g. loss of anchor and/or chain, etc).
+
+3.4 Conditions of Class shall be given in writing with a time limit for completion to the owner's representatives/Ship's Master, and are to be clearly stated on the Certificate of Class or an attachment to the Certificate of Class and/or class survey status or report.
+
+Note:
+
+1. This Procedural Requirement applies from 1 July 2009.
+2. Rev.1 of this Procedural Requirement applies from 1 July 2020.
+
+3.5 Owners will be notified of these dates and that the vessel's class will be subject to a suspension procedure if the item is not dealt with, or postponed, by the due date. (Ref. PR1C, A2)
+
+3.6 Clearance of Conditions of Class shall be supported by a survey report giving details of all associated repairs and/or renewals, or of the supplemental surveys carried out. Repairs carried out shall be reported with identification of:
+
+- Compartment and location
+- Structural member
+- Repair method
+- Repair extent
+- NDT/Tests
+
+3.7 Partially dealt with Conditions of Class shall be supported by a survey report giving details of repairs and/or renewals, or of that part of the supplemental surveys carried out and those parts remaining outstanding.
+
+End of Document
