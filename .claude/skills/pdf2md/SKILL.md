@@ -24,7 +24,7 @@ description: PDF를 구조화된 마크다운으로 변환. 원문 텍스트 무
 - **조건 플래그**: 오케스트레이터가 분해 시 확정하여 프롬프트 슬롯에 주입하는 파트별 메타데이터(`part_index`, `is_first_part` 등). 서브에이전트의 조건부 분기 행동을 결정한다.
 - **라운드(Round)**: 한 번의 병렬 배치 실행 사이클. **라운드당 서브에이전트 수는 최대 40개(절대 상한)**. 1개 파일의 파트는 반드시 동일 라운드에 포함되며(중간 분절 금지), 여러 파일을 라운드 용량(40) 한도 내에서 묶어 실행한다. **전체 실행(모든 라운드 합산)에서 서브에이전트 수는 최대 100개(절대 상한)**이다. 총 100 / 라운드당 40이므로 최대 라운드 수는 `ceil(100/40) = 3`이다.
 - **세션 ID(session_id)**: Claude Code가 세션마다 자동 부여하는 UUID(`~/.claude/projects/<project>/` 내 `.jsonl` 파일명). 글로벌 락의 owner 기록과 로그 식별자로 사용한다. 별도 발급 절차 없이 현재 세션 ID를 그대로 쓴다.
-- **글로벌 락(Global Lock)**: `<workroot>/queue/locks/<input>.lock/` 디렉토리. 여러 오케스트레이터가 같은 `<workroot>`를 공유할 때 **파일 단위 배타 점유**를 보장하여 동일 작업 중복 실행을 방지한다.
+- **글로벌 락(Global Lock)**: `<workroot>/queue/locks/<input>.lock` **단일 JSON 파일(정규 파일, 디렉토리 아님)**. 여러 오케스트레이터가 같은 `<workroot>`를 공유할 때 **파일 단위 배타 점유**를 보장하여 동일 작업 중복 실행을 방지한다. 파일 내용은 단일 라인 JSON `{"owner":"<session_id>","state":"pending|working|merging|failed","claimed_at":"<ISO8601>"}`이다.
 
 ## 2. 입력 / 출력 규약
 
@@ -40,10 +40,8 @@ description: PDF를 구조화된 마크다운으로 변환. 원문 텍스트 무
   ```text
   <workroot>/
   └── queue/
-      ├── locks/<input>.lock/           ← 파일 단위 글로벌 락 (atomic mkdir로 배타 점유, 세션 간 조율)
-      │   ├── owner.txt                 ← 점유한 세션 ID(session_id)
-      │   ├── state                     ← pending | working | merging | failed
-      │   └── claimed_at                ← ISO8601 타임스탬프
+      ├── locks/<input>.lock            ← 파일 단위 글로벌 락 (단일 JSON 정규 파일, O_CREAT|O_EXCL로 배타 점유, 세션 간 조율)
+      │                                   내용: {"owner":"<session_id>","state":"pending|working|merging|failed","claimed_at":"<ISO8601>"}
       └── sessions/<session_id>/        ← 세션별 격리 (session_id = 현재 세션 UUID)
           ├── pdf_parts/                ← 오케스트레이터가 qpdf로 사전 생성한 파트별 PDF 추출물
           ├── pending/<input>/partNN.task.json  ← 적재 대기 파트
@@ -60,10 +58,11 @@ description: PDF를 구조화된 마크다운으로 변환. 원문 텍스트 무
   - **상대경로 불변**: `sessions/<session_id>/working/<input>/partNN.md`에서 `sessions/<session_id>/assets/<input>/`까지는 `../../assets/<input>/`(2단계 상위 = `sessions/<session_id>/`, 그 하위 `assets/<input>/`). 세션별 격리 구조에서도 `working/`과 `assets/`가 같은 세션 디렉토리 하위에 있으므로 상대경로 깊이(`../../`)는 변하지 않는다. 서브에이전트 이미지 링크 규약과 병합 후 sed 재작성 로직은 이 상대경로를 유지한다.
 
 - **글로벌 락 프로토콜**:
-  - **점유 시도**: `mkdir <workroot>/queue/locks/<input>.lock`. POSIX `mkdir(2)`은 원자적이며 이미 존재하면 실패한다. 실패 = 다른 오케스트레이터가 점유 중 → 해당 파일을 스킵하고 다음 파일로 진행한다.
-  - **점유 성공 시 즉시 기록**: `locks/<input>.lock/owner.txt`에 `session_id`, `state`에 단계(`pending` → `working` → `merging`), `claimed_at`에 ISO8601 타임스탬프.
-  - **해제**: 해당 파일의 병합·검증·최종 배치가 성공하면 `rm -rf <workroot>/queue/locks/<input>.lock`. 실패(재시도 임계 초과 포함)로 종료하면 락은 `state=failed`로 갱신한 채 남겨 사용자에게 수동 복구를 요청한다.
-  - **스테일 락**: 락의 mtime이 `stale_threshold`(기본 4시간) 이상이고 `state`가 진행 중이면 사용자에게 보고한다. **자동 탈취는 하지 않는다**(오진행 중인 다른 오케스트레이터의 작업을 덮어쓸 위험).
+  - **점유 시도**: `<workroot>/queue/locks/<input>.lock` 파일을 `O_CREAT|O_EXCL|O_WRONLY`로 생성 시도(Python 기준 `open(path, "x")`). POSIX `open(2) + O_EXCL`은 원자적이며 파일이 이미 존재하면 `EEXIST`로 실패한다. 실패 = 다른 오케스트레이터가 점유 중 → 해당 파일을 스킵하고 다음 파일로 진행한다.
+  - **점유 성공 시 즉시 기록**: 생성된 파일 핸들에 `{"owner":"<session_id>","state":"pending","claimed_at":"<ISO8601>"}` 단일 라인 JSON을 **한 번의 `write()`로 기록한 뒤 닫는다**. 이렇게 해야 "락은 존재하는데 내용은 비어 있다"는 중간 관찰 창이 생기지 않는다.
+  - **상태 전이 (원자 rename 규약, 필수)**: `state`를 `pending → working → merging`(또는 `failed`)로 갱신할 때는 **절대로 기존 락 파일을 `open("w")`로 덮어쓰지 않는다**. 같은 디렉토리에 임시 파일 `<input>.lock.tmp.<pid>`를 생성하여 새 JSON을 기록한 뒤 `os.rename(<tmp>, <lockfile>)`로 원자 교체한다(POSIX `rename(2)` 원자성). 덮어쓰기 방식은 다른 오케스트레이터가 반쯤 쓰인 JSON을 읽을 수 있으므로 금지한다.
+  - **해제**: 해당 파일의 병합·검증·최종 배치가 성공하면 `os.unlink(<workroot>/queue/locks/<input>.lock)` (쉘에서는 `rm <workroot>/queue/locks/<input>.lock`, **`rm -rf` 금지**). 실패(재시도 임계 초과 포함)로 종료하면 락 파일을 삭제하지 않고 atomic rename 규약으로 `state=failed`만 갱신한 채 남겨 사용자에게 수동 복구를 요청한다.
+  - **스테일 락**: 락 파일의 mtime이 `stale_threshold`(기본 4시간) 이상이고 `state`가 진행 중이면 사용자에게 보고한다. 상태 전이 시마다 atomic rename으로 mtime이 갱신되므로 살아있는 오케스트레이터의 락은 자연스럽게 "살아있음" 신호를 남긴다. **자동 탈취는 하지 않는다**(오진행 중인 다른 오케스트레이터의 작업을 덮어쓸 위험).
 
 - **큐 작업 파일**: `partNN.task.json` — 입력 PDF 경로, part_source 경로, 페이지 범위, 조건 플래그, 출력 조각 경로, 이미지 디렉토리, 상태. `sessions/<session_id>/pending/<input>/` → `sessions/<session_id>/working/<input>/` → `sessions/<session_id>/done/<input>/` 순서로 `mv`로 원자 이동(POSIX `rename(2)`).
 - **중간 산출물**: `<workroot>/queue/sessions/<session_id>/done/<input>/partNN.md` — 최종 정리(절차 8)에서 해당 파일의 큐·자산 정리와 함께 삭제된다.
@@ -77,7 +76,7 @@ description: PDF를 구조화된 마크다운으로 변환. 원문 텍스트 무
 - **무손실 보존 감독**: 서브에이전트가 원문 텍스트를 삭제·의역·요약하지 않았는지 병합 후 스폿 체크한다.
 - **분할 변환**: 총 페이지 > 50이면 50p 단위로 분할, 구간당 서브에이전트 1개(opus)를 할당한다. 여러 파일을 한 번에 처리할 때도 각 파일을 동일 규칙으로 분해하고 단일 큐로 묶는다. **제약**: 파일당 파트 수 ≤ 40(단일 라운드 수용), 총 파트 수 ≤ 100(전 실행 합산).
 - **큐 기반 작업 관리**: 작업 단위(= 한 구간)는 **`sessions/<session_id>/pending/<input>/` → `sessions/<session_id>/working/<input>/` → `sessions/<session_id>/done/<input>/`** 순서로 이동한다. `mv`로 원자 이동하여 점유 경합을 막는다(POSIX `rename(2)` 원자성). 서브에이전트가 완료되면 오케스트레이터가 후처리(메타데이터 파싱) 후 `sessions/<session_id>/working/<input>/` → `sessions/<session_id>/done/<input>/`으로 이동한다.
-- **글로벌 락으로 배타 점유**: 오케스트레이터는 파일 단위로 `locks/<input>.lock` 디렉토리를 원자 생성하여 점유한다. 점유 실패(다른 오케스트레이터가 이미 점유)면 해당 파일을 스킵하고 다음으로 진행한다. 점유한 파일만 `pending/`·`working/`·`done/`에 적재·이동한다.
+- **글로벌 락으로 배타 점유**: 오케스트레이터는 파일 단위로 `locks/<input>.lock` 단일 파일을 `O_CREAT|O_EXCL`로 원자 생성하여 점유한다. 점유 실패(다른 오케스트레이터가 이미 점유)면 해당 파일을 스킵하고 다음으로 진행한다. 점유한 파일만 `pending/`·`working/`·`done/`에 적재·이동한다.
 - **비동기 병렬 실행**: 서브에이전트는 `run_in_background: true`로 기동하여 오케스트레이터가 블로킹되지 않게 한다. **라운드당 동시 기동 수는 최대 40개(절대 상한)**, **전체 실행에서 총 기동 수는 최대 100개(절대 상한)**.
 - **1 파일 = 1 라운드**: 1개 파일의 모든 파트는 동일 라운드에 포함된다. 여러 파일을 한 라운드에 합칠 수 있으나(합계 ≤ 40), 하나의 파일을 두 라운드에 나누어 실행하지 않는다.
 - **큰 파일 우선 처리**: 라운드 플래닝·큐 적재·점유 순서는 모두 **파트 수 내림차순(= 큰 파일 우선)**으로 수행한다. 큰 파일을 먼저 배치해야 라운드 패킹 효율(First-Fit Decreasing)이 최적이고, 대용량 파일이 마지막 라운드에 몰려 실패 시 재시도 비용이 커지는 상황을 방지한다.
@@ -120,9 +119,9 @@ description: PDF를 구조화된 마크다운으로 변환. 원문 텍스트 무
 4. **글로벌 락 점유 · 분해 · 플래그 확정 · 추출물 생성 · 큐 적재**
    - **처리 순서**: 파일 목록을 **파트 수 내림차순(큰 파일 우선)**으로 정렬한 뒤 순회한다. 큰 파일이 먼저 점유·분해되어야 총 파트 100 상한 소진 시 남는 자리가 작은 파일로 채워지고, 라운드 플래닝 단계(5.0)의 First-Fit Decreasing 패킹과도 일관된다.
    - 각 파일에 대해 다음을 수행한다.
-   - **글로벌 락 점유**: `mkdir <workroot>/queue/locks/<input>.lock` 시도.
-     - **실패** (다른 오케스트레이터가 점유 중): 해당 파일을 스킵하고 사용자에게 보고. 다음 파일로 진행.
-     - **성공**: 즉시 `locks/<input>.lock/owner.txt`에 `session_id`, `state`에 `pending`, `claimed_at`에 ISO8601 타임스탬프를 기록.
+   - **글로벌 락 점유**: `<workroot>/queue/locks/<input>.lock` 파일을 `O_CREAT|O_EXCL|O_WRONLY`로 생성 시도(Python `open(path, "x")`).
+     - **실패** (`EEXIST`, 다른 오케스트레이터가 점유 중): 해당 파일을 스킵하고 사용자에게 보고. 다음 파일로 진행.
+     - **성공**: 즉시 `{"owner":"<session_id>","state":"pending","claimed_at":"<ISO8601>"}` 단일 라인 JSON을 **한 번의 `write()`로 기록**하고 파일 핸들을 닫는다.
    - 파일당 `ceil(total/50)`개 구간을 계산(이미 절차 1에서 검증된 값, 40 이하).
    - 점유 성공 파일들의 파트 수를 누적하여 **총 파트 수 ≤ 100**을 유지한다. 초과하면 이후 파일은 락을 잡지 않고 사용자에게 승인 요청.
    - 각 구간에 대해 **조건 플래그**를 확정한다(3.3 참조).
@@ -147,7 +146,7 @@ description: PDF를 구조화된 마크다운으로 변환. 원문 텍스트 무
 
    **5a. 라운드 시작 — 서브에이전트 기동**
    - 현재 라운드에 포함된 파일들의 작업 파일을 `mv <workroot>/queue/sessions/<session_id>/pending/<input> <workroot>/queue/sessions/<session_id>/working/<input>`로 일괄 이동한다.
-   - 락 상태를 `working`으로 갱신(`locks/<input>.lock/state` 덮어쓰기).
+   - 락 상태를 `working`으로 갱신한다: **atomic rename 규약**으로 `locks/<input>.lock.tmp.<pid>`에 새 JSON(`state="working"`)을 기록한 뒤 `os.rename()`으로 `locks/<input>.lock`을 원자 교체한다. 기존 락 파일을 직접 덮어쓰는 것은 금지.
    - 라운드의 **모든 파트**(최대 40개)를 **단일 메시지**에서 다중 Agent 호출로 병렬 기동한다. 각 호출은 `subagent_type: "pdf2md-worker"` + `run_in_background: true`.
    - 에이전트 프롬프트는 **4.1(역할/입력)과 4.2(조건 플래그)만 포함**하고 플레이스홀더를 실제 값으로 치환한다. 정적 지시문은 `pdf2md-worker` 서브에이전트 정의에 내장되어 자동 주입된다(3.4 참조).
 
@@ -155,7 +154,7 @@ description: PDF를 구조화된 마크다운으로 변환. 원문 텍스트 무
    - 서브에이전트 완료 알림이 도착하면 오케스트레이터는 즉시:
      1. 완료 보고를 파싱하여 파일별 메타데이터에 누적(특히 `첨자_발견` 플래그, `추출_이미지_수` 합계).
      2. 해당 `partNN.task.json`과 생성된 `partNN.md`를 `sessions/<session_id>/working/<input>/` → `sessions/<session_id>/done/<input>/`으로 이동.
-     3. 해당 입력 파일의 모든 파트가 `sessions/<session_id>/done/<input>/`에 모였으면 락 상태를 `merging`으로 갱신하고 절차 6(병합)·절차 7(검증)을 **즉시** 수행한다. 검증 통과 시 **절차 8에 따라 큐·자산 정리를 모두 마친 후** 락을 해제한다.
+     3. 해당 입력 파일의 모든 파트가 `sessions/<session_id>/done/<input>/`에 모였으면 락 상태를 **atomic rename 규약**으로 `merging`으로 갱신하고 절차 6(병합)·절차 7(검증)을 **즉시** 수행한다. 검증 통과 시 **절차 8에 따라 큐·자산 정리를 모두 마친 후** 락 파일을 `os.unlink`로 해제한다.
      4. 실패한 작업은 `sessions/<session_id>/working/<input>/` 내부에서 재시도 카운트를 증가시킨 뒤 **동일 라운드 내에서 재기동**한다. 임계(기본 2회) 초과 시 `sessions/<session_id>/failed/<input>/`로 분리하고 보고한다. 재시도는 100 총 상한에 포함되지 않는다(이미 집계된 파트의 재실행).
 
    **5c. 라운드 종료 판정 · 다음 라운드**
@@ -165,7 +164,7 @@ description: PDF를 구조화된 마크다운으로 변환. 원문 텍스트 무
 
    **5d. 교차 라운드 금지**
    - 1개 파일의 파트는 반드시 동일 라운드에 포함된다. 완료된 파트와 실패한 파트가 섞여 있어도 해당 파일의 재시도는 **같은 라운드 내에서** 처리한다(다음 라운드로 이월하지 않는다).
-   - 재시도 임계를 초과한 파트가 있으면 해당 파일은 이번 실행에서 실패로 종료하고 락을 `state=failed`로 남겨 사용자에게 보고한다.
+   - 재시도 임계를 초과한 파트가 있으면 해당 파일은 이번 실행에서 실패로 종료하고, **atomic rename 규약**으로 락 파일을 `state=failed`로 갱신한 채 남겨 사용자에게 보고한다(락 파일 삭제 금지).
 
 6. **병합** (파일별)
    - 한 입력 파일의 모든 구간이 `sessions/<session_id>/done/<input>/`에 모인 시점에 해당 파일 병합을 수행한다.
@@ -211,10 +210,10 @@ description: PDF를 구조화된 마크다운으로 변환. 원문 텍스트 무
      1. `<workroot>/queue/sessions/<session_id>/{pending,working,done,assets}/<input>/`를 `rm -rf`로 삭제.
      2. `<workroot>/queue/sessions/<session_id>/out/<input>.md`를 삭제.
      3. `<workroot>/queue/sessions/<session_id>/pdf_parts/<input>__part*.pdf`를 삭제.
-     4. **마지막에** `<workroot>/queue/locks/<input>.lock`을 `rm -rf`로 삭제하여 락을 해제한다. **순서 엄수**: 큐·자산 정리 전에 락을 해제하면 다른 오케스트레이터가 절반만 정리된 상태를 점유해 손상된 큐를 읽을 수 있으므로 반드시 이 순서를 지킨다.
+     4. **마지막에** `<workroot>/queue/locks/<input>.lock` 파일을 `os.unlink`(또는 쉘 `rm <workroot>/queue/locks/<input>.lock`, **`rm -rf` 금지**)로 삭제하여 락을 해제한다. **순서 엄수**: 큐·자산 정리 전에 락을 해제하면 다른 오케스트레이터가 절반만 정리된 상태를 점유해 손상된 큐를 읽을 수 있으므로 반드시 이 순서를 지킨다.
    - **다른 파일 보존**: 이번 실행이 점유하지 않은 파일(다른 오케스트레이터가 사용 중일 수 있음)의 큐·락·자산은 **절대 건드리지 않는다**.
    - **라스트 원 클린업**: 모든 파일 정리 후 `<workroot>/queue/sessions/<session_id>/{pending,working,done,assets,pdf_parts,failed,out}/`가 모두 비어 있으면 `rmdir` 시도로 빈 디렉토리를 제거한다. 세션 디렉토리 자체(`sessions/<session_id>/`)도 비어 있으면 `rmdir`로 제거한다. `locks/`는 글로벌이므로 별도 판정한다(실패는 무시).
-   - **검증 실패 시 절대 삭제하지 않는다.** 실패 원인을 보고하고 해당 파일의 큐·락을 보존한다. 락은 `state=failed`로 갱신하여 사용자에게 수동 복구 대상임을 명시한다.
+   - **검증 실패 시 절대 삭제하지 않는다.** 실패 원인을 보고하고 해당 파일의 큐·락을 보존한다. 락 파일은 **atomic rename 규약**으로 `state=failed`로 갱신하여 사용자에게 수동 복구 대상임을 명시한다.
 
 ### 3.3 조건 플래그 확정 규칙
 
@@ -248,13 +247,13 @@ description: PDF를 구조화된 마크다운으로 변환. 원문 텍스트 무
 
 #### DO
 
-- **session_id를 확인**하고 글로벌 락(`mkdir locks/<input>.lock`)으로 파일 단위 배타 점유를 확보한 뒤에만 해당 파일의 큐 적재·실행을 수행한다.
+- **session_id를 확인**하고 글로벌 락(`open("locks/<input>.lock", "x")` → `O_CREAT|O_EXCL`)으로 파일 단위 배타 점유를 확보한 뒤에만 해당 파일의 큐 적재·실행을 수행한다.
 - 폴더 입력 시 `<원본폴더>_md/<input>.md` 존재 여부를 검사하여 변환 완료 파일을 스킵한다. 스킵 목록은 사용자에게 보고하고 `agent_report.md`에도 기록한다.
 - 분해 전 `pdfinfo`로 메타데이터를 수집하여 조건 플래그를 정확히 산출한다.
 - 파일당 파트 수 ≤ 40, 총 파트 수 ≤ 100 상한을 사전 검증한다.
 - 페이지 추출물은 `qpdf --pages`로 단일 파일로 생성한다.
 - 서브에이전트가 이미지를 추출할 디렉토리(`<workroot>/queue/sessions/<session_id>/assets/<input>/`)를 사전 생성한다.
-- **파일 단위 점유**: `mkdir <workroot>/queue/locks/<input>.lock`로 원자 점유. 실패 시 다른 오케스트레이터가 선점한 것으로 판단하고 다음 파일로 넘어간다.
+- **파일 단위 점유**: `open(<workroot>/queue/locks/<input>.lock, "x")`(`O_CREAT|O_EXCL`)로 원자 점유. 실패(`EEXIST`) 시 다른 오케스트레이터가 선점한 것으로 판단하고 다음 파일로 넘어간다. 상태 갱신은 반드시 same-directory temp file + `os.rename()` 규약을 사용한다(직접 덮어쓰기 금지).
 - 큐 이동(`sessions/<session_id>/pending → working → done`, 실패 재투입)은 `mv`로 원자 처리한다.
 - 서브에이전트는 `run_in_background: true`로 기동하고 **라운드당 최대 40개를 단일 메시지에서 병렬 호출**한다. 완료 알림 도착 시 즉시 후처리 후 `sessions/<session_id>/working/<input>/` → `sessions/<session_id>/done/<input>/`으로 이동한다.
 - 라운드 플래닝은 파트 수 내림차순 그리디 패킹(파일당 파트 ≤ 40, 라운드당 합 ≤ 40, 파일 분절 금지)으로 수행한다.
@@ -295,8 +294,8 @@ description: PDF를 구조화된 마크다운으로 변환. 원문 텍스트 무
 - [ ] 파일당 파트 수 ≤ 40 확인(초과 → 물리 분할 요청 + 제외, 우회 불가)
 - [ ] 총 파트 수 ≤ 100 확인(초과 → 사용자 승인 요청 또는 하위 파일 제외)
 - [ ] 대상 파일을 **파트 수 내림차순(큰 파일 우선)**으로 정렬
-- [ ] 각 대상 파일에 대해 글로벌 락 점유 시도(`mkdir locks/<input>.lock`). 실패 → 스킵 및 보고
-- [ ] 점유 성공 시 `locks/<input>.lock/{owner.txt,state,claimed_at}` 기록
+- [ ] 각 대상 파일에 대해 글로벌 락 점유 시도(`open("locks/<input>.lock", "x")` → `O_CREAT|O_EXCL`). 실패(`EEXIST`) → 스킵 및 보고
+- [ ] 점유 성공 시 단일 라인 JSON `{"owner":"<session_id>","state":"pending","claimed_at":"<ISO8601>"}`를 한 번의 `write()`로 기록
 - [ ] `<workroot>/queue/sessions/<session_id>/assets/<input>/` 이미지 출력 디렉토리 사전 생성
 - [ ] 각 파트의 조건 플래그(`part_index`, `total_parts`, `is_first_part`, `is_last_part`, `is_single_part`) 확정
 - [ ] 각 파트의 `part_source` PDF 추출물을 `queue/sessions/<session_id>/pdf_parts/`에 생성
@@ -311,7 +310,7 @@ description: PDF를 구조화된 마크다운으로 변환. 원문 텍스트 무
 **라운드 시작 — 서브에이전트 기동 (절차 5a)**
 
 - [ ] 현재 라운드 파일들의 `sessions/<session_id>/pending/<input>/` → `sessions/<session_id>/working/<input>/` `mv` 일괄 이동
-- [ ] 락 상태 `working`으로 갱신
+- [ ] 락 상태 `working`으로 갱신 (same-directory temp file + `os.rename()` atomic swap, 직접 덮어쓰기 금지)
 - [ ] 4.1/4.2만 prompt에 포함하여 슬롯 치환(정적 지시문은 `subagent_type`으로 자동 로드)
 - [ ] 현재 라운드 전체 파트(≤40)를 **단일 메시지**에서 `subagent_type: "pdf2md-worker"` + `run_in_background: true`로 병렬 기동
 
@@ -321,7 +320,7 @@ description: PDF를 구조화된 마크다운으로 변환. 원문 텍스트 무
 - [ ] 완료된 작업을 `sessions/<session_id>/working/<input>/` → `sessions/<session_id>/done/<input>/`으로 이동
 - [ ] 실패 작업은 동일 라운드 내 재시도(카운트 증가), 임계 초과 시 `sessions/<session_id>/failed/<input>/`로 분리
 - [ ] 파일별 모든 조각이 `sessions/<session_id>/done/<input>/`에 모이면 **즉시** 절차 6(병합)·절차 7(검증) 수행:
-  - [ ] 락 상태 `merging`으로 갱신
+  - [ ] 락 상태 `merging`으로 갱신 (atomic rename 규약)
   - [ ] `queue/sessions/<session_id>/out/<input>.md`로 병합, 파트 경계 이어붙임
   - [ ] `첨자_발견: true` 시 `<!-- markdownlint-disable MD033 -->` 주입
   - [ ] 이미지 집계 복사 + 링크 재작성
@@ -343,10 +342,10 @@ description: PDF를 구조화된 마크다운으로 변환. 원문 텍스트 무
 - [ ] 경로 검증: 점유했던 모든 파일에 대해 `<원본폴더>_md/<input>.md` 존재, 이미지 개수 일치, 모든 이미지 링크 해소
 - [ ] 사용자 보고 + `agent_report.md` append 완료
 - [ ] 검증 통과 파일 단위로 `queue/sessions/<session_id>/{pending,working,done,assets}/<input>/` + `out/<input>.md` + `pdf_parts/<input>__*.pdf` 삭제
-- [ ] **마지막에** `queue/locks/<input>.lock` 삭제(락 해제) — 순서 엄수
+- [ ] **마지막에** `queue/locks/<input>.lock` 파일 `os.unlink`(락 해제, `rm -rf` 금지) — 순서 엄수
 - [ ] 점유하지 않은 파일의 큐·락은 건드리지 않음
 - [ ] 모든 큐 디렉토리가 비었으면 `rmdir` 시도(실패 무시)
-- [ ] 검증 실패 시 해당 파일의 큐·락 보존(락 `state=failed`)
+- [ ] 검증 실패 시 해당 파일의 큐·락 보존(락 파일 atomic rename으로 `state=failed` 갱신, 삭제 금지)
 
 ---
 
