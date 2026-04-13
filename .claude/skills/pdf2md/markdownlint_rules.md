@@ -49,16 +49,3 @@
    - 기존 설명과 상충하는 해석이 필요
    - 프로젝트 전역 린트 정책(`.markdownlint.json`)과 본 파일이 어긋남
 5. 본문 직접 수정과 협의 섹션 append는 **동일 실행에서 혼용하지 않는다**(변경 추적 혼선 방지).
-
-## 사용자 협의 필요
-
-- [2026-04-09] UR_A/C/D/E/F (83 PDFs): 이번 실행에서 관찰된 신규 규칙 5종 — 3개 임계 초과로 본문 직접 수정 대신 협의 섹션에 기록.
-  - **MD007** (ul-indent): 관찰 사례 — ur-a2rev5에서 단락(`(1) For strength...`) 아래 불릿 목록을 3칸 들여쓰기로 배치. 사용자 측 수정: 들여쓰기 제거. 제안: "변환 시점 회피" 섹션에 `- **MD007** (ul-indent): 목록 상위가 목록이 아니면 불릿 들여쓰기 0칸. 단락 하위 불릿은 공백 없이 시작.`
-  - **MD026** (no-trailing-punctuation): 관찰 사례 — ur-d7rev3, ur-f37del-1의 헤딩 끝 마침표. 제안: "변환 시점 회피" 섹션에 `- **MD026** (no-trailing-punctuation): 헤딩 끝 문장부호(`.`, `;`, `:`, `!`, `?`) 제거. 본문 문장이 아닌 제목 라인은 마침표 없이 작성.`
-  - **MD030** (list-marker-space): 관찰 사례 — UR-E26 line 403 `-  ` (공백 2). 제안: "변환 시점 회피" 섹션에 `- **MD030** (list-marker-space): 목록 마커 다음 공백은 정확히 1칸(`- item`, `1. item`). 탭·이중공백 금지.`
-  - **MD034** (no-bare-urls): 관찰 사례 — UR-E26 line 695의 `https://us-cert.cisa.gov/...`. 제안: "병합 후 검증" 섹션에 `- **MD034** (no-bare-urls): 원문 URL은 `<...>` 각괄호로 감싼다. 오케스트레이터가 병합 후 `sed`로 일괄 처리 가능.`
-  - **MD056** (table-column-count): 관찰 사례 — UR-E10의 대형 표(셀 내부 중첩 표 포함). 제안: 셀 내부에 `|` 등장 시 파서가 열 분리로 오인. 회피 어려움(마크다운 한계). 권장: 해당 파일 단위로 `.markdownlint.json` MD056 비활성화. "병합 후 검증" 섹션에 `- **MD056** (table-column-count): 셀 내부 파이프 문자가 포함된 중첩 표가 있으면 비활성화 허용(원문 구조 복원 우선).`
-
-- [2026-04-09] 오탈자 자동 수정 정책 이슈: `language_tool_python` + `en-US` 기본 사전이 IACS 선박 기술 문서의 영국식 철자(draught/moulded/manoeuvring/centre/fibre/vapour/recognise/analyse/categorise 등)와 복합 기술 용어(twistlock/weatherdeck/downflooding/pumproom/portlights/longitudinals)를 **단일 후보 TYPOS**로 반환하여 자동 수정 시 내용 파괴(예: `FPSOs → FPS Os`, `Shell → She'll`, `markdownlint-disable → markdown lint-disable`). 제안:
-  - ✅ **반영 완료** (2026-04-10): SKILL.md 오탈자 자동 수정 범위에서 `BRITISH_ENGLISH_DETECTOR` 룰을 제외. 영국식 철자는 원문 그대로 보존한다.
-  - 본 실행에서는 report-only로 1386건을 `reports/pdf2md_typo_report_2026-04-09.json`에 저장.

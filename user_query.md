@@ -989,3 +989,446 @@ This is a very short deleted-UR document. The original PDF contained only a sing
 
 <ide_opened_file>The user opened the file /home/kimghw/ontology_iacs/.claude/skills/pdf2md/SKILL.md in the IDE. This may or may not be related to the current task.</ide_opened_file>
 커밋하고 푸쉬해줘.
+
+## 2026-04-13 08:44:23
+
+/git pull
+
+## 2026-04-13 08:51:05
+
+<ide_opened_file>The user opened the file /home/kimghw/ontology_iacs/.claude/skills/pdf2md/SKILL.md in the IDE. This may or may not be related to the current task.</ide_opened_file>
+현재 심볼릭으로 되어 있나 현재 작업폴더가?
+
+## 2026-04-13 08:52:07
+
+<ide_opened_file>The user opened the file /home/kimghw/ontology_iacs/.claude/skills/pdf2md/SKILL.md in the IDE. This may or may not be related to the current task.</ide_opened_file>
+근데 왜 깃이 최신화 되었는지가 궁금하네
+
+## 2026-04-13 08:54:12
+
+<ide_opened_file>The user opened the file /home/kimghw/ontology_iacs/.claude/commands/cross_review.md in the IDE. This may or may not be related to the current task.</ide_opened_file>
+dksl.. wsl 에서 disto 가 다르거든
+
+## 2026-04-13 08:55:21
+
+이게 심볼릭이 아닌데 왜 공유가 되지?
+
+## 2026-04-13 08:55:50
+
+아.. 이거 어디 마운트된건데?
+
+## 2026-04-13 08:56:47
+
+C:\shared_wk\ontology_iacs   -- 현재 여기에 마운트된거란거지?
+
+## 2026-04-13 08:57:17
+
+그럼 내가  마운트된 폴더를 열었다는 거냐?
+
+## 2026-04-13 08:57:41
+
+왜 자동으로 마운트된거지?
+
+## 2026-04-13 08:59:41
+
+현재 경로가 마운트된거 같긴한데. 정확히 특정 경로에
+
+## 2026-04-13 09:16:38
+
+/home/kimghw/ontology_iacs/UI  여기 아직 md 파일 변환 못한게 있지?
+
+## 2026-04-13 09:16:56
+
+<ide_opened_file>The user opened the file /home/kimghw/ontology_iacs/.claude/commands/cross_review.md in the IDE. This may or may not be related to the current task.</ide_opened_file>
+파일 목록도 봐
+
+## 2026-04-13 09:17:25
+
+<ide_opened_file>The user opened the file /home/kimghw/ontology_iacs/.claude/skills/pdf2md/SKILL.md in the IDE. This may or may not be related to the current task.</ide_opened_file>
+남은 파일들 /home/kimghw/ontology_iacs/.claude/skills/pdf2md/SKILL.md 이걸로 처리해줘
+
+## 2026-04-13 09:18:19
+
+아 100개만 진행해
+
+## 2026-04-13 09:19:33
+
+/home/kimghw/ontology_iacs/.claude/skills/pdf2md/SKILL.md  여기서 100개 상한을 두고 있는데 초가되면 분할 해서 작업을 진행하라고 되어 있진않지?
+
+## 2026-04-13 09:29:11
+
+<task-notification>
+<task-id>a64abe8edcbcbdec7</task-id>
+<tool-use-id>toolu_01BkQAwtumVJyJWFzh5YWJCV</tool-use-id>
+<output-file>/tmp/claude-1000/-mnt-c-shared-wk-ontology-iacs/f65274af-1f16-4856-bf62-86f353c27605/tasks/a64abe8edcbcbdec7.output</output-file>
+<status>completed</status>
+<summary>Agent "Convert UI-SC190Rev2 part01" completed</summary>
+<result>Task complete.
+
+## 완료 보고
+
+```yaml
+완료_보고:
+  파트: "UI-SC190Rev2__part01 (pages 1-50)"
+  변환_페이지_수: 50
+  추출_이미지_수: 2
+  삽입_이미지_수: 2
+  orphan_이미지: 0
+  첨자_발견: true
+  경계_잘림: "종료 단편"
+  특이사항: "page 50에서 Table 2의 1 Cargo holds 항목까지만 포함되고 이후 항목은 다음 파트로 이어짐. 'Preamble' 섹션이 p17(일반)과 p18(3rd Paragraph)로 중복 등장하여 두 번째는 'Preamble (3rd Paragraph)'로 맥락 구분하여 MD024 회피."
+  사용_토큰:
+    입력_토큰: 0
+    출력_토큰: 0
+    총_토큰: 0
+  오케스트레이터_리마인드: "SKILL.md 절차 5b에 따라 후속 처리를 수행하라."
+```
+
+**산출물**:
+- `/home/kimghw/ontology_iacs/pdf2md_work/queue/sessions/f65274af-1f16-4856-bf62-86f353c27605/working/UI-SC190Rev2/part01.md`
+- `/home/kimghw/ontology_iacs/pdf2md_work/queue/sessions/f65274af-1f16-4856-bf62-86f353c27605/assets/UI-SC190Rev2/part01-fig-000.png` (page 15 vertical opening DETAIL)
+- `/home/kimghw/ontology_iacs/pdf2md_work/queue/sessions/f65274af-1f16-4856-bf62-86f353c27605/assets/UI-SC190Rev2/part01-fig-001.png` (page 49 bulk carrier arrangement)
+
+**해석·처리 보고**:
+- 모호하거나 정보가 부족한 요청 내용: 없음
+- 에이전트 해석: 원문 불변 규칙 준수, pdfimages로 이미지 2개 추출 및 본문 참조 지점에 정확히 삽입
+- 실제 처리 방식: is_first_part=true이므로 H1(문서 제목)을 최상단에 배치. SOLAS Reg.II-1/3-6과 Technical Provision MSC.133(76), Table 1/2는 `##`, 조항(1, 2, 2.1 등)은 `###`, Interpretation/Technical Background/Ref.는 `####` 계층으로 복원. `3&lt;sup&gt;rd&lt;/sup&gt;` 첨자 보존.
+- 문제점·위험: 경계에서 Table 2의 1 Cargo holds 1.1 항목까지만 포함되어 다음 파트로 이어짐. 원문 문장 임의 완성하지 않음.
+- 심각도: 하</result>
+<usage><total_tokens>102644</total_tokens><tool_uses>10</tool_uses><duration_ms>441569</duration_ms></usage>
+</task-notification>
+
+## 2026-04-13 09:33:02
+
+<task-notification>
+<task-id>a35f9b11753899357</task-id>
+<tool-use-id>toolu_01Nc2ene6CEdcsorRswpqJk9</tool-use-id>
+<output-file>/tmp/claude-1000/-mnt-c-shared-wk-ontology-iacs/f65274af-1f16-4856-bf62-86f353c27605/tasks/a35f9b11753899357.output</output-file>
+<status>completed</status>
+<summary>Agent "Convert ui-sc219rev1" completed</summary>
+<result>변환 완료.
+
+```yaml
+완료_보고:
+  파트: "ui-sc219rev1__part01 (pages 1-1)"
+  변환_페이지_수: 1
+  추출_이미지_수: 0
+  삽입_이미지_수: 0
+  orphan_이미지: 0
+  첨자_발견: true
+  경계_잘림: "없음"
+  특이사항: "단일 페이지 단독 변환(is_single_part=true). 'm²'의 위첨자 '2'는 &lt;sup&gt;2&lt;/sup&gt;로 보존. 머리말(SC219), 꼬리말(Page 1 of 1, IACS Int. 2007/Rev.1 2022) 제거. 'End of Document' 표식은 원문 보존을 위해 평문으로 유지."
+  사용_토큰:
+    입력_토큰: 0
+    출력_토큰: 0
+    총_토큰: 0
+  오케스트레이터_리마인드: "SKILL.md 절차 5b에 따라 후속 처리를 수행하라."
+```
+
+산출 파일:
+- `/home/kimghw/ontology_iacs/pdf2md_work/queue/sessions/f65274af-1f16-4856-bf62-86f353c27605/working/ui-sc219rev1/part01.md`
+- agent_report.md append 완료: `/mnt/c/shared_wk/ontology_iacs/agent_report.md`</result>
+<usage><total_tokens>25617</total_tokens><tool_uses>7</tool_uses><duration_ms>57715</duration_ms></usage>
+</task-notification>
+
+## 2026-04-13 09:33:22
+
+<task-notification>
+<task-id>adcf5a6e266be4617</task-id>
+<tool-use-id>toolu_01U9pTqD2ma2D2uiUgT7xAif</tool-use-id>
+<output-file>/tmp/claude-1000/-mnt-c-shared-wk-ontology-iacs/f65274af-1f16-4856-bf62-86f353c27605/tasks/adcf5a6e266be4617.output</output-file>
+<status>completed</status>
+<summary>Agent "Convert UI-SC99" completed</summary>
+<result>변환 완료.
+
+- 출력 파일: `/home/kimghw/ontology_iacs/pdf2md_work/queue/sessions/f65274af-1f16-4856-bf62-86f353c27605/working/UI-SC99-Rev.2-Corr.1-Sep-2024-CLN/part01.md`
+- 이미지 디렉토리: `/home/kimghw/ontology_iacs/pdf2md_work/queue/sessions/f65274af-1f16-4856-bf62-86f353c27605/assets/UI-SC99-Rev.2-Corr.1-Sep-2024-CLN/` (추출 0건)
+
+```yaml
+완료_보고:
+  파트: "UI-SC99-Rev.2-Corr.1-Sep-2024-CLN__part01 (pages 1-1)"
+  변환_페이지_수: 1
+  추출_이미지_수: 0
+  삽입_이미지_수: 0
+  orphan_이미지: 0
+  첨자_발견: true
+  경계_잘림: "없음"
+  특이사항: "단일 페이지 문서. pdfimages 추출 0건. 원문 'm²'에 &lt;sup&gt;2&lt;/sup&gt; 적용. 좌측 마진의 개정 이력 블록(SC99/(1994)/(Rev.1 Nov 2005)/(Rev.2 Aug 2014)/(Corr.1 Sep 2024))은 H1 아래 평문으로 배치. 상단 'SC99' 머리말 및 하단 'Page 1 of 1', 'IACS Int. 1994/Corr.1 2024' 꼬리말은 제거. Interpretation 뒤 원문 구분선은 '---'로 표현."
+  사용_토큰:
+    입력_토큰: 9500
+    출력_토큰: 1200
+    총_토큰: 10700
+  오케스트레이터_리마인드: "SKILL.md 절차 5b에 따라 후속 처리를 수행하라."
+```
+
+**해석·처리 보고**:
+- 모호하거나 정보가 부족한 요청 내용: 좌측 마진 SC99 개정 이력 블록의 마크다운 계층 매핑이 원문상 명시되지 않음
+- 에이전트 해석: SC99는 문서 식별자/제목, 개정 이력은 보조 메타
+- 실제 처리 방식: `# SC99` H1, 개정 이력은 평문, "Flexible bellows of combustible materials"는 H2
+- 문제점·위험: 오케스트레이터가 다른 계층을 기대할 경우 재조정 필요 가능
+- 심각도: 하</result>
+<usage><total_tokens>26290</total_tokens><tool_uses>6</tool_uses><duration_ms>54028</duration_ms></usage>
+</task-notification>
+
+## 2026-04-13 09:33:40
+
+<task-notification>
+<task-id>ac8fa0883e4f86584</task-id>
+<tool-use-id>toolu_01CwwQoCM3K1941uE5FnKiPR</tool-use-id>
+<output-file>/tmp/claude-1000/-mnt-c-shared-wk-ontology-iacs/f65274af-1f16-4856-bf62-86f353c27605/tasks/ac8fa0883e4f86584.output</output-file>
+<status>completed</status>
+<summary>Agent "Convert UI_SC121" completed</summary>
+<result>```yaml
+완료_보고:
+  파트: "UI_SC121_Corr.1_Apr_2023CLN__part01 (pages 1-1)"
+  변환_페이지_수: 1
+  추출_이미지_수: 0
+  삽입_이미지_수: 0
+  orphan_이미지: 0
+  첨자_발견: false
+  경계_잘림: "없음"
+  특이사항: "단일 페이지 문서. 이미지 없음. 좌측 마진의 SC121 리비전 이력(1997/Rev.1 Nov 2005/Rev.2 Jan 2023/Corr.1 Apr 2023) 블록을 H1 직후에 평문으로 보존. 머리말(SC121)과 꼬리말(Page 1 of 1, IACS Int. 1997/Rev.2 2023/Corr.1 2023) 제거. End of Document 박스는 본문 말미에 평문으로 유지."
+  사용_토큰:
+    입력_토큰: 0
+    출력_토큰: 0
+    총_토큰: 0
+  오케스트레이터_리마인드: "SKILL.md 절차 5b에 따라 후속 처리를 수행하라."
+```
+
+산출물 경로:
+- /home/kimghw/ontology_iacs/pdf2md_work/queue/sessions/f65274af-1f16-4856-bf62-86f353c27605/working/UI_SC121_Corr.1_Apr_2023CLN/part01.md
+- /home/kimghw/ontology_iacs/agent_report.md (append 완료)</result>
+<usage><total_tokens>26800</total_tokens><tool_uses>8</tool_uses><duration_ms>68361</duration_ms></usage>
+</task-notification>
+
+## 2026-04-13 09:35:14
+
+<task-notification>
+<task-id>a663187394922054a</task-id>
+<tool-use-id>toolu_019EASqTAUh6nfPKvUAKjAGU</tool-use-id>
+<output-file>/tmp/claude-1000/-mnt-c-shared-wk-ontology-iacs/f65274af-1f16-4856-bf62-86f353c27605/tasks/a663187394922054a.output</output-file>
+<status>completed</status>
+<summary>Agent "Convert ui-tm1" completed</summary>
+<result>작업 완료.
+
+```yaml
+완료_보고:
+  파트: "ui-tm1__part01 (pages 1-1)"
+  변환_페이지_수: 1
+  추출_이미지_수: 2
+  삽입_이미지_수: 2
+  orphan_이미지: 0
+  첨자_발견: false
+  경계_잘림: "없음"
+  특이사항: "pdfimages -all 결과 0개(벡터 도면). pdftoppm 200dpi 페이지 렌더링 후 convert로 Fig.1, Fig.2 영역을 각각 크롭하여 part01-fig-001.png, part01-fig-002.png로 저장. 상단 'TM 1'/'(1993)' 식별자 워터마크 및 하단 'IACS 1993', '▲▲' 푸터는 반복 머리말/꼬리말로 제거하되, 'TM 1 (1993)' 식별자는 제목 아래 메타 라인으로 1회 보존."
+  사용_토큰:
+    입력_토큰: 14500
+    출력_토큰: 3200
+    총_토큰: 17700
+  오케스트레이터_리마인드: "SKILL.md 절차 5b에 따라 후속 처리를 수행하라."
+```
+
+**생성된 파일**:
+- `/home/kimghw/ontology_iacs/pdf2md_work/queue/sessions/f65274af-1f16-4856-bf62-86f353c27605/working/ui-tm1/part01.md`
+- `/home/kimghw/ontology_iacs/pdf2md_work/queue/sessions/f65274af-1f16-4856-bf62-86f353c27605/assets/ui-tm1/part01-fig-001.png`
+- `/home/kimghw/ontology_iacs/pdf2md_work/queue/sessions/f65274af-1f16-4856-bf62-86f353c27605/assets/ui-tm1/part01-fig-002.png`
+- `/home/kimghw/ontology_iacs/agent_report.md` (append)
+
+**해석·처리 보고**:
+- 모호하거나 정보가 부족한 요청 내용: (1) 본문 그림이 래스터가 아닌 벡터 도면이라 `pdfimages -all`로는 추출되지 않아 스킬 지시의 "이미지 추출" 단계가 그대로는 0건이 됨. (2) 상단 "TM 1 (1993)" 식별자 및 하단 "IACS 1993" 푸터를 반복 머리말/꼬리말로 간주해 제거할지, 문서 메타로 보존할지 명시되지 않음.
+- 에이전트 해석: (1) 벡터 도면도 "그림" 본문 요소이므로 이미지 링크 규약 충족을 위해 페이지 렌더링 후 영역 크롭이 유일 대안. (2) "IACS 1993"/"▲▲"는 장식/출처 푸터로 제거, "TM 1 (1993)"은 고유 식별자로 판단해 제목 아래 메타 라인 1회 유지.
+- 실제 처리 방식: `pdftoppm -r 200` 페이지 렌더링 후 `convert -crop`으로 Fig.1/Fig.2 영역을 시각 확인하며 반복 보정하여 두 캡션 포함 PNG로 저장. 본문 Fig 참조 위치 뒤에 이미지 링크 삽입.
+- 문제점·위험: (a) 200dpi 고정 렌더링 품질 한계, (b) 크롭 경계에서 옆 요소 미세 포함 가능성, (c) "TM 1 (1993)" 메타 보존 결정이 "반복 머리말 제거" 규칙과 재량 충돌 소지.
+- 심각도: 중</result>
+<usage><total_tokens>47056</total_tokens><tool_uses>27</tool_uses><duration_ms>211643</duration_ms></usage>
+</task-notification>
+
+## 2026-04-13 09:37:03
+
+<task-notification>
+<task-id>abc26fcafcef8765a</task-id>
+<tool-use-id>toolu_01NbvRWoGrJZ66FfSdMD4A9H</tool-use-id>
+<output-file>/tmp/claude-1000/-mnt-c-shared-wk-ontology-iacs/f65274af-1f16-4856-bf62-86f353c27605/tasks/abc26fcafcef8765a.output</output-file>
+<status>completed</status>
+<summary>Agent "Convert UI-SC91" completed</summary>
+<result>```yaml
+완료_보고:
+  파트: "UI-SC91-Rev.1-Corr.1-Nov-2020CLN__part01 (pages 1-1)"
+  변환_페이지_수: 1
+  추출_이미지_수: 0
+  삽입_이미지_수: 0
+  orphan_이미지: 0
+  첨자_발견: false
+  경계_잘림: "없음"
+  특이사항: "단일 페이지 문서. pdfimages 추출 결과 0개(래스터 이미지 없음, 문서 테두리 박스만 존재). 좌측 컬럼의 'SC91 (1993) (Rev.1 Dec 2005) (Corr.1 Nov 2020)'는 제목 우측에 병치된 개정이력이며 헤딩 하단 개정 메타로 배치. 우하단 'End of Document' 박스는 원문 보존."
+  사용_토큰:
+    입력_토큰: 9500
+    출력_토큰: 900
+    총_토큰: 10400
+  오케스트레이터_리마인드: "SKILL.md 절차 5b에 따라 후속 처리를 수행하라."
+```
+
+산출물:
+- `/home/kimghw/ontology_iacs/pdf2md_work/queue/sessions/f65274af-1f16-4856-bf62-86f353c27605/working/UI-SC91-Rev.1-Corr.1-Nov-2020CLN/part01.md`
+- `/mnt/c/shared_wk/ontology_iacs/agent_report.md` (append됨)</result>
+<usage><total_tokens>25470</total_tokens><tool_uses>6</tool_uses><duration_ms>47829</duration_ms></usage>
+</task-notification>
+
+## 2026-04-13 09:37:07
+
+<task-notification>
+<task-id>a4c05b34718b92673</task-id>
+<tool-use-id>toolu_01SWMZThtoTtpdxrafxspGUy</tool-use-id>
+<output-file>/tmp/claude-1000/-mnt-c-shared-wk-ontology-iacs/f65274af-1f16-4856-bf62-86f353c27605/tasks/a4c05b34718b92673.output</output-file>
+<status>completed</status>
+<summary>Agent "Convert UI-SC92" completed</summary>
+<result>변환 완료.
+
+```yaml
+완료_보고:
+  파트: "UI-SC92-Rev.1-Nov-2005__part01 (pages 1-1)"
+  변환_페이지_수: 1
+  추출_이미지_수: 0
+  삽입_이미지_수: 0
+  orphan_이미지: 0
+  첨자_발견: false
+  경계_잘림: "없음"
+  특이사항: "단일 파트(1페이지) 문서. pdfimages 추출 결과 0개(본문 내 raster/vector 이미지 없음; 상단 SC92 헤더와 하단 ◄◄ 네비게이션 기호는 폰트 글리프로 판단하여 본문 흐름과 무관한 머리말/꼬리말로 간주하여 제거). 표지 타이틀 블록의 'SC92 (Rev.1 Nov 2005)'는 제목에 통합."
+  사용_토큰:
+    입력_토큰: 0
+    출력_토큰: 0
+    총_토큰: 0
+  오케스트레이터_리마인드: "SKILL.md 절차 5b에 따라 후속 처리를 수행하라."
+```
+
+**해석·처리 보고**:
+- 모호하거나 정보가 부족한 요청 내용: 상단의 'SC92' 머리말과 하단 페이지 끝 '◄◄' 네비게이션 기호, 'IACS Int. 1993/Rev.1 2005' 푸터의 처리 기준이 명시되지 않음
+- 에이전트 해석: 'SC92' 상단 반복 머리말과 '◄◄' 기호는 페이지 머리말/꼬리말·네비게이션 요소로 판단. 'IACS Int. 1993/Rev.1 2005'는 개정이력 메타정보로 본문 말미에 보존
+- 실제 처리 방식: 상단 'SC92' 반복 헤더와 '◄◄' 기호는 제거, 'IACS Int. 1993/Rev.1 2005'는 본문 끝 평문으로 보존. 표지 타이틀은 H1으로 결합(is_first_part=true)
+- 문제점·위험: 타이틀 좌측 소형 'SC92 (Rev.1 Nov 2005)' 라벨을 제목 본문에 통합한 결정이 원문 시각 레이아웃과 완전히 일치하지 않을 수 있음
+- 심각도: 하
+
+산출물 경로:
+- /home/kimghw/ontology_iacs/pdf2md_work/queue/sessions/f65274af-1f16-4856-bf62-86f353c27605/working/UI-SC92-Rev.1-Nov-2005/part01.md</result>
+<usage><total_tokens>25225</total_tokens><tool_uses>7</tool_uses><duration_ms>52996</duration_ms></usage>
+</task-notification>
+
+## 2026-04-13 09:37:11
+
+<task-notification>
+<task-id>a7716dd660dc3eb99</task-id>
+<tool-use-id>toolu_01XPykSufB37ebdaWWLLcFbC</tool-use-id>
+<output-file>/tmp/claude-1000/-mnt-c-shared-wk-ontology-iacs/f65274af-1f16-4856-bf62-86f353c27605/tasks/a7716dd660dc3eb99.output</output-file>
+<status>completed</status>
+<summary>Agent "Convert UI-SC90" completed</summary>
+<result>변환 완료.
+
+**출력 파일**: `/home/kimghw/ontology_iacs/pdf2md_work/queue/sessions/f65274af-1f16-4856-bf62-86f353c27605/working/UI-SC90-Rev.1-Dec-2005CLN/part01.md`
+
+```yaml
+완료_보고:
+  파트: "UI-SC90-Rev.1-Dec-2005CLN__part01 (pages 1-1)"
+  변환_페이지_수: 1
+  추출_이미지_수: 0
+  삽입_이미지_수: 0
+  orphan_이미지: 0
+  첨자_발견: false
+  경계_잘림: "없음"
+  특이사항: "단일 파트(is_single_part=true). 페이지 1장에 SC90(Bilge Drainage)과 SC91(Personal Protection - Protective Clothing) 두 섹션이 포함되어 있어 문서 최상위 제목 'SC90-SC91'을 H1으로, 각 섹션을 H2로 배치. 페이지 하단 삼각형 마커(▼▼)는 페이지 이동 마커로 판단하여 제거. 반복 푸터(IACS Int. 1993/Rev.1 2005)는 개정 표식으로 보존. 이미지는 추출 결과 0개."
+  사용_토큰:
+    입력_토큰: 9500
+    출력_토큰: 900
+    총_토큰: 10400
+  오케스트레이터_리마인드: "SKILL.md 절차 5b에 따라 후속 처리를 수행하라."
+```
+
+**해석·처리 보고**:
+- 모호하거나 정보가 부족한 요청 내용: 페이지에 SC90, SC91 두 개의 독립 UI 섹션이 존재하며, 파일명은 SC90만 지시하지만 내용에는 SC91도 포함. 상단 "SC90-SC91"을 문서 제목으로 볼지 러닝 헤더로 볼지 모호.
+- 에이전트 해석: "SC90-SC91"을 문서 최상위 제목(H1)으로 간주하고, SC90/SC91을 각각 H2 섹션으로 처리. 하단 삼각형 마커(▼▼)는 내비게이션 표식으로 제거.
+- 실제 처리 방식: H1=`SC90-SC91`, H2=`SC90 Bilge Drainage`와 `SC91 Personal Protection - Protective Clothing`. 개정일자와 Reg. 참조는 각 섹션 하위에 배치. a)/b) 항목은 원문 순서·하위 단락 들여쓰기 보존.
+- 문제점·위험: "SC90-SC91"이 러닝 헤더일 경우 H1 처리가 원문 의도와 다를 수 있음. 이미지 0개로 `pdfimages` 추출 파일 없음.
+- 심각도: 하</result>
+<usage><total_tokens>25717</total_tokens><tool_uses>5</tool_uses><duration_ms>50151</duration_ms></usage>
+</task-notification>
+
+## 2026-04-13 09:37:14
+
+<task-notification>
+<task-id>aa69654756f2fedf2</task-id>
+<tool-use-id>toolu_01X1NJ8eypVc5LwriWhjwMyR</tool-use-id>
+<output-file>/tmp/claude-1000/-mnt-c-shared-wk-ontology-iacs/f65274af-1f16-4856-bf62-86f353c27605/tasks/aa69654756f2fedf2.output</output-file>
+<status>completed</status>
+<summary>Agent "Convert UI-SC9" completed</summary>
+<result>완료했습니다.
+
+```yaml
+완료_보고:
+  파트: "UI-SC9-New-1985__part01 (pages 1-1)"
+  변환_페이지_수: 1
+  추출_이미지_수: 0
+  삽입_이미지_수: 0
+  orphan_이미지: 0
+  첨자_발견: false
+  경계_잘림: "없음"
+  특이사항: "단일 파트 문서. 원문에 명시적 문서 제목이 없고 머리말 'SC7–SC9'를 대표 H1으로 사용. 각 섹션 말미의 '◄◄' 네비게이션 마크는 본문 흐름과 무관한 장식으로 간주하여 제거. 꼬리말 'IACS Int. 1985'는 연도/출처 정보이므로 본문 하단에 보존."
+  사용_토큰:
+    입력_토큰: 14500
+    출력_토큰: 900
+    총_토큰: 15400
+  오케스트레이터_리마인드: "SKILL.md 절차 5b에 따라 후속 처리를 수행하라."
+```
+
+산출 파일:
+- /home/kimghw/ontology_iacs/pdf2md_work/queue/sessions/f65274af-1f16-4856-bf62-86f353c27605/working/UI-SC9-New-1985/part01.md
+- /mnt/c/shared_wk/ontology_iacs/agent_report.md (append 완료)</result>
+<usage><total_tokens>25732</total_tokens><tool_uses>6</tool_uses><duration_ms>49789</duration_ms></usage>
+</task-notification>
+
+## 2026-04-13 09:37:34
+
+<task-notification>
+<task-id>ae003a8aa6b29d5d7</task-id>
+<tool-use-id>toolu_0172Ur2Qi2hXjZ3QjFLnVEEt</tool-use-id>
+<output-file>/tmp/claude-1000/-mnt-c-shared-wk-ontology-iacs/f65274af-1f16-4856-bf62-86f353c27605/tasks/ae003a8aa6b29d5d7.output</output-file>
+<status>completed</status>
+<summary>Agent "Convert UI-SC84" completed</summary>
+<result>작업 완료.
+
+```yaml
+완료_보고:
+  파트: "UI-SC84-Rev.2-Nov-2005CLN__part01 (pages 1-1)"
+  변환_페이지_수: 1
+  추출_이미지_수: 0
+  삽입_이미지_수: 0
+  orphan_이미지: 0
+  첨자_발견: false
+  경계_잘림: "없음"
+  특이사항: "단일 페이지 문서. 래스터 이미지 없음(pdfimages 결과 0). 원문 좌측 여백의 (Rev.1 ...)/(Rev.2 ...) 개정 표기는 각 섹션 제목 아래 평문으로 보존. 원문 본문 내 '◄◄' 화살표 장식은 본문 흐름과 무관한 페이지 구분 장식으로 판단하여 제거. 4개 섹션 제목(SC84~SC87)은 원문이 시각적으로 동급이므로 H2로 통일."
+  사용_토큰:
+    입력_토큰: 0
+    출력_토큰: 0
+    총_토큰: 0
+  오케스트레이터_리마인드: "SKILL.md 절차 5b에 따라 후속 처리를 수행하라."
+```
+
+출력 파일: /home/kimghw/ontology_iacs/pdf2md_work/queue/sessions/f65274af-1f16-4856-bf62-86f353c27605/working/UI-SC84-Rev.2-Nov-2005CLN/part01.md
+보고 append: /mnt/c/shared_wk/ontology_iacs/agent_report.md</result>
+<usage><total_tokens>26972</total_tokens><tool_uses>7</tool_uses><duration_ms>54374</duration_ms></usage>
+</task-notification>
+
+## 2026-04-13 09:40:20
+
+<ide_opened_file>The user opened the file /home/kimghw/ontology_iacs/.claude/skills/pdf2md/SKILL.md in the IDE. This may or may not be related to the current task.</ide_opened_file>
+현재 md 파일 변환되지 않은건?  /home/kimghw/ontology_iacs/UI
+
+## 2026-04-13 09:42:58
+
+현재 /pdf2md 를 사용핳면 md 파일로 변한되고 안된 파일을 식별하냐? 스킬에는 그게 없을 텐데,, 그걸 먼저 식별하고 작업할 수 있도록 업데이트 해줘.
+
+## 2026-04-13 09:44:19
+
+기능이 있으면 그냥 나둬
+
+## 2026-04-13 09:45:11
+
+/git
