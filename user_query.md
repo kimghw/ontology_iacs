@@ -4285,3 +4285,235 @@ Gemini MCP는 Codex와 달리 등록 시 모델을 고정하는 게 아니라, �
 
 <ide_opened_file>The user opened the file /home/kimghw/ontology_iacs/.claude/skills/md2wu/SKILL.md in the IDE. This may or may not be related to the current task.</ide_opened_file>
 커밋하고 푸쉬해줘
+
+## 2026-04-13 15:25:23
+
+/md2wu
+
+## 2026-04-13 15:25:51
+
+/md2wu /home/kimghw/ontology_iacs/UR/UR_Z_md  이거 처리하고 결과과정 정리해줘
+
+## 2026-04-13 15:27:15
+
+<ide_opened_file>The user opened the file /home/kimghw/ontology_iacs/.claude/skills/md2wu/SKILL.md in the IDE. This may or may not be related to the current task.</ide_opened_file>
+진행해줘
+
+## 2026-04-13 15:30:12
+
+지금 테스트 하는거야,  iacs UR 이 이 맞는듯.
+
+## 2026-04-13 15:33:19
+
+/cross_review 절차나 결과 검토하고 개선사항 있으면 알려줘, 무리하게 의견줄 필요는 없어
+
+## 2026-04-13 15:41:57
+
+1	Split WU가 32K 상한 초과	상	4개 대형 문서의 wu001이 chunk_max를 초과 (51K, 51K, 48K, 37K). 원인: L1 헤딩이 1개뿐이라 L2로 fallback하지만, L1 루트 자체가 split_headings에 포함되어 문서 전체 토큰이 첫 청크로 emit됨. SKILL.md의 "재귀 하향식 분할"과 "오버사이즈 리프 예외"가 미구현   -- 이해를 못하겠음
+
+## 2026-04-13 15:46:55
+
+그럼 L2 에서 분할하면 되지 32K 초과의 경우 32K 의 1.5 까진 분할하지 말고 예외로 둘것. 그리고 톤큰 설치해서 계산해 주고, 다만 분할 할 경우   16K 이하인 경우 예외로 두고 가급적 균등하게 분할 할 수 있도록 수정해줘,  그리고 다음 처리할 이슈정리해줘
+
+## 2026-04-13 16:10:47
+
+1번 균등인데... 가급적 L2 이하의 헤딩을 분할하지 말것. revision은 LLM이 판정ㅎ 추출, 4,5,6 구현해줘,  진행해줘
+
+## 2026-04-13 16:18:44
+
+heading 추출할때 파일 이름도 추출할거 아니냐? 그때 source family 랑 revision 함께 추출하면 되지 않냐?
+
+## 2026-04-13 16:20:36
+
+추출 지침을 추가 했냐?
+
+## 2026-04-13 16:28:01
+
+/md2wu /home/kimghw/ontology_iacs/UR/UR_Z_md 에 대해서 작업을 진행해 주세요.
+
+## 2026-04-13 16:35:41
+
+<ide_opened_file>The user opened the file /home/kimghw/ontology_iacs/.claude/skills/md2wu/SKILL.md in the IDE. This may or may not be related to the current task.</ide_opened_file>
+진행해줘.
+
+## 2026-04-13 16:48:34
+
+네 ,, 그렇면  /home/kimghw/ontology_iacs/prerequisite  이게 상당히 심플하게 되네
+
+## 2026-04-13 16:52:24
+
+<ide_opened_file>The user opened the file /home/kimghw/ontology_iacs/.claude/skills/md2wu/SKILL.md in the IDE. This may or may not be related to the current task.</ide_opened_file>
+md2wu 스킬   -- 이것만 있으면 되는거잖아
+
+## 2026-04-13 16:53:16
+
+step1_document_split.md (입력·정규화·분할)  이 과정은  pdf2md 하니깐 할게 없는 거지?
+
+## 2026-04-13 16:55:41
+
+/home/kimghw/ontology_iacs/.claude/skills/md2wu 여기에 사용되는 스크립트들은 저기 아래에 유지해야 되는거 아닌가
+
+## 2026-04-13 17:00:39
+
+<ide_opened_file>The user opened the file /home/kimghw/ontology_iacs/.claude/skills/md2wu/stage7_manifest.py in the IDE. This may or may not be related to the current task.</ide_opened_file>
+heading 프로파일은   source 단위로 관리하면 좋을듯 하나의 파일에.
+
+## 2026-04-13 17:03:51
+
+<ide_opened_file>The user opened the file /home/kimghw/ontology_iacs/.claude/skills/md2wu/SKILL.md in the IDE. This may or may not be related to the current task.</ide_opened_file>
+헤딩 프로파일은 LLM으로 추출하냐? 아님 스크립트로 추출하냐?
+
+## 2026-04-13 17:05:34
+
+wu 결과가 어디 나옴?
+
+## 2026-04-13 17:10:26
+
+<ide_opened_file>The user opened the file /home/kimghw/ontology_iacs/results/temp/pre/wu-ur_z10_3_rev21_en__pre__meta.json in the IDE. This may or may not be related to the current task.</ide_opened_file>
+results 에 source type 별로  wu 넣고, 중간 결정사항이나 이런 록들도 거기에 넣고,  그리고 병합한 경우에고  문서 타입은 남아 있을거 같고. 그리고 이런 json은 파일 하나로 두면 될거 같고  실제 wu 파일이 들어가 있어야지. 다시 하면 temp.. dkslrh  results/iacs/ur 에  meta.json 과 wu.md 파일이 있어야지.
+
+## 2026-04-13 17:13:54
+
+<ide_opened_file>The user opened the file /home/kimghw/ontology_iacs/.claude/skills/md2wu/SKILL.md in the IDE. This may or may not be related to the current task.</ide_opened_file>
+.. result 폴더 지원도 되지?
+
+## 2026-04-13 17:14:12
+
+삭제해도 되지?
+
+## 2026-04-13 17:15:58
+
+/md2wu /home/kimghw/ontology_iacs/UR/UR_Z_md
+
+## 2026-04-13 17:16:21
+
+/home/kimghw/ontology_iacs/.claude/skills/md2wu/SKILL.md  이건 md 파일에 대한 작업만 수행함
+
+## 2026-04-13 17:17:01
+
+/home/kimghw/ontology_iacs/.claude/skills/md2wu/SKILL.md  여기서 헤딩 추출하고 분배할때 스크립트로 처리 하냐?
+
+## 2026-04-13 17:22:09
+
+/home/kimghw/ontology_iacs/.claude/skills/md2wu/SKILL.md  이 스킬의 임시파일및 결과 값은 skill_{스킬이름} 으로 하자
+
+## 2026-04-13 17:27:23
+
+<ide_opened_file>The user opened the file /home/kimghw/ontology_iacs/results/doc-z19_rev0_en__heading__chunk_plan.json in the IDE. This may or may not be related to the current task.</ide_opened_file>
+wu 단위로 파일을 출력하고 나머진 temp 파일에 넣어야지.. 왜 다 result 아래 두냐.
+
+## 2026-04-13 17:29:57
+
+<ide_opened_file>The user opened the file /home/kimghw/ontology_iacs/results/wu-merge_4862dc36__pre__meta.json in the IDE. This may or may not be related to the current task.</ide_opened_file>
+아니.. 일단 wu-merge 라고 하면  내가 무슨 파일인지 어떻게 아냐?  wu-{authority}-{source type}... 이정도는 넣어줘야지. 그리고  /home/kimghw/ontology_iacs/results/wu-merge_4862dc36__pre__meta.json
+/home/kimghw/ontology_iacs/results/wu-merge_83062027__pre__meta.json
+/home/kimghw/ontology_iacs/results/wu-merge_b190711c__pre__meta.json
+/home/kimghw/ontology_iacs/results/wu-z7_rev29_corr1_en__pre__meta.json
+/home/kimghw/ontology_iacs/results/wu-z10_1_rev25_en__pre__meta.json
+/home/kimghw/ontology_iacs/results/wu-z10_2_rev37_en__pre__meta.json
+/home/kimghw/ontology_iacs/results/wu-z10_3_rev21_en__pre__meta.json
+/home/kimghw/ontology_iacs/results/wu-z10_4_rev18_en_wu001__pre__meta.json
+/home/kimghw/ontology_iacs/results/wu-z10_4_rev18_en_wu002__pre__meta.json
+/home/kimghw/ontology_iacs/results/wu-z10_5_rev20_en__pre__meta.json
+/home/kimghw/ontology_iacs/results/wu-z17_rev20_en__pre__meta.json
+/home/kimghw/ontology_iacs/results/wu-z23_rev7_corr2_en__pre__meta.json  이런건 임시파일로 넣고.. 실제 wu로 변환된 md 파일을 꺼내놔야지.
+
+## 2026-04-13 17:33:20
+
+스킬에 내용이 반영되어 있냐고,  이슈 보고서는  최종산출물로 해줘
+
+## 2026-04-13 17:37:15
+
+/home/kimghw/ontology_iacs/results  이거 삭제 하고 다시 작업해봐,, 요청한 대로 나오는지
+
+## 2026-04-13 17:42:09
+
+<ide_selection>The user selected the lines 1 to 26 from /home/kimghw/ontology_iacs/results/corpus__md2wu__issue_gate_report.json:
+[
+  {
+    "wu_key": "iacs_ur_z10_1_rev25_en",
+    "issue_type": "oversize_exception",
+    "severity": "INFO",
+    "est_tokens": 32450,
+    "threshold": 32000,
+    "message": "WU tokens (32450) > upper bound (32000) but ≤ 1.5× — exception"
+  },
+  {
+    "wu_key": "iacs_ur_z10_2_rev37_en",
+    "issue_type": "oversize_exception",
+    "severity": "INFO",
+    "est_tokens": 45717,
+    "threshold": 32000,
+    "message": "WU tokens (45717) > upper bound (32000) but ≤ 1.5× — exception"
+  },
+  {
+    "wu_key": "iacs_ur_z10_5_rev20_en",
+    "issue_type": "oversize_exception",
+    "severity": "INFO",
+    "est_tokens": 47844,
+    "threshold": 32000,
+    "message": "WU tokens (47844) > upper bound (32000) but ≤ 1.5× — exception"
+  }
+]
+
+This may or may not be related to the current task.</ide_selection>
+[
+  {
+    "wu_key": "iacs_ur_z10_1_rev25_en",
+    "issue_type": "oversize_exception",
+    "severity": "INFO",
+    "est_tokens": 32450,
+    "threshold": 32000,
+    "message": "WU tokens (32450) > upper bound (32000) but ≤ 1.5× — exception"
+  },
+  {
+    "wu_key": "iacs_ur_z10_2_rev37_en",
+    "issue_type": "oversize_exception",
+    "severity": "INFO",
+    "est_tokens": 45717,
+    "threshold": 32000,
+    "message": "WU tokens (45717) > upper bound (32000) but ≤ 1.5× — exception"
+  },
+  {
+    "wu_key": "iacs_ur_z10_5_rev20_en",
+    "issue_type": "oversize_exception",
+    "severity": "INFO",
+    "est_tokens": 47844,
+    "threshold": 32000,
+    "message": "WU tokens (47844) > upper bound (32000) but ≤ 1.5× — exception"
+  }
+]   이건 뭐가 이슈라는 거야?
+
+## 2026-04-13 17:42:46
+
+단계별로 작성할때  LLM 이 애매모호한 상태에서 판정한 그런것도 있지 않냐?
+
+## 2026-04-13 17:45:08
+
+/home/kimghw/ontology_iacs/results/corpus__md2wu__issue_gate_report.json
+/home/kimghw/ontology_iacs/results/corpus__pre__manifest.json  이건 작업이 여러번 진행될거 같아서.  이름..에 식별자가 붙어야 할거 같긴함
+
+## 2026-04-13 17:50:00
+
+pdf2md 처럼  md2wu 도 배치단위로 처리 하고 싶거든? 다만, 몇개의 파일을 작업해야할지 감이 잡히지 않은데 일단 헤딩/토큰까진 기계적으로 추출하고  600K 코느 기준을 1개 배치로 해서 처리할까? 이것도 작업할땐 글로벌 락이나 session 정보를 고려해야 겠지
+
+## 2026-04-13 18:00:51
+
+근데 이게 LLM으로 직접 처리할건 사실 많지 않잖아?
+
+## 2026-04-13 18:02:14
+
+이슈 정리나 처리는 ?  LLM이 하질 않네? 단순 임계값만 아니라 중간에 애매모호한게 있을텐데
+
+## 2026-04-13 18:02:58
+
+사실 별개 없나 싶기도 하고
+아마  큐기반으로 작업을 하게 되면 여기서 이슈가 좀 나올 수도 있을거 같아
+
+## 2026-04-13 18:03:34
+
+/toolkit_git
+
+## 2026-04-13 18:03:57
+
+/git

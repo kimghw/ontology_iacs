@@ -59,9 +59,11 @@ All output filenames follow a 3-part pattern separated by double underscores (`_
 
 | Path | Purpose |
 |:---|:---|
-| `results/temp/pre/` | Temporary output (before approval) |
-| `results/temp/pre/documentSplits/` | documentSplit temporary output (discarded after merge) |
-| `results/` | Permanent output (promoted after approval) |
+| `skill_{skill_name}/` | Per-skill output root (e.g., `skill_md2wu/`, `skill_pdf2md/`) |
+| `skill_{skill_name}/temp/pre/` | Intermediate output (TSV, chunk plans, classification) |
+| `skill_{skill_name}/queue/locks/` | Global lock files (corpus-scope, O_CREAT\|O_EXCL) |
+| `skill_{skill_name}/queue/sessions/` | Per-session scan index, batch plan, batch status |
+| `results/` | Legacy / cross-skill permanent output |
 | `results/grammars/` | Finalised heading grammar |
 | `results/grammars/staging/` | Grammar candidate (unfinalised, not reusable) |
 

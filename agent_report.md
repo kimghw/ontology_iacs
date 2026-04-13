@@ -1,3 +1,17 @@
+## 2026-04-13 - md2wu: UR Z 시리즈 35개 파일 PRE 파이프라인
+
+- **모호/부족한 요청**: 없음. `/md2wu /home/kimghw/ontology_iacs/UR/UR_Z_md` 명확한 경로 지정.
+- **해석**: 폴더 내 35개 .md 파일 전체를 Stage 1~7 PRE 파이프라인 일괄 처리.
+- **처리**:
+  - Stage 1-2: 헤딩 추출 + 토큰 측정 (35 파일, 1,493 헤딩, 가산성 오류 0건)
+  - Stage 3: Source Family → IACS UR/UI/Rec/PR (기존 정의, 사용자 승인)
+  - Stage 4: Authority=IACS, DocType=UR, 전 문서 분류 완료
+  - Stage 5-6: 청크 계획 + WU 패킹 → 12 WU (Standalone 7, Split 2, Merged 3)
+  - Stage 7: Issue gate INFO 3건 (z10.1/z10.2/z10.5 oversize_exception), HIGH 0건 → proceed
+- **발생 문제**:
+  1. doc_instance_key 생성 불일치 — 파일명 기반 vs L1 헤딩 기반으로 Z번호 추출 결과가 달랐음 (z104 vs z10_4). L1 헤딩 우선으로 보정 적용. 심각도: 중
+  2. 일부 파일명에 revision dot 포함 (Rev.10) 시 기존 정규식 매칭 실패 → regex 보정. 심각도: 하
+
 ## 2026-04-08 - step3_workunit_packing_ko.md 151-200 줄 번역 요청
 
 - **모호/부족한 요청**: 사용자는 "영문 파일의 151-200줄을 _ko 사본에 in place로 번역"하라고 지시했으나, 영문 파일(274줄)과 한글 파일(227줄)은 줄 번호가 1:1로 정렬되어 있지 않음. 또한 _ko 파일의 해당 영역은 이미 한국어로 번역되어 있었음.
