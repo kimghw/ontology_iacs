@@ -4578,3 +4578,17 @@ pdf2md 처럼  md2wu 도 배치단위로 처리 하고 싶거든? 다만, 몇개
 ## 2026-04-16 11:33:11
 
 /git
+
+## 2026-04-16 12:52:54
+
+<ide_opened_file>The user opened the file /mnt/c/shared_wk/ontology_iacs/.claude/skills/md2wu/SKILL.md in the IDE. This may or may not be related to the current task.</ide_opened_file>
+md2wu/SKILL.md   -- 이게 적용되었나?
+
+## 2026-04-16 12:54:09
+
+/git
+
+## 2026-04-16 12:55:16
+
+<ide_opened_file>The user opened the file /home/kimghw/ontology_iacs/agent_report.md in the IDE. This may or may not be related to the current task.</ide_opened_file>
+2
