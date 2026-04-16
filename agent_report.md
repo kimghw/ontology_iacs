@@ -17334,3 +17334,25 @@
 - 상: 없음
 - 중: 1건 (200K vs 600K 런타임 결정)
 - 하: 2건
+
+## 2026-04-17 — md2wu: UR 전량 실행 시 phase_b 스킵 버그 수정 + 71개 락 해제
+
+### 모호/부족 요청
+- `/md2wu /home/kimghw/ontology_iacs/UR` 수행 중 이전 세션(`e50248bd`)이 이미 완료한 UR_S(36) + UR_Z(35) 71개 아이템을 재-claim했다.
+
+### 해석
+- SKILL.md §Final Artifacts(F2/T5)는 WU 중간 메타(`wu-*__pre__meta.json`)를 전역 경로로 승격하지 **않는다**(`corpus-*__pre__manifest.json.work_units[]`로 흡수). 그러나 `phase_b_plan.py`의 B-0 스킵 로직은 `meta.exists()`를 전제했기 때문에 완료된 WU도 "미처리"로 판정되어 다시 claim됨.
+- SKILL.md §session-queue §5 정본 규칙: `item_id` 매핑된 모든 `wu_key`에 대해 ① `wu-{wu_key}__pre__content.md` 존재·비영 + ② `corpus-{scope}__pre__manifest.json.work_units[]`에 `wu_key` 등재.
+
+### 처리
+1. 첫 실행에서 잘못 생성된 71개 락(`queue/locks/iacs_ur_{s,z}*_en.lock`) 모두 해제(owner=adb03b90 확인 후 unlink).
+2. 세션 로컬 `pending/`·`working/`·`plans/batch_plan.json` 초기화.
+3. `phase_b_plan.py` B-0 로직 수정: meta.json 요구 제거, 대신 해당 scope의 manifest.work_units[]에 wu_key가 등재되었는지 확인.
+4. 재실행 후 B001: 209 items / 446,968 tokens (A,C,D,E,F,G,H,I,K,L,M,N,P,W 14개 series) claim, S·Z 71개 정상 skip.
+
+### 위험
+- 심각도: 中. 만약 감지 못 하고 Phase C까지 진행했다면 동일 item에 대해 WU를 재생성하여 기존 corpus-iacs_ur_{s,z}__pre__manifest.json·wu-*__pre__content.md를 덮어쓰거나 중복 item_index 엔트리가 발생할 수 있었음.
+- 다른 스킬·세션 영향: phase_b_plan.py 수정은 기존 로직이 SKILL.md 스펙과 불일치하던 부분을 정본에 맞춘 것이라 downstream 영향 없음. 추후 전량 재실행 시 올바르게 스킵될 것.
+
+### 심각도
+- 中
