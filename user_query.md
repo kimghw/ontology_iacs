@@ -4517,3 +4517,64 @@ pdf2md 처럼  md2wu 도 배치단위로 처리 하고 싶거든? 다만, 몇개
 ## 2026-04-13 18:03:57
 
 /git
+
+## 2026-04-16 10:01:11
+
+/toolkit_git
+
+## 2026-04-16 10:02:34
+
+/toolkit_git push
+
+## 2026-04-16 10:03:01
+
+<ide_opened_file>The user opened the file /home/kimghw/ontology_iacs/.claude/commands/toolkit_git.md in the IDE. This may or may not be related to the current task.</ide_opened_file>
+. toolkit_git.md 이거 기본을 push 하는 걸로 해줘 인자 없이 할때
+
+## 2026-04-16 10:13:38
+
+/cross_review
+
+## 2026-04-16 10:14:57
+
+/cross_review /home/kimghw/ontology_iacs/.claude/skills/pdf2md
+/home/kimghw/ontology_iacs/.claude/skills/md2wu  여기 보면 세션간 작업을 위해서 배치 선택하고 큐에 넣고 중복안되게 하는거 있잖아? 이 부분만 추출해서 향후에 스킬로 해서 이 기능을 추가하고 싶은데  이걸 스킬로 만들어 줄래? 다만 저 작업내용이 들어 가면 안됨.. 스킬 이어야 함
+
+## 2026-04-16 10:24:41
+
+<ide_opened_file>The user opened the file /home/kimghw/ontology_iacs/.claude/skills/skill-authoring/SKILL.md in the IDE. This may or may not be related to the current task.</ide_opened_file>
+네 진행해주세요.
+
+## 2026-04-16 10:29:31
+
+<ide_opened_file>The user opened the file /home/kimghw/ontology_iacs/.claude/skills/session-queue/SKILL.md in the IDE. This may or may not be related to the current task.</ide_opened_file>
+너가 볼땐 이 skill 이 어때? 어떠 작업이 있을때  queue 로 수정하기 좋은 스킬이라고 보나?
+
+## 2026-04-16 10:30:11
+
+후크관련된 스크립트도 skill에 두나?
+
+## 2026-04-16 10:46:56
+
+<ide_opened_file>The user opened the file /home/kimghw/ontology_iacs/.claude/skills/session-queue/SKILL.md in the IDE. This may or may not be related to the current task.</ide_opened_file>
+지금 session-queue 도 심볼릭으로 되어 있지?
+
+## 2026-04-16 10:47:43
+
+근데 파일은 심볼릭이 아닌거 같은데. 폴더가 심볼릭이면 파일도 심볼릭이 되는 건가?
+
+## 2026-04-16 10:51:57
+
+/cross_review /home/kimghw/ontology_iacs/.claude/skills/skill-authoring  이게 스킬 개발할때 지침인데.. claude 에서 스킬 메뉴얼 있는데 이거 반영해서 이거 업데이트 해줄래?
+
+## 2026-04-16 11:26:20
+
+/toolkit_git
+
+## 2026-04-16 11:32:23
+
+../toolkit_git gkfEosms 심볼릭 대상과 현재 프로젝트 내용을 모두 반영하도록 해줘. 지금 보니깐 애매하게되어 있네
+
+## 2026-04-16 11:33:11
+
+/git
