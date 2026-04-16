@@ -4592,3 +4592,251 @@ md2wu/SKILL.md   -- 이게 적용되었나?
 
 <ide_opened_file>The user opened the file /home/kimghw/ontology_iacs/agent_report.md in the IDE. This may or may not be related to the current task.</ide_opened_file>
 2
+
+## 2026-04-16 12:56:55
+
+/home/kimghw/ontology_iacs/.claude/skills/md2wu  여기에서 md 파일 단위로 처리 하도록 되어 있나?
+
+## 2026-04-16 12:59:00
+
+/home/kimghw/ontology_iacs/UR  .. 이거 skill 적용하며 내가 기대하는건,  600K 토큰 한도내에서 md파일을 선별하고 다만, 소스패밀리여야 하고, 그리고 선택된 파일 내에서 배치로 나눠서 작업하는거 맞지?
+
+## 2026-04-16 13:01:49
+
+그럼 다른 세션에서 동일한 스킬을 사용했을때, reserved 를 확인하고 작업하도록 되어 있냐?
+
+## 2026-04-16 13:03:06
+
+첫번째에서 lock을 잡을거 아냐..  글로벌 락이 있잔아
+
+## 2026-04-16 13:03:56
+
+reserved는 아무 의미 없고,  글로벌 락만 있으며노디겠네
+
+## 2026-04-16 13:04:17
+
+/home/kimghw/ontology_iacs/.claude/skills/session-queue/SKILL.md  여기에서 작업할때 제공된 파일에서 최대 세션처리량과 세션내에서 배치처리 절차가 기술되어 있나?
+
+## 2026-04-16 13:04:49
+
+/home/kimghw/ontology_iacs/UR  이걸 skill 적용하면 작업 설명해줘봐
+
+## 2026-04-16 13:08:25
+
+<ide_opened_file>The user opened the file /home/kimghw/ontology_iacs/.claude/skills/session-queue/SKILL.md in the IDE. This may or may not be related to the current task.</ide_opened_file>
+15개 시리즈의 모든 .md 파일을 서브에이전트 병렬(최대 5개)로 S1-2 처리   -- 이걸 왜 병렬로 처리하지?
+
+## 2026-04-16 13:10:19
+
+<ide_opened_file>The user opened the file /home/kimghw/ontology_iacs/.claude/skills/md2wu/SKILL.md in the IDE. This may or may not be related to the current task.</ide_opened_file>
+여기서는 결과 나오는 것을 에이전트가 처리할 뿐이지 주요 작업은 다 스크립트 기반이야
+
+## 2026-04-16 13:10:52
+
+스킬을 업데이트 해줘
+
+## 2026-04-16 13:15:55
+
+/home/kimghw/ontology_iacs/.claude/skills/md2wu/stage7_manifest.py
+/home/kimghw/ontology_iacs/.claude/skills/md2wu/stage12_heading_tokens.py
+/home/kimghw/ontology_iacs/.claude/skills/md2wu/stage56_chunk_wu.py  이거 스테이지 1,2,3  으로 변경해줘.
+
+## 2026-04-16 13:21:07
+
+/home/kimghw/ontology_iacs/.claude/skills/md2wu/SKILL.md  여기 내부가 파일 스테이지랑 헷깔릴 수 있음
+
+## 2026-04-16 13:22:05
+
+<ide_opened_file>The user opened the file /home/kimghw/ontology_iacs/.claude/skills/md2wu/SKILL.md in the IDE. This may or may not be related to the current task.</ide_opened_file>
+a로 해줘.
+
+## 2026-04-16 13:28:03
+
+/cross_review /home/kimghw/ontology_iacs/.claude/skills/md2wu/SKILL.md 스킬이 좀 과하게 작성된 부분이 있는거 같은데 일단 기본적으로 출력파일 형식이랑 이런건 맞아야. 다른 세션과 협업이 가능하니깐 이점 참고해서 검토해줘
+
+## 2026-04-16 13:38:00
+
+<ide_opened_file>The user opened the file /home/kimghw/ontology_iacs/.claude/skills/md2wu/SKILL.md in the IDE. This may or may not be related to the current task.</ide_opened_file>
+합의한 내용 수정해줘. 계획세우고 비슷한 것끼리 묶고, 멀티에이전트로 처리해줘.
+
+## 2026-04-16 13:41:24
+
+<task-notification>
+<task-id>a472e6eb6812309bf</task-id>
+<tool-use-id>toolu_01EXuYoby1xgub1t8eLMSy7X</tool-use-id>
+<output-file>/tmp/claude-1000/-mnt-c-shared-wk-ontology-iacs/6e382c6b-968f-433a-bced-7b69663f70e7/tasks/a472e6eb6812309bf.output</output-file>
+<status>completed</status>
+<summary>Agent "Group B: merged WU skip logic" completed</summary>
+<result>파치 파일 작성 완료.
+
+## 반환 내용
+
+**파일 경로**: `/home/kimghw/ontology_iacs/skill_md2wu/reviews/patches/patch_B_merged_skip.md`
+
+**편집 개수**: 3건
+
+**각 편집 요약**:
+1. **Edit 1 (line 252-253)** — Phase B-0 스킵 판정을 `wu-&lt;item_id&gt;*__pre__{meta,content}` 와일드카드에서 `item_index.json` 키 조회 기반으로 재작성. Merged WU에 포함된 원본 item도 감지되도록 절차 4단계로 명시.
+2. **Edit 2 (line 312)** — §9 통합 선언 표의 "스킵 판정" 행을 `item_index.json` 기반으로 갱신. 모든 WU 유형(standalone/split/merged) 일관 판정 명시.
+3. **Edit 3 (line 383)** — 산출물 카탈로그 F섹션에 `F4` 행 추가: `corpus-{scope}__pre__item_index.json` (item_id → wu_key 매핑, publishing 시 `constituent_docs[].doc_instance_key` 수집으로 생성).
+
+**선택한 설계 안**: **안 1 (item_index.json 신설)**
+
+**근거**: (1) 매 세션 기동마다 전역 meta.json 전량 스캔이 필요한 안 2와 달리 안 1은 단일 JSON O(1) 조회로 확장성 확보. (2) 다운스트림의 item↔wu 역조회 수요도 동일 파일로 해결 가능해 SSOT 관점에서 명시적 매핑이 유리.
+
+**담당 라인 범위 준수**: Stage 7 본문(213-224)과 디렉토리 구조(339)는 건드리지 않음 (Group A 담당). `wu-{wu_key}__pre__*` 파일명 표기는 이미 합의된 형태로 사용 (이중 접두사/SSOT 통일은 Group C/D 영역).</result>
+<usage><total_tokens>42207</total_tokens><tool_uses>10</tool_uses><duration_ms>68218</duration_ms></usage>
+</task-notification>
+
+## 2026-04-16 13:41:43
+
+<task-notification>
+<task-id>ac60eebe69c57235b</task-id>
+<tool-use-id>toolu_01SsHwJQQ7FdGzmFuintDkEL</tool-use-id>
+<output-file>/tmp/claude-1000/-mnt-c-shared-wk-ontology-iacs/6e382c6b-968f-433a-bced-7b69663f70e7/tasks/ac60eebe69c57235b.output</output-file>
+<status>completed</status>
+<summary>Agent "Group A: filename SSOT patch" completed</summary>
+<result>파치 작성 완료. SKILL.md는 건드리지 않았고, 파치 파일만 작성했습니다.
+
+## 처리 보고
+
+### 파치 파일 경로
+- `/home/kimghw/ontology_iacs/skill_md2wu/reviews/patches/patch_A_filename_ssot.md`
+
+### 편집 개수
+**8개** (요약 표의 #7 디렉토리 구조 340-341은 이미 `corpus-&lt;scope&gt;__*` 표기가 올바르게 되어 있어 #6에서 `wu-&lt;item_id&gt;` → `wu-{wu_key}` 수정과 함께 블록 단위로 한 번에 처리했으므로 총 8개).
+
+### 각 편집 한 줄 요약
+
+1. **Edit 1 (line 28)**: 용어표 `item_id`·`doc_instance_key` 행에 "동일 값이며 `{authority}_{doc_type}_` 접두사를 이미 포함한다" 명시, 예시에서 접두사 부분 분해 표기 추가 (이중 접두사 해소의 정의 근거).
+2. **Edit 2 (line 171-179)**: WU_Key 규칙에서 `{authority}_{doc_type}_` 추가 접두사 제거. Standalone = `{item_id}`, Split = `{item_id}_wu{NNN}`, Merged만 접두사 직접 부여 (원본 item 없으므로).
+3. **Edit 3 (line 181)**: Stage 6 산출물 — 세션 로컬/전역 경로 이원화 명시.
+4. **Edit 4 (line 213)**: Stage 7 이슈 보고서 파일명 → `corpus-{scope}__md2wu__issue_gate_report.json`, scope 정의 명시.
+5. **Edit 5 (line 224)**: Stage 7 최종 매니페스트 → `corpus-{scope}__pre__manifest.json`, 세션 로컬은 scope 생략 허용.
+6. **Edit 6 (line 339-341)**: 디렉토리 구조 최종 산출물 블록 3줄 — `wu-&lt;item_id&gt;` → `wu-{wu_key}`, scope 설명 보강.
+7. **Edit 7 (line 395)**: T5 — `wu-&lt;item_id&gt;__pre__meta.json` → `wu-{wu_key}__pre__meta.json`, wu_key 세 유형 인라인 기술.
+8. **Edit 8 (line 549-550)**: 완료조건 #7·#8 → scope 접두사 추가.
+
+### 유일성 검증
+8개 OLD 블록 전부 SKILL.md에서 1회만 매칭됨을 Grep으로 확인.
+
+### 담당 외 구역 미침범 확인
+- Stage 1 산출물(line 84 `doc-{doc_instance_key}__heading__structure.tsv`), Stage 4 분류결과(117), Stage 5 청크계획(150) 등 다른 그룹 관할은 건드리지 않음.
+- 용어표의 30-31행 깨짐(`source_family`, `series` 복구)은 P1 합의 사항이나 그룹 A 범위 외라 별도 그룹에 위임.
+- session-queue §9 선언(299-318)의 스킵 판정·락 메커니즘 관련 파일명도 다른 그룹 관할.
+
+### 해석·처리 주의점
+- **합의안의 핵심 권고 (a) vs (b)** 중 본 파치는 **(b) `item_id = doc_instance_key`로 동일하게 두고 WU_Key 규칙에서 접두사 추가 삭제** 를 채택. 이유: 이미 실산출물 파일명(`iacs_ur_z10_3_rev21_en`)이 접두사 1회만 포함되어 (b)가 실동작·기존 item_id 정의와 정합.
+- 세션 로컬 중간본은 scope 없는 `corpus__*` 허용, 최종본(publishing 이후)만 `corpus-{scope}__*` 강제 — 합의안 "정답 원칙"에 맞춤.</result>
+<usage><total_tokens>46253</total_tokens><tool_uses>20</tool_uses><duration_ms>108033</duration_ms></usage>
+</task-notification>
+
+## 2026-04-16 13:42:00
+
+<task-notification>
+<task-id>a6c78b7cd976184fb</task-id>
+<tool-use-id>toolu_01MAbYaESaqKta9pZuVndZX4</tool-use-id>
+<output-file>/tmp/claude-1000/-mnt-c-shared-wk-ontology-iacs/6e382c6b-968f-433a-bced-7b69663f70e7/tasks/a6c78b7cd976184fb.output</output-file>
+<status>completed</status>
+<summary>Agent "Group C: terms/refs/title fixes" completed</summary>
+<result>Patch file created. Returning the summary.
+
+---
+
+**작업 완료 보고**
+
+**파치 파일 경로**: `/home/kimghw/ontology_iacs/skill_md2wu/reviews/patches/patch_C_terms.md`
+
+**편집 개수**: 11개
+
+**편집 한 줄 요약**:
+1. Line 30: 용어표 `source_family` 행 복구 (예시 `iacs_ur`/`iacs_ui`/`imo_solas`, 역할 "배치 그룹화 1차 키")
+2. Line 31: 용어표 `series` 행 복구 (예시 `Z10`/`E26`/`S-series`, 역할 "배치 그룹화 2차 키")
+3. Line 36-38: 용어표 주석에 "`series_group`은 `series`의 이전 명칭" 동의어 선언 추가
+4. Line 165: 병합 제약 `series_group` → `series`
+5. Line 244: `scan_index.json` 스키마 `series_group` → `series`
+6. Line 260: Phase B-2 "2차 그룹" 설명 `series_group` → `series`
+7. Line 265: Phase B-3 NFD `(source_family, series_group)` → `(source_family, series)`
+8. Line 284: `batch_plan.json` 필드명 `series_groups[]` → `series_keys[]` (복수형 필드 재명명)
+9. Line 307: session-queue §9 작업 파일 스키마 `series_group` → `series`
+10. Line 143: Stage 5 오버사이즈 리프 예외 `§3.3` → `Stage 7`
+11. Line 228: 실행 아키텍처 제목 `2-Phase` → `3-Phase 배치 처리 (Phase A/B/C)`
+
+**`series_group → series` 치환 개수**: **6곳** (편집 #4~9). 원 지시에 명시된 5곳(165, 244, 260, 265, 284)에 더해 라인 307(session-queue §9 통합 선언의 작업 파일 스키마)도 동일한 `series_group` 표기이므로 일관성을 위해 포함. #8은 복수형 필드명 `series_groups[]`이므로 단순 치환 대신 `series_keys[]`로 재명명.
+
+**주요 판단 사항**:
+- 용어 통일 방향은 지시대로 `series`를 정본으로 채택, `series_group`은 이전 명칭으로 용어표 주석에 명시.
+- **라인 307 포함 결정**: 담당 범위(165/244/260/265/284) 밖이지만 동일한 `series_group` 표기이고 동일 근거이므로 일관성 차원에서 포함. 제외 시 문서 내 유일한 `series_group` 잔존이 되어 통일 목적 훼손.
+- **코드는 건드리지 않음**: CLAUDE.md 지침 및 작업 지시대로 문서만 통일하고, `coord_series.py` 등의 실제 키 참조는 후속 리팩토링 과제로 주의 사항에 명시.
+- **다른 그룹 충돌 없음**: A/B/D 담당 라인(파일명 SSOT, 이중 접두사, 기타)은 건드리지 않음 확인.</result>
+<usage><total_tokens>43466</total_tokens><tool_uses>6</tool_uses><duration_ms>85727</duration_ms></usage>
+</task-notification>
+
+## 2026-04-16 13:42:49
+
+<task-notification>
+<task-id>ac21cf55eccf2a89e</task-id>
+<tool-use-id>toolu_01JYdW1WdrkH8zTxpDAPMjXN</tool-use-id>
+<output-file>/tmp/claude-1000/-mnt-c-shared-wk-ontology-iacs/6e382c6b-968f-433a-bced-7b69663f70e7/tasks/ac21cf55eccf2a89e.output</output-file>
+<status>completed</status>
+<summary>Agent "Group D: verbosity reduction" completed</summary>
+<result>패치 파일 작성 완료.
+
+## 처리 보고
+
+**파치 파일**: `/home/kimghw/ontology_iacs/skill_md2wu/reviews/patches/patch_D_verbosity.md`
+
+**편집 개수**: 5개
+
+**편집별 한 줄 요약**:
+1. **Edit 1 (Line 274 근처)**: `reserved_for_other_session` 필드가 세션 로컬 관찰성 기록이며 실제 조율은 글로벌 락(`EEXIST`) + 산출물 스킵 판정뿐임을 1줄 명시 추가.
+2. **Edit 2 (§9 통합 선언 표, Line 299-311+313-318)**: 표 16행을 9행으로 축약. 공통 규약(작업 파일 스키마, `cost` 단위, `&lt;terminal_phase&gt;`, §7 정리 경로, 크래시 복구, 패킹 전략, `total_capacity`)은 session-queue §3·§6·§7·§9 참조로 대체. md2wu 고유 값(`workroot`, `item_id`, `batch_capacity`, `session_capacity`, 스킵 판정, `&lt;caller_dirs&gt;`, 보고 채널)만 보존. **Line 312 "스킵 판정" 행은 원문 그대로 유지**.
+3. **Edit 3 (락 메커니즘 표, Line 346-358)**: 표 9행을 3행으로 축약. 공통 규약(생성, 내용, 상태 갱신, 해제, stale 임계, 실패 처리)은 session-queue §3 참조로 대체. md2wu 고유 값(락 단위, 파일 경로, 상태 전이 시퀀스)만 보존.
+4. **Edit 4 (Stage 3 승인 프로토콜, Line 523-535)**: 10줄 마크다운 템플릿 블록을 "후보+근거(헤딩 패턴·토큰 분포·기존 매칭)+조치(승인/수정/거부)를 함께 제시한다" 1줄로 축약.
+5. **Edit 5 (스테이지 로그 형식 블록, Line 569-588)**: "필수 포함 항목" 표(560-568)는 유지하고, 17줄 마크다운 템플릿 블록을 "필수 포함 항목을 스테이지별 섹션으로 누적 기록" 1줄로 축약.
+
+**대략 삭제/축약 라인 수**: 약 -45 ~ -50 라인 (Edit 2: -7, Edit 3: -5, Edit 4: -9, Edit 5: -16, Edit 1: +1)
+
+**주의사항**:
+- Line 312 내용(`스킵 판정 | wu-&lt;item_id&gt;*__pre__meta.json + wu-&lt;item_id&gt;*__pre__content.md 모두 존재하고 0바이트 아님`)은 Edit 2의 NEW 블록에 원문 그대로 포함시킴. Group B의 Merged WU 스킵 재설계 편집과 충돌하지 않도록 동일 문자열 유지. Group B가 Line 312를 별도로 교체하면 Edit 2 적용 후 해당 행만 추가 편집되는 흐름이 자연스럽다.
+- Edit 1, 2, 3은 파일 상단 쪽(Phase B/§9)으로 서로 독립된 섹션이며, Edit 4, 5는 파일 하단(Stage 3 템플릿/Stage Log)으로 독립. 다른 그룹(A=파일명 SSOT, B=Merged WU 스킵, C=추정)과는 편집 구간이 겹치지 않는다.</result>
+<usage><total_tokens>57235</total_tokens><tool_uses>5</tool_uses><duration_ms>107358</duration_ms></usage>
+</task-notification>
+
+## 2026-04-16 13:47:48
+
+<ide_opened_file>The user opened the file /home/kimghw/ontology_iacs/.claude/skills/md2wu/SKILL.md in the IDE. This may or may not be related to the current task.</ide_opened_file>
+깃 에서 checkout 하면 뭐지?
+
+## 2026-04-16 13:52:29
+
+<ide_opened_file>The user opened the file /home/kimghw/ontology_iacs/.claude/skills/md2wu/SKILL.md in the IDE. This may or may not be related to the current task.</ide_opened_file>
+재검토해줘
+
+## 2026-04-16 13:59:12
+
+git checkout -- file.txt   # file.txt의 변경사항 버리고 HEAD 상태로 되돌림   -- 이건 현재 상태잖아 글치?
+
+## 2026-04-16 14:06:25
+
+git checkout abc123 -- file.txt  # 특정 커밋의 파일 버전으로 복원   -- 현재 프로젝트에 그게 온다는 거냐?
+
+## 2026-04-16 14:08:07
+
+이전 변경된거 이전의 값을 현재 스테이지 상태로 갖어온다는 거지?
+
+## 2026-04-16 14:10:06
+
+그냥 체크아웃 하며변경된 상태를 드랍하는 거고 hash를 넣어주면 그 파일을 현재 폴더의 스테이지로 갖어오는 거고 그렇는 거네/ㄹ?
+
+## 2026-04-16 14:12:06
+
+이게 스테이지 되던, 상관없이 돌아 가는거지?
+
+## 2026-04-16 14:16:44
+
+기존에 변경사항이 있으면 이것도 사라지냐 아니면 그 파일만 ㄱ
+
+## 2026-04-16 14:28:17
+
+/git
