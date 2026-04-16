@@ -7,3 +7,5 @@ node_modules/
 UR/_compare/merged_pdf/
 UR/_compare/parts_50p/
 UR/_compare/parts_200p/
+
+.claude 

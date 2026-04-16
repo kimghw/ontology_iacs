@@ -1,1 +1,0 @@
-/mnt/c/shared_wk/claude_toolkit/agents/pdf2md-worker.md
