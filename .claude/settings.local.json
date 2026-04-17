@@ -1,0 +1,44 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(*)",
+      "Read(*)",
+      "Write(*)",
+      "Edit(*)",
+      "Glob(*)",
+      "Grep(*)",
+      "Agent(*)",
+      "Skill(*)",
+      "WebFetch(*)",
+      "WebSearch(*)",
+      "NotebookEdit(*)",
+      "TodoWrite(*)",
+      "Bash(mkdir -p /mnt/c/shared_wk/claude_toolkit/skills /mnt/c/shared_wk/claude_toolkit/agents)",
+      "Bash(cp -r /mnt/c/shared_wk/ontology_iacs/.claude/skills/pdf2md /mnt/c/shared_wk/claude_toolkit/skills/)",
+      "Bash(rm -rf /mnt/c/shared_wk/claude_toolkit/skills/pdf2md/.venv)",
+      "Bash(cp -r /mnt/c/shared_wk/ontology_iacs/.claude/skills/skill-authoring /mnt/c/shared_wk/claude_toolkit/skills/)",
+      "Bash(cp -r /mnt/c/shared_wk/ontology_iacs/.claude/skills/specification /mnt/c/shared_wk/claude_toolkit/skills/)",
+      "Bash(rm /home/kimghw/ontology_iacs/.claude/commands/cross_review.md)",
+      "Bash(rm /home/kimghw/ontology_iacs/.claude/commands/git.md)",
+      "Bash(rm -rf /home/kimghw/ontology_iacs/.claude/skills/pdf2md)",
+      "Bash(ln -s /mnt/c/shared_wk/claude_toolkit/commands/cross_review.md /home/kimghw/ontology_iacs/.claude/commands/cross_review.md)",
+      "Bash(ln -s /mnt/c/shared_wk/claude_toolkit/commands/git.md /home/kimghw/ontology_iacs/.claude/commands/git.md)",
+      "Bash(mkdir -p /home/kimghw/ontology_iacs/.claude/agents)",
+      "Bash(ln -s /mnt/c/shared_wk/claude_toolkit/agents/pdf2md-worker.md /home/kimghw/ontology_iacs/.claude/agents/pdf2md-worker.md)",
+      "Read(//home/kimghw/ontology_iacs/.claude/**)",
+      "Bash(rm /home/kimghw/ontology_iacs/.claude/skills/skill-authoring/SKILL.md)",
+      "Bash(rmdir /home/kimghw/ontology_iacs/.claude/skills/skill-authoring)",
+      "Bash(ln -s /mnt/c/shared_wk/claude_toolkit/skills/skill-authoring /home/kimghw/ontology_iacs/.claude/skills/skill-authoring)",
+      "Bash(rm /home/kimghw/ontology_iacs/.claude/skills/specification/SKILL.md)",
+      "Bash(rmdir /home/kimghw/ontology_iacs/.claude/skills/specification)",
+      "mcp__codex__codex",
+      "mcp__gemini__ask-gemini",
+      "Bash(mv /mnt/c/shared_wk/ontology_iacs/.claude/references /mnt/c/shared_wk/claude_toolkit/references)",
+      "Bash(ln -s /mnt/c/shared_wk/claude_toolkit/references /mnt/c/shared_wk/ontology_iacs/.claude/references)"
+    ],
+    "additionalDirectories": [
+      "/mnt/c/shared_wk/claude_toolkit",
+      "/home/kimghw/claude_toolkit"
+    ]
+  }
+}
