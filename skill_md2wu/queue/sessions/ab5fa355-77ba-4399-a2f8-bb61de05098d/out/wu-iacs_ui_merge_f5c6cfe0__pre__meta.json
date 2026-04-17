@@ -1,0 +1,523 @@
+{
+  "wu_key": "iacs_ui_merge_f5c6cfe0",
+  "wu_type": "merged",
+  "authority": "IACS",
+  "doc_type": "UI",
+  "language": "en",
+  "grammar_version": "iacs_ui_v01",
+  "measure_method": "tiktoken",
+  "constituent_docs": [
+    {
+      "doc_instance_key": "iacs_ui_mpc2_rev1_en",
+      "document_key": "iacs_ui_mpc2",
+      "start_line": 1,
+      "end_line": 45,
+      "est_tokens": 669,
+      "heading_range": {
+        "first": "iacs_ui_mpc2_HD_001",
+        "last": "iacs_ui_mpc2_HD_003"
+      }
+    },
+    {
+      "doc_instance_key": "iacs_ui_mpc5_rev1_en",
+      "document_key": "iacs_ui_mpc5",
+      "start_line": 1,
+      "end_line": 21,
+      "est_tokens": 276,
+      "heading_range": {
+        "first": "iacs_ui_mpc5_HD_001",
+        "last": "iacs_ui_mpc5_HD_003"
+      }
+    },
+    {
+      "doc_instance_key": "iacs_ui_mpc6_rev1_en",
+      "document_key": "iacs_ui_mpc6",
+      "start_line": 1,
+      "end_line": 37,
+      "est_tokens": 719,
+      "heading_range": {
+        "first": "iacs_ui_mpc6_HD_001",
+        "last": "iacs_ui_mpc6_HD_001"
+      }
+    },
+    {
+      "doc_instance_key": "iacs_ui_mpc9_rev1_en",
+      "document_key": "iacs_ui_mpc9",
+      "start_line": 1,
+      "end_line": 25,
+      "est_tokens": 272,
+      "heading_range": {
+        "first": "iacs_ui_mpc9_HD_001",
+        "last": "iacs_ui_mpc9_HD_003"
+      }
+    },
+    {
+      "doc_instance_key": "iacs_ui_mpc10_rev1_en",
+      "document_key": "iacs_ui_mpc10",
+      "start_line": 1,
+      "end_line": 28,
+      "est_tokens": 288,
+      "heading_range": {
+        "first": "iacs_ui_mpc10_HD_001",
+        "last": "iacs_ui_mpc10_HD_001"
+      }
+    },
+    {
+      "doc_instance_key": "iacs_ui_mpc11_rev2_corr1_en",
+      "document_key": "iacs_ui_mpc11",
+      "start_line": 3,
+      "end_line": 92,
+      "est_tokens": 1598,
+      "heading_range": {
+        "first": "iacs_ui_mpc11_HD_001",
+        "last": "iacs_ui_mpc11_HD_005"
+      }
+    },
+    {
+      "doc_instance_key": "iacs_ui_mpc12_corr2_en",
+      "document_key": "iacs_ui_mpc12",
+      "start_line": 1,
+      "end_line": 35,
+      "est_tokens": 243,
+      "heading_range": {
+        "first": "iacs_ui_mpc12_HD_001",
+        "last": "iacs_ui_mpc12_HD_003"
+      }
+    },
+    {
+      "doc_instance_key": "iacs_ui_mpc14_rev3_en",
+      "document_key": "iacs_ui_mpc14",
+      "start_line": 3,
+      "end_line": 43,
+      "est_tokens": 382,
+      "heading_range": {
+        "first": "iacs_ui_mpc14_HD_001",
+        "last": "iacs_ui_mpc14_HD_004"
+      }
+    },
+    {
+      "doc_instance_key": "iacs_ui_mpc20_rev1_corr2_en",
+      "document_key": "iacs_ui_mpc20",
+      "start_line": 1,
+      "end_line": 43,
+      "est_tokens": 720,
+      "heading_range": {
+        "first": "iacs_ui_mpc20_HD_001",
+        "last": "iacs_ui_mpc20_HD_004"
+      }
+    },
+    {
+      "doc_instance_key": "iacs_ui_mpc29_rev2_en",
+      "document_key": "iacs_ui_mpc29",
+      "start_line": 1,
+      "end_line": 33,
+      "est_tokens": 409,
+      "heading_range": {
+        "first": "iacs_ui_mpc29_HD_001",
+        "last": "iacs_ui_mpc29_HD_002"
+      }
+    },
+    {
+      "doc_instance_key": "iacs_ui_mpc30_rev1_en",
+      "document_key": "iacs_ui_mpc30",
+      "start_line": 3,
+      "end_line": 28,
+      "est_tokens": 238,
+      "heading_range": {
+        "first": "iacs_ui_mpc30_HD_001",
+        "last": "iacs_ui_mpc30_HD_003"
+      }
+    },
+    {
+      "doc_instance_key": "iacs_ui_mpc32_rev1_en",
+      "document_key": "iacs_ui_mpc32",
+      "start_line": 3,
+      "end_line": 28,
+      "est_tokens": 420,
+      "heading_range": {
+        "first": "iacs_ui_mpc32_HD_001",
+        "last": "iacs_ui_mpc32_HD_001"
+      }
+    },
+    {
+      "doc_instance_key": "iacs_ui_mpc33_rev2_en",
+      "document_key": "iacs_ui_mpc33",
+      "start_line": 3,
+      "end_line": 28,
+      "est_tokens": 442,
+      "heading_range": {
+        "first": "iacs_ui_mpc33_HD_001",
+        "last": "iacs_ui_mpc33_HD_002"
+      }
+    },
+    {
+      "doc_instance_key": "iacs_ui_mpc40_rev1_en",
+      "document_key": "iacs_ui_mpc40",
+      "start_line": 3,
+      "end_line": 26,
+      "est_tokens": 363,
+      "heading_range": {
+        "first": "iacs_ui_mpc40_HD_001",
+        "last": "iacs_ui_mpc40_HD_002"
+      }
+    },
+    {
+      "doc_instance_key": "iacs_ui_mpc45_rev1_en",
+      "document_key": "iacs_ui_mpc45",
+      "start_line": 3,
+      "end_line": 28,
+      "est_tokens": 408,
+      "heading_range": {
+        "first": "iacs_ui_mpc45_HD_001",
+        "last": "iacs_ui_mpc45_HD_003"
+      }
+    },
+    {
+      "doc_instance_key": "iacs_ui_mpc53_rev1_en",
+      "document_key": "iacs_ui_mpc53",
+      "start_line": 3,
+      "end_line": 49,
+      "est_tokens": 655,
+      "heading_range": {
+        "first": "iacs_ui_mpc53_HD_001",
+        "last": "iacs_ui_mpc53_HD_004"
+      }
+    },
+    {
+      "doc_instance_key": "iacs_ui_mpc54_rev1_en",
+      "document_key": "iacs_ui_mpc54",
+      "start_line": 3,
+      "end_line": 27,
+      "est_tokens": 371,
+      "heading_range": {
+        "first": "iacs_ui_mpc54_HD_001",
+        "last": "iacs_ui_mpc54_HD_002"
+      }
+    },
+    {
+      "doc_instance_key": "iacs_ui_mpc58_rev1_en",
+      "document_key": "iacs_ui_mpc58",
+      "start_line": 3,
+      "end_line": 32,
+      "est_tokens": 463,
+      "heading_range": {
+        "first": "iacs_ui_mpc58_HD_001",
+        "last": "iacs_ui_mpc58_HD_002"
+      }
+    },
+    {
+      "doc_instance_key": "iacs_ui_mpc59_rev1_en",
+      "document_key": "iacs_ui_mpc59",
+      "start_line": 3,
+      "end_line": 48,
+      "est_tokens": 504,
+      "heading_range": {
+        "first": "iacs_ui_mpc59_HD_001",
+        "last": "iacs_ui_mpc59_HD_002"
+      }
+    },
+    {
+      "doc_instance_key": "iacs_ui_mpc74_rev1_en",
+      "document_key": "iacs_ui_mpc74",
+      "start_line": 3,
+      "end_line": 30,
+      "est_tokens": 619,
+      "heading_range": {
+        "first": "iacs_ui_mpc74_HD_001",
+        "last": "iacs_ui_mpc74_HD_002"
+      }
+    },
+    {
+      "doc_instance_key": "iacs_ui_mpc77_rev1_en",
+      "document_key": "iacs_ui_mpc77",
+      "start_line": 3,
+      "end_line": 26,
+      "est_tokens": 354,
+      "heading_range": {
+        "first": "iacs_ui_mpc77_HD_001",
+        "last": "iacs_ui_mpc77_HD_002"
+      }
+    },
+    {
+      "doc_instance_key": "iacs_ui_mpc85_rev4_en",
+      "document_key": "iacs_ui_mpc85",
+      "start_line": 1,
+      "end_line": 51,
+      "est_tokens": 653,
+      "heading_range": {
+        "first": "iacs_ui_mpc85_HD_001",
+        "last": "iacs_ui_mpc85_HD_004"
+      }
+    },
+    {
+      "doc_instance_key": "iacs_ui_mpc86_corr1_en",
+      "document_key": "iacs_ui_mpc86",
+      "start_line": 1,
+      "end_line": 21,
+      "est_tokens": 256,
+      "heading_range": {
+        "first": "iacs_ui_mpc86_HD_001",
+        "last": "iacs_ui_mpc86_HD_002"
+      }
+    },
+    {
+      "doc_instance_key": "iacs_ui_mpc87_en",
+      "document_key": "iacs_ui_mpc87",
+      "start_line": 1,
+      "end_line": 27,
+      "est_tokens": 646,
+      "heading_range": {
+        "first": "iacs_ui_mpc87_HD_001",
+        "last": "iacs_ui_mpc87_HD_002"
+      }
+    },
+    {
+      "doc_instance_key": "iacs_ui_mpc90_en",
+      "document_key": "iacs_ui_mpc90",
+      "start_line": 1,
+      "end_line": 32,
+      "est_tokens": 261,
+      "heading_range": {
+        "first": "iacs_ui_mpc90_HD_001",
+        "last": "iacs_ui_mpc90_HD_003"
+      }
+    },
+    {
+      "doc_instance_key": "iacs_ui_mpc91_en",
+      "document_key": "iacs_ui_mpc91",
+      "start_line": 1,
+      "end_line": 26,
+      "est_tokens": 198,
+      "heading_range": {
+        "first": "iacs_ui_mpc91_HD_001",
+        "last": "iacs_ui_mpc91_HD_004"
+      }
+    },
+    {
+      "doc_instance_key": "iacs_ui_mpc93_rev1_en",
+      "document_key": "iacs_ui_mpc93",
+      "start_line": 3,
+      "end_line": 31,
+      "est_tokens": 419,
+      "heading_range": {
+        "first": "iacs_ui_mpc93_HD_001",
+        "last": "iacs_ui_mpc93_HD_001"
+      }
+    },
+    {
+      "doc_instance_key": "iacs_ui_mpc94_en",
+      "document_key": "iacs_ui_mpc94",
+      "start_line": 3,
+      "end_line": 69,
+      "est_tokens": 1132,
+      "heading_range": {
+        "first": "iacs_ui_mpc94_HD_001",
+        "last": "iacs_ui_mpc94_HD_001"
+      }
+    },
+    {
+      "doc_instance_key": "iacs_ui_mpc95_en",
+      "document_key": "iacs_ui_mpc95",
+      "start_line": 1,
+      "end_line": 21,
+      "est_tokens": 168,
+      "heading_range": {
+        "first": "iacs_ui_mpc95_HD_001",
+        "last": "iacs_ui_mpc95_HD_003"
+      }
+    },
+    {
+      "doc_instance_key": "iacs_ui_mpc97_en",
+      "document_key": "iacs_ui_mpc97",
+      "start_line": 1,
+      "end_line": 25,
+      "est_tokens": 281,
+      "heading_range": {
+        "first": "iacs_ui_mpc97_HD_001",
+        "last": "iacs_ui_mpc97_HD_002"
+      }
+    },
+    {
+      "doc_instance_key": "iacs_ui_mpc98_rev1_en",
+      "document_key": "iacs_ui_mpc98",
+      "start_line": 1,
+      "end_line": 36,
+      "est_tokens": 532,
+      "heading_range": {
+        "first": "iacs_ui_mpc98_HD_001",
+        "last": "iacs_ui_mpc98_HD_004"
+      }
+    },
+    {
+      "doc_instance_key": "iacs_ui_mpc99_en",
+      "document_key": "iacs_ui_mpc99",
+      "start_line": 1,
+      "end_line": 5,
+      "est_tokens": 64,
+      "heading_range": {
+        "first": "iacs_ui_mpc99_HD_001",
+        "last": "iacs_ui_mpc99_HD_001"
+      }
+    },
+    {
+      "doc_instance_key": "iacs_ui_mpc100_en",
+      "document_key": "iacs_ui_mpc100",
+      "start_line": 1,
+      "end_line": 21,
+      "est_tokens": 238,
+      "heading_range": {
+        "first": "iacs_ui_mpc100_HD_001",
+        "last": "iacs_ui_mpc100_HD_001"
+      }
+    },
+    {
+      "doc_instance_key": "iacs_ui_mpc101_corr1_en",
+      "document_key": "iacs_ui_mpc101",
+      "start_line": 3,
+      "end_line": 36,
+      "est_tokens": 834,
+      "heading_range": {
+        "first": "iacs_ui_mpc101_HD_001",
+        "last": "iacs_ui_mpc101_HD_003"
+      }
+    },
+    {
+      "doc_instance_key": "iacs_ui_mpc103_en",
+      "document_key": "iacs_ui_mpc103",
+      "start_line": 3,
+      "end_line": 56,
+      "est_tokens": 604,
+      "heading_range": {
+        "first": "iacs_ui_mpc103_HD_001",
+        "last": "iacs_ui_mpc103_HD_005"
+      }
+    },
+    {
+      "doc_instance_key": "iacs_ui_mpc104_corr1_en",
+      "document_key": "iacs_ui_mpc104",
+      "start_line": 1,
+      "end_line": 17,
+      "est_tokens": 199,
+      "heading_range": {
+        "first": "iacs_ui_mpc104_HD_001",
+        "last": "iacs_ui_mpc104_HD_003"
+      }
+    },
+    {
+      "doc_instance_key": "iacs_ui_mpc106_en",
+      "document_key": "iacs_ui_mpc106",
+      "start_line": 3,
+      "end_line": 29,
+      "est_tokens": 532,
+      "heading_range": {
+        "first": "iacs_ui_mpc106_HD_001",
+        "last": "iacs_ui_mpc106_HD_004"
+      }
+    },
+    {
+      "doc_instance_key": "iacs_ui_mpc112_rev1_en",
+      "document_key": "iacs_ui_mpc112",
+      "start_line": 3,
+      "end_line": 80,
+      "est_tokens": 1354,
+      "heading_range": {
+        "first": "iacs_ui_mpc112_HD_001",
+        "last": "iacs_ui_mpc112_HD_006"
+      }
+    },
+    {
+      "doc_instance_key": "iacs_ui_mpc115_corr1_en",
+      "document_key": "iacs_ui_mpc115",
+      "start_line": 3,
+      "end_line": 35,
+      "est_tokens": 786,
+      "heading_range": {
+        "first": "iacs_ui_mpc115_HD_001",
+        "last": "iacs_ui_mpc115_HD_003"
+      }
+    },
+    {
+      "doc_instance_key": "iacs_ui_mpc116_rev1_en",
+      "document_key": "iacs_ui_mpc116",
+      "start_line": 3,
+      "end_line": 26,
+      "est_tokens": 270,
+      "heading_range": {
+        "first": "iacs_ui_mpc116_HD_001",
+        "last": "iacs_ui_mpc116_HD_002"
+      }
+    },
+    {
+      "doc_instance_key": "iacs_ui_mpc128_en",
+      "document_key": "iacs_ui_mpc128",
+      "start_line": 3,
+      "end_line": 21,
+      "est_tokens": 245,
+      "heading_range": {
+        "first": "iacs_ui_mpc128_HD_001",
+        "last": "iacs_ui_mpc128_HD_003"
+      }
+    },
+    {
+      "doc_instance_key": "iacs_ui_mpc129_en",
+      "document_key": "iacs_ui_mpc129",
+      "start_line": 1,
+      "end_line": 18,
+      "est_tokens": 349,
+      "heading_range": {
+        "first": "iacs_ui_mpc129_HD_001",
+        "last": "iacs_ui_mpc129_HD_004"
+      }
+    }
+  ],
+  "est_tokens_total": 20434,
+  "chunk_keys": [
+    "iacs_ui_mpc2_rev1_en_ch001",
+    "iacs_ui_mpc5_rev1_en_ch001",
+    "iacs_ui_mpc6_rev1_en_ch001",
+    "iacs_ui_mpc9_rev1_en_ch001",
+    "iacs_ui_mpc10_rev1_en_ch001",
+    "iacs_ui_mpc11_rev2_corr1_en_ch001",
+    "iacs_ui_mpc12_corr2_en_ch001",
+    "iacs_ui_mpc14_rev3_en_ch001",
+    "iacs_ui_mpc20_rev1_corr2_en_ch001",
+    "iacs_ui_mpc29_rev2_en_ch001",
+    "iacs_ui_mpc30_rev1_en_ch001",
+    "iacs_ui_mpc32_rev1_en_ch001",
+    "iacs_ui_mpc33_rev2_en_ch001",
+    "iacs_ui_mpc40_rev1_en_ch001",
+    "iacs_ui_mpc45_rev1_en_ch001",
+    "iacs_ui_mpc53_rev1_en_ch001",
+    "iacs_ui_mpc54_rev1_en_ch001",
+    "iacs_ui_mpc58_rev1_en_ch001",
+    "iacs_ui_mpc59_rev1_en_ch001",
+    "iacs_ui_mpc74_rev1_en_ch001",
+    "iacs_ui_mpc77_rev1_en_ch001",
+    "iacs_ui_mpc85_rev4_en_ch001",
+    "iacs_ui_mpc86_corr1_en_ch001",
+    "iacs_ui_mpc87_en_ch001",
+    "iacs_ui_mpc90_en_ch001",
+    "iacs_ui_mpc91_en_ch001",
+    "iacs_ui_mpc93_rev1_en_ch001",
+    "iacs_ui_mpc94_en_ch001",
+    "iacs_ui_mpc95_en_ch001",
+    "iacs_ui_mpc97_en_ch001",
+    "iacs_ui_mpc98_rev1_en_ch001",
+    "iacs_ui_mpc99_en_ch001",
+    "iacs_ui_mpc100_en_ch001",
+    "iacs_ui_mpc101_corr1_en_ch001",
+    "iacs_ui_mpc103_en_ch001",
+    "iacs_ui_mpc104_corr1_en_ch001",
+    "iacs_ui_mpc106_en_ch001",
+    "iacs_ui_mpc112_rev1_en_ch001",
+    "iacs_ui_mpc115_corr1_en_ch001",
+    "iacs_ui_mpc116_rev1_en_ch001",
+    "iacs_ui_mpc128_en_ch001",
+    "iacs_ui_mpc129_en_ch001"
+  ],
+  "status": "processed",
+  "output_files": [
+    "skill_md2wu/wu-iacs_ui_merge_f5c6cfe0__pre__content.md"
+  ],
+  "created_at": "2026-04-17T04:34:06.165033+00:00"
+}

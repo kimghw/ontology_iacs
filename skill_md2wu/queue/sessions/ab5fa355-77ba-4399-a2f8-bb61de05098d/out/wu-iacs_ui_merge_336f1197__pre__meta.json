@@ -1,0 +1,79 @@
+{
+  "wu_key": "iacs_ui_merge_336f1197",
+  "wu_type": "merged",
+  "authority": "IACS",
+  "doc_type": "UI",
+  "language": "en",
+  "grammar_version": "iacs_ui_v01",
+  "measure_method": "tiktoken",
+  "constituent_docs": [
+    {
+      "doc_instance_key": "iacs_ui_hsc7_rev1_en",
+      "document_key": "iacs_ui_hsc7",
+      "start_line": 2,
+      "end_line": 25,
+      "est_tokens": 467,
+      "heading_range": {
+        "first": "iacs_ui_hsc7_HD_001",
+        "last": "iacs_ui_hsc7_HD_002"
+      }
+    },
+    {
+      "doc_instance_key": "iacs_ui_hsc8_corr1_en",
+      "document_key": "iacs_ui_hsc8",
+      "start_line": 2,
+      "end_line": 46,
+      "est_tokens": 767,
+      "heading_range": {
+        "first": "iacs_ui_hsc8_HD_001",
+        "last": "iacs_ui_hsc8_HD_009"
+      }
+    },
+    {
+      "doc_instance_key": "iacs_ui_hsc9_corr1_en",
+      "document_key": "iacs_ui_hsc9",
+      "start_line": 2,
+      "end_line": 18,
+      "est_tokens": 199,
+      "heading_range": {
+        "first": "iacs_ui_hsc9_HD_001",
+        "last": "iacs_ui_hsc9_HD_003"
+      }
+    },
+    {
+      "doc_instance_key": "iacs_ui_hsc10_en",
+      "document_key": "iacs_ui_hsc10",
+      "start_line": 2,
+      "end_line": 21,
+      "est_tokens": 255,
+      "heading_range": {
+        "first": "iacs_ui_hsc10_HD_001",
+        "last": "iacs_ui_hsc10_HD_004"
+      }
+    },
+    {
+      "doc_instance_key": "iacs_ui_hsc11_en",
+      "document_key": "iacs_ui_hsc11",
+      "start_line": 2,
+      "end_line": 49,
+      "est_tokens": 735,
+      "heading_range": {
+        "first": "iacs_ui_hsc11_HD_001",
+        "last": "iacs_ui_hsc11_HD_004"
+      }
+    }
+  ],
+  "est_tokens_total": 2423,
+  "chunk_keys": [
+    "iacs_ui_hsc7_rev1_en_ch001",
+    "iacs_ui_hsc8_corr1_en_ch001",
+    "iacs_ui_hsc9_corr1_en_ch001",
+    "iacs_ui_hsc10_en_ch001",
+    "iacs_ui_hsc11_en_ch001"
+  ],
+  "status": "processed",
+  "output_files": [
+    "skill_md2wu/wu-iacs_ui_merge_336f1197__pre__content.md"
+  ],
+  "created_at": "2026-04-17T04:34:06.165033+00:00"
+}

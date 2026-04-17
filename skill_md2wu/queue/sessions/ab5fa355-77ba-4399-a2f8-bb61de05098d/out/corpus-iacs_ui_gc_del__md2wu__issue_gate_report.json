@@ -1,0 +1,13 @@
+{
+  "corpus_scope": "iacs_ui_gc_del",
+  "generated_at": "2026-04-17T04:34:06.165033+00:00",
+  "threshold_issues": [
+    {
+      "type": "undersized",
+      "severity": "LOW",
+      "wu_key": "iacs_ui_merge_ff5be1b0",
+      "tokens": 44
+    }
+  ],
+  "judgments": []
+}

@@ -1,0 +1,136 @@
+{
+  "corpus_scope": "iacs_pr_del",
+  "source_family": "iacs_pr",
+  "authority": "IACS",
+  "doc_type": "PR",
+  "language": "en",
+  "grammar_version": "iacs_pr_v01",
+  "measure_method": "tiktoken",
+  "series": "pr_del",
+  "session_id": "9267f956-0371-4e6b-9d5c-bae2dea5a68a",
+  "batch_id": "B001",
+  "generated_at": "2026-04-17T07:06:10.005935+00:00",
+  "wu_count": 1,
+  "est_tokens_total": 781,
+  "work_units": [
+    {
+      "wu_key": "iacs_pr_merge_bd292ff8",
+      "wu_type": "merged",
+      "constituent_docs": [
+        {
+          "doc_instance_key": "iacs_pr_pr1c_add_rev8_del_en",
+          "document_key": "iacs_pr_pr1c_add_en",
+          "start_line": 3,
+          "end_line": 19,
+          "est_tokens": 190,
+          "heading_range": {
+            "first": "iacs_pr_pr1c_add_en_HD_001",
+            "last": "iacs_pr_pr1c_add_en_HD_001"
+          }
+        },
+        {
+          "doc_instance_key": "iacs_pr_pr2_rev0_del_en",
+          "document_key": "iacs_pr_pr2_en",
+          "start_line": 3,
+          "end_line": 14,
+          "est_tokens": 69,
+          "heading_range": {
+            "first": "iacs_pr_pr2_en_HD_001",
+            "last": "iacs_pr_pr2_en_HD_002"
+          }
+        },
+        {
+          "doc_instance_key": "iacs_pr_pr14_rev4_del_en",
+          "document_key": "iacs_pr_pr14_en",
+          "start_line": 3,
+          "end_line": 14,
+          "est_tokens": 81,
+          "heading_range": {
+            "first": "iacs_pr_pr14_en_HD_001",
+            "last": "iacs_pr_pr14_en_HD_001"
+          }
+        },
+        {
+          "doc_instance_key": "iacs_pr_pr15_rev5_corr1_del_en",
+          "document_key": "iacs_pr_pr15_en",
+          "start_line": 3,
+          "end_line": 17,
+          "est_tokens": 106,
+          "heading_range": {
+            "first": "iacs_pr_pr15_en_HD_001",
+            "last": "iacs_pr_pr15_en_HD_001"
+          }
+        },
+        {
+          "doc_instance_key": "iacs_pr_pr22_rev1_del_en",
+          "document_key": "iacs_pr_pr22_en",
+          "start_line": 1,
+          "end_line": 9,
+          "est_tokens": 50,
+          "heading_range": {
+            "first": "iacs_pr_pr22_en_HD_001",
+            "last": "iacs_pr_pr22_en_HD_001"
+          }
+        },
+        {
+          "doc_instance_key": "iacs_pr_pr25_del_en",
+          "document_key": "iacs_pr_pr25_en",
+          "start_line": 1,
+          "end_line": 12,
+          "est_tokens": 87,
+          "heading_range": {
+            "first": "iacs_pr_pr25_en_HD_001",
+            "last": "iacs_pr_pr25_en_HD_001"
+          }
+        },
+        {
+          "doc_instance_key": "iacs_pr_pr26_rev2_del_en",
+          "document_key": "iacs_pr_pr26_en",
+          "start_line": 1,
+          "end_line": 10,
+          "est_tokens": 59,
+          "heading_range": {
+            "first": "iacs_pr_pr26_en_HD_001",
+            "last": "iacs_pr_pr26_en_HD_001"
+          }
+        },
+        {
+          "doc_instance_key": "iacs_pr_pr27_rev2_del_en",
+          "document_key": "iacs_pr_pr27_en",
+          "start_line": 1,
+          "end_line": 9,
+          "est_tokens": 58,
+          "heading_range": {
+            "first": "iacs_pr_pr27_en_HD_001",
+            "last": "iacs_pr_pr27_en_HD_001"
+          }
+        },
+        {
+          "doc_instance_key": "iacs_pr_pr34_del_en",
+          "document_key": "iacs_pr_pr34_en",
+          "start_line": 1,
+          "end_line": 11,
+          "est_tokens": 81,
+          "heading_range": {
+            "first": "iacs_pr_pr34_en_HD_001",
+            "last": "iacs_pr_pr34_en_HD_001"
+          }
+        }
+      ],
+      "est_tokens_total": 781,
+      "chunk_keys": [
+        "iacs_pr_pr1c_add_rev8_del_en_ch001",
+        "iacs_pr_pr2_rev0_del_en_ch001",
+        "iacs_pr_pr14_rev4_del_en_ch001",
+        "iacs_pr_pr15_rev5_corr1_del_en_ch001",
+        "iacs_pr_pr22_rev1_del_en_ch001",
+        "iacs_pr_pr25_del_en_ch001",
+        "iacs_pr_pr26_rev2_del_en_ch001",
+        "iacs_pr_pr27_rev2_del_en_ch001",
+        "iacs_pr_pr34_del_en_ch001"
+      ],
+      "status": "processed",
+      "content_file": "wu-iacs_pr_merge_bd292ff8__pre__content.md"
+    }
+  ]
+}

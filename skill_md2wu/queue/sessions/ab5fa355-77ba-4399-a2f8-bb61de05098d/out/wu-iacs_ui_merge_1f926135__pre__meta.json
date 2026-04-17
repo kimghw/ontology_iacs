@@ -1,0 +1,91 @@
+{
+  "wu_key": "iacs_ui_merge_1f926135",
+  "wu_type": "merged",
+  "authority": "IACS",
+  "doc_type": "UI",
+  "language": "en",
+  "grammar_version": "iacs_ui_v01",
+  "measure_method": "tiktoken",
+  "constituent_docs": [
+    {
+      "doc_instance_key": "iacs_ui_ll9_del_en",
+      "document_key": "iacs_ui_ll9",
+      "start_line": 1,
+      "end_line": 7,
+      "est_tokens": 16,
+      "heading_range": {
+        "first": "iacs_ui_ll9_HD_001",
+        "last": "iacs_ui_ll9_HD_002"
+      }
+    },
+    {
+      "doc_instance_key": "iacs_ui_ll12_del_en",
+      "document_key": "iacs_ui_ll12",
+      "start_line": 1,
+      "end_line": 7,
+      "est_tokens": 26,
+      "heading_range": {
+        "first": "iacs_ui_ll12_HD_001",
+        "last": "iacs_ui_ll12_HD_001"
+      }
+    },
+    {
+      "doc_instance_key": "iacs_ui_ll32_del_en",
+      "document_key": "iacs_ui_ll32",
+      "start_line": 1,
+      "end_line": 7,
+      "est_tokens": 49,
+      "heading_range": {
+        "first": "iacs_ui_ll32_HD_001",
+        "last": "iacs_ui_ll32_HD_001"
+      }
+    },
+    {
+      "doc_instance_key": "iacs_ui_ll35_del_en",
+      "document_key": "iacs_ui_ll35",
+      "start_line": 1,
+      "end_line": 7,
+      "est_tokens": 64,
+      "heading_range": {
+        "first": "iacs_ui_ll35_HD_001",
+        "last": "iacs_ui_ll35_HD_002"
+      }
+    },
+    {
+      "doc_instance_key": "iacs_ui_ll61_del_en",
+      "document_key": "iacs_ui_ll61",
+      "start_line": 1,
+      "end_line": 12,
+      "est_tokens": 67,
+      "heading_range": {
+        "first": "iacs_ui_ll61_HD_001",
+        "last": "iacs_ui_ll61_HD_001"
+      }
+    },
+    {
+      "doc_instance_key": "iacs_ui_ll76_del_en",
+      "document_key": "iacs_ui_ll76",
+      "start_line": 1,
+      "end_line": 26,
+      "est_tokens": 139,
+      "heading_range": {
+        "first": "iacs_ui_ll76_HD_001",
+        "last": "iacs_ui_ll76_HD_004"
+      }
+    }
+  ],
+  "est_tokens_total": 361,
+  "chunk_keys": [
+    "iacs_ui_ll9_del_en_ch001",
+    "iacs_ui_ll12_del_en_ch001",
+    "iacs_ui_ll32_del_en_ch001",
+    "iacs_ui_ll35_del_en_ch001",
+    "iacs_ui_ll61_del_en_ch001",
+    "iacs_ui_ll76_del_en_ch001"
+  ],
+  "status": "processed",
+  "output_files": [
+    "skill_md2wu/wu-iacs_ui_merge_1f926135__pre__content.md"
+  ],
+  "created_at": "2026-04-17T04:34:06.165033+00:00"
+}

@@ -1,0 +1,367 @@
+{
+  "wu_key": "iacs_ui_merge_e1bb1028",
+  "wu_type": "merged",
+  "authority": "IACS",
+  "doc_type": "UI",
+  "language": "en",
+  "grammar_version": "iacs_ui_v01",
+  "measure_method": "tiktoken",
+  "constituent_docs": [
+    {
+      "doc_instance_key": "iacs_ui_sc279_en",
+      "document_key": "iacs_ui_sc279",
+      "start_line": 3,
+      "end_line": 74,
+      "est_tokens": 1377,
+      "heading_range": {
+        "first": "iacs_ui_sc279_HD_001",
+        "last": "iacs_ui_sc279_HD_007"
+      }
+    },
+    {
+      "doc_instance_key": "iacs_ui_sc280_rev1_en",
+      "document_key": "iacs_ui_sc280",
+      "start_line": 3,
+      "end_line": 29,
+      "est_tokens": 402,
+      "heading_range": {
+        "first": "iacs_ui_sc280_HD_001",
+        "last": "iacs_ui_sc280_HD_003"
+      }
+    },
+    {
+      "doc_instance_key": "iacs_ui_sc282_en",
+      "document_key": "iacs_ui_sc282",
+      "start_line": 3,
+      "end_line": 38,
+      "est_tokens": 627,
+      "heading_range": {
+        "first": "iacs_ui_sc282_HD_001",
+        "last": "iacs_ui_sc282_HD_006"
+      }
+    },
+    {
+      "doc_instance_key": "iacs_ui_sc284_en",
+      "document_key": "iacs_ui_sc284",
+      "start_line": 2,
+      "end_line": 36,
+      "est_tokens": 361,
+      "heading_range": {
+        "first": "iacs_ui_sc284_HD_001",
+        "last": "iacs_ui_sc284_HD_003"
+      }
+    },
+    {
+      "doc_instance_key": "iacs_ui_sc285_en",
+      "document_key": "iacs_ui_sc285",
+      "start_line": 1,
+      "end_line": 19,
+      "est_tokens": 306,
+      "heading_range": {
+        "first": "iacs_ui_sc285_HD_001",
+        "last": "iacs_ui_sc285_HD_003"
+      }
+    },
+    {
+      "doc_instance_key": "iacs_ui_sc286_en",
+      "document_key": "iacs_ui_sc286",
+      "start_line": 1,
+      "end_line": 20,
+      "est_tokens": 273,
+      "heading_range": {
+        "first": "iacs_ui_sc286_HD_001",
+        "last": "iacs_ui_sc286_HD_001"
+      }
+    },
+    {
+      "doc_instance_key": "iacs_ui_sc287_en",
+      "document_key": "iacs_ui_sc287",
+      "start_line": 3,
+      "end_line": 32,
+      "est_tokens": 660,
+      "heading_range": {
+        "first": "iacs_ui_sc287_HD_001",
+        "last": "iacs_ui_sc287_HD_003"
+      }
+    },
+    {
+      "doc_instance_key": "iacs_ui_sc288_en",
+      "document_key": "iacs_ui_sc288",
+      "start_line": 1,
+      "end_line": 33,
+      "est_tokens": 524,
+      "heading_range": {
+        "first": "iacs_ui_sc288_HD_001",
+        "last": "iacs_ui_sc288_HD_002"
+      }
+    },
+    {
+      "doc_instance_key": "iacs_ui_sc290_en",
+      "document_key": "iacs_ui_sc290",
+      "start_line": 1,
+      "end_line": 22,
+      "est_tokens": 254,
+      "heading_range": {
+        "first": "iacs_ui_sc290_HD_001",
+        "last": "iacs_ui_sc290_HD_002"
+      }
+    },
+    {
+      "doc_instance_key": "iacs_ui_sc291_en",
+      "document_key": "iacs_ui_sc291",
+      "start_line": 1,
+      "end_line": 31,
+      "est_tokens": 492,
+      "heading_range": {
+        "first": "iacs_ui_sc291_HD_001",
+        "last": "iacs_ui_sc291_HD_003"
+      }
+    },
+    {
+      "doc_instance_key": "iacs_ui_sc292_en",
+      "document_key": "iacs_ui_sc292",
+      "start_line": 3,
+      "end_line": 62,
+      "est_tokens": 1143,
+      "heading_range": {
+        "first": "iacs_ui_sc292_HD_001",
+        "last": "iacs_ui_sc292_HD_002"
+      }
+    },
+    {
+      "doc_instance_key": "iacs_ui_sc293_en",
+      "document_key": "iacs_ui_sc293",
+      "start_line": 1,
+      "end_line": 32,
+      "est_tokens": 431,
+      "heading_range": {
+        "first": "iacs_ui_sc293_HD_001",
+        "last": "iacs_ui_sc293_HD_007"
+      }
+    },
+    {
+      "doc_instance_key": "iacs_ui_sc294_en",
+      "document_key": "iacs_ui_sc294",
+      "start_line": 3,
+      "end_line": 72,
+      "est_tokens": 822,
+      "heading_range": {
+        "first": "iacs_ui_sc294_HD_001",
+        "last": "iacs_ui_sc294_HD_001"
+      }
+    },
+    {
+      "doc_instance_key": "iacs_ui_sc295_en",
+      "document_key": "iacs_ui_sc295",
+      "start_line": 1,
+      "end_line": 27,
+      "est_tokens": 395,
+      "heading_range": {
+        "first": "iacs_ui_sc295_HD_001",
+        "last": "iacs_ui_sc295_HD_003"
+      }
+    },
+    {
+      "doc_instance_key": "iacs_ui_sc296_en",
+      "document_key": "iacs_ui_sc296",
+      "start_line": 1,
+      "end_line": 36,
+      "est_tokens": 407,
+      "heading_range": {
+        "first": "iacs_ui_sc296_HD_001",
+        "last": "iacs_ui_sc296_HD_004"
+      }
+    },
+    {
+      "doc_instance_key": "iacs_ui_sc297_en",
+      "document_key": "iacs_ui_sc297",
+      "start_line": 3,
+      "end_line": 71,
+      "est_tokens": 1413,
+      "heading_range": {
+        "first": "iacs_ui_sc297_HD_001",
+        "last": "iacs_ui_sc297_HD_007"
+      }
+    },
+    {
+      "doc_instance_key": "iacs_ui_sc298_corr1_en",
+      "document_key": "iacs_ui_sc298",
+      "start_line": 3,
+      "end_line": 87,
+      "est_tokens": 1248,
+      "heading_range": {
+        "first": "iacs_ui_sc298_HD_001",
+        "last": "iacs_ui_sc298_HD_001"
+      }
+    },
+    {
+      "doc_instance_key": "iacs_ui_sc299_en",
+      "document_key": "iacs_ui_sc299",
+      "start_line": 3,
+      "end_line": 51,
+      "est_tokens": 994,
+      "heading_range": {
+        "first": "iacs_ui_sc299_HD_001",
+        "last": "iacs_ui_sc299_HD_002"
+      }
+    },
+    {
+      "doc_instance_key": "iacs_ui_sc300_en",
+      "document_key": "iacs_ui_sc300",
+      "start_line": 2,
+      "end_line": 32,
+      "est_tokens": 570,
+      "heading_range": {
+        "first": "iacs_ui_sc300_HD_001",
+        "last": "iacs_ui_sc300_HD_001"
+      }
+    },
+    {
+      "doc_instance_key": "iacs_ui_sc301_en",
+      "document_key": "iacs_ui_sc301",
+      "start_line": 3,
+      "end_line": 70,
+      "est_tokens": 1561,
+      "heading_range": {
+        "first": "iacs_ui_sc301_HD_001",
+        "last": "iacs_ui_sc301_HD_004"
+      }
+    },
+    {
+      "doc_instance_key": "iacs_ui_sc302_en",
+      "document_key": "iacs_ui_sc302",
+      "start_line": 3,
+      "end_line": 27,
+      "est_tokens": 420,
+      "heading_range": {
+        "first": "iacs_ui_sc302_HD_001",
+        "last": "iacs_ui_sc302_HD_002"
+      }
+    },
+    {
+      "doc_instance_key": "iacs_ui_sc303_en",
+      "document_key": "iacs_ui_sc303",
+      "start_line": 3,
+      "end_line": 29,
+      "est_tokens": 930,
+      "heading_range": {
+        "first": "iacs_ui_sc303_HD_001",
+        "last": "iacs_ui_sc303_HD_004"
+      }
+    },
+    {
+      "doc_instance_key": "iacs_ui_sc304_en",
+      "document_key": "iacs_ui_sc304",
+      "start_line": 2,
+      "end_line": 34,
+      "est_tokens": 466,
+      "heading_range": {
+        "first": "iacs_ui_sc304_HD_001",
+        "last": "iacs_ui_sc304_HD_001"
+      }
+    },
+    {
+      "doc_instance_key": "iacs_ui_sc305_en",
+      "document_key": "iacs_ui_sc305",
+      "start_line": 1,
+      "end_line": 33,
+      "est_tokens": 371,
+      "heading_range": {
+        "first": "iacs_ui_sc305_HD_001",
+        "last": "iacs_ui_sc305_HD_002"
+      }
+    },
+    {
+      "doc_instance_key": "iacs_ui_sc306_en",
+      "document_key": "iacs_ui_sc306",
+      "start_line": 1,
+      "end_line": 23,
+      "est_tokens": 516,
+      "heading_range": {
+        "first": "iacs_ui_sc306_HD_001",
+        "last": "iacs_ui_sc306_HD_003"
+      }
+    },
+    {
+      "doc_instance_key": "iacs_ui_sc307_en",
+      "document_key": "iacs_ui_sc307",
+      "start_line": 3,
+      "end_line": 37,
+      "est_tokens": 478,
+      "heading_range": {
+        "first": "iacs_ui_sc307_HD_001",
+        "last": "iacs_ui_sc307_HD_002"
+      }
+    },
+    {
+      "doc_instance_key": "iacs_ui_sc309_en",
+      "document_key": "iacs_ui_sc309",
+      "start_line": 1,
+      "end_line": 36,
+      "est_tokens": 469,
+      "heading_range": {
+        "first": "iacs_ui_sc309_HD_001",
+        "last": "iacs_ui_sc309_HD_002"
+      }
+    },
+    {
+      "doc_instance_key": "iacs_ui_sc310_en",
+      "document_key": "iacs_ui_sc310",
+      "start_line": 3,
+      "end_line": 101,
+      "est_tokens": 1774,
+      "heading_range": {
+        "first": "iacs_ui_sc310_HD_001",
+        "last": "iacs_ui_sc310_HD_004"
+      }
+    },
+    {
+      "doc_instance_key": "iacs_ui_sc311_en",
+      "document_key": "iacs_ui_sc311",
+      "start_line": 3,
+      "end_line": 36,
+      "est_tokens": 691,
+      "heading_range": {
+        "first": "iacs_ui_sc311_HD_001",
+        "last": "iacs_ui_sc311_HD_003"
+      }
+    }
+  ],
+  "est_tokens_total": 20375,
+  "chunk_keys": [
+    "iacs_ui_sc279_en_ch001",
+    "iacs_ui_sc280_rev1_en_ch001",
+    "iacs_ui_sc282_en_ch001",
+    "iacs_ui_sc284_en_ch001",
+    "iacs_ui_sc285_en_ch001",
+    "iacs_ui_sc286_en_ch001",
+    "iacs_ui_sc287_en_ch001",
+    "iacs_ui_sc288_en_ch001",
+    "iacs_ui_sc290_en_ch001",
+    "iacs_ui_sc291_en_ch001",
+    "iacs_ui_sc292_en_ch001",
+    "iacs_ui_sc293_en_ch001",
+    "iacs_ui_sc294_en_ch001",
+    "iacs_ui_sc295_en_ch001",
+    "iacs_ui_sc296_en_ch001",
+    "iacs_ui_sc297_en_ch001",
+    "iacs_ui_sc298_corr1_en_ch001",
+    "iacs_ui_sc299_en_ch001",
+    "iacs_ui_sc300_en_ch001",
+    "iacs_ui_sc301_en_ch001",
+    "iacs_ui_sc302_en_ch001",
+    "iacs_ui_sc303_en_ch001",
+    "iacs_ui_sc304_en_ch001",
+    "iacs_ui_sc305_en_ch001",
+    "iacs_ui_sc306_en_ch001",
+    "iacs_ui_sc307_en_ch001",
+    "iacs_ui_sc309_en_ch001",
+    "iacs_ui_sc310_en_ch001",
+    "iacs_ui_sc311_en_ch001"
+  ],
+  "status": "processed",
+  "output_files": [
+    "skill_md2wu/wu-iacs_ui_merge_e1bb1028__pre__content.md"
+  ],
+  "created_at": "2026-04-17T04:34:06.165033+00:00"
+}

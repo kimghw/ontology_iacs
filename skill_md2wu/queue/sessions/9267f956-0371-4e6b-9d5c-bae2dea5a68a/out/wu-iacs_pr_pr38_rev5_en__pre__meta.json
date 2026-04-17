@@ -1,0 +1,31 @@
+{
+  "wu_key": "iacs_pr_pr38_rev5_en",
+  "wu_type": "standalone",
+  "authority": "IACS",
+  "doc_type": "PR",
+  "language": "en",
+  "grammar_version": "iacs_pr_v01",
+  "measure_method": "tiktoken",
+  "constituent_docs": [
+    {
+      "doc_instance_key": "iacs_pr_pr38_rev5_en",
+      "document_key": "iacs_pr_pr38_en",
+      "start_line": 2,
+      "end_line": 2375,
+      "est_tokens": 40859,
+      "heading_range": {
+        "first": "iacs_pr_pr38_en_HD_001",
+        "last": "iacs_pr_pr38_en_HD_205"
+      }
+    }
+  ],
+  "est_tokens_total": 40859,
+  "chunk_keys": [
+    "iacs_pr_pr38_rev5_en_ch001"
+  ],
+  "status": "processed",
+  "output_files": [
+    "skill_md2wu/wu-iacs_pr_pr38_rev5_en__pre__content.md"
+  ],
+  "created_at": "2026-04-17T07:06:10.005935+00:00"
+}

@@ -1,0 +1,31 @@
+{
+  "wu_key": "iacs_ui_merge_04f9e136",
+  "wu_type": "merged",
+  "authority": "IACS",
+  "doc_type": "UI",
+  "language": "en",
+  "grammar_version": "iacs_ui_v01",
+  "measure_method": "tiktoken",
+  "constituent_docs": [
+    {
+      "doc_instance_key": "iacs_ui_colreg2_del_en",
+      "document_key": "iacs_ui_colreg2",
+      "start_line": 1,
+      "end_line": 9,
+      "est_tokens": 55,
+      "heading_range": {
+        "first": "iacs_ui_colreg2_HD_001",
+        "last": "iacs_ui_colreg2_HD_001"
+      }
+    }
+  ],
+  "est_tokens_total": 55,
+  "chunk_keys": [
+    "iacs_ui_colreg2_del_en_ch001"
+  ],
+  "status": "processed",
+  "output_files": [
+    "skill_md2wu/wu-iacs_ui_merge_04f9e136__pre__content.md"
+  ],
+  "created_at": "2026-04-17T04:34:06.165033+00:00"
+}

@@ -1,0 +1,698 @@
+{
+  "session_id": "9267f956-0371-4e6b-9d5c-bae2dea5a68a",
+  "source_dir": "/mnt/c/shared_wk/ontology_iacs/PR",
+  "batch_capacity": 600000,
+  "session_capacity": 600000,
+  "total_input_items": 48,
+  "skipped_items": 872,
+  "batches": [
+    {
+      "batch_id": "B001",
+      "source_family": "iacs_pr",
+      "series_keys": [
+        "pr",
+        "pr_del"
+      ],
+      "items": [
+        {
+          "item_id": "iacs_pr_pr1_annex_rev6_en",
+          "cost_tokens": 5645,
+          "series_order": [
+            1,
+            0,
+            500,
+            6
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/PR/PR_01-10_md/PR-1-Annex-Rev.6-Oct-2024-CLN.md",
+          "series": "pr",
+          "document_key": "iacs_pr_pr1_annex_en"
+        },
+        {
+          "item_id": "iacs_pr_pr1b_rev8_en",
+          "cost_tokens": 8302,
+          "series_order": [
+            1,
+            2,
+            0,
+            8
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/PR/PR_01-10_md/PR-1B-Rev.8-Nov-2024-CLN-with-Annex-1.md",
+          "series": "pr",
+          "document_key": "iacs_pr_pr1b_en"
+        },
+        {
+          "item_id": "iacs_pr_pr1c_rev7_en",
+          "cost_tokens": 2942,
+          "series_order": [
+            1,
+            3,
+            0,
+            7
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/PR/PR_01-10_md/PR-1C-Rev.7-Nov-2024-CLN.md",
+          "series": "pr",
+          "document_key": "iacs_pr_pr1c_en"
+        },
+        {
+          "item_id": "iacs_pr_pr1d_rev3_en",
+          "cost_tokens": 2058,
+          "series_order": [
+            1,
+            4,
+            0,
+            3
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/PR/PR_01-10_md/PR-1D-Rev.3-Nov-2024-CLN.md",
+          "series": "pr",
+          "document_key": "iacs_pr_pr1d_en"
+        },
+        {
+          "item_id": "iacs_pr_pr1a_contact_202601_en",
+          "cost_tokens": 877,
+          "series_order": [
+            1,
+            9000,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/PR/PR_01-10_md/Contact-Details-for-PR1A-PR1B-PR1C-Jan-2026.md",
+          "series": "pr",
+          "document_key": "iacs_pr_pr1a_contact_202601_en"
+        },
+        {
+          "item_id": "iacs_pr_pr2a_en",
+          "cost_tokens": 1717,
+          "series_order": [
+            2,
+            1,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/PR/PR_01-10_md/pr_02a_pdf2657.md",
+          "series": "pr",
+          "document_key": "iacs_pr_pr2a_en"
+        },
+        {
+          "item_id": "iacs_pr_pr2b_en",
+          "cost_tokens": 2314,
+          "series_order": [
+            2,
+            2,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/PR/PR_01-10_md/pr_02b_pdf2658.md",
+          "series": "pr",
+          "document_key": "iacs_pr_pr2b_en"
+        },
+        {
+          "item_id": "iacs_pr_pr3_rev2_en",
+          "cost_tokens": 2027,
+          "series_order": [
+            3,
+            0,
+            0,
+            2
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/PR/PR_01-10_md/PR3-Rev.2-May-2019CLN.md",
+          "series": "pr",
+          "document_key": "iacs_pr_pr3_en"
+        },
+        {
+          "item_id": "iacs_pr_pr5_rev0_en",
+          "cost_tokens": 912,
+          "series_order": [
+            5,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/PR/PR_01-10_md/pr_05_pdf91.md",
+          "series": "pr",
+          "document_key": "iacs_pr_pr5_en"
+        },
+        {
+          "item_id": "iacs_pr_pr6_rev4_en",
+          "cost_tokens": 1454,
+          "series_order": [
+            6,
+            0,
+            0,
+            4
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/PR/PR_01-10_md/pr6rev4.md",
+          "series": "pr",
+          "document_key": "iacs_pr_pr6_en"
+        },
+        {
+          "item_id": "iacs_pr_pr7_rev3_en",
+          "cost_tokens": 2232,
+          "series_order": [
+            7,
+            0,
+            0,
+            3
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/PR/PR_01-10_md/pr7rev3.md",
+          "series": "pr",
+          "document_key": "iacs_pr_pr7_en"
+        },
+        {
+          "item_id": "iacs_pr_pr8_rev1_corr1_en",
+          "cost_tokens": 778,
+          "series_order": [
+            8,
+            0,
+            0,
+            1
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/PR/PR_01-10_md/pr_08_pdf94.md",
+          "series": "pr",
+          "document_key": "iacs_pr_pr8_en"
+        },
+        {
+          "item_id": "iacs_pr_pr9_rev6_en",
+          "cost_tokens": 9015,
+          "series_order": [
+            9,
+            0,
+            0,
+            6
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/PR/PR_01-10_md/PR9-Rev.6-Dec-2025-CLN.md",
+          "series": "pr",
+          "document_key": "iacs_pr_pr9_en"
+        },
+        {
+          "item_id": "iacs_pr_pr10b_rev1_en",
+          "cost_tokens": 2363,
+          "series_order": [
+            10,
+            2,
+            0,
+            1
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/PR/PR_01-10_md/PR-10BRev.1-Sep-2023CLN.md",
+          "series": "pr",
+          "document_key": "iacs_pr_pr10b_en"
+        },
+        {
+          "item_id": "iacs_pr_pr11_rev1_en",
+          "cost_tokens": 350,
+          "series_order": [
+            11,
+            0,
+            0,
+            1
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/PR/PR_11-20_md/pr_11_pdf97.md",
+          "series": "pr",
+          "document_key": "iacs_pr_pr11_en"
+        },
+        {
+          "item_id": "iacs_pr_pr12_rev5_en",
+          "cost_tokens": 2180,
+          "series_order": [
+            12,
+            0,
+            0,
+            5
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/PR/PR_11-20_md/PR-12-Rev.5-Nov-2024-CLN.md",
+          "series": "pr",
+          "document_key": "iacs_pr_pr12_en"
+        },
+        {
+          "item_id": "iacs_pr_pr16_corr1_en",
+          "cost_tokens": 366,
+          "series_order": [
+            16,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/PR/PR_11-20_md/pr16corr1.md",
+          "series": "pr",
+          "document_key": "iacs_pr_pr16_en"
+        },
+        {
+          "item_id": "iacs_pr_pr17_rev3_en",
+          "cost_tokens": 2046,
+          "series_order": [
+            17,
+            0,
+            0,
+            3
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/PR/PR_11-20_md/PR-17-Rev.3-Dec-2024-CLN.md",
+          "series": "pr",
+          "document_key": "iacs_pr_pr17_en"
+        },
+        {
+          "item_id": "iacs_pr_pr17_contact_202603_en",
+          "cost_tokens": 690,
+          "series_order": [
+            17,
+            9000,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/PR/PR_11-20_md/PR-17-and-PR-18-Contact-details-Mar-2026.md",
+          "series": "pr",
+          "document_key": "iacs_pr_pr17_contact_202603_en"
+        },
+        {
+          "item_id": "iacs_pr_pr18_rev2_en",
+          "cost_tokens": 2095,
+          "series_order": [
+            18,
+            0,
+            0,
+            2
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/PR/PR_11-20_md/PR18-Rev.2-Dec-2024-CLN.md",
+          "series": "pr",
+          "document_key": "iacs_pr_pr18_en"
+        },
+        {
+          "item_id": "iacs_pr_pr19_rev1_en",
+          "cost_tokens": 838,
+          "series_order": [
+            19,
+            0,
+            0,
+            1
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/PR/PR_11-20_md/pr19rev1.md",
+          "series": "pr",
+          "document_key": "iacs_pr_pr19_en"
+        },
+        {
+          "item_id": "iacs_pr_pr20_rev3_en",
+          "cost_tokens": 734,
+          "series_order": [
+            20,
+            0,
+            0,
+            3
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/PR/PR_11-20_md/pr20rev3.md",
+          "series": "pr",
+          "document_key": "iacs_pr_pr20_en"
+        },
+        {
+          "item_id": "iacs_pr_pr21_rev2_en",
+          "cost_tokens": 253,
+          "series_order": [
+            21,
+            0,
+            0,
+            2
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/PR/PR_21-30_md/pr21rev2.md",
+          "series": "pr",
+          "document_key": "iacs_pr_pr21_en"
+        },
+        {
+          "item_id": "iacs_pr_pr23_rev1_corr1_en",
+          "cost_tokens": 721,
+          "series_order": [
+            23,
+            0,
+            0,
+            1
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/PR/PR_21-30_md/pr_23_pdf108.md",
+          "series": "pr",
+          "document_key": "iacs_pr_pr23_en"
+        },
+        {
+          "item_id": "iacs_pr_pr23_contact_202603_en",
+          "cost_tokens": 443,
+          "series_order": [
+            23,
+            9000,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/PR/PR_21-30_md/PR-23-Contact-Details-March-2026.md",
+          "series": "pr",
+          "document_key": "iacs_pr_pr23_contact_202603_en"
+        },
+        {
+          "item_id": "iacs_pr_pr24_rev3_en",
+          "cost_tokens": 5744,
+          "series_order": [
+            24,
+            0,
+            0,
+            3
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/PR/PR_21-30_md/PR24-Rev.3-Dec-2024-CLN.md",
+          "series": "pr",
+          "document_key": "iacs_pr_pr24_en"
+        },
+        {
+          "item_id": "iacs_pr_pr28_rev2_en",
+          "cost_tokens": 1364,
+          "series_order": [
+            28,
+            0,
+            0,
+            2
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/PR/PR_21-30_md/pr28rev2.md",
+          "series": "pr",
+          "document_key": "iacs_pr_pr28_en"
+        },
+        {
+          "item_id": "iacs_pr_pr29_en",
+          "cost_tokens": 481,
+          "series_order": [
+            29,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/PR/PR_21-30_md/pr_29_pdf114.md",
+          "series": "pr",
+          "document_key": "iacs_pr_pr29_en"
+        },
+        {
+          "item_id": "iacs_pr_pr31_rev1_en",
+          "cost_tokens": 267,
+          "series_order": [
+            31,
+            0,
+            0,
+            1
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/PR/PR_31-42_md/pr_31_pdf559.md",
+          "series": "pr",
+          "document_key": "iacs_pr_pr31_en"
+        },
+        {
+          "item_id": "iacs_pr_pr32_rev2_en",
+          "cost_tokens": 471,
+          "series_order": [
+            32,
+            0,
+            0,
+            2
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/PR/PR_31-42_md/PR-32-Rev.2-Nov-2024-CLN-1.md",
+          "series": "pr",
+          "document_key": "iacs_pr_pr32_en"
+        },
+        {
+          "item_id": "iacs_pr_pr33_rev0_en",
+          "cost_tokens": 133,
+          "series_order": [
+            33,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/PR/PR_31-42_md/pr_33_pdf116.md",
+          "series": "pr",
+          "document_key": "iacs_pr_pr33_en"
+        },
+        {
+          "item_id": "iacs_pr_pr35_rev1_en",
+          "cost_tokens": 555,
+          "series_order": [
+            35,
+            0,
+            0,
+            1
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/PR/PR_31-42_md/pr35rev1.md",
+          "series": "pr",
+          "document_key": "iacs_pr_pr35_en"
+        },
+        {
+          "item_id": "iacs_pr_pr36_rev1_en",
+          "cost_tokens": 2097,
+          "series_order": [
+            36,
+            0,
+            0,
+            1
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/PR/PR_31-42_md/PR-36-Rev.1-Dec-2024-CLN.md",
+          "series": "pr",
+          "document_key": "iacs_pr_pr36_en"
+        },
+        {
+          "item_id": "iacs_pr_pr36_contact_202603_en",
+          "cost_tokens": 685,
+          "series_order": [
+            36,
+            9000,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/PR/PR_31-42_md/PR-36-Contact-details-March-2026.md",
+          "series": "pr",
+          "document_key": "iacs_pr_pr36_contact_202603_en"
+        },
+        {
+          "item_id": "iacs_pr_pr38_rev5_en",
+          "cost_tokens": 40859,
+          "series_order": [
+            38,
+            0,
+            0,
+            5
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/PR/PR_31-42_md/PR38Rev5.md",
+          "series": "pr",
+          "document_key": "iacs_pr_pr38_en"
+        },
+        {
+          "item_id": "iacs_pr_pr39_rev1_en",
+          "cost_tokens": 343,
+          "series_order": [
+            39,
+            0,
+            0,
+            1
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/PR/PR_31-42_md/PR-39Rev1.md",
+          "series": "pr",
+          "document_key": "iacs_pr_pr39_en"
+        },
+        {
+          "item_id": "iacs_pr_pr40_rev2_en",
+          "cost_tokens": 5203,
+          "series_order": [
+            40,
+            0,
+            0,
+            2
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/PR/PR_31-42_md/PR-40-Rev.2-Dec-2024-CLN.md",
+          "series": "pr",
+          "document_key": "iacs_pr_pr40_en"
+        },
+        {
+          "item_id": "iacs_pr_pr41_rev1_en",
+          "cost_tokens": 942,
+          "series_order": [
+            41,
+            0,
+            0,
+            1
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/PR/PR_31-42_md/PR-41-Rev.1-Nov-2024-CLN.md",
+          "series": "pr",
+          "document_key": "iacs_pr_pr41_en"
+        },
+        {
+          "item_id": "iacs_pr_pr42_rev1_en",
+          "cost_tokens": 2361,
+          "series_order": [
+            42,
+            0,
+            0,
+            1
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/PR/PR_31-42_md/PR-42-Rev.1-Nov-2024-CLN.md",
+          "series": "pr",
+          "document_key": "iacs_pr_pr42_en"
+        },
+        {
+          "item_id": "iacs_pr_pr1c_add_rev8_del_en",
+          "cost_tokens": 190,
+          "series_order": [
+            1,
+            3,
+            400,
+            8
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/PR/PR_01-10_md/PR-1C-Add-Rev8-Withdrawn-Oct-2023.md",
+          "series": "pr_del",
+          "document_key": "iacs_pr_pr1c_add_en"
+        },
+        {
+          "item_id": "iacs_pr_pr2_rev0_del_en",
+          "cost_tokens": 69,
+          "series_order": [
+            2,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/PR/PR_01-10_md/pr_02_pdf89.md",
+          "series": "pr_del",
+          "document_key": "iacs_pr_pr2_en"
+        },
+        {
+          "item_id": "iacs_pr_pr14_rev4_del_en",
+          "cost_tokens": 81,
+          "series_order": [
+            14,
+            0,
+            0,
+            4
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/PR/PR_11-20_md/pr_14_pdf99.md",
+          "series": "pr_del",
+          "document_key": "iacs_pr_pr14_en"
+        },
+        {
+          "item_id": "iacs_pr_pr15_rev5_corr1_del_en",
+          "cost_tokens": 106,
+          "series_order": [
+            15,
+            0,
+            0,
+            5
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/PR/PR_11-20_md/pr_15_pdf100.md",
+          "series": "pr_del",
+          "document_key": "iacs_pr_pr15_en"
+        },
+        {
+          "item_id": "iacs_pr_pr22_rev1_del_en",
+          "cost_tokens": 50,
+          "series_order": [
+            22,
+            0,
+            0,
+            1
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/PR/PR_21-30_md/pr_22_pdf107.md",
+          "series": "pr_del",
+          "document_key": "iacs_pr_pr22_en"
+        },
+        {
+          "item_id": "iacs_pr_pr25_del_en",
+          "cost_tokens": 87,
+          "series_order": [
+            25,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/PR/PR_21-30_md/pr25-del-mar-2009.md",
+          "series": "pr_del",
+          "document_key": "iacs_pr_pr25_en"
+        },
+        {
+          "item_id": "iacs_pr_pr26_rev2_del_en",
+          "cost_tokens": 59,
+          "series_order": [
+            26,
+            0,
+            0,
+            2
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/PR/PR_21-30_md/pr_26_pdf110.md",
+          "series": "pr_del",
+          "document_key": "iacs_pr_pr26_en"
+        },
+        {
+          "item_id": "iacs_pr_pr27_rev2_del_en",
+          "cost_tokens": 58,
+          "series_order": [
+            27,
+            0,
+            0,
+            2
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/PR/PR_21-30_md/pr_27_pdf112.md",
+          "series": "pr_del",
+          "document_key": "iacs_pr_pr27_en"
+        },
+        {
+          "item_id": "iacs_pr_pr34_del_en",
+          "cost_tokens": 81,
+          "series_order": [
+            34,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/PR/PR_31-42_md/pr_34_pdf388.md",
+          "series": "pr_del",
+          "document_key": "iacs_pr_pr34_en"
+        }
+      ],
+      "cost_total": 115638,
+      "locked_items": [
+        "iacs_pr_pr1_annex_rev6_en",
+        "iacs_pr_pr1b_rev8_en",
+        "iacs_pr_pr1c_rev7_en",
+        "iacs_pr_pr1d_rev3_en",
+        "iacs_pr_pr1a_contact_202601_en",
+        "iacs_pr_pr2a_en",
+        "iacs_pr_pr2b_en",
+        "iacs_pr_pr3_rev2_en",
+        "iacs_pr_pr5_rev0_en",
+        "iacs_pr_pr6_rev4_en",
+        "iacs_pr_pr7_rev3_en",
+        "iacs_pr_pr8_rev1_corr1_en",
+        "iacs_pr_pr9_rev6_en",
+        "iacs_pr_pr10b_rev1_en",
+        "iacs_pr_pr11_rev1_en",
+        "iacs_pr_pr12_rev5_en",
+        "iacs_pr_pr16_corr1_en",
+        "iacs_pr_pr17_rev3_en",
+        "iacs_pr_pr17_contact_202603_en",
+        "iacs_pr_pr18_rev2_en",
+        "iacs_pr_pr19_rev1_en",
+        "iacs_pr_pr20_rev3_en",
+        "iacs_pr_pr21_rev2_en",
+        "iacs_pr_pr23_rev1_corr1_en",
+        "iacs_pr_pr23_contact_202603_en",
+        "iacs_pr_pr24_rev3_en",
+        "iacs_pr_pr28_rev2_en",
+        "iacs_pr_pr29_en",
+        "iacs_pr_pr31_rev1_en",
+        "iacs_pr_pr32_rev2_en",
+        "iacs_pr_pr33_rev0_en",
+        "iacs_pr_pr35_rev1_en",
+        "iacs_pr_pr36_rev1_en",
+        "iacs_pr_pr36_contact_202603_en",
+        "iacs_pr_pr38_rev5_en",
+        "iacs_pr_pr39_rev1_en",
+        "iacs_pr_pr40_rev2_en",
+        "iacs_pr_pr41_rev1_en",
+        "iacs_pr_pr42_rev1_en",
+        "iacs_pr_pr1c_add_rev8_del_en",
+        "iacs_pr_pr2_rev0_del_en",
+        "iacs_pr_pr14_rev4_del_en",
+        "iacs_pr_pr15_rev5_corr1_del_en",
+        "iacs_pr_pr22_rev1_del_en",
+        "iacs_pr_pr25_del_en",
+        "iacs_pr_pr26_rev2_del_en",
+        "iacs_pr_pr27_rev2_del_en",
+        "iacs_pr_pr34_del_en"
+      ],
+      "lock_conflicts": [],
+      "status": "claimed"
+    }
+  ],
+  "unresolved": []
+}

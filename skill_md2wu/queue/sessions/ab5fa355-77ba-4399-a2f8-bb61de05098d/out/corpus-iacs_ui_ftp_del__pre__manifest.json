@@ -1,0 +1,52 @@
+{
+  "corpus_scope": "iacs_ui_ftp_del",
+  "source_family": "iacs_ui",
+  "authority": "IACS",
+  "doc_type": "UI",
+  "language": "en",
+  "grammar_version": "iacs_ui_v01",
+  "measure_method": "tiktoken",
+  "series": "ui_ftp_del",
+  "session_id": "ab5fa355-77ba-4399-a2f8-bb61de05098d",
+  "batch_id": "B001",
+  "generated_at": "2026-04-17T04:34:06.165033+00:00",
+  "wu_count": 1,
+  "est_tokens_total": 65,
+  "work_units": [
+    {
+      "wu_key": "iacs_ui_merge_d118819f",
+      "wu_type": "merged",
+      "constituent_docs": [
+        {
+          "doc_instance_key": "iacs_ui_ftp1_del_en",
+          "document_key": "iacs_ui_ftp1",
+          "start_line": 1,
+          "end_line": 7,
+          "est_tokens": 30,
+          "heading_range": {
+            "first": "iacs_ui_ftp1_HD_001",
+            "last": "iacs_ui_ftp1_HD_001"
+          }
+        },
+        {
+          "doc_instance_key": "iacs_ui_ftp2_del_en",
+          "document_key": "iacs_ui_ftp2",
+          "start_line": 1,
+          "end_line": 8,
+          "est_tokens": 35,
+          "heading_range": {
+            "first": "iacs_ui_ftp2_HD_001",
+            "last": "iacs_ui_ftp2_HD_001"
+          }
+        }
+      ],
+      "est_tokens_total": 65,
+      "chunk_keys": [
+        "iacs_ui_ftp1_del_en_ch001",
+        "iacs_ui_ftp2_del_en_ch001"
+      ],
+      "status": "processed",
+      "content_file": "wu-iacs_ui_merge_d118819f__pre__content.md"
+    }
+  ]
+}
