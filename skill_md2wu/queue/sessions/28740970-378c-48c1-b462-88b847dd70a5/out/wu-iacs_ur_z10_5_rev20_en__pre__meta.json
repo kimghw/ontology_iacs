@@ -1,0 +1,31 @@
+{
+  "wu_key": "iacs_ur_z10_5_rev20_en",
+  "wu_type": "standalone",
+  "authority": "IACS",
+  "doc_type": "UR",
+  "language": "en",
+  "grammar_version": "iacs_ur_z_v01",
+  "measure_method": "tiktoken",
+  "constituent_docs": [
+    {
+      "doc_instance_key": "iacs_ur_z10_5_rev20_en",
+      "document_key": "iacs_ur_z10_5",
+      "start_line": 3,
+      "end_line": 3098,
+      "est_tokens": 47795,
+      "heading_range": {
+        "first": "iacs_ur_z10_5_HD_001",
+        "last": "iacs_ur_z10_5_HD_165"
+      }
+    }
+  ],
+  "est_tokens_total": 47795,
+  "chunk_keys": [
+    "iacs_ur_z10_5_rev20_en_ch001"
+  ],
+  "status": "processed",
+  "output_files": [
+    "skill_md2wu/wu-iacs_ur_z10_5_rev20_en__pre__content.md"
+  ],
+  "created_at": "2026-04-17T04:12:26.212554+00:00"
+}

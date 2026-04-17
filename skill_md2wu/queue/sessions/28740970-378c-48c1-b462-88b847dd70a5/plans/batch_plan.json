@@ -1,0 +1,3761 @@
+{
+  "session_id": "28740970-378c-48c1-b462-88b847dd70a5",
+  "source_dir": "/mnt/c/shared_wk/ontology_iacs/UR",
+  "batch_capacity": 600000,
+  "session_capacity": 600000,
+  "total_input_items": 280,
+  "skipped_items": 0,
+  "batches": [
+    {
+      "batch_id": "B001",
+      "source_family": "iacs_ur",
+      "series_keys": [
+        "ur_s",
+        "ur_z"
+      ],
+      "items": [
+        {
+          "item_id": "iacs_ur_z1_rev10_en",
+          "cost_tokens": 1335,
+          "series_order": [
+            1,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_Z_md/UR-Z1-Rev.10-Sept-2024-CLN.md",
+          "series": "ur_z",
+          "document_key": "iacs_ur_z1"
+        },
+        {
+          "item_id": "iacs_ur_z2_del_en",
+          "cost_tokens": 43,
+          "series_order": [
+            2,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_Z_md/ur-z2del.md",
+          "series": "ur_z",
+          "document_key": "iacs_ur_z2"
+        },
+        {
+          "item_id": "iacs_ur_z3_rev8_en",
+          "cost_tokens": 1788,
+          "series_order": [
+            3,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_Z_md/ur-z3rev8.md",
+          "series": "ur_z",
+          "document_key": "iacs_ur_z3"
+        },
+        {
+          "item_id": "iacs_ur_z4_del_en",
+          "cost_tokens": 51,
+          "series_order": [
+            4,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_Z_md/ur-z4del.md",
+          "series": "ur_z",
+          "document_key": "iacs_ur_z4"
+        },
+        {
+          "item_id": "iacs_ur_z5_del_en",
+          "cost_tokens": 35,
+          "series_order": [
+            5,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_Z_md/ur-z5del.md",
+          "series": "ur_z",
+          "document_key": "iacs_ur_z5"
+        },
+        {
+          "item_id": "iacs_ur_z6_rev6_en",
+          "cost_tokens": 540,
+          "series_order": [
+            6,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_Z_md/ur-z6rev6.md",
+          "series": "ur_z",
+          "document_key": "iacs_ur_z6"
+        },
+        {
+          "item_id": "iacs_ur_z7_rev29_corr1_en",
+          "cost_tokens": 21997,
+          "series_order": [
+            7,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_Z_md/UR-Z7Rev.29Corr.1.md",
+          "series": "ur_z",
+          "document_key": "iacs_ur_z7"
+        },
+        {
+          "item_id": "iacs_ur_z7_1_rev15_corr1_en",
+          "cost_tokens": 11263,
+          "series_order": [
+            7,
+            1,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_Z_md/UR-Z7.1Rev.15Corr.1.md",
+          "series": "ur_z",
+          "document_key": "iacs_ur_z7_1"
+        },
+        {
+          "item_id": "iacs_ur_z8_rev1_en",
+          "cost_tokens": 70,
+          "series_order": [
+            8,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_Z_md/ur-z8rev1.md",
+          "series": "ur_z",
+          "document_key": "iacs_ur_z8"
+        },
+        {
+          "item_id": "iacs_ur_z9_rev2_en",
+          "cost_tokens": 254,
+          "series_order": [
+            9,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_Z_md/ur-z9rev2.md",
+          "series": "ur_z",
+          "document_key": "iacs_ur_z9"
+        },
+        {
+          "item_id": "iacs_ur_z10_1_rev25_en",
+          "cost_tokens": 32419,
+          "series_order": [
+            10,
+            1,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_Z_md/ur-z101rev25.md",
+          "series": "ur_z",
+          "document_key": "iacs_ur_z10_1"
+        },
+        {
+          "item_id": "iacs_ur_z10_2_rev37_en",
+          "cost_tokens": 45678,
+          "series_order": [
+            10,
+            2,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_Z_md/ur-z102rev37.md",
+          "series": "ur_z",
+          "document_key": "iacs_ur_z10_2"
+        },
+        {
+          "item_id": "iacs_ur_z10_3_rev21_en",
+          "cost_tokens": 22514,
+          "series_order": [
+            10,
+            3,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_Z_md/UR-Z10.3-Rev.21-Aug-2023-CLN.md",
+          "series": "ur_z",
+          "document_key": "iacs_ur_z10_3"
+        },
+        {
+          "item_id": "iacs_ur_z10_4_rev18_en",
+          "cost_tokens": 49003,
+          "series_order": [
+            10,
+            4,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_Z_md/ur_z104rev18-1.md",
+          "series": "ur_z",
+          "document_key": "iacs_ur_z10_4"
+        },
+        {
+          "item_id": "iacs_ur_z10_5_rev20_en",
+          "cost_tokens": 47795,
+          "series_order": [
+            10,
+            5,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_Z_md/ur_z105rev20.md",
+          "series": "ur_z",
+          "document_key": "iacs_ur_z10_5"
+        },
+        {
+          "item_id": "iacs_ur_z10_6_del_en",
+          "cost_tokens": 35,
+          "series_order": [
+            10,
+            6,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_Z_md/ur-z106del.md",
+          "series": "ur_z",
+          "document_key": "iacs_ur_z10_6"
+        },
+        {
+          "item_id": "iacs_ur_z11_rev6_en",
+          "cost_tokens": 1836,
+          "series_order": [
+            11,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_Z_md/ur-z11rev6.md",
+          "series": "ur_z",
+          "document_key": "iacs_ur_z11"
+        },
+        {
+          "item_id": "iacs_ur_z12_del_en",
+          "cost_tokens": 9,
+          "series_order": [
+            12,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_Z_md/ur-z12del.md",
+          "series": "ur_z",
+          "document_key": "iacs_ur_z12"
+        },
+        {
+          "item_id": "iacs_ur_z13_rev3_en",
+          "cost_tokens": 1021,
+          "series_order": [
+            13,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_Z_md/ur-z13rev3.md",
+          "series": "ur_z",
+          "document_key": "iacs_ur_z13"
+        },
+        {
+          "item_id": "iacs_ur_z15_rev3_en",
+          "cost_tokens": 12093,
+          "series_order": [
+            15,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_Z_md/ur-z15rev3.md",
+          "series": "ur_z",
+          "document_key": "iacs_ur_z15"
+        },
+        {
+          "item_id": "iacs_ur_z16_rev4_corr1_en",
+          "cost_tokens": 3094,
+          "series_order": [
+            16,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_Z_md/ur-z16rev4corr1.md",
+          "series": "ur_z",
+          "document_key": "iacs_ur_z16"
+        },
+        {
+          "item_id": "iacs_ur_z17_rev20_en",
+          "cost_tokens": 19111,
+          "series_order": [
+            17,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_Z_md/UR-Z17-Rev.20-Nov-2024-CLN.md",
+          "series": "ur_z",
+          "document_key": "iacs_ur_z17"
+        },
+        {
+          "item_id": "iacs_ur_z18_rev9_en",
+          "cost_tokens": 2637,
+          "series_order": [
+            18,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_Z_md/ur-z18rev9.md",
+          "series": "ur_z",
+          "document_key": "iacs_ur_z18"
+        },
+        {
+          "item_id": "iacs_ur_z19_en",
+          "cost_tokens": 220,
+          "series_order": [
+            19,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_Z_md/ur-z19.md",
+          "series": "ur_z",
+          "document_key": "iacs_ur_z19"
+        },
+        {
+          "item_id": "iacs_ur_z20_rev2_en",
+          "cost_tokens": 1640,
+          "series_order": [
+            20,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_Z_md/ur-z20rev2.md",
+          "series": "ur_z",
+          "document_key": "iacs_ur_z20"
+        },
+        {
+          "item_id": "iacs_ur_z21_rev4_en",
+          "cost_tokens": 6702,
+          "series_order": [
+            21,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_Z_md/ur-z21rev4.md",
+          "series": "ur_z",
+          "document_key": "iacs_ur_z21"
+        },
+        {
+          "item_id": "iacs_ur_z22_del_en",
+          "cost_tokens": 49,
+          "series_order": [
+            22,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_Z_md/ur-z22del.md",
+          "series": "ur_z",
+          "document_key": "iacs_ur_z22"
+        },
+        {
+          "item_id": "iacs_ur_z23_rev7_corr2_en",
+          "cost_tokens": 17009,
+          "series_order": [
+            23,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_Z_md/ur-z23rev7corr2-1.md",
+          "series": "ur_z",
+          "document_key": "iacs_ur_z23"
+        },
+        {
+          "item_id": "iacs_ur_z24_corr1_en",
+          "cost_tokens": 5291,
+          "series_order": [
+            24,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_Z_md/ur-z24corr1.md",
+          "series": "ur_z",
+          "document_key": "iacs_ur_z24"
+        },
+        {
+          "item_id": "iacs_ur_z25_rev1_en",
+          "cost_tokens": 2964,
+          "series_order": [
+            25,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_Z_md/ur-z25rev1.md",
+          "series": "ur_z",
+          "document_key": "iacs_ur_z25"
+        },
+        {
+          "item_id": "iacs_ur_z26_en",
+          "cost_tokens": 1153,
+          "series_order": [
+            26,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_Z_md/ur-z26.md",
+          "series": "ur_z",
+          "document_key": "iacs_ur_z26"
+        },
+        {
+          "item_id": "iacs_ur_z27_en",
+          "cost_tokens": 2457,
+          "series_order": [
+            27,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_Z_md/ur-z27.md",
+          "series": "ur_z",
+          "document_key": "iacs_ur_z27"
+        },
+        {
+          "item_id": "iacs_ur_z28_corr1_en",
+          "cost_tokens": 1022,
+          "series_order": [
+            28,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_Z_md/ur-z28corr1.md",
+          "series": "ur_z",
+          "document_key": "iacs_ur_z28"
+        },
+        {
+          "item_id": "iacs_ur_z29_en",
+          "cost_tokens": 4527,
+          "series_order": [
+            29,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_Z_md/ur-z29.md",
+          "series": "ur_z",
+          "document_key": "iacs_ur_z29"
+        },
+        {
+          "item_id": "iacs_ur_z72_rev8_en",
+          "cost_tokens": 8529,
+          "series_order": [
+            72,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_Z_md/ur-z72rev8.md",
+          "series": "ur_z",
+          "document_key": "iacs_ur_z72"
+        },
+        {
+          "item_id": "iacs_ur_s1_rev6_en",
+          "cost_tokens": 2627,
+          "series_order": [
+            1,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_S_md/ur-s1arev6.md",
+          "series": "ur_s",
+          "document_key": "iacs_ur_s1"
+        },
+        {
+          "item_id": "iacs_ur_s1_rev7_en",
+          "cost_tokens": 1608,
+          "series_order": [
+            1,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_S_md/ur-s1rev7.md",
+          "series": "ur_s",
+          "document_key": "iacs_ur_s1"
+        },
+        {
+          "item_id": "iacs_ur_s2_rev2_en",
+          "cost_tokens": 447,
+          "series_order": [
+            2,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_S_md/ur-s2rev2.md",
+          "series": "ur_s",
+          "document_key": "iacs_ur_s2"
+        },
+        {
+          "item_id": "iacs_ur_s3_rev2_en",
+          "cost_tokens": 1539,
+          "series_order": [
+            3,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_S_md/ur-s3rev2.md",
+          "series": "ur_s",
+          "document_key": "iacs_ur_s3"
+        },
+        {
+          "item_id": "iacs_ur_s4_rev4_en",
+          "cost_tokens": 309,
+          "series_order": [
+            4,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_S_md/ur-s4-rev4-apr-2017-cln.md",
+          "series": "ur_s",
+          "document_key": "iacs_ur_s4"
+        },
+        {
+          "item_id": "iacs_ur_s5_corr1_en",
+          "cost_tokens": 527,
+          "series_order": [
+            5,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_S_md/ur-s5corr1.md",
+          "series": "ur_s",
+          "document_key": "iacs_ur_s5"
+        },
+        {
+          "item_id": "iacs_ur_s6_rev9_corr2_en",
+          "cost_tokens": 4442,
+          "series_order": [
+            6,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_S_md/ur-s6rev9corr2.md",
+          "series": "ur_s",
+          "document_key": "iacs_ur_s6"
+        },
+        {
+          "item_id": "iacs_ur_s7_rev4_en",
+          "cost_tokens": 707,
+          "series_order": [
+            7,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_S_md/ur-s7rev4.md",
+          "series": "ur_s",
+          "document_key": "iacs_ur_s7"
+        },
+        {
+          "item_id": "iacs_ur_s8_rev4_en",
+          "cost_tokens": 7105,
+          "series_order": [
+            8,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_S_md/ur-s8rev4.md",
+          "series": "ur_s",
+          "document_key": "iacs_ur_s8"
+        },
+        {
+          "item_id": "iacs_ur_s9_rev6_en",
+          "cost_tokens": 4182,
+          "series_order": [
+            9,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_S_md/ur-s9rev6.md",
+          "series": "ur_s",
+          "document_key": "iacs_ur_s9"
+        },
+        {
+          "item_id": "iacs_ur_s10_rev8_en",
+          "cost_tokens": 19629,
+          "series_order": [
+            10,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_S_md/UR-S10-Rev-8-Sep-2025-CLN.md",
+          "series": "ur_s",
+          "document_key": "iacs_ur_s10"
+        },
+        {
+          "item_id": "iacs_ur_s11_en",
+          "cost_tokens": 24506,
+          "series_order": [
+            11,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_S_md/ur-s11a.md",
+          "series": "ur_s",
+          "document_key": "iacs_ur_s11"
+        },
+        {
+          "item_id": "iacs_ur_s11_rev10_en",
+          "cost_tokens": 10641,
+          "series_order": [
+            11,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_S_md/ur-s11rev10.md",
+          "series": "ur_s",
+          "document_key": "iacs_ur_s11"
+        },
+        {
+          "item_id": "iacs_ur_s12_rev5_en",
+          "cost_tokens": 1614,
+          "series_order": [
+            12,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_S_md/ur-s12rev5.md",
+          "series": "ur_s",
+          "document_key": "iacs_ur_s12"
+        },
+        {
+          "item_id": "iacs_ur_s13_rev2_corr1_en",
+          "cost_tokens": 175,
+          "series_order": [
+            13,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_S_md/ur-s13rev2corr1.md",
+          "series": "ur_s",
+          "document_key": "iacs_ur_s13"
+        },
+        {
+          "item_id": "iacs_ur_s15_rev1_en",
+          "cost_tokens": 427,
+          "series_order": [
+            15,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_S_md/ur-s15rev1.md",
+          "series": "ur_s",
+          "document_key": "iacs_ur_s15"
+        },
+        {
+          "item_id": "iacs_ur_s16_corr1_en",
+          "cost_tokens": 732,
+          "series_order": [
+            16,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_S_md/ur-s16corr1.md",
+          "series": "ur_s",
+          "document_key": "iacs_ur_s16"
+        },
+        {
+          "item_id": "iacs_ur_s17_rev10_en",
+          "cost_tokens": 1286,
+          "series_order": [
+            17,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_S_md/ur-s17rev10.md",
+          "series": "ur_s",
+          "document_key": "iacs_ur_s17"
+        },
+        {
+          "item_id": "iacs_ur_s18_rev10_en",
+          "cost_tokens": 8396,
+          "series_order": [
+            18,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_S_md/ur-s18rev10.md",
+          "series": "ur_s",
+          "document_key": "iacs_ur_s18"
+        },
+        {
+          "item_id": "iacs_ur_s19_rev5_en",
+          "cost_tokens": 9252,
+          "series_order": [
+            19,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_S_md/ur-s19rev5.md",
+          "series": "ur_s",
+          "document_key": "iacs_ur_s19"
+        },
+        {
+          "item_id": "iacs_ur_s20_rev6_en",
+          "cost_tokens": 2979,
+          "series_order": [
+            20,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_S_md/ur-s20-rev6.md",
+          "series": "ur_s",
+          "document_key": "iacs_ur_s20"
+        },
+        {
+          "item_id": "iacs_ur_s21_del_en",
+          "cost_tokens": 111,
+          "series_order": [
+            21,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_S_md/ur-s21adel.md",
+          "series": "ur_s",
+          "document_key": "iacs_ur_s21"
+        },
+        {
+          "item_id": "iacs_ur_s21_rev6_en",
+          "cost_tokens": 16950,
+          "series_order": [
+            21,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_S_md/ur-s21rev6.md",
+          "series": "ur_s",
+          "document_key": "iacs_ur_s21"
+        },
+        {
+          "item_id": "iacs_ur_s22_rev3_en",
+          "cost_tokens": 2987,
+          "series_order": [
+            22,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_S_md/ur-s22rev3.md",
+          "series": "ur_s",
+          "document_key": "iacs_ur_s22"
+        },
+        {
+          "item_id": "iacs_ur_s23_rev4_en",
+          "cost_tokens": 1587,
+          "series_order": [
+            23,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_S_md/ur-s23rev4.md",
+          "series": "ur_s",
+          "document_key": "iacs_ur_s23"
+        },
+        {
+          "item_id": "iacs_ur_s24_del_en",
+          "cost_tokens": 55,
+          "series_order": [
+            24,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_S_md/ur-s24del.md",
+          "series": "ur_s",
+          "document_key": "iacs_ur_s24"
+        },
+        {
+          "item_id": "iacs_ur_s25_del_en",
+          "cost_tokens": 58,
+          "series_order": [
+            25,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_S_md/ur-s25del.md",
+          "series": "ur_s",
+          "document_key": "iacs_ur_s25"
+        },
+        {
+          "item_id": "iacs_ur_s26_rev5_en",
+          "cost_tokens": 2240,
+          "series_order": [
+            26,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_S_md/ur-s26rev5.md",
+          "series": "ur_s",
+          "document_key": "iacs_ur_s26"
+        },
+        {
+          "item_id": "iacs_ur_s27_rev6_en",
+          "cost_tokens": 3434,
+          "series_order": [
+            27,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_S_md/ur-s27rev6.md",
+          "series": "ur_s",
+          "document_key": "iacs_ur_s27"
+        },
+        {
+          "item_id": "iacs_ur_s28_rev3_en",
+          "cost_tokens": 780,
+          "series_order": [
+            28,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_S_md/ur-s28rev3.md",
+          "series": "ur_s",
+          "document_key": "iacs_ur_s28"
+        },
+        {
+          "item_id": "iacs_ur_s30_corr1_en",
+          "cost_tokens": 1217,
+          "series_order": [
+            30,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_S_md/ur-s30corr1.md",
+          "series": "ur_s",
+          "document_key": "iacs_ur_s30"
+        },
+        {
+          "item_id": "iacs_ur_s31_rev4_en",
+          "cost_tokens": 7945,
+          "series_order": [
+            31,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_S_md/ur-s31rev4.md",
+          "series": "ur_s",
+          "document_key": "iacs_ur_s31"
+        },
+        {
+          "item_id": "iacs_ur_s32_del_en",
+          "cost_tokens": 93,
+          "series_order": [
+            32,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_S_md/ur-s32-draft-del-may-2010.md",
+          "series": "ur_s",
+          "document_key": "iacs_ur_s32"
+        },
+        {
+          "item_id": "iacs_ur_s33_rev3_en",
+          "cost_tokens": 3452,
+          "series_order": [
+            33,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_S_md/ur-s33rev3.md",
+          "series": "ur_s",
+          "document_key": "iacs_ur_s33"
+        },
+        {
+          "item_id": "iacs_ur_s34_en",
+          "cost_tokens": 1845,
+          "series_order": [
+            34,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_S_md/ur-s34.md",
+          "series": "ur_s",
+          "document_key": "iacs_ur_s34"
+        },
+        {
+          "item_id": "iacs_ur_s35_corr1_en",
+          "cost_tokens": 27741,
+          "series_order": [
+            35,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_S_md/UR-S35Corr1.md",
+          "series": "ur_s",
+          "document_key": "iacs_ur_s35"
+        }
+      ],
+      "cost_total": 499809,
+      "locked_items": [
+        "iacs_ur_z1_rev10_en",
+        "iacs_ur_z2_del_en",
+        "iacs_ur_z3_rev8_en",
+        "iacs_ur_z4_del_en",
+        "iacs_ur_z5_del_en",
+        "iacs_ur_z6_rev6_en",
+        "iacs_ur_z7_rev29_corr1_en",
+        "iacs_ur_z7_1_rev15_corr1_en",
+        "iacs_ur_z8_rev1_en",
+        "iacs_ur_z9_rev2_en",
+        "iacs_ur_z10_1_rev25_en",
+        "iacs_ur_z10_2_rev37_en",
+        "iacs_ur_z10_3_rev21_en",
+        "iacs_ur_z10_4_rev18_en",
+        "iacs_ur_z10_5_rev20_en",
+        "iacs_ur_z10_6_del_en",
+        "iacs_ur_z11_rev6_en",
+        "iacs_ur_z12_del_en",
+        "iacs_ur_z13_rev3_en",
+        "iacs_ur_z15_rev3_en",
+        "iacs_ur_z16_rev4_corr1_en",
+        "iacs_ur_z17_rev20_en",
+        "iacs_ur_z18_rev9_en",
+        "iacs_ur_z19_en",
+        "iacs_ur_z20_rev2_en",
+        "iacs_ur_z21_rev4_en",
+        "iacs_ur_z22_del_en",
+        "iacs_ur_z23_rev7_corr2_en",
+        "iacs_ur_z24_corr1_en",
+        "iacs_ur_z25_rev1_en",
+        "iacs_ur_z26_en",
+        "iacs_ur_z27_en",
+        "iacs_ur_z28_corr1_en",
+        "iacs_ur_z29_en",
+        "iacs_ur_z72_rev8_en",
+        "iacs_ur_s1_rev6_en",
+        "iacs_ur_s1_rev7_en",
+        "iacs_ur_s2_rev2_en",
+        "iacs_ur_s3_rev2_en",
+        "iacs_ur_s4_rev4_en",
+        "iacs_ur_s5_corr1_en",
+        "iacs_ur_s6_rev9_corr2_en",
+        "iacs_ur_s7_rev4_en",
+        "iacs_ur_s8_rev4_en",
+        "iacs_ur_s9_rev6_en",
+        "iacs_ur_s10_rev8_en",
+        "iacs_ur_s11_en",
+        "iacs_ur_s11_rev10_en",
+        "iacs_ur_s12_rev5_en",
+        "iacs_ur_s13_rev2_corr1_en",
+        "iacs_ur_s15_rev1_en",
+        "iacs_ur_s16_corr1_en",
+        "iacs_ur_s17_rev10_en",
+        "iacs_ur_s18_rev10_en",
+        "iacs_ur_s19_rev5_en",
+        "iacs_ur_s20_rev6_en",
+        "iacs_ur_s21_del_en",
+        "iacs_ur_s21_rev6_en",
+        "iacs_ur_s22_rev3_en",
+        "iacs_ur_s23_rev4_en",
+        "iacs_ur_s24_del_en",
+        "iacs_ur_s25_del_en",
+        "iacs_ur_s26_rev5_en",
+        "iacs_ur_s27_rev6_en",
+        "iacs_ur_s28_rev3_en",
+        "iacs_ur_s30_corr1_en",
+        "iacs_ur_s31_rev4_en",
+        "iacs_ur_s32_del_en",
+        "iacs_ur_s33_rev3_en",
+        "iacs_ur_s34_en",
+        "iacs_ur_s35_corr1_en"
+      ],
+      "lock_conflicts": [],
+      "status": "claimed"
+    },
+    {
+      "batch_id": "B002",
+      "source_family": "iacs_ur",
+      "series_keys": [
+        "ur_a",
+        "ur_c",
+        "ur_d",
+        "ur_e",
+        "ur_f",
+        "ur_g",
+        "ur_h",
+        "ur_i",
+        "ur_k",
+        "ur_l",
+        "ur_m",
+        "ur_n",
+        "ur_p",
+        "ur_w"
+      ],
+      "items": [
+        {
+          "item_id": "iacs_ur_w3_del_en",
+          "cost_tokens": 57,
+          "series_order": [
+            3,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_W_md/ur-w3del.md",
+          "series": "ur_w",
+          "document_key": "iacs_ur_w3"
+        },
+        {
+          "item_id": "iacs_ur_w4_del_en",
+          "cost_tokens": 65,
+          "series_order": [
+            4,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_W_md/ur-w4del.md",
+          "series": "ur_w",
+          "document_key": "iacs_ur_w4"
+        },
+        {
+          "item_id": "iacs_ur_w5_del_en",
+          "cost_tokens": 57,
+          "series_order": [
+            5,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_W_md/ur-w5del.md",
+          "series": "ur_w",
+          "document_key": "iacs_ur_w5"
+        },
+        {
+          "item_id": "iacs_ur_w6_del_en",
+          "cost_tokens": 57,
+          "series_order": [
+            6,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_W_md/ur-w6del.md",
+          "series": "ur_w",
+          "document_key": "iacs_ur_w6"
+        },
+        {
+          "item_id": "iacs_ur_w7_rev4_en",
+          "cost_tokens": 8593,
+          "series_order": [
+            7,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_W_md/ur-w7rev4.md",
+          "series": "ur_w",
+          "document_key": "iacs_ur_w7"
+        },
+        {
+          "item_id": "iacs_ur_w8_rev4_en",
+          "cost_tokens": 5754,
+          "series_order": [
+            8,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_W_md/UR-W8-Rev.4-Mar-2024-CLN.md",
+          "series": "ur_w",
+          "document_key": "iacs_ur_w8"
+        },
+        {
+          "item_id": "iacs_ur_w9_rev2_en",
+          "cost_tokens": 2139,
+          "series_order": [
+            9,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_W_md/ur-w9rev2.md",
+          "series": "ur_w",
+          "document_key": "iacs_ur_w9"
+        },
+        {
+          "item_id": "iacs_ur_w10_rev2_en",
+          "cost_tokens": 3326,
+          "series_order": [
+            10,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_W_md/ur-w10rev2.md",
+          "series": "ur_w",
+          "document_key": "iacs_ur_w10"
+        },
+        {
+          "item_id": "iacs_ur_w11_rev9_en",
+          "cost_tokens": 22352,
+          "series_order": [
+            11,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_W_md/ur-w11-rev9-may-2017-cln.md",
+          "series": "ur_w",
+          "document_key": "iacs_ur_w11"
+        },
+        {
+          "item_id": "iacs_ur_w12_del_en",
+          "cost_tokens": 4,
+          "series_order": [
+            12,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_W_md/ur-w12del.md",
+          "series": "ur_w",
+          "document_key": "iacs_ur_w12"
+        },
+        {
+          "item_id": "iacs_ur_w15_del_en",
+          "cost_tokens": 13,
+          "series_order": [
+            15,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_W_md/ur-w15del.md",
+          "series": "ur_w",
+          "document_key": "iacs_ur_w15"
+        },
+        {
+          "item_id": "iacs_ur_w16_rev3_en",
+          "cost_tokens": 12675,
+          "series_order": [
+            16,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_W_md/ur-w16rev3cr.md",
+          "series": "ur_w",
+          "document_key": "iacs_ur_w16"
+        },
+        {
+          "item_id": "iacs_ur_w19_del_en",
+          "cost_tokens": 20,
+          "series_order": [
+            19,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_W_md/ur-w19del.md",
+          "series": "ur_w",
+          "document_key": "iacs_ur_w19"
+        },
+        {
+          "item_id": "iacs_ur_w20_del_en",
+          "cost_tokens": 20,
+          "series_order": [
+            20,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_W_md/ur-w20del.md",
+          "series": "ur_w",
+          "document_key": "iacs_ur_w20"
+        },
+        {
+          "item_id": "iacs_ur_w21_del_en",
+          "cost_tokens": 20,
+          "series_order": [
+            21,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_W_md/ur-w21del.md",
+          "series": "ur_w",
+          "document_key": "iacs_ur_w21"
+        },
+        {
+          "item_id": "iacs_ur_w22_rev6_en",
+          "cost_tokens": 18319,
+          "series_order": [
+            22,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_W_md/ur-w22rev6.md",
+          "series": "ur_w",
+          "document_key": "iacs_ur_w22"
+        },
+        {
+          "item_id": "iacs_ur_w23_corr1_en",
+          "cost_tokens": 2983,
+          "series_order": [
+            23,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_W_md/ur-w23corr1.md",
+          "series": "ur_w",
+          "document_key": "iacs_ur_w23"
+        },
+        {
+          "item_id": "iacs_ur_w24_rev5_corr1_en",
+          "cost_tokens": 9133,
+          "series_order": [
+            24,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_W_md/UR-W24-Rev.5-Corr.1-Dec-2024-CLN-2.md",
+          "series": "ur_w",
+          "document_key": "iacs_ur_w24"
+        },
+        {
+          "item_id": "iacs_ur_w27_rev3_corr1_en",
+          "cost_tokens": 6119,
+          "series_order": [
+            27,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_W_md/UR-W27-Rev.3-Corr.1-Dec-2024-CLN.md",
+          "series": "ur_w",
+          "document_key": "iacs_ur_w27"
+        },
+        {
+          "item_id": "iacs_ur_w28_rev2_en",
+          "cost_tokens": 7270,
+          "series_order": [
+            28,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_W_md/ur-w28rev2.md",
+          "series": "ur_w",
+          "document_key": "iacs_ur_w28"
+        },
+        {
+          "item_id": "iacs_ur_w29_en",
+          "cost_tokens": 2434,
+          "series_order": [
+            29,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_W_md/ur-w29.md",
+          "series": "ur_w",
+          "document_key": "iacs_ur_w29"
+        },
+        {
+          "item_id": "iacs_ur_w30_del_en",
+          "cost_tokens": 43,
+          "series_order": [
+            30,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_W_md/ur-w30del.md",
+          "series": "ur_w",
+          "document_key": "iacs_ur_w30"
+        },
+        {
+          "item_id": "iacs_ur_w31_rev3_en",
+          "cost_tokens": 19213,
+          "series_order": [
+            31,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_W_md/ur-w31rev3.md",
+          "series": "ur_w",
+          "document_key": "iacs_ur_w31"
+        },
+        {
+          "item_id": "iacs_ur_w32_rev1_en",
+          "cost_tokens": 5547,
+          "series_order": [
+            32,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_W_md/ur-w32-rev1-sep-2020-cln.md",
+          "series": "ur_w",
+          "document_key": "iacs_ur_w32"
+        },
+        {
+          "item_id": "iacs_ur_w33_rev1_corr1_en",
+          "cost_tokens": 7204,
+          "series_order": [
+            33,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_W_md/ur-w33rev1corr1.md",
+          "series": "ur_w",
+          "document_key": "iacs_ur_w33"
+        },
+        {
+          "item_id": "iacs_ur_w34_en",
+          "cost_tokens": 7919,
+          "series_order": [
+            34,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_W_md/ur-w34.md",
+          "series": "ur_w",
+          "document_key": "iacs_ur_w34"
+        },
+        {
+          "item_id": "iacs_ur_w35_rev1_en",
+          "cost_tokens": 3246,
+          "series_order": [
+            35,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_W_md/UR-W35-Rev.1-Oct-2023-CLN.md",
+          "series": "ur_w",
+          "document_key": "iacs_ur_w35"
+        },
+        {
+          "item_id": "iacs_ur_m1_del_en",
+          "cost_tokens": 502,
+          "series_order": [
+            1,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_M_md/ur-m1del.md",
+          "series": "ur_m",
+          "document_key": "iacs_ur_m1"
+        },
+        {
+          "item_id": "iacs_ur_m2_en",
+          "cost_tokens": 500,
+          "series_order": [
+            2,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_M_md/ur-m2.md",
+          "series": "ur_m",
+          "document_key": "iacs_ur_m2"
+        },
+        {
+          "item_id": "iacs_ur_m3_rev7_en",
+          "cost_tokens": 1633,
+          "series_order": [
+            3,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_M_md/UR-M3Rev7.md",
+          "series": "ur_m",
+          "document_key": "iacs_ur_m3"
+        },
+        {
+          "item_id": "iacs_ur_m4_del_en",
+          "cost_tokens": 122,
+          "series_order": [
+            4,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_M_md/ur-m4del.md",
+          "series": "ur_m",
+          "document_key": "iacs_ur_m4"
+        },
+        {
+          "item_id": "iacs_ur_m5_del_en",
+          "cost_tokens": 41,
+          "series_order": [
+            5,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_M_md/ur-m5del.md",
+          "series": "ur_m",
+          "document_key": "iacs_ur_m5"
+        },
+        {
+          "item_id": "iacs_ur_m6_del_en",
+          "cost_tokens": 84,
+          "series_order": [
+            6,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_M_md/ur-m6del.md",
+          "series": "ur_m",
+          "document_key": "iacs_ur_m6"
+        },
+        {
+          "item_id": "iacs_ur_m7_del_en",
+          "cost_tokens": 551,
+          "series_order": [
+            7,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_M_md/ur-m7del.md",
+          "series": "ur_m",
+          "document_key": "iacs_ur_m7"
+        },
+        {
+          "item_id": "iacs_ur_m8_del_en",
+          "cost_tokens": 550,
+          "series_order": [
+            8,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_M_md/ur-m8del.md",
+          "series": "ur_m",
+          "document_key": "iacs_ur_m8"
+        },
+        {
+          "item_id": "iacs_ur_m9_corr2_en",
+          "cost_tokens": 1021,
+          "series_order": [
+            9,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_M_md/ur-m9corr2.md",
+          "series": "ur_m",
+          "document_key": "iacs_ur_m9"
+        },
+        {
+          "item_id": "iacs_ur_m10_rev5_en",
+          "cost_tokens": 2392,
+          "series_order": [
+            10,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_M_md/UR-M10Rev5.md",
+          "series": "ur_m",
+          "document_key": "iacs_ur_m10"
+        },
+        {
+          "item_id": "iacs_ur_m11_en",
+          "cost_tokens": 128,
+          "series_order": [
+            11,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_M_md/ur-m11.md",
+          "series": "ur_m",
+          "document_key": "iacs_ur_m11"
+        },
+        {
+          "item_id": "iacs_ur_m12_en",
+          "cost_tokens": 70,
+          "series_order": [
+            12,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_M_md/ur-m12.md",
+          "series": "ur_m",
+          "document_key": "iacs_ur_m12"
+        },
+        {
+          "item_id": "iacs_ur_m13_rev1_en",
+          "cost_tokens": 35,
+          "series_order": [
+            13,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_M_md/ur-m13rev1.md",
+          "series": "ur_m",
+          "document_key": "iacs_ur_m13"
+        },
+        {
+          "item_id": "iacs_ur_m14_del_en",
+          "cost_tokens": 36,
+          "series_order": [
+            14,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_M_md/ur-m14del.md",
+          "series": "ur_m",
+          "document_key": "iacs_ur_m14"
+        },
+        {
+          "item_id": "iacs_ur_m15_del_en",
+          "cost_tokens": 278,
+          "series_order": [
+            15,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_M_md/ur-m15del.md",
+          "series": "ur_m",
+          "document_key": "iacs_ur_m15"
+        },
+        {
+          "item_id": "iacs_ur_m16_rev1_en",
+          "cost_tokens": 277,
+          "series_order": [
+            16,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_M_md/ur-m16rev1.md",
+          "series": "ur_m",
+          "document_key": "iacs_ur_m16"
+        },
+        {
+          "item_id": "iacs_ur_m17_del_en",
+          "cost_tokens": 281,
+          "series_order": [
+            17,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_M_md/ur-m17del.md",
+          "series": "ur_m",
+          "document_key": "iacs_ur_m17"
+        },
+        {
+          "item_id": "iacs_ur_m18_del_en",
+          "cost_tokens": 72,
+          "series_order": [
+            18,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_M_md/ur-m18del.md",
+          "series": "ur_m",
+          "document_key": "iacs_ur_m18"
+        },
+        {
+          "item_id": "iacs_ur_m19_del_en",
+          "cost_tokens": 36,
+          "series_order": [
+            19,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_M_md/ur-m19del.md",
+          "series": "ur_m",
+          "document_key": "iacs_ur_m19"
+        },
+        {
+          "item_id": "iacs_ur_m20_del_en",
+          "cost_tokens": 72,
+          "series_order": [
+            20,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_M_md/ur-m20del.md",
+          "series": "ur_m",
+          "document_key": "iacs_ur_m20"
+        },
+        {
+          "item_id": "iacs_ur_m21_del_en",
+          "cost_tokens": 52,
+          "series_order": [
+            21,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_M_md/ur-m21del.md",
+          "series": "ur_m",
+          "document_key": "iacs_ur_m21"
+        },
+        {
+          "item_id": "iacs_ur_m23_del_en",
+          "cost_tokens": 57,
+          "series_order": [
+            23,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_M_md/ur-m23del.md",
+          "series": "ur_m",
+          "document_key": "iacs_ur_m23"
+        },
+        {
+          "item_id": "iacs_ur_m24_rev2_en",
+          "cost_tokens": 2215,
+          "series_order": [
+            24,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_M_md/UR-M24-Rev.2-Aug-2023-CLN.md",
+          "series": "ur_m",
+          "document_key": "iacs_ur_m24"
+        },
+        {
+          "item_id": "iacs_ur_m25_rev5_en",
+          "cost_tokens": 638,
+          "series_order": [
+            25,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_M_md/UR-M25-Rev.5-Dec-2024-CLN.md",
+          "series": "ur_m",
+          "document_key": "iacs_ur_m25"
+        },
+        {
+          "item_id": "iacs_ur_m26_corr1_en",
+          "cost_tokens": 1172,
+          "series_order": [
+            26,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_M_md/ur-m26corr1.md",
+          "series": "ur_m",
+          "document_key": "iacs_ur_m26"
+        },
+        {
+          "item_id": "iacs_ur_m27_del_en",
+          "cost_tokens": 27,
+          "series_order": [
+            27,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_M_md/ur-m27del.md",
+          "series": "ur_m",
+          "document_key": "iacs_ur_m27"
+        },
+        {
+          "item_id": "iacs_ur_m28_en",
+          "cost_tokens": 552,
+          "series_order": [
+            28,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_M_md/ur-m28.md",
+          "series": "ur_m",
+          "document_key": "iacs_ur_m28"
+        },
+        {
+          "item_id": "iacs_ur_m29_rev3_en",
+          "cost_tokens": 1120,
+          "series_order": [
+            29,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_M_md/ur-m29rev3.md",
+          "series": "ur_m",
+          "document_key": "iacs_ur_m29"
+        },
+        {
+          "item_id": "iacs_ur_m30_rev1_en",
+          "cost_tokens": 877,
+          "series_order": [
+            30,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_M_md/ur-m30rev1.md",
+          "series": "ur_m",
+          "document_key": "iacs_ur_m30"
+        },
+        {
+          "item_id": "iacs_ur_m31_del_en",
+          "cost_tokens": 43,
+          "series_order": [
+            31,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_M_md/ur-m31del.md",
+          "series": "ur_m",
+          "document_key": "iacs_ur_m31"
+        },
+        {
+          "item_id": "iacs_ur_m32_del_en",
+          "cost_tokens": 31,
+          "series_order": [
+            32,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_M_md/ur-m32del.md",
+          "series": "ur_m",
+          "document_key": "iacs_ur_m32"
+        },
+        {
+          "item_id": "iacs_ur_m33_del_en",
+          "cost_tokens": 44,
+          "series_order": [
+            33,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_M_md/ur-m33del.md",
+          "series": "ur_m",
+          "document_key": "iacs_ur_m33"
+        },
+        {
+          "item_id": "iacs_ur_m34_en",
+          "cost_tokens": 497,
+          "series_order": [
+            34,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_M_md/ur-m34.md",
+          "series": "ur_m",
+          "document_key": "iacs_ur_m34"
+        },
+        {
+          "item_id": "iacs_ur_m35_corr1_en",
+          "cost_tokens": 3439,
+          "series_order": [
+            35,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_M_md/UR-M35Corr1-1.md",
+          "series": "ur_m",
+          "document_key": "iacs_ur_m35"
+        },
+        {
+          "item_id": "iacs_ur_m36_rev6_en",
+          "cost_tokens": 956,
+          "series_order": [
+            36,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_M_md/ur-m36rev6.md",
+          "series": "ur_m",
+          "document_key": "iacs_ur_m36"
+        },
+        {
+          "item_id": "iacs_ur_m37_del_en",
+          "cost_tokens": 32,
+          "series_order": [
+            37,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_M_md/ur-m37del.md",
+          "series": "ur_m",
+          "document_key": "iacs_ur_m37"
+        },
+        {
+          "item_id": "iacs_ur_m38_del_en",
+          "cost_tokens": 41,
+          "series_order": [
+            38,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_M_md/ur-m38del.md",
+          "series": "ur_m",
+          "document_key": "iacs_ur_m38"
+        },
+        {
+          "item_id": "iacs_ur_m39_del_en",
+          "cost_tokens": 48,
+          "series_order": [
+            39,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_M_md/ur-m39del.md",
+          "series": "ur_m",
+          "document_key": "iacs_ur_m39"
+        },
+        {
+          "item_id": "iacs_ur_m40_en",
+          "cost_tokens": 272,
+          "series_order": [
+            40,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_M_md/ur-m40.md",
+          "series": "ur_m",
+          "document_key": "iacs_ur_m40"
+        },
+        {
+          "item_id": "iacs_ur_m41_del_en",
+          "cost_tokens": 33,
+          "series_order": [
+            41,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_M_md/ur-m41del.md",
+          "series": "ur_m",
+          "document_key": "iacs_ur_m41"
+        },
+        {
+          "item_id": "iacs_ur_m42_rev6_en",
+          "cost_tokens": 3133,
+          "series_order": [
+            42,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_M_md/UR-M42-Rev.6-Mar-2022CLN.md",
+          "series": "ur_m",
+          "document_key": "iacs_ur_m42"
+        },
+        {
+          "item_id": "iacs_ur_m43_rev1_en",
+          "cost_tokens": 447,
+          "series_order": [
+            43,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_M_md/UR-M43Rev1.md",
+          "series": "ur_m",
+          "document_key": "iacs_ur_m43"
+        },
+        {
+          "item_id": "iacs_ur_m44_rev10_corr1_en",
+          "cost_tokens": 11764,
+          "series_order": [
+            44,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_M_md/ur-m44rev10corr1.md",
+          "series": "ur_m",
+          "document_key": "iacs_ur_m44"
+        },
+        {
+          "item_id": "iacs_ur_m45_del_en",
+          "cost_tokens": 50,
+          "series_order": [
+            45,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_M_md/ur-m45del.md",
+          "series": "ur_m",
+          "document_key": "iacs_ur_m45"
+        },
+        {
+          "item_id": "iacs_ur_m46_rev4_en",
+          "cost_tokens": 1133,
+          "series_order": [
+            46,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_M_md/UR-M46-Rev.4-Aug-2024-CLN.md",
+          "series": "ur_m",
+          "document_key": "iacs_ur_m46"
+        },
+        {
+          "item_id": "iacs_ur_m47_del_en",
+          "cost_tokens": 80,
+          "series_order": [
+            47,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_M_md/UR-M47Del.md",
+          "series": "ur_m",
+          "document_key": "iacs_ur_m47"
+        },
+        {
+          "item_id": "iacs_ur_m48_del_en",
+          "cost_tokens": 116,
+          "series_order": [
+            48,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_M_md/ur-m48del.md",
+          "series": "ur_m",
+          "document_key": "iacs_ur_m48"
+        },
+        {
+          "item_id": "iacs_ur_m49_del_en",
+          "cost_tokens": 74,
+          "series_order": [
+            49,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_M_md/ur-m49del.md",
+          "series": "ur_m",
+          "document_key": "iacs_ur_m49"
+        },
+        {
+          "item_id": "iacs_ur_m50_del_en",
+          "cost_tokens": 73,
+          "series_order": [
+            50,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_M_md/ur-m50del.md",
+          "series": "ur_m",
+          "document_key": "iacs_ur_m50"
+        },
+        {
+          "item_id": "iacs_ur_m51_corr1_en",
+          "cost_tokens": 4050,
+          "series_order": [
+            51,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_M_md/ur-m51corr1.md",
+          "series": "ur_m",
+          "document_key": "iacs_ur_m51"
+        },
+        {
+          "item_id": "iacs_ur_m52_rev3_en",
+          "cost_tokens": 760,
+          "series_order": [
+            52,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_M_md/UR-M52-Rev.3-Nov-2024-CLN.md",
+          "series": "ur_m",
+          "document_key": "iacs_ur_m52"
+        },
+        {
+          "item_id": "iacs_ur_m54_rev1_en",
+          "cost_tokens": 46,
+          "series_order": [
+            54,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_M_md/ur-m54rev1.md",
+          "series": "ur_m",
+          "document_key": "iacs_ur_m54"
+        },
+        {
+          "item_id": "iacs_ur_m55_del_en",
+          "cost_tokens": 46,
+          "series_order": [
+            55,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_M_md/ur-m55del.md",
+          "series": "ur_m",
+          "document_key": "iacs_ur_m55"
+        },
+        {
+          "item_id": "iacs_ur_m56_rev4_corr3_en",
+          "cost_tokens": 14085,
+          "series_order": [
+            56,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_M_md/UR-M56-Rev.4-Corr.3-Sep-2025-CLN.md",
+          "series": "ur_m",
+          "document_key": "iacs_ur_m56"
+        },
+        {
+          "item_id": "iacs_ur_m57_en",
+          "cost_tokens": 309,
+          "series_order": [
+            57,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_M_md/ur-m57.md",
+          "series": "ur_m",
+          "document_key": "iacs_ur_m57"
+        },
+        {
+          "item_id": "iacs_ur_m58_del_en",
+          "cost_tokens": 27,
+          "series_order": [
+            58,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_M_md/ur-m58del.md",
+          "series": "ur_m",
+          "document_key": "iacs_ur_m58"
+        },
+        {
+          "item_id": "iacs_ur_m59_del_en",
+          "cost_tokens": 29,
+          "series_order": [
+            59,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_M_md/ur-m59del.md",
+          "series": "ur_m",
+          "document_key": "iacs_ur_m59"
+        },
+        {
+          "item_id": "iacs_ur_m61_rev3_en",
+          "cost_tokens": 840,
+          "series_order": [
+            61,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_M_md/UR-M61-Rev.3-Feb-2024-CLN.md",
+          "series": "ur_m",
+          "document_key": "iacs_ur_m61"
+        },
+        {
+          "item_id": "iacs_ur_m62_del_en",
+          "cost_tokens": 37,
+          "series_order": [
+            62,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_M_md/ur-m62del.md",
+          "series": "ur_m",
+          "document_key": "iacs_ur_m62"
+        },
+        {
+          "item_id": "iacs_ur_m64_rev1_en",
+          "cost_tokens": 540,
+          "series_order": [
+            64,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_M_md/ur-m64rev1.md",
+          "series": "ur_m",
+          "document_key": "iacs_ur_m64"
+        },
+        {
+          "item_id": "iacs_ur_m65_en",
+          "cost_tokens": 337,
+          "series_order": [
+            65,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_M_md/ur-m65rev.md",
+          "series": "ur_m",
+          "document_key": "iacs_ur_m65"
+        },
+        {
+          "item_id": "iacs_ur_m67_rev2_en",
+          "cost_tokens": 3007,
+          "series_order": [
+            67,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_M_md/ur-m67rev2.md",
+          "series": "ur_m",
+          "document_key": "iacs_ur_m67"
+        },
+        {
+          "item_id": "iacs_ur_m69_del_en",
+          "cost_tokens": 46,
+          "series_order": [
+            69,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_M_md/ur-m69del.md",
+          "series": "ur_m",
+          "document_key": "iacs_ur_m69"
+        },
+        {
+          "item_id": "iacs_ur_m71_corr1_en",
+          "cost_tokens": 3906,
+          "series_order": [
+            71,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_M_md/ur-m71corr1.md",
+          "series": "ur_m",
+          "document_key": "iacs_ur_m71"
+        },
+        {
+          "item_id": "iacs_ur_m74_rev2_en",
+          "cost_tokens": 13728,
+          "series_order": [
+            74,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_M_md/ur-m74rev2.md",
+          "series": "ur_m",
+          "document_key": "iacs_ur_m74"
+        },
+        {
+          "item_id": "iacs_ur_m75_rev1_en",
+          "cost_tokens": 395,
+          "series_order": [
+            75,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_M_md/ur-m75rev1.md",
+          "series": "ur_m",
+          "document_key": "iacs_ur_m75"
+        },
+        {
+          "item_id": "iacs_ur_m76_rev1_en",
+          "cost_tokens": 426,
+          "series_order": [
+            76,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_M_md/ur-m76rev1.md",
+          "series": "ur_m",
+          "document_key": "iacs_ur_m76"
+        },
+        {
+          "item_id": "iacs_ur_m77_rev4_en",
+          "cost_tokens": 2000,
+          "series_order": [
+            77,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_M_md/ur-m77rev4.md",
+          "series": "ur_m",
+          "document_key": "iacs_ur_m77"
+        },
+        {
+          "item_id": "iacs_ur_m78_rev2_en",
+          "cost_tokens": 9259,
+          "series_order": [
+            78,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_M_md/UR-M78-Rev.2-Jan-2024-CLN.md",
+          "series": "ur_m",
+          "document_key": "iacs_ur_m78"
+        },
+        {
+          "item_id": "iacs_ur_m79_rev1_en",
+          "cost_tokens": 2084,
+          "series_order": [
+            79,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_M_md/ur-m79rev1.md",
+          "series": "ur_m",
+          "document_key": "iacs_ur_m79"
+        },
+        {
+          "item_id": "iacs_ur_m80_en",
+          "cost_tokens": 666,
+          "series_order": [
+            80,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_M_md/ur-m80.md",
+          "series": "ur_m",
+          "document_key": "iacs_ur_m80"
+        },
+        {
+          "item_id": "iacs_ur_m82_en",
+          "cost_tokens": 2676,
+          "series_order": [
+            82,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_M_md/ur-m82.md",
+          "series": "ur_m",
+          "document_key": "iacs_ur_m82"
+        },
+        {
+          "item_id": "iacs_ur_m84_new_en",
+          "cost_tokens": 213,
+          "series_order": [
+            84,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_M_md/UR-M84-New-Feb-2024.md",
+          "series": "ur_m",
+          "document_key": "iacs_ur_m84"
+        },
+        {
+          "item_id": "iacs_ur_m85_corr1_en",
+          "cost_tokens": 3091,
+          "series_order": [
+            85,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_M_md/UR-M85Corr1.md",
+          "series": "ur_m",
+          "document_key": "iacs_ur_m85"
+        },
+        {
+          "item_id": "iacs_ur_m86_new_en",
+          "cost_tokens": 1168,
+          "series_order": [
+            86,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_M_md/UR-M86-New-Nov-2024.md",
+          "series": "ur_m",
+          "document_key": "iacs_ur_m86"
+        },
+        {
+          "item_id": "iacs_ur_m87_new_en",
+          "cost_tokens": 5221,
+          "series_order": [
+            87,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_M_md/UR-M87-New-Apr-2025.md",
+          "series": "ur_m",
+          "document_key": "iacs_ur_m87"
+        },
+        {
+          "item_id": "iacs_ur_m88_new_en",
+          "cost_tokens": 3088,
+          "series_order": [
+            88,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_M_md/UR-M88-New-Apr-2025.md",
+          "series": "ur_m",
+          "document_key": "iacs_ur_m88"
+        },
+        {
+          "item_id": "iacs_ur_e1_en",
+          "cost_tokens": 57,
+          "series_order": [
+            1,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_E_md/ur-e1.md",
+          "series": "ur_e",
+          "document_key": "iacs_ur_e1"
+        },
+        {
+          "item_id": "iacs_ur_e2_del_en",
+          "cost_tokens": 68,
+          "series_order": [
+            2,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_E_md/ur-e2del.md",
+          "series": "ur_e",
+          "document_key": "iacs_ur_e2"
+        },
+        {
+          "item_id": "iacs_ur_e3_del_en",
+          "cost_tokens": 57,
+          "series_order": [
+            3,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_E_md/ur-e3del.md",
+          "series": "ur_e",
+          "document_key": "iacs_ur_e3"
+        },
+        {
+          "item_id": "iacs_ur_e4_del_en",
+          "cost_tokens": 24,
+          "series_order": [
+            4,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_E_md/ur-e4del.md",
+          "series": "ur_e",
+          "document_key": "iacs_ur_e4"
+        },
+        {
+          "item_id": "iacs_ur_e5_rev1_en",
+          "cost_tokens": 460,
+          "series_order": [
+            5,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_E_md/ur-e5rev1.md",
+          "series": "ur_e",
+          "document_key": "iacs_ur_e5"
+        },
+        {
+          "item_id": "iacs_ur_e6_del_en",
+          "cost_tokens": 12,
+          "series_order": [
+            6,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_E_md/ur-e6del.md",
+          "series": "ur_e",
+          "document_key": "iacs_ur_e6"
+        },
+        {
+          "item_id": "iacs_ur_e7_rev5_en",
+          "cost_tokens": 449,
+          "series_order": [
+            7,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_E_md/UR-E7-Rev.5-Feb-2021CLN.md",
+          "series": "ur_e",
+          "document_key": "iacs_ur_e7"
+        },
+        {
+          "item_id": "iacs_ur_e9_rev1_en",
+          "cost_tokens": 446,
+          "series_order": [
+            9,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_E_md/ur-e9rev1.md",
+          "series": "ur_e",
+          "document_key": "iacs_ur_e9"
+        },
+        {
+          "item_id": "iacs_ur_e10_rev10_en",
+          "cost_tokens": 6071,
+          "series_order": [
+            10,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_E_md/UR-E10-Rev.10-Aug-2024-CLN.md",
+          "series": "ur_e",
+          "document_key": "iacs_ur_e10"
+        },
+        {
+          "item_id": "iacs_ur_e12_rev2_en",
+          "cost_tokens": 620,
+          "series_order": [
+            12,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_E_md/ur-e12rev2.md",
+          "series": "ur_e",
+          "document_key": "iacs_ur_e12"
+        },
+        {
+          "item_id": "iacs_ur_e13_rev3_corr1_en",
+          "cost_tokens": 2446,
+          "series_order": [
+            13,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_E_md/ur-e13rev3corr1.md",
+          "series": "ur_e",
+          "document_key": "iacs_ur_e13"
+        },
+        {
+          "item_id": "iacs_ur_e15_rev4_en",
+          "cost_tokens": 1026,
+          "series_order": [
+            15,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_E_md/ur-e15rev4.md",
+          "series": "ur_e",
+          "document_key": "iacs_ur_e15"
+        },
+        {
+          "item_id": "iacs_ur_e16_en",
+          "cost_tokens": 452,
+          "series_order": [
+            16,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_E_md/ur-e16.md",
+          "series": "ur_e",
+          "document_key": "iacs_ur_e16"
+        },
+        {
+          "item_id": "iacs_ur_e18_rev2_en",
+          "cost_tokens": 798,
+          "series_order": [
+            18,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_E_md/UR-E18-Rev.2-Jun-2025-CLN.md",
+          "series": "ur_e",
+          "document_key": "iacs_ur_e18"
+        },
+        {
+          "item_id": "iacs_ur_e19_rev1_en",
+          "cost_tokens": 292,
+          "series_order": [
+            19,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_E_md/ur-e19rev1.md",
+          "series": "ur_e",
+          "document_key": "iacs_ur_e19"
+        },
+        {
+          "item_id": "iacs_ur_e20_rev1_en",
+          "cost_tokens": 419,
+          "series_order": [
+            20,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_E_md/ur-e20rev1.md",
+          "series": "ur_e",
+          "document_key": "iacs_ur_e20"
+        },
+        {
+          "item_id": "iacs_ur_e21_rev2_en",
+          "cost_tokens": 1768,
+          "series_order": [
+            21,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_E_md/UR-E21Rev2-CLN.md",
+          "series": "ur_e",
+          "document_key": "iacs_ur_e21"
+        },
+        {
+          "item_id": "iacs_ur_e23_del_en",
+          "cost_tokens": 44,
+          "series_order": [
+            23,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_E_md/ur-e23del-1.md",
+          "series": "ur_e",
+          "document_key": "iacs_ur_e23"
+        },
+        {
+          "item_id": "iacs_ur_e24_rev1_en",
+          "cost_tokens": 974,
+          "series_order": [
+            24,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_E_md/ur-e24rev1.md",
+          "series": "ur_e",
+          "document_key": "iacs_ur_e24"
+        },
+        {
+          "item_id": "iacs_ur_e25_rev2_en",
+          "cost_tokens": 586,
+          "series_order": [
+            25,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_E_md/UR-E25-Rev.2-Mar-2022CLN.md",
+          "series": "ur_e",
+          "document_key": "iacs_ur_e25"
+        },
+        {
+          "item_id": "iacs_ur_e26_rev1_en",
+          "cost_tokens": 25083,
+          "series_order": [
+            26,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_E_md/UR-E26-Rev.1-Nov-2023-CR.md",
+          "series": "ur_e",
+          "document_key": "iacs_ur_e26"
+        },
+        {
+          "item_id": "iacs_ur_e27_rev1_en",
+          "cost_tokens": 9934,
+          "series_order": [
+            27,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_E_md/UR-E27-Rev.1-Sep-2023-CLN.md",
+          "series": "ur_e",
+          "document_key": "iacs_ur_e27"
+        },
+        {
+          "item_id": "iacs_ur_p1_rev5_en",
+          "cost_tokens": 4688,
+          "series_order": [
+            1,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_P_md/ur-p1rev5.md",
+          "series": "ur_p",
+          "document_key": "iacs_ur_p1"
+        },
+        {
+          "item_id": "iacs_ur_p2_en",
+          "cost_tokens": 17250,
+          "series_order": [
+            2,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_P_md/UR_P2_Oct_2023_CLN1.md",
+          "series": "ur_p",
+          "document_key": "iacs_ur_p2"
+        },
+        {
+          "item_id": "iacs_ur_p4_rev8_en",
+          "cost_tokens": 8963,
+          "series_order": [
+            4,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_P_md/UR-P4Rev8.md",
+          "series": "ur_p",
+          "document_key": "iacs_ur_p4"
+        },
+        {
+          "item_id": "iacs_ur_p5_del_en",
+          "cost_tokens": 32,
+          "series_order": [
+            5,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_P_md/ur-p5del.md",
+          "series": "ur_p",
+          "document_key": "iacs_ur_p5"
+        },
+        {
+          "item_id": "iacs_ur_p6_rev1_en",
+          "cost_tokens": 788,
+          "series_order": [
+            6,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_P_md/ur-p6rev1.md",
+          "series": "ur_p",
+          "document_key": "iacs_ur_p6"
+        },
+        {
+          "item_id": "iacs_ur_i1_rev2_en",
+          "cost_tokens": 1067,
+          "series_order": [
+            1,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_I_md/ur-i1rev2-1.md",
+          "series": "ur_i",
+          "document_key": "iacs_ur_i1"
+        },
+        {
+          "item_id": "iacs_ur_i2_rev4_en",
+          "cost_tokens": 3301,
+          "series_order": [
+            2,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_I_md/ur-i2rev4.md",
+          "series": "ur_i",
+          "document_key": "iacs_ur_i2"
+        },
+        {
+          "item_id": "iacs_ur_i3_rev2_corr1_en",
+          "cost_tokens": 26509,
+          "series_order": [
+            3,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_I_md/UR-I3Rev2-Corr1.md",
+          "series": "ur_i",
+          "document_key": "iacs_ur_i3"
+        },
+        {
+          "item_id": "iacs_ur_d1_rev4_en",
+          "cost_tokens": 2290,
+          "series_order": [
+            1,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_D_md/ur-d1rev4.md",
+          "series": "ur_d",
+          "document_key": "iacs_ur_d1"
+        },
+        {
+          "item_id": "iacs_ur_d2_rev2_en",
+          "cost_tokens": 1364,
+          "series_order": [
+            2,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_D_md/ur-d2rev2.md",
+          "series": "ur_d",
+          "document_key": "iacs_ur_d2"
+        },
+        {
+          "item_id": "iacs_ur_d3_rev6_en",
+          "cost_tokens": 9822,
+          "series_order": [
+            3,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_D_md/ur-d3rev6.md",
+          "series": "ur_d",
+          "document_key": "iacs_ur_d3"
+        },
+        {
+          "item_id": "iacs_ur_d4_rev3_en",
+          "cost_tokens": 1726,
+          "series_order": [
+            4,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_D_md/ur-d4rev3.md",
+          "series": "ur_d",
+          "document_key": "iacs_ur_d4"
+        },
+        {
+          "item_id": "iacs_ur_d5_rev3_en",
+          "cost_tokens": 2052,
+          "series_order": [
+            5,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_D_md/ur-d5rev3.md",
+          "series": "ur_d",
+          "document_key": "iacs_ur_d5"
+        },
+        {
+          "item_id": "iacs_ur_d6_rev1_en",
+          "cost_tokens": 670,
+          "series_order": [
+            6,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_D_md/ur-d6rev1.md",
+          "series": "ur_d",
+          "document_key": "iacs_ur_d6"
+        },
+        {
+          "item_id": "iacs_ur_d7_rev3_en",
+          "cost_tokens": 1966,
+          "series_order": [
+            7,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_D_md/ur-d7rev3.md",
+          "series": "ur_d",
+          "document_key": "iacs_ur_d7"
+        },
+        {
+          "item_id": "iacs_ur_d8_rev3_en",
+          "cost_tokens": 2051,
+          "series_order": [
+            8,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_D_md/UR-D8-Rev.3-Feb-2021CLN.md",
+          "series": "ur_d",
+          "document_key": "iacs_ur_d8"
+        },
+        {
+          "item_id": "iacs_ur_d10_del_en",
+          "cost_tokens": 43,
+          "series_order": [
+            10,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_D_md/ur-d10del.md",
+          "series": "ur_d",
+          "document_key": "iacs_ur_d10"
+        },
+        {
+          "item_id": "iacs_ur_d11_rev4_corr1_en",
+          "cost_tokens": 3470,
+          "series_order": [
+            11,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_D_md/ur-d11rev4corr1.md",
+          "series": "ur_d",
+          "document_key": "iacs_ur_d11"
+        },
+        {
+          "item_id": "iacs_ur_d12_del_en",
+          "cost_tokens": 24,
+          "series_order": [
+            12,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_D_md/ur-d12del.md",
+          "series": "ur_d",
+          "document_key": "iacs_ur_d12"
+        },
+        {
+          "item_id": "iacs_ur_f1_rev1_en",
+          "cost_tokens": 434,
+          "series_order": [
+            1,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_F_md/ur-f1rev1.md",
+          "series": "ur_f",
+          "document_key": "iacs_ur_f1"
+        },
+        {
+          "item_id": "iacs_ur_f2_rev2_en",
+          "cost_tokens": 177,
+          "series_order": [
+            2,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_F_md/ur-f2rev2.md",
+          "series": "ur_f",
+          "document_key": "iacs_ur_f2"
+        },
+        {
+          "item_id": "iacs_ur_f3_en",
+          "cost_tokens": 41,
+          "series_order": [
+            3,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_F_md/ur-f3-1.md",
+          "series": "ur_f",
+          "document_key": "iacs_ur_f3"
+        },
+        {
+          "item_id": "iacs_ur_f4_del_en",
+          "cost_tokens": 210,
+          "series_order": [
+            4,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_F_md/ur-f4del-1.md",
+          "series": "ur_f",
+          "document_key": "iacs_ur_f4"
+        },
+        {
+          "item_id": "iacs_ur_f5_rev1_en",
+          "cost_tokens": 203,
+          "series_order": [
+            5,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_F_md/ur-f5rev1-1.md",
+          "series": "ur_f",
+          "document_key": "iacs_ur_f5"
+        },
+        {
+          "item_id": "iacs_ur_f6_rev1_en",
+          "cost_tokens": 54,
+          "series_order": [
+            6,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_F_md/ur-f6rev1-1.md",
+          "series": "ur_f",
+          "document_key": "iacs_ur_f6"
+        },
+        {
+          "item_id": "iacs_ur_f7_corr1_en",
+          "cost_tokens": 209,
+          "series_order": [
+            7,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_F_md/ur-f7corr1-1.md",
+          "series": "ur_f",
+          "document_key": "iacs_ur_f7"
+        },
+        {
+          "item_id": "iacs_ur_f8_rev1_en",
+          "cost_tokens": 54,
+          "series_order": [
+            8,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_F_md/ur-f8rev1-1.md",
+          "series": "ur_f",
+          "document_key": "iacs_ur_f8"
+        },
+        {
+          "item_id": "iacs_ur_f9_del_en",
+          "cost_tokens": 58,
+          "series_order": [
+            9,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_F_md/ur-f9del-1.md",
+          "series": "ur_f",
+          "document_key": "iacs_ur_f9"
+        },
+        {
+          "item_id": "iacs_ur_f10_del_en",
+          "cost_tokens": 28,
+          "series_order": [
+            10,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_F_md/ur-f10del-1.md",
+          "series": "ur_f",
+          "document_key": "iacs_ur_f10"
+        },
+        {
+          "item_id": "iacs_ur_f11_del_en",
+          "cost_tokens": 24,
+          "series_order": [
+            11,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_F_md/ur-f11del-1.md",
+          "series": "ur_f",
+          "document_key": "iacs_ur_f11"
+        },
+        {
+          "item_id": "iacs_ur_f12_del_en",
+          "cost_tokens": 28,
+          "series_order": [
+            12,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_F_md/ur-f12del-1.md",
+          "series": "ur_f",
+          "document_key": "iacs_ur_f12"
+        },
+        {
+          "item_id": "iacs_ur_f13_rev1_en",
+          "cost_tokens": 128,
+          "series_order": [
+            13,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_F_md/ur-f13rev1-1.md",
+          "series": "ur_f",
+          "document_key": "iacs_ur_f13"
+        },
+        {
+          "item_id": "iacs_ur_f14_del_en",
+          "cost_tokens": 25,
+          "series_order": [
+            14,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_F_md/ur-f14del-1.md",
+          "series": "ur_f",
+          "document_key": "iacs_ur_f14"
+        },
+        {
+          "item_id": "iacs_ur_f15_rev7_en",
+          "cost_tokens": 649,
+          "series_order": [
+            15,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_F_md/UR-F15-Rev.7-Sep-2023CLN.md",
+          "series": "ur_f",
+          "document_key": "iacs_ur_f15"
+        },
+        {
+          "item_id": "iacs_ur_f16_rev1_en",
+          "cost_tokens": 114,
+          "series_order": [
+            16,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_F_md/ur-f16rev1-1.md",
+          "series": "ur_f",
+          "document_key": "iacs_ur_f16"
+        },
+        {
+          "item_id": "iacs_ur_f17_del_en",
+          "cost_tokens": 24,
+          "series_order": [
+            17,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_F_md/ur-f17del-1.md",
+          "series": "ur_f",
+          "document_key": "iacs_ur_f17"
+        },
+        {
+          "item_id": "iacs_ur_f18_del_en",
+          "cost_tokens": 18,
+          "series_order": [
+            18,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_F_md/ur-f18del-1.md",
+          "series": "ur_f",
+          "document_key": "iacs_ur_f18"
+        },
+        {
+          "item_id": "iacs_ur_f19_del_en",
+          "cost_tokens": 28,
+          "series_order": [
+            19,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_F_md/ur-f19del-1.md",
+          "series": "ur_f",
+          "document_key": "iacs_ur_f19"
+        },
+        {
+          "item_id": "iacs_ur_f20_rev7_en",
+          "cost_tokens": 1819,
+          "series_order": [
+            20,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_F_md/ur-f20rev7-1.md",
+          "series": "ur_f",
+          "document_key": "iacs_ur_f20"
+        },
+        {
+          "item_id": "iacs_ur_f21_en",
+          "cost_tokens": 296,
+          "series_order": [
+            21,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_F_md/ur-f21-1.md",
+          "series": "ur_f",
+          "document_key": "iacs_ur_f21"
+        },
+        {
+          "item_id": "iacs_ur_f22_en",
+          "cost_tokens": 303,
+          "series_order": [
+            22,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_F_md/ur-f22-1.md",
+          "series": "ur_f",
+          "document_key": "iacs_ur_f22"
+        },
+        {
+          "item_id": "iacs_ur_f23_del_en",
+          "cost_tokens": 35,
+          "series_order": [
+            23,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_F_md/ur-f23del-1.md",
+          "series": "ur_f",
+          "document_key": "iacs_ur_f23"
+        },
+        {
+          "item_id": "iacs_ur_f24_rev2_en",
+          "cost_tokens": 113,
+          "series_order": [
+            24,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_F_md/ur-f24rev2-1.md",
+          "series": "ur_f",
+          "document_key": "iacs_ur_f24"
+        },
+        {
+          "item_id": "iacs_ur_f25_del_en",
+          "cost_tokens": 111,
+          "series_order": [
+            25,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_F_md/ur-f25del-1.md",
+          "series": "ur_f",
+          "document_key": "iacs_ur_f25"
+        },
+        {
+          "item_id": "iacs_ur_f26_rev3_en",
+          "cost_tokens": 181,
+          "series_order": [
+            26,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_F_md/ur-f26rev3-1.md",
+          "series": "ur_f",
+          "document_key": "iacs_ur_f26"
+        },
+        {
+          "item_id": "iacs_ur_f27_en",
+          "cost_tokens": 125,
+          "series_order": [
+            27,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_F_md/ur-f27-1.md",
+          "series": "ur_f",
+          "document_key": "iacs_ur_f27"
+        },
+        {
+          "item_id": "iacs_ur_f28_del_en",
+          "cost_tokens": 125,
+          "series_order": [
+            28,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_F_md/ur-f28del-1.md",
+          "series": "ur_f",
+          "document_key": "iacs_ur_f28"
+        },
+        {
+          "item_id": "iacs_ur_f29_rev6_en",
+          "cost_tokens": 560,
+          "series_order": [
+            29,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_F_md/ur-f29rev6-1.md",
+          "series": "ur_f",
+          "document_key": "iacs_ur_f29"
+        },
+        {
+          "item_id": "iacs_ur_f30_del_en",
+          "cost_tokens": 157,
+          "series_order": [
+            30,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_F_md/ur-f30del-1.md",
+          "series": "ur_f",
+          "document_key": "iacs_ur_f30"
+        },
+        {
+          "item_id": "iacs_ur_f31_del_en",
+          "cost_tokens": 70,
+          "series_order": [
+            31,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_F_md/ur-f31del-1.md",
+          "series": "ur_f",
+          "document_key": "iacs_ur_f31"
+        },
+        {
+          "item_id": "iacs_ur_f32_en",
+          "cost_tokens": 553,
+          "series_order": [
+            32,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_F_md/ur-f32-1.md",
+          "series": "ur_f",
+          "document_key": "iacs_ur_f32"
+        },
+        {
+          "item_id": "iacs_ur_f33_en",
+          "cost_tokens": 71,
+          "series_order": [
+            33,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_F_md/ur-f33-1.md",
+          "series": "ur_f",
+          "document_key": "iacs_ur_f33"
+        },
+        {
+          "item_id": "iacs_ur_f34_del_en",
+          "cost_tokens": 54,
+          "series_order": [
+            34,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_F_md/ur-f34del-1.md",
+          "series": "ur_f",
+          "document_key": "iacs_ur_f34"
+        },
+        {
+          "item_id": "iacs_ur_f35_rev8_en",
+          "cost_tokens": 647,
+          "series_order": [
+            35,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_F_md/ur-f35rev8-1.md",
+          "series": "ur_f",
+          "document_key": "iacs_ur_f35"
+        },
+        {
+          "item_id": "iacs_ur_f36_del_en",
+          "cost_tokens": 4,
+          "series_order": [
+            36,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_F_md/ur-f36del-1.md",
+          "series": "ur_f",
+          "document_key": "iacs_ur_f36"
+        },
+        {
+          "item_id": "iacs_ur_f37_del_en",
+          "cost_tokens": 65,
+          "series_order": [
+            37,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_F_md/ur-f37del-1.md",
+          "series": "ur_f",
+          "document_key": "iacs_ur_f37"
+        },
+        {
+          "item_id": "iacs_ur_f38_del_en",
+          "cost_tokens": 78,
+          "series_order": [
+            38,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_F_md/ur-f38del-1.md",
+          "series": "ur_f",
+          "document_key": "iacs_ur_f38"
+        },
+        {
+          "item_id": "iacs_ur_f39_del_en",
+          "cost_tokens": 87,
+          "series_order": [
+            39,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_F_md/ur-f39del-1.md",
+          "series": "ur_f",
+          "document_key": "iacs_ur_f39"
+        },
+        {
+          "item_id": "iacs_ur_f40_del_en",
+          "cost_tokens": 65,
+          "series_order": [
+            40,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_F_md/ur-f40del-1.md",
+          "series": "ur_f",
+          "document_key": "iacs_ur_f40"
+        },
+        {
+          "item_id": "iacs_ur_f41_en",
+          "cost_tokens": 58,
+          "series_order": [
+            41,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_F_md/ur-f41-1.md",
+          "series": "ur_f",
+          "document_key": "iacs_ur_f41"
+        },
+        {
+          "item_id": "iacs_ur_f42_del_en",
+          "cost_tokens": 42,
+          "series_order": [
+            42,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_F_md/UR-F42-Del-Nov-2023.md",
+          "series": "ur_f",
+          "document_key": "iacs_ur_f42"
+        },
+        {
+          "item_id": "iacs_ur_f43_del_en",
+          "cost_tokens": 102,
+          "series_order": [
+            43,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_F_md/UR-F43Del.md",
+          "series": "ur_f",
+          "document_key": "iacs_ur_f43"
+        },
+        {
+          "item_id": "iacs_ur_f44_rev3_corr1_en",
+          "cost_tokens": 2822,
+          "series_order": [
+            44,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_F_md/UR-F44-Rev.3-Corr.1-Mar-2025-CLN.md",
+          "series": "ur_f",
+          "document_key": "iacs_ur_f44"
+        },
+        {
+          "item_id": "iacs_ur_f45_new_en",
+          "cost_tokens": 5060,
+          "series_order": [
+            45,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_F_md/ur-f45new-1.md",
+          "series": "ur_f",
+          "document_key": "iacs_ur_f45"
+        },
+        {
+          "item_id": "iacs_ur_f46_new_en",
+          "cost_tokens": 127,
+          "series_order": [
+            46,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_F_md/ur-f46new-1.md",
+          "series": "ur_f",
+          "document_key": "iacs_ur_f46"
+        },
+        {
+          "item_id": "iacs_ur_g1_rev3_corr3_en",
+          "cost_tokens": 9721,
+          "series_order": [
+            1,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_G_md/UR-G1-Rev.3-Corr.3-Sep-2023-CLN.md",
+          "series": "ur_g",
+          "document_key": "iacs_ur_g1"
+        },
+        {
+          "item_id": "iacs_ur_g3_rev8_en",
+          "cost_tokens": 5594,
+          "series_order": [
+            3,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_G_md/UR-G3-Rev.8-Oct-2023-CLN.md",
+          "series": "ur_g",
+          "document_key": "iacs_ur_g3"
+        },
+        {
+          "item_id": "iacs_ur_g4_del_en",
+          "cost_tokens": 15,
+          "series_order": [
+            4,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_G_md/ur-g4del-1.md",
+          "series": "ur_g",
+          "document_key": "iacs_ur_g4"
+        },
+        {
+          "item_id": "iacs_ur_g5_en",
+          "cost_tokens": 357,
+          "series_order": [
+            5,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_G_md/ur-g5.md",
+          "series": "ur_g",
+          "document_key": "iacs_ur_g5"
+        },
+        {
+          "item_id": "iacs_ur_a2_rev5_en",
+          "cost_tokens": 5868,
+          "series_order": [
+            2,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_A_md/ur-a2rev5.md",
+          "series": "ur_a",
+          "document_key": "iacs_ur_a2"
+        },
+        {
+          "item_id": "iacs_ur_a3_rev1_en",
+          "cost_tokens": 3110,
+          "series_order": [
+            3,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_A_md/ur-a3rev1.md",
+          "series": "ur_a",
+          "document_key": "iacs_ur_a3"
+        },
+        {
+          "item_id": "iacs_ur_l1_del_en",
+          "cost_tokens": 12,
+          "series_order": [
+            1,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_L_md/ur-l1del.md",
+          "series": "ur_l",
+          "document_key": "iacs_ur_l1"
+        },
+        {
+          "item_id": "iacs_ur_l2_rev3_en",
+          "cost_tokens": 371,
+          "series_order": [
+            2,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_L_md/UR-L2-Rev.3-Nov-2023-CLN.md",
+          "series": "ur_l",
+          "document_key": "iacs_ur_l2"
+        },
+        {
+          "item_id": "iacs_ur_l3_del_en",
+          "cost_tokens": 29,
+          "series_order": [
+            3,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_L_md/ur-l3del.md",
+          "series": "ur_l",
+          "document_key": "iacs_ur_l3"
+        },
+        {
+          "item_id": "iacs_ur_l4_rev3_corr2_en",
+          "cost_tokens": 725,
+          "series_order": [
+            4,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_L_md/ur-l4rev3corr2.md",
+          "series": "ur_l",
+          "document_key": "iacs_ur_l4"
+        },
+        {
+          "item_id": "iacs_ur_l5_rev4_en",
+          "cost_tokens": 5637,
+          "series_order": [
+            5,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_L_md/ur-l5rev4.md",
+          "series": "ur_l",
+          "document_key": "iacs_ur_l5"
+        },
+        {
+          "item_id": "iacs_ur_c6_new_en",
+          "cost_tokens": 1428,
+          "series_order": [
+            6,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_C_md/UR-C6New.md",
+          "series": "ur_c",
+          "document_key": "iacs_ur_c6"
+        },
+        {
+          "item_id": "iacs_ur_c7_new_en",
+          "cost_tokens": 1319,
+          "series_order": [
+            7,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_C_md/UR-C7New.md",
+          "series": "ur_c",
+          "document_key": "iacs_ur_c7"
+        },
+        {
+          "item_id": "iacs_ur_k1_del_en",
+          "cost_tokens": 40,
+          "series_order": [
+            1,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_K_md/ur-k1del-1.md",
+          "series": "ur_k",
+          "document_key": "iacs_ur_k1"
+        },
+        {
+          "item_id": "iacs_ur_k2_del_en",
+          "cost_tokens": 24,
+          "series_order": [
+            2,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_K_md/ur-k2del-1.md",
+          "series": "ur_k",
+          "document_key": "iacs_ur_k2"
+        },
+        {
+          "item_id": "iacs_ur_k3_corr2_en",
+          "cost_tokens": 1861,
+          "series_order": [
+            3,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_K_md/ur-k3corr2.md",
+          "series": "ur_k",
+          "document_key": "iacs_ur_k3"
+        },
+        {
+          "item_id": "iacs_ur_h1_en",
+          "cost_tokens": 63,
+          "series_order": [
+            1,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_H_md/UR-H1-Withdrawn-Nov-2024.md",
+          "series": "ur_h",
+          "document_key": "iacs_ur_h1"
+        },
+        {
+          "item_id": "iacs_ur_n1_del_en",
+          "cost_tokens": 37,
+          "series_order": [
+            1,
+            0,
+            0,
+            0
+          ],
+          "filepath": "/mnt/c/shared_wk/ontology_iacs/UR/UR_N_md/ur-n1del.md",
+          "series": "ur_n",
+          "document_key": "iacs_ur_n1"
+        }
+      ],
+      "cost_total": 446968,
+      "status": "reserved_for_other_session"
+    }
+  ],
+  "unresolved": []
+}

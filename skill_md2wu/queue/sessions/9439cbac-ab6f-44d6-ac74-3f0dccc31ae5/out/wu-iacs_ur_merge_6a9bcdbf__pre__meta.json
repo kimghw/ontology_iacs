@@ -1,0 +1,151 @@
+{
+  "wu_key": "iacs_ur_merge_6a9bcdbf",
+  "wu_type": "merged",
+  "authority": "IACS",
+  "doc_type": "UR",
+  "language": "en",
+  "grammar_version": "iacs_ur_z_v01",
+  "measure_method": "tiktoken",
+  "constituent_docs": [
+    {
+      "doc_instance_key": "iacs_ur_d1_rev4_en",
+      "document_key": "iacs_ur_d1",
+      "start_line": 1,
+      "end_line": 171,
+      "est_tokens": 2290,
+      "heading_range": {
+        "first": "iacs_ur_d1_HD_001",
+        "last": "iacs_ur_d1_HD_023"
+      }
+    },
+    {
+      "doc_instance_key": "iacs_ur_d2_rev2_en",
+      "document_key": "iacs_ur_d2",
+      "start_line": 1,
+      "end_line": 80,
+      "est_tokens": 1364,
+      "heading_range": {
+        "first": "iacs_ur_d2_HD_001",
+        "last": "iacs_ur_d2_HD_017"
+      }
+    },
+    {
+      "doc_instance_key": "iacs_ur_d3_rev6_en",
+      "document_key": "iacs_ur_d3",
+      "start_line": 4,
+      "end_line": 590,
+      "est_tokens": 9822,
+      "heading_range": {
+        "first": "iacs_ur_d3_HD_001",
+        "last": "iacs_ur_d3_HD_039"
+      }
+    },
+    {
+      "doc_instance_key": "iacs_ur_d4_rev3_en",
+      "document_key": "iacs_ur_d4",
+      "start_line": 1,
+      "end_line": 88,
+      "est_tokens": 1726,
+      "heading_range": {
+        "first": "iacs_ur_d4_HD_001",
+        "last": "iacs_ur_d4_HD_005"
+      }
+    },
+    {
+      "doc_instance_key": "iacs_ur_d5_rev3_en",
+      "document_key": "iacs_ur_d5",
+      "start_line": 1,
+      "end_line": 90,
+      "est_tokens": 2052,
+      "heading_range": {
+        "first": "iacs_ur_d5_HD_001",
+        "last": "iacs_ur_d5_HD_007"
+      }
+    },
+    {
+      "doc_instance_key": "iacs_ur_d6_rev1_en",
+      "document_key": "iacs_ur_d6",
+      "start_line": 1,
+      "end_line": 46,
+      "est_tokens": 670,
+      "heading_range": {
+        "first": "iacs_ur_d6_HD_001",
+        "last": "iacs_ur_d6_HD_005"
+      }
+    },
+    {
+      "doc_instance_key": "iacs_ur_d7_rev3_en",
+      "document_key": "iacs_ur_d7",
+      "start_line": 1,
+      "end_line": 83,
+      "est_tokens": 1966,
+      "heading_range": {
+        "first": "iacs_ur_d7_HD_001",
+        "last": "iacs_ur_d7_HD_008"
+      }
+    },
+    {
+      "doc_instance_key": "iacs_ur_d8_rev3_en",
+      "document_key": "iacs_ur_d8",
+      "start_line": 1,
+      "end_line": 127,
+      "est_tokens": 2051,
+      "heading_range": {
+        "first": "iacs_ur_d8_HD_001",
+        "last": "iacs_ur_d8_HD_006"
+      }
+    },
+    {
+      "doc_instance_key": "iacs_ur_d10_del_en",
+      "document_key": "iacs_ur_d10",
+      "start_line": 1,
+      "end_line": 10,
+      "est_tokens": 43,
+      "heading_range": {
+        "first": "iacs_ur_d10_HD_001",
+        "last": "iacs_ur_d10_HD_001"
+      }
+    },
+    {
+      "doc_instance_key": "iacs_ur_d11_rev4_corr1_en",
+      "document_key": "iacs_ur_d11",
+      "start_line": 3,
+      "end_line": 273,
+      "est_tokens": 3470,
+      "heading_range": {
+        "first": "iacs_ur_d11_HD_001",
+        "last": "iacs_ur_d11_HD_042"
+      }
+    },
+    {
+      "doc_instance_key": "iacs_ur_d12_del_en",
+      "document_key": "iacs_ur_d12",
+      "start_line": 1,
+      "end_line": 3,
+      "est_tokens": 24,
+      "heading_range": {
+        "first": "iacs_ur_d12_HD_001",
+        "last": "iacs_ur_d12_HD_001"
+      }
+    }
+  ],
+  "est_tokens_total": 25478,
+  "chunk_keys": [
+    "iacs_ur_d1_rev4_en_ch001",
+    "iacs_ur_d2_rev2_en_ch001",
+    "iacs_ur_d3_rev6_en_ch001",
+    "iacs_ur_d4_rev3_en_ch001",
+    "iacs_ur_d5_rev3_en_ch001",
+    "iacs_ur_d6_rev1_en_ch001",
+    "iacs_ur_d7_rev3_en_ch001",
+    "iacs_ur_d8_rev3_en_ch001",
+    "iacs_ur_d10_del_en_ch001",
+    "iacs_ur_d11_rev4_corr1_en_ch001",
+    "iacs_ur_d12_del_en_ch001"
+  ],
+  "status": "processed",
+  "output_files": [
+    "skill_md2wu/wu-iacs_ur_merge_6a9bcdbf__pre__content.md"
+  ],
+  "created_at": "2026-04-17T04:16:23.370601+00:00"
+}

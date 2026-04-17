@@ -34,7 +34,13 @@
       "mcp__codex__codex",
       "mcp__gemini__ask-gemini",
       "Bash(mv /mnt/c/shared_wk/ontology_iacs/.claude/references /mnt/c/shared_wk/claude_toolkit/references)",
-      "Bash(ln -s /mnt/c/shared_wk/claude_toolkit/references /mnt/c/shared_wk/ontology_iacs/.claude/references)"
+      "Bash(ln -s /mnt/c/shared_wk/claude_toolkit/references /mnt/c/shared_wk/ontology_iacs/.claude/references)",
+      "Read(//mnt/c/shared_wk/claude_toolkit/**)",
+      "Write(//mnt/c/shared_wk/claude_toolkit/**)",
+      "Edit(//mnt/c/shared_wk/claude_toolkit/**)",
+      "Read(//home/kimghw/claude_toolkit/**)",
+      "Write(//home/kimghw/claude_toolkit/**)",
+      "Edit(//home/kimghw/claude_toolkit/**)"
     ],
     "additionalDirectories": [
       "/mnt/c/shared_wk/claude_toolkit",

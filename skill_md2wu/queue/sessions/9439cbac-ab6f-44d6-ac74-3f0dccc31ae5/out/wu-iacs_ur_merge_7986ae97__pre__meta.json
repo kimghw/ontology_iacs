@@ -1,0 +1,31 @@
+{
+  "wu_key": "iacs_ur_merge_7986ae97",
+  "wu_type": "merged",
+  "authority": "IACS",
+  "doc_type": "UR",
+  "language": "en",
+  "grammar_version": "iacs_ur_z_v01",
+  "measure_method": "tiktoken",
+  "constituent_docs": [
+    {
+      "doc_instance_key": "iacs_ur_w35_rev1_en",
+      "document_key": "iacs_ur_w35",
+      "start_line": 2,
+      "end_line": 193,
+      "est_tokens": 3246,
+      "heading_range": {
+        "first": "iacs_ur_w35_HD_001",
+        "last": "iacs_ur_w35_HD_016"
+      }
+    }
+  ],
+  "est_tokens_total": 3246,
+  "chunk_keys": [
+    "iacs_ur_w35_rev1_en_ch001"
+  ],
+  "status": "processed",
+  "output_files": [
+    "skill_md2wu/wu-iacs_ur_merge_7986ae97__pre__content.md"
+  ],
+  "created_at": "2026-04-17T04:16:23.370601+00:00"
+}

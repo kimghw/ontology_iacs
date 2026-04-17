@@ -1,0 +1,75 @@
+{
+  "corpus_scope": "iacs_ur_i",
+  "source_family": "iacs_ur",
+  "authority": "IACS",
+  "doc_type": "UR",
+  "language": "en",
+  "grammar_version": "iacs_ur_z_v01",
+  "measure_method": "tiktoken",
+  "series": "ur_i",
+  "session_id": "9439cbac-ab6f-44d6-ac74-3f0dccc31ae5",
+  "batch_id": "B001",
+  "generated_at": "2026-04-17T04:16:23.370601+00:00",
+  "wu_count": 2,
+  "est_tokens_total": 30877,
+  "work_units": [
+    {
+      "wu_key": "iacs_ur_i3_rev2_corr1_en",
+      "wu_type": "standalone",
+      "constituent_docs": [
+        {
+          "doc_instance_key": "iacs_ur_i3_rev2_corr1_en",
+          "document_key": "iacs_ur_i3",
+          "start_line": 2,
+          "end_line": 1500,
+          "est_tokens": 26509,
+          "heading_range": {
+            "first": "iacs_ur_i3_HD_001",
+            "last": "iacs_ur_i3_HD_092"
+          }
+        }
+      ],
+      "est_tokens_total": 26509,
+      "chunk_keys": [
+        "iacs_ur_i3_rev2_corr1_en_ch001"
+      ],
+      "status": "processed",
+      "content_file": "wu-iacs_ur_i3_rev2_corr1_en__pre__content.md"
+    },
+    {
+      "wu_key": "iacs_ur_merge_60535b6e",
+      "wu_type": "merged",
+      "constituent_docs": [
+        {
+          "doc_instance_key": "iacs_ur_i1_rev2_en",
+          "document_key": "iacs_ur_i1",
+          "start_line": 1,
+          "end_line": 58,
+          "est_tokens": 1067,
+          "heading_range": {
+            "first": "iacs_ur_i1_HD_001",
+            "last": "iacs_ur_i1_HD_004"
+          }
+        },
+        {
+          "doc_instance_key": "iacs_ur_i2_rev4_en",
+          "document_key": "iacs_ur_i2",
+          "start_line": 2,
+          "end_line": 165,
+          "est_tokens": 3301,
+          "heading_range": {
+            "first": "iacs_ur_i2_HD_001",
+            "last": "iacs_ur_i2_HD_012"
+          }
+        }
+      ],
+      "est_tokens_total": 4368,
+      "chunk_keys": [
+        "iacs_ur_i1_rev2_en_ch001",
+        "iacs_ur_i2_rev4_en_ch001"
+      ],
+      "status": "processed",
+      "content_file": "wu-iacs_ur_merge_60535b6e__pre__content.md"
+    }
+  ]
+}

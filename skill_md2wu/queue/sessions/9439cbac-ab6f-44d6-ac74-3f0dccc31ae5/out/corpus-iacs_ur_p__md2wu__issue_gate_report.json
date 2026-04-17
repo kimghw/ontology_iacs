@@ -1,0 +1,13 @@
+{
+  "corpus_scope": "iacs_ur_p",
+  "generated_at": "2026-04-17T04:16:23.370601+00:00",
+  "threshold_issues": [
+    {
+      "type": "undersized",
+      "severity": "LOW",
+      "wu_key": "iacs_ur_merge_aa136be6",
+      "tokens": 14471
+    }
+  ],
+  "judgments": []
+}

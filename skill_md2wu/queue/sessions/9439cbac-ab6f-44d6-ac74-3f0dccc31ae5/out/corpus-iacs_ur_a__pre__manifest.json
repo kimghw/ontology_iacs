@@ -1,0 +1,52 @@
+{
+  "corpus_scope": "iacs_ur_a",
+  "source_family": "iacs_ur",
+  "authority": "IACS",
+  "doc_type": "UR",
+  "language": "en",
+  "grammar_version": "iacs_ur_z_v01",
+  "measure_method": "tiktoken",
+  "series": "ur_a",
+  "session_id": "9439cbac-ab6f-44d6-ac74-3f0dccc31ae5",
+  "batch_id": "B001",
+  "generated_at": "2026-04-17T04:16:23.370601+00:00",
+  "wu_count": 1,
+  "est_tokens_total": 8978,
+  "work_units": [
+    {
+      "wu_key": "iacs_ur_merge_f24ab2da",
+      "wu_type": "merged",
+      "constituent_docs": [
+        {
+          "doc_instance_key": "iacs_ur_a2_rev5_en",
+          "document_key": "iacs_ur_a2",
+          "start_line": 3,
+          "end_line": 298,
+          "est_tokens": 5868,
+          "heading_range": {
+            "first": "iacs_ur_a2_HD_001",
+            "last": "iacs_ur_a2_HD_020"
+          }
+        },
+        {
+          "doc_instance_key": "iacs_ur_a3_rev1_en",
+          "document_key": "iacs_ur_a3",
+          "start_line": 3,
+          "end_line": 192,
+          "est_tokens": 3110,
+          "heading_range": {
+            "first": "iacs_ur_a3_HD_001",
+            "last": "iacs_ur_a3_HD_026"
+          }
+        }
+      ],
+      "est_tokens_total": 8978,
+      "chunk_keys": [
+        "iacs_ur_a2_rev5_en_ch001",
+        "iacs_ur_a3_rev1_en_ch001"
+      ],
+      "status": "processed",
+      "content_file": "wu-iacs_ur_merge_f24ab2da__pre__content.md"
+    }
+  ]
+}

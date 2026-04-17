@@ -1,0 +1,55 @@
+{
+  "wu_key": "iacs_ur_merge_853eaa50",
+  "wu_type": "merged",
+  "authority": "IACS",
+  "doc_type": "UR",
+  "language": "en",
+  "grammar_version": "iacs_ur_z_v01",
+  "measure_method": "tiktoken",
+  "constituent_docs": [
+    {
+      "doc_instance_key": "iacs_ur_k1_del_en",
+      "document_key": "iacs_ur_k1",
+      "start_line": 1,
+      "end_line": 7,
+      "est_tokens": 40,
+      "heading_range": {
+        "first": "iacs_ur_k1_HD_001",
+        "last": "iacs_ur_k1_HD_002"
+      }
+    },
+    {
+      "doc_instance_key": "iacs_ur_k2_del_en",
+      "document_key": "iacs_ur_k2",
+      "start_line": 1,
+      "end_line": 3,
+      "est_tokens": 24,
+      "heading_range": {
+        "first": "iacs_ur_k2_HD_001",
+        "last": "iacs_ur_k2_HD_001"
+      }
+    },
+    {
+      "doc_instance_key": "iacs_ur_k3_corr2_en",
+      "document_key": "iacs_ur_k3",
+      "start_line": 2,
+      "end_line": 129,
+      "est_tokens": 1861,
+      "heading_range": {
+        "first": "iacs_ur_k3_HD_001",
+        "last": "iacs_ur_k3_HD_005"
+      }
+    }
+  ],
+  "est_tokens_total": 1925,
+  "chunk_keys": [
+    "iacs_ur_k1_del_en_ch001",
+    "iacs_ur_k2_del_en_ch001",
+    "iacs_ur_k3_corr2_en_ch001"
+  ],
+  "status": "processed",
+  "output_files": [
+    "skill_md2wu/wu-iacs_ur_merge_853eaa50__pre__content.md"
+  ],
+  "created_at": "2026-04-17T04:16:23.370601+00:00"
+}

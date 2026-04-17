@@ -1,0 +1,31 @@
+{
+  "wu_key": "iacs_ur_w22_rev6_en",
+  "wu_type": "standalone",
+  "authority": "IACS",
+  "doc_type": "UR",
+  "language": "en",
+  "grammar_version": "iacs_ur_z_v01",
+  "measure_method": "tiktoken",
+  "constituent_docs": [
+    {
+      "doc_instance_key": "iacs_ur_w22_rev6_en",
+      "document_key": "iacs_ur_w22",
+      "start_line": 2,
+      "end_line": 895,
+      "est_tokens": 18319,
+      "heading_range": {
+        "first": "iacs_ur_w22_HD_001",
+        "last": "iacs_ur_w22_HD_072"
+      }
+    }
+  ],
+  "est_tokens_total": 18319,
+  "chunk_keys": [
+    "iacs_ur_w22_rev6_en_ch001"
+  ],
+  "status": "processed",
+  "output_files": [
+    "skill_md2wu/wu-iacs_ur_w22_rev6_en__pre__content.md"
+  ],
+  "created_at": "2026-04-17T04:16:23.370601+00:00"
+}

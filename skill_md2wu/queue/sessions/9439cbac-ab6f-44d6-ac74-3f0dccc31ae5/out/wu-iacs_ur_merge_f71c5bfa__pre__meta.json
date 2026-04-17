@@ -1,0 +1,91 @@
+{
+  "wu_key": "iacs_ur_merge_f71c5bfa",
+  "wu_type": "merged",
+  "authority": "IACS",
+  "doc_type": "UR",
+  "language": "en",
+  "grammar_version": "iacs_ur_z_v01",
+  "measure_method": "tiktoken",
+  "constituent_docs": [
+    {
+      "doc_instance_key": "iacs_ur_w28_rev2_en",
+      "document_key": "iacs_ur_w28",
+      "start_line": 2,
+      "end_line": 539,
+      "est_tokens": 7270,
+      "heading_range": {
+        "first": "iacs_ur_w28_HD_001",
+        "last": "iacs_ur_w28_HD_029"
+      }
+    },
+    {
+      "doc_instance_key": "iacs_ur_w29_en",
+      "document_key": "iacs_ur_w29",
+      "start_line": 2,
+      "end_line": 220,
+      "est_tokens": 2434,
+      "heading_range": {
+        "first": "iacs_ur_w29_HD_001",
+        "last": "iacs_ur_w29_HD_029"
+      }
+    },
+    {
+      "doc_instance_key": "iacs_ur_w30_del_en",
+      "document_key": "iacs_ur_w30",
+      "start_line": 1,
+      "end_line": 7,
+      "est_tokens": 43,
+      "heading_range": {
+        "first": "iacs_ur_w30_HD_001",
+        "last": "iacs_ur_w30_HD_002"
+      }
+    },
+    {
+      "doc_instance_key": "iacs_ur_w32_rev1_en",
+      "document_key": "iacs_ur_w32",
+      "start_line": 2,
+      "end_line": 450,
+      "est_tokens": 5547,
+      "heading_range": {
+        "first": "iacs_ur_w32_HD_001",
+        "last": "iacs_ur_w32_HD_014"
+      }
+    },
+    {
+      "doc_instance_key": "iacs_ur_w33_rev1_corr1_en",
+      "document_key": "iacs_ur_w33",
+      "start_line": 2,
+      "end_line": 484,
+      "est_tokens": 7204,
+      "heading_range": {
+        "first": "iacs_ur_w33_HD_001",
+        "last": "iacs_ur_w33_HD_031"
+      }
+    },
+    {
+      "doc_instance_key": "iacs_ur_w34_en",
+      "document_key": "iacs_ur_w34",
+      "start_line": 2,
+      "end_line": 515,
+      "est_tokens": 7919,
+      "heading_range": {
+        "first": "iacs_ur_w34_HD_001",
+        "last": "iacs_ur_w34_HD_029"
+      }
+    }
+  ],
+  "est_tokens_total": 30417,
+  "chunk_keys": [
+    "iacs_ur_w28_rev2_en_ch001",
+    "iacs_ur_w29_en_ch001",
+    "iacs_ur_w30_del_en_ch001",
+    "iacs_ur_w32_rev1_en_ch001",
+    "iacs_ur_w33_rev1_corr1_en_ch001",
+    "iacs_ur_w34_en_ch001"
+  ],
+  "status": "processed",
+  "output_files": [
+    "skill_md2wu/wu-iacs_ur_merge_f71c5bfa__pre__content.md"
+  ],
+  "created_at": "2026-04-17T04:16:23.370601+00:00"
+}

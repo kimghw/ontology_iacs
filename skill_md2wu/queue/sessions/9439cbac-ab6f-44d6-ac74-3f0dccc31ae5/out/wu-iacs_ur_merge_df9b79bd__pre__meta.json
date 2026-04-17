@@ -1,0 +1,79 @@
+{
+  "wu_key": "iacs_ur_merge_df9b79bd",
+  "wu_type": "merged",
+  "authority": "IACS",
+  "doc_type": "UR",
+  "language": "en",
+  "grammar_version": "iacs_ur_z_v01",
+  "measure_method": "tiktoken",
+  "constituent_docs": [
+    {
+      "doc_instance_key": "iacs_ur_l1_del_en",
+      "document_key": "iacs_ur_l1",
+      "start_line": 1,
+      "end_line": 5,
+      "est_tokens": 12,
+      "heading_range": {
+        "first": "iacs_ur_l1_HD_001",
+        "last": "iacs_ur_l1_HD_002"
+      }
+    },
+    {
+      "doc_instance_key": "iacs_ur_l2_rev3_en",
+      "document_key": "iacs_ur_l2",
+      "start_line": 1,
+      "end_line": 27,
+      "est_tokens": 371,
+      "heading_range": {
+        "first": "iacs_ur_l2_HD_001",
+        "last": "iacs_ur_l2_HD_003"
+      }
+    },
+    {
+      "doc_instance_key": "iacs_ur_l3_del_en",
+      "document_key": "iacs_ur_l3",
+      "start_line": 1,
+      "end_line": 3,
+      "est_tokens": 29,
+      "heading_range": {
+        "first": "iacs_ur_l3_HD_001",
+        "last": "iacs_ur_l3_HD_001"
+      }
+    },
+    {
+      "doc_instance_key": "iacs_ur_l4_rev3_corr2_en",
+      "document_key": "iacs_ur_l4",
+      "start_line": 1,
+      "end_line": 42,
+      "est_tokens": 725,
+      "heading_range": {
+        "first": "iacs_ur_l4_HD_001",
+        "last": "iacs_ur_l4_HD_001"
+      }
+    },
+    {
+      "doc_instance_key": "iacs_ur_l5_rev4_en",
+      "document_key": "iacs_ur_l5",
+      "start_line": 2,
+      "end_line": 394,
+      "est_tokens": 5637,
+      "heading_range": {
+        "first": "iacs_ur_l5_HD_001",
+        "last": "iacs_ur_l5_HD_016"
+      }
+    }
+  ],
+  "est_tokens_total": 6774,
+  "chunk_keys": [
+    "iacs_ur_l1_del_en_ch001",
+    "iacs_ur_l2_rev3_en_ch001",
+    "iacs_ur_l3_del_en_ch001",
+    "iacs_ur_l4_rev3_corr2_en_ch001",
+    "iacs_ur_l5_rev4_en_ch001"
+  ],
+  "status": "processed",
+  "output_files": [
+    "skill_md2wu/wu-iacs_ur_merge_df9b79bd__pre__content.md"
+  ],
+  "created_at": "2026-04-17T04:16:23.370601+00:00"
+}
